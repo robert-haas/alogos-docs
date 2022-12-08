@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.whge.mutation &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.whge.mutation</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos.systems.whge.mutation">
+<span id="alogos-systems-whge-mutation"></span><h1><a class="reference internal" href="#module-alogos.systems.whge.mutation" title="alogos.systems.whge.mutation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.whge.mutation</span></code></a><a class="headerlink" href="#module-alogos.systems.whge.mutation" title="Permalink to this heading">¶</a></h1>
+<p>Mutation functions for WHGE.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.whge.mutation.bit_flip_by_probability" title="alogos.systems.whge.mutation.bit_flip_by_probability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bit_flip_by_probability</span></code></a>(grammar, genotype, parameters=None)</p></td>
+<td><p>Mutate a genotype by random bit flips with a certain probability.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.whge.mutation.bit_flip_by_count" title="alogos.systems.whge.mutation.bit_flip_by_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bit_flip_by_count</span></code></a>(grammar, genotype, parameters=None)</p></td>
+<td><p>Mutate a genotype by n random bit flips.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.whge.mutation.bit_flip_by_probability">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.whge.mutation.</span></span><span class="sig-name descname"><span class="pre">bit_flip_by_probability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genotype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/whge/mutation.html#bit_flip_by_probability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.whge.mutation.bit_flip_by_probability" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mutate a genotype by random bit flips with a certain probability.</p>
+<p>The probability for a bit flip is considered independently for
+each position in the genotype, regardless of the genotype length.</p>
+<p>Caution: Mutation is performed in-place for performance reasons,
+which means that the provided genotype is modified. If this is
+not desired, a copy needs to be made beforehand.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>genotype</strong> (<a class="reference internal" href="../../cfggp/representation/index.html#alogos.systems.cfggp.representation.Genotype" title="alogos.systems.cfggp.representation.Genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Genotype</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>, optional) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">mutation_bit_flip_probability</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) : Probability
+of changing a bit.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul>
+<li><p>Medvet in 2017:
+<a class="reference external" href="https://doi.org/10.1145/3067695.3075972">Hierarchical Grammatical Evolution</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>p. 250: “we performed 30 independent executions of the evolutionary search
+[…] with the following evolution parameters: […]
+bit flip mutation with p_mut = 0.01 and 0.2 rate”</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Bartoli, Castelli, Medvet in 2018:
+<a class="reference external" href="https://doi.org/10.1109/TCYB.2018.2876563">Weighted Hierarchical Grammatical Evolution</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><ol class="loweralpha simple" start="16">
+<li><p>7, Table 1: “Mutation op. bit flip w. p_mut = 0.01”</p></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Reference implementation in Java: <a class="reference external" href="https://github.com/ericmedvet/evolved-ge">evolved-ge</a></p>
+<blockquote>
+<div><ul>
+<li><p><a class="reference external" href="https://github.com/ericmedvet/evolved-ge/blob/master/src/main/java/it/units/malelab/ege/ge/operator/ProbabilisticMutation.java">ProbabilisticMutation.java</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The algorithm loops over each bit of the genotype, in each
+run generating a random number between 0.0 and 1.0 and if
+it is smaller than p_mut the current bit is flipped.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference external" href="https://github.com/ericmedvet/evolved-ge/blob/master/src/main/java/it/units/malelab/ege">Folder with example scripts</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">ProbabilisticMutation</span></code> with p_mut 0.01 and rate 0.2:
+<code class="docutils literal notranslate"><span class="pre">DeepExperimenter.java</span></code>,
+<code class="docutils literal notranslate"><span class="pre">DeepDistributedExperimenter.java</span></code>,
+<code class="docutils literal notranslate"><span class="pre">GOM.java</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MapperGenerationExperimenter.java</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MapperGenerationDistributedExperimenter.java</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.whge.mutation.bit_flip_by_count">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.whge.mutation.</span></span><span class="sig-name descname"><span class="pre">bit_flip_by_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genotype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/whge/mutation.html#bit_flip_by_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.whge.mutation.bit_flip_by_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mutate a genotype by n random bit flips.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

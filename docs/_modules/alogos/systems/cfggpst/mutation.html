@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.cfggpst.mutation &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems.cfggpst.mutation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems.cfggpst.mutation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Mutation functions for CFG-GP-ST.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">_random</span>
+
+<span class="kn">from</span> <span class="nn">..._utilities.parametrization</span> <span class="kn">import</span> <span class="n">get_given_or_default</span> <span class="k">as</span> <span class="n">_get_given_or_default</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">_shared</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_cached_calculations</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">default_parameters</span> <span class="k">as</span> <span class="n">_dp</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">representation</span> <span class="k">as</span> <span class="n">_representation</span>
+
+
+<span class="c1"># Shortcuts for minor speedup</span>
+<span class="n">_GT</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span>
+<span class="n">_fe</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">_find_subtree_end</span>
+<span class="n">_rc</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">choice</span>
+<span class="n">_ri</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">randint</span>
+<span class="n">_rs</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">shuffle</span>
+
+
+<div class="viewcode-block" id="subtree_replacement"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/cfggpst/mutation/index.html#alogos.systems.cfggpst.mutation.subtree_replacement">[docs]</a><span class="k">def</span> <span class="nf">subtree_replacement</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Change a randomly chosen node by attaching a randomly generated subtree.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    genotype : `~.representation.Genotype`</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`, optional</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``max_nodes`` (`int`) : Maximum number of nodes in a tree.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    genotype : `~.representation.Genotype`</span>
+<span class="sd">        Mutated genotype.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The limiation of the tree size via `max_nodes` is only a soft</span>
+<span class="sd">    constraint, because the tree branches are grown randomly and</span>
+<span class="sd">    independently from each other. To finish each branch it can be</span>
+<span class="sd">    necessary to go beyond the node limit, because it is checked when</span>
+<span class="sd">    opening a branch, but only considering existing nodes and not all</span>
+<span class="sd">    nodes still required for each other unfinished branch. It is</span>
+<span class="sd">    possible to make it a hard constraint, but would require more</span>
+<span class="sd">    computation and memory, as well as likely not improving the</span>
+<span class="sd">    sampling of the search space.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - `Grammatically-based Genetic Programming (1995)</span>
+<span class="sd">      &lt;http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.26.2091&gt;`__</span>
+
+<span class="sd">        - &quot;Mutation applies to a single program. A program is selected</span>
+<span class="sd">          for mutation, and one non-terminal is randomly selected as the</span>
+<span class="sd">          site for mutation. The tree below this non-terminal is</span>
+<span class="sd">          deleted, and a new tree randomly generated from the grammar</span>
+<span class="sd">          using this non-terminal as a starting point. The tree is</span>
+<span class="sd">          limited in total depth by the current maximum allowable</span>
+<span class="sd">          program depth (MAX-TREE-DEPTH), in an operation similar to</span>
+<span class="sd">          creating the initial population.&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">_GT</span><span class="p">):</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_GT</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
+
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">mn</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;max_nodes&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+
+    <span class="c1"># Mutation</span>
+    <span class="c1"># - Random choice of a nonterminal to mutate</span>
+    <span class="n">s1</span><span class="p">,</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">a1</span> <span class="o">=</span> <span class="n">_rc</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span><span class="p">])</span>  <span class="c1"># choose idx of a random nonterminal</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="n">_fe</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">c1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># find idx of last symbol in its subtree</span>
+    <span class="c1"># - Grow a random new subtree</span>
+    <span class="n">s2</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">_grow_random_subtree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">s1</span><span class="p">[</span><span class="n">a1</span><span class="p">],</span> <span class="n">mn</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">b1</span> <span class="o">-</span> <span class="n">a1</span><span class="p">))</span>
+    <span class="c1"># - New genotype: replace the subtree of the chosen nonterminal with the new subtree</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">s1</span><span class="p">[:</span><span class="n">a1</span><span class="p">]</span> <span class="o">+</span> <span class="n">s2</span> <span class="o">+</span> <span class="n">s1</span><span class="p">[</span><span class="n">b1</span><span class="p">:],</span> <span class="n">c1</span><span class="p">[:</span><span class="n">a1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c2</span> <span class="o">+</span> <span class="n">c1</span><span class="p">[</span><span class="n">b1</span><span class="p">:])</span>
+    <span class="k">return</span> <span class="n">_GT</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_grow_random_subtree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">sym</span><span class="p">,</span> <span class="n">max_nodes</span><span class="p">):</span>
+    <span class="c1"># Caching</span>
+    <span class="n">imn</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;cfggpst&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;idx_min_nodes&quot;</span><span class="p">,</span>
+        <span class="n">_shared</span><span class="o">.</span><span class="n">_cached_calculations</span><span class="o">.</span><span class="n">idx_min_nodes_to_terminals</span><span class="p">,</span>
+        <span class="n">grammar</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ipr</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;cfggpst&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;idx_production_rules&quot;</span><span class="p">,</span>
+        <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">idx_production_rules</span><span class="p">,</span>
+        <span class="n">grammar</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Construction of a tree in form of two lists</span>
+    <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+        <span class="c1"># quick and dirty list flattening: [[1, 2], [3]] =&gt; [1, 2, 3]</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="p">[])</span>
+
+    <span class="k">def</span> <span class="nf">trav</span><span class="p">(</span><span class="n">sy</span><span class="p">):</span>
+        <span class="k">nonlocal</span> <span class="n">n</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># counter for each node added to the tree</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># 1) Symbol is a nonterminal, therefore requires expansion and will have &gt;0 children</span>
+            <span class="c1"># Choose rule: randomly from those rules that do not lead over the wanted num nodes</span>
+            <span class="n">rhs</span> <span class="o">=</span> <span class="n">_rc</span><span class="p">(</span><span class="n">_filter_rules</span><span class="p">(</span><span class="n">sy</span><span class="p">,</span> <span class="n">ipr</span><span class="p">[</span><span class="n">sy</span><span class="p">],</span> <span class="n">imn</span><span class="p">[</span><span class="n">sy</span><span class="p">],</span> <span class="n">max_nodes</span> <span class="o">-</span> <span class="n">n</span><span class="p">))</span>
+            <span class="c1"># Expand the nonterminal with the rhs of the chosen rule</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+            <span class="n">_rs</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">m</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
+                <span class="c1"># Recursive call for each child in random order, return in original order (dfs)</span>
+                <span class="n">ret</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">trav</span><span class="p">(</span><span class="n">rhs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">symbols</span> <span class="o">=</span> <span class="p">[</span><span class="n">sy</span><span class="p">]</span> <span class="o">+</span> <span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ret</span><span class="p">)</span>
+            <span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ret</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="c1"># 2) Symbol is a terminal, therefore requires no expansion and will have 0 children</span>
+            <span class="n">symbols</span> <span class="o">=</span> <span class="p">[</span><span class="n">sy</span><span class="p">]</span>
+            <span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">counts</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">symbols</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">trav</span><span class="p">(</span><span class="n">sym</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">symbols</span><span class="p">),</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_filter_rules</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">mn</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+    <span class="c1"># Try to choose rules that do not lead the tree to grow beyond max_nodes</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">mn</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">]</span>
+    <span class="c1"># If not possible, choose those rules that share the lowest number of added nodes</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">r</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">mn</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">mn</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="n">v</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">r</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

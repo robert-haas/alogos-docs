@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.cfggp.crossover &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems.cfggp.crossover</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems.cfggp.crossover</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Crossover functions for CFG-GP.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">_random</span>
+
+<span class="kn">from</span> <span class="nn">..._utilities.parametrization</span> <span class="kn">import</span> <span class="n">get_given_or_default</span> <span class="k">as</span> <span class="n">_get_given_or_default</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">default_parameters</span> <span class="k">as</span> <span class="n">_default_parameters</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">representation</span> <span class="k">as</span> <span class="n">_representation</span>
+
+
+<div class="viewcode-block" id="subtree_exchange"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/cfggp/crossover/index.html#alogos.systems.cfggp.crossover.subtree_exchange">[docs]</a><span class="k">def</span> <span class="nf">subtree_exchange</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype1</span><span class="p">,</span> <span class="n">genotype2</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate new CFG-GP genotypes by exchanging suitable subtrees.</span>
+
+<span class="sd">    Randomly select nodes containing the same nonterminal in two trees</span>
+<span class="sd">    and swap their subtrees.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    genotype1 : `~.representation.Genotype`</span>
+<span class="sd">        Genotype of the first parent.</span>
+<span class="sd">    genotype2 : `~.representation.Genotype`</span>
+<span class="sd">        Genotype of the second parent.</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`, optional</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``max_depth`` (`int`) : Represents the maximum depth allowed</span>
+<span class="sd">          for newly generated trees</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    genotype1 : `~.representation.Genotype`</span>
+<span class="sd">        Genotype of the first child.</span>
+<span class="sd">    genotype2 : `~.representation.Genotype`</span>
+<span class="sd">        Genotype of the second child.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The randomly selected nodes may be the root nodes of both trees,</span>
+<span class="sd">    which means that the crossover will produce genotypes that are</span>
+<span class="sd">    identical to the given genotypes. It would be possible to exclude</span>
+<span class="sd">    the root nodes from the random node selection, but in case of</span>
+<span class="sd">    recursive grammars the start symbol may appear in lower parts of</span>
+<span class="sd">    the tree and then a swap between root node and lower node produces</span>
+<span class="sd">    novel genotypes.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - 1995, Whigham: `Grammatically-based Genetic Programming</span>
+<span class="sd">      &lt;http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.26.2091&gt;`__</span>
+
+<span class="sd">        - &quot;All terminals have at least one nonterminal above them in</span>
+<span class="sd">          the program tree (at the very least S), so without loss of</span>
+<span class="sd">          generality we may constrain crossover points to be located</span>
+<span class="sd">          only on nonterminals. The crossover operation maintains legal</span>
+<span class="sd">          programs of the language (as defined by the grammar) by</span>
+<span class="sd">          ensuring that the same non-terminals are selected at each</span>
+<span class="sd">          crossover site. The parameter MAX-TREE-DEPTH is used to</span>
+<span class="sd">          indicate the deepest parse tree that may exist in the</span>
+<span class="sd">          population. The crossover algorithm (see figure 3) is: [...]&quot;</span>
+
+<span class="sd">        - &quot;We note that the parameter MAX-TREE-DEPTH may exclude some</span>
+<span class="sd">          crossover operations from being performed. In the current</span>
+<span class="sd">          system, if following crossover either new program exceeds</span>
+<span class="sd">          MAX-TREE-DEPTH the entire operation is aborted, and the</span>
+<span class="sd">          crossover procedure recommenced from step 1.&quot;</span>
+
+<span class="sd">    - 2003, Poli, McPhee:</span>
+<span class="sd">      `General Schema Theory for Genetic Programming with Subtree-Swapping Crossover: Part II</span>
+<span class="sd">      &lt;https://doi.org/10.1162/106365603766646825&gt;`__</span>
+
+<span class="sd">        - An example where the name &quot;subtree-swapping&quot; is used for the</span>
+<span class="sd">          same crossover operation.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">max_depth</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;max_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_default_parameters</span><span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">genotype1</span><span class="p">,</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">):</span>
+        <span class="n">genotype1</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">genotype1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">genotype2</span><span class="p">,</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">):</span>
+        <span class="n">genotype2</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">genotype2</span><span class="p">)</span>
+
+    <span class="c1"># Crossover</span>
+    <span class="n">ns1</span> <span class="o">=</span> <span class="n">genotype1</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">internal_nodes</span><span class="p">()</span>
+    <span class="n">ns2</span> <span class="o">=</span> <span class="n">genotype2</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">internal_nodes</span><span class="p">()</span>
+    <span class="n">s1</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ns1</span><span class="p">}</span>
+    <span class="n">s2</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ns2</span><span class="p">}</span>
+    <span class="n">si</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">si</span><span class="p">:</span>
+        <span class="c1"># Randomly select a non-terminal in the first tree, which is also part of second tree</span>
+        <span class="n">n1</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ns1</span> <span class="k">if</span> <span class="n">n</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span> <span class="ow">in</span> <span class="n">si</span><span class="p">])</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">n1</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span>
+        <span class="c1"># Randomly select the same non-terminal in the second genotype</span>
+        <span class="n">n2</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ns2</span> <span class="k">if</span> <span class="n">n</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="n">t1</span><span class="p">])</span>
+        <span class="c1"># Swap subtrees by exchanging the list of child nodes</span>
+        <span class="n">n1</span><span class="o">.</span><span class="n">children</span><span class="p">,</span> <span class="n">n2</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="n">n2</span><span class="o">.</span><span class="n">children</span><span class="p">,</span> <span class="n">n1</span><span class="o">.</span><span class="n">children</span>
+        <span class="c1"># Ensure max_depth constraint is not violated</span>
+        <span class="k">if</span> <span class="n">genotype1</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">_is_deeper_than</span><span class="p">(</span><span class="n">max_depth</span><span class="p">)</span> <span class="ow">or</span> <span class="n">genotype2</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">_is_deeper_than</span><span class="p">(</span>
+            <span class="n">max_depth</span>
+        <span class="p">):</span>
+            <span class="c1"># If invalid, reverse the swap</span>
+            <span class="n">n1</span><span class="o">.</span><span class="n">children</span><span class="p">,</span> <span class="n">n2</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="n">n2</span><span class="o">.</span><span class="n">children</span><span class="p">,</span> <span class="n">n1</span><span class="o">.</span><span class="n">children</span>
+    <span class="k">return</span> <span class="n">genotype1</span><span class="p">,</span> <span class="n">genotype2</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

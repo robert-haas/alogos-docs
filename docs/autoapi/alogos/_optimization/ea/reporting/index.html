@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._optimization.ea.reporting &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._optimization.ea.reporting</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos._optimization.ea.reporting">
+<span id="alogos-optimization-ea-reporting"></span><h1><a class="reference internal" href="#module-alogos._optimization.ea.reporting" title="alogos._optimization.ea.reporting"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._optimization.ea.reporting</span></code></a><a class="headerlink" href="#module-alogos._optimization.ea.reporting" title="Permalink to this heading">¶</a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos._optimization.ea.reporting.MinimalReporter" title="alogos._optimization.ea.reporting.MinimalReporter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MinimalReporter</span></code></a></p></td>
+<td><p>A reporter that generates minimal output for an algorithm run.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos._optimization.ea.reporting.VerboseReporter" title="alogos._optimization.ea.reporting.VerboseReporter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VerboseReporter</span></code></a></p></td>
+<td><p>A reporter that generates verbose output for an algorithm run.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos._optimization.ea.reporting.</span></span><span class="sig-name descname"><span class="pre">MinimalReporter</span></span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>A reporter that generates minimal output for an algorithm run.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.init_start">
+<span class="sig-name descname"><span class="pre">init_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_now</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.init_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.init_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on start of initialization of the first generation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.init_end">
+<span class="sig-name descname"><span class="pre">init_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.init_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.init_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on end of initialization of the first generation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.map_gen_phe">
+<span class="sig-name descname"><span class="pre">map_gen_phe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.map_gen_phe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.map_gen_phe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on performing genotype-to-phenotype evaluation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.map_phe_fit">
+<span class="sig-name descname"><span class="pre">map_phe_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.map_phe_fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.map_phe_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on performing phenotype-to-fitness evaluation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.calc_phe">
+<span class="sig-name descname"><span class="pre">calc_phe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_unique</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cached</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_calc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.calc_phe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.calc_phe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on genotype-to-phenotype evaluation results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.calc_fit">
+<span class="sig-name descname"><span class="pre">calc_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_unique</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cached</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_calc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.calc_fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.calc_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on phenotype-to-fitness evaluation results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.select_par">
+<span class="sig-name descname"><span class="pre">select_par</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_par</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.select_par"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.select_par" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on parent selection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.select_sur">
+<span class="sig-name descname"><span class="pre">select_sur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_old</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_off</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.select_sur"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.select_sur" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on survivor selection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.cross_over">
+<span class="sig-name descname"><span class="pre">cross_over</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_par</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_crs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.cross_over"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.cross_over" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on variation by crossover.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.mutate">
+<span class="sig-name descname"><span class="pre">mutate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_crs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mut</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.mutate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.mutate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on variation by mutation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.gen_end">
+<span class="sig-name descname"><span class="pre">gen_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.gen_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.gen_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on end of a generation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.run_end">
+<span class="sig-name descname"><span class="pre">run_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.run_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.run_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on end of a run.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.MinimalReporter.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#MinimalReporter.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.MinimalReporter.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a single message with context-sensitive formatting.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos._optimization.ea.reporting.</span></span><span class="sig-name descname"><span class="pre">VerboseReporter</span></span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>A reporter that generates verbose output for an algorithm run.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.init_start">
+<span class="sig-name descname"><span class="pre">init_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_now</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.init_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.init_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on start of initialization of the first generation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.init_end">
+<span class="sig-name descname"><span class="pre">init_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.init_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.init_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on end of initialization of the first generation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.map_gen_phe">
+<span class="sig-name descname"><span class="pre">map_gen_phe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.map_gen_phe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.map_gen_phe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on performing genotype-to-phenotype evaluation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.map_phe_fit">
+<span class="sig-name descname"><span class="pre">map_phe_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.map_phe_fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.map_phe_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on performing phenotype-to-fitness evaluation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.calc_phe">
+<span class="sig-name descname"><span class="pre">calc_phe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_unique</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cached</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_calc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.calc_phe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.calc_phe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on genotype-to-phenotype evaluation results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.calc_fit">
+<span class="sig-name descname"><span class="pre">calc_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_unique</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cached</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_calc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.calc_fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.calc_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on phenotype-to-fitness evaluation results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.select_par">
+<span class="sig-name descname"><span class="pre">select_par</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_par</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.select_par"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.select_par" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on parent selection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.select_sur">
+<span class="sig-name descname"><span class="pre">select_sur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_old</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_off</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.select_sur"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.select_sur" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on survivor selection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.cross_over">
+<span class="sig-name descname"><span class="pre">cross_over</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_par</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_crs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.cross_over"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.cross_over" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on variation by crossover.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.mutate">
+<span class="sig-name descname"><span class="pre">mutate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_crs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mut</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.mutate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.mutate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on variation by mutation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.gen_end">
+<span class="sig-name descname"><span class="pre">gen_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.gen_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.gen_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on end of a generation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.run_end">
+<span class="sig-name descname"><span class="pre">run_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.run_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.run_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report on end of a run.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.reporting.VerboseReporter.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/reporting.html#VerboseReporter.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.reporting.VerboseReporter.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a single message with context-sensitive formatting.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

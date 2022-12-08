@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.dsge.mutation &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems.dsge.mutation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems.dsge.mutation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Mutation functions for DSGE.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">_random</span>
+
+<span class="kn">from</span> <span class="nn">..._utilities.parametrization</span> <span class="kn">import</span> <span class="n">get_given_or_default</span> <span class="k">as</span> <span class="n">_get_given_or_default</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_cached_calculations</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">default_parameters</span> <span class="k">as</span> <span class="n">_dp</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">repair</span> <span class="k">as</span> <span class="n">_repair</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">representation</span> <span class="k">as</span> <span class="n">_representation</span>
+
+
+<div class="viewcode-block" id="int_replacement_by_probability"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/dsge/mutation/index.html#alogos.systems.dsge.mutation.int_replacement_by_probability">[docs]</a><span class="k">def</span> <span class="nf">int_replacement_by_probability</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Change randomly chosen integers to new random values with some restrictions.</span>
+
+<span class="sd">    Restrictions on what can be mutated according to the 2018 paper:</span>
+
+<span class="sd">    - A randomly chosen gene needs to have more than one option for</span>
+<span class="sd">      expansion.</span>
+<span class="sd">    - A randomly chosen integer needs to be used in the</span>
+<span class="sd">      genotype-to-phenotype mapping.</span>
+<span class="sd">    - The maximum tree-depth needs to be respected.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - Software implementations by the authors of the approach</span>
+
+<span class="sd">        - Python: `dsge</span>
+<span class="sd">          &lt;https://github.com/nunolourenco/dsge&gt;`__</span>
+
+<span class="sd">            - `core/sge.py</span>
+<span class="sd">              &lt;https://github.com/nunolourenco/dsge/blob/master/src/core/sge.py&gt;`__:</span>
+<span class="sd">              ``def mutate(p)`` is the implementation of the mutation</span>
+<span class="sd">              operator</span>
+
+<span class="sd">    - Papers</span>
+
+<span class="sd">        - Lourenço et al. in 2018:</span>
+<span class="sd">          `Structured Grammatical Evolution: A Dynamic Approach</span>
+<span class="sd">          &lt;https://doi.org/10.1007/978-3-319-78717-6_6&gt;`__ (DSGE)</span>
+
+<span class="sd">            - p. 145: &quot;The mutation operator is restricted to integers</span>
+<span class="sd">              that are used in the genotype to phenotype mapping and</span>
+<span class="sd">              changes a randomly selected expansion option (encoded as</span>
+<span class="sd">              an integer) to another valid one, constrained to the</span>
+<span class="sd">              restrictions imposed by the maximum tree-depth. To do so,</span>
+<span class="sd">              we first select one gene. Then, we randomly select one of</span>
+<span class="sd">              its integers and replace it with another valid</span>
+<span class="sd">              possibility. Note that genes where there is just one</span>
+<span class="sd">              possibility for expansion are not considered for mutation</span>
+<span class="sd">              purposes.&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">probability</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;mutation_int_replacement_probability&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span>
+    <span class="p">)</span>
+    <span class="n">max_depth</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;max_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+    <span class="n">repair</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;repair_after_mutation&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">):</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
+
+    <span class="c1"># Cache lookup</span>
+    <span class="n">non_recursive_rhs</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;dsge&quot;</span><span class="p">,</span> <span class="s2">&quot;non_recursive_rhs&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">non_recursive_rhs</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+    <span class="p">(</span>
+        <span class="n">gene_to_nt</span><span class="p">,</span>
+        <span class="n">nt_to_gene</span><span class="p">,</span>
+        <span class="n">nt_to_cnt</span><span class="p">,</span>
+        <span class="n">nt_to_num_options</span><span class="p">,</span>
+        <span class="n">mutable_genes</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span><span class="s2">&quot;dsge&quot;</span><span class="p">,</span> <span class="s2">&quot;maps&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span> <span class="n">grammar</span><span class="p">)</span>
+    <span class="n">current_depth</span> <span class="o">=</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">get_tree_depth</span><span class="p">(</span>
+        <span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">nt_to_gene</span><span class="p">,</span> <span class="n">nt_to_cnt</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Mutation: Randomly decide for each positions in the genotype whether it shall be modified</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">num_pos</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">gi</span><span class="p">])</span> <span class="k">for</span> <span class="n">gi</span> <span class="ow">in</span> <span class="n">mutable_genes</span><span class="p">)</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_pos</span><span class="p">)</span> <span class="k">if</span> <span class="n">_random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">probability</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">_change_chosen_positions</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">,</span>
+        <span class="n">pos</span><span class="p">,</span>
+        <span class="n">current_depth</span><span class="p">,</span>
+        <span class="n">max_depth</span><span class="p">,</span>
+        <span class="n">gene_to_nt</span><span class="p">,</span>
+        <span class="n">non_recursive_rhs</span><span class="p">,</span>
+        <span class="n">nt_to_num_options</span><span class="p">,</span>
+        <span class="n">mutable_genes</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Optional repair of the new genotype</span>
+    <span class="k">if</span> <span class="n">repair</span><span class="p">:</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_repair</span><span class="o">.</span><span class="n">fix_genotype</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">genotype</span></div>
+
+
+<div class="viewcode-block" id="int_replacement_by_count"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/dsge/mutation/index.html#alogos.systems.dsge.mutation.int_replacement_by_count">[docs]</a><span class="k">def</span> <span class="nf">int_replacement_by_count</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Change randomly chosen integers to new random values with some restrictions.</span>
+
+<span class="sd">    Restrictions on what can be mutated according to the 2018 paper:</span>
+<span class="sd">    - A randomly chosen gene needs to have more than one option for</span>
+<span class="sd">      expansion.</span>
+<span class="sd">    - A randomly chosen integer needs to be used in the</span>
+<span class="sd">      genotype-to-phenotype mapping.</span>
+<span class="sd">    - The maximum tree-depth needs to be respected.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This mutation operator is not mentioned in DSGE literature, but a</span>
+<span class="sd">    straightforward variant of the default procedure.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">flip_count</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;mutation_int_replacement_count&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span>
+    <span class="p">)</span>
+    <span class="n">max_depth</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;max_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+    <span class="n">repair</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;repair_after_mutation&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">):</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
+
+    <span class="c1"># Cache lookup</span>
+    <span class="n">non_recursive_rhs</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;dsge&quot;</span><span class="p">,</span> <span class="s2">&quot;non_recursive_rhs&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">non_recursive_rhs</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+    <span class="p">(</span>
+        <span class="n">gene_to_nt</span><span class="p">,</span>
+        <span class="n">nt_to_gene</span><span class="p">,</span>
+        <span class="n">nt_to_cnt</span><span class="p">,</span>
+        <span class="n">nt_to_num_options</span><span class="p">,</span>
+        <span class="n">mutable_genes</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span><span class="s2">&quot;dsge&quot;</span><span class="p">,</span> <span class="s2">&quot;maps&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span> <span class="n">grammar</span><span class="p">)</span>
+    <span class="n">current_depth</span> <span class="o">=</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">get_tree_depth</span><span class="p">(</span>
+        <span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">nt_to_gene</span><span class="p">,</span> <span class="n">nt_to_cnt</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Mutation: Choose n different positions in the genotype to flip</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">num_pos</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">gi</span><span class="p">])</span> <span class="k">for</span> <span class="n">gi</span> <span class="ow">in</span> <span class="n">mutable_genes</span><span class="p">)</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_pos</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">num_pos</span> <span class="o">&gt;</span> <span class="n">flip_count</span><span class="p">:</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">flip_count</span><span class="p">)</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">_change_chosen_positions</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">,</span>
+        <span class="n">pos</span><span class="p">,</span>
+        <span class="n">current_depth</span><span class="p">,</span>
+        <span class="n">max_depth</span><span class="p">,</span>
+        <span class="n">gene_to_nt</span><span class="p">,</span>
+        <span class="n">non_recursive_rhs</span><span class="p">,</span>
+        <span class="n">nt_to_num_options</span><span class="p">,</span>
+        <span class="n">mutable_genes</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Optional repair of the new genotype (either here and/or later)</span>
+    <span class="k">if</span> <span class="n">repair</span><span class="p">:</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_repair</span><span class="o">.</span><span class="n">fix_genotype</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">raise_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">genotype</span></div>
+
+
+<span class="k">def</span> <span class="nf">_change_chosen_positions</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">pos</span><span class="p">,</span>
+    <span class="n">current_depth</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="p">,</span>
+    <span class="n">gene_to_nt</span><span class="p">,</span>
+    <span class="n">non_recursive_rhs</span><span class="p">,</span>
+    <span class="n">nt_to_num_options</span><span class="p">,</span>
+    <span class="n">mutable_genes</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Mutate the selected positions by replacing the integer with another valid option.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The maximum tree-depth restriction could be enforced in at least two</span>
+<span class="sd">    different ways:</span>
+
+<span class="sd">    1. If a tree has reached the maximum depth, only use non-recursive</span>
+<span class="sd">       rules when modifying any position in the tree.</span>
+
+<span class="sd">    2. If a branch of the tree reached the the maximum depth, only use</span>
+<span class="sd">       non-recursive rules when modifying a position within this branch,</span>
+<span class="sd">       while still allowing the use of recursive rules in other</span>
+<span class="sd">       branches.</span>
+
+<span class="sd">    This implementation uses option 1, because the original authors&#39;</span>
+<span class="sd">    implementation does so too. Note that this is in contrast to how the</span>
+<span class="sd">    maximum tree-depth restriction is enforced in the initialization and</span>
+<span class="sd">    repair procedures, where the depth of the current branch is</span>
+<span class="sd">    considered rather then the depth of the tree.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define which values are valid depending on depth limit</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="n">current_depth</span> <span class="o">&gt;=</span> <span class="n">max_depth</span>
+    <span class="p">):</span>  <span class="c1"># Note: &gt;= is used in the original authors&#39; implementation</span>
+
+        <span class="k">def</span> <span class="nf">get_new_codon</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="n">codon</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">non_recursive_rhs</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">codon</span><span class="p">])</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">get_new_codon</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="n">codon</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt_to_num_options</span><span class="p">[</span><span class="n">nt</span><span class="p">])</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">codon</span><span class="p">]</span>
+            <span class="p">)</span>
+
+    <span class="c1"># Flip the chosen positions to new valid codons</span>
+    <span class="n">new</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+    <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">gi</span> <span class="ow">in</span> <span class="n">mutable_genes</span><span class="p">:</span>
+        <span class="n">gene</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span>
+        <span class="n">nt</span> <span class="o">=</span> <span class="n">gene_to_nt</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">codon</span> <span class="ow">in</span> <span class="n">gene</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="n">pos</span><span class="p">:</span>
+                <span class="n">new</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_new_codon</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="n">codon</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span>
+            <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">gene</span><span class="p">)</span> <span class="k">for</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">new</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

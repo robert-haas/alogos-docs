@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.dsge._cached_calculations &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.dsge._cached_calculations</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos.systems.dsge._cached_calculations">
+<span id="alogos-systems-dsge-cached-calculations"></span><h1><a class="reference internal" href="#module-alogos.systems.dsge._cached_calculations" title="alogos.systems.dsge._cached_calculations"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.dsge._cached_calculations</span></code></a><a class="headerlink" href="#module-alogos.systems.dsge._cached_calculations" title="Permalink to this heading">¶</a></h1>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.dsge._cached_calculations.maps" title="alogos.systems.dsge._cached_calculations.maps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">maps</span></code></a>(grammar)</p></td>
+<td><p>Calculate different mappings used by DSGE at various points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.dsge._cached_calculations.non_recursive_rhs" title="alogos.systems.dsge._cached_calculations.non_recursive_rhs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">non_recursive_rhs</span></code></a>(grammar)</p></td>
+<td><p>Determine which right-hand sides of rules are not recursive.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.dsge._cached_calculations.get_all_valid_codons" title="alogos.systems.dsge._cached_calculations.get_all_valid_codons"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_valid_codons</span></code></a>(nt, current_depth, max_depth, nt_to_num_options, non_recursive_rhs)</p></td>
+<td><p>Get all valid codons depending on current and max depth.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.dsge._cached_calculations.get_first_valid_codon" title="alogos.systems.dsge._cached_calculations.get_first_valid_codon"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_first_valid_codon</span></code></a>(nt, current_depth, max_depth, nt_to_num_options, non_recursive_rhs)</p></td>
+<td><p>Get the first valid codon depending on current and max depth.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.dsge._cached_calculations.get_random_valid_codon" title="alogos.systems.dsge._cached_calculations.get_random_valid_codon"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_random_valid_codon</span></code></a>(nt, current_depth, max_depth, nt_to_num_options, non_recursive_rhs)</p></td>
+<td><p>Get a random valid codons depending on current and max depth.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.dsge._cached_calculations.get_tree_depth" title="alogos.systems.dsge._cached_calculations.get_tree_depth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_tree_depth</span></code></a>(grammar, genotype, nt_to_gene, nt_to_cnt)</p></td>
+<td><p>Determine the depth of the derivation tree encoded by a genotype.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.dsge._cached_calculations.maps">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.dsge._cached_calculations.</span></span><span class="sig-name descname"><span class="pre">maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/dsge/_cached_calculations.html#maps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.dsge._cached_calculations.maps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate different mappings used by DSGE at various points.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.dsge._cached_calculations.non_recursive_rhs">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.dsge._cached_calculations.</span></span><span class="sig-name descname"><span class="pre">non_recursive_rhs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/dsge/_cached_calculations.html#non_recursive_rhs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.dsge._cached_calculations.non_recursive_rhs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine which right-hand sides of rules are not recursive.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.dsge._cached_calculations.get_all_valid_codons">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.dsge._cached_calculations.</span></span><span class="sig-name descname"><span class="pre">get_all_valid_codons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nt_to_num_options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_recursive_rhs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/dsge/_cached_calculations.html#get_all_valid_codons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.dsge._cached_calculations.get_all_valid_codons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all valid codons depending on current and max depth.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.dsge._cached_calculations.get_first_valid_codon">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.dsge._cached_calculations.</span></span><span class="sig-name descname"><span class="pre">get_first_valid_codon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nt_to_num_options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_recursive_rhs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/dsge/_cached_calculations.html#get_first_valid_codon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.dsge._cached_calculations.get_first_valid_codon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the first valid codon depending on current and max depth.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.dsge._cached_calculations.get_random_valid_codon">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.dsge._cached_calculations.</span></span><span class="sig-name descname"><span class="pre">get_random_valid_codon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nt_to_num_options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_recursive_rhs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/dsge/_cached_calculations.html#get_random_valid_codon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.dsge._cached_calculations.get_random_valid_codon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a random valid codons depending on current and max depth.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.dsge._cached_calculations.get_tree_depth">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.dsge._cached_calculations.</span></span><span class="sig-name descname"><span class="pre">get_tree_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genotype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nt_to_gene</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nt_to_cnt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/dsge/_cached_calculations.html#get_tree_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.dsge._cached_calculations.get_tree_depth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine the depth of the derivation tree encoded by a genotype.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

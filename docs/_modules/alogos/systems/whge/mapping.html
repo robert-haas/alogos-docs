@@ -1,0 +1,759 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.whge.mapping &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems.whge.mapping</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems.whge.mapping</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Forward mapping function for WHGE.</span>
+
+<span class="sd">Note that a reverse function for WHGE is supposedly</span>
+<span class="sd">not possible in full generality.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">_grammar</span>
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">_exceptions</span>
+<span class="kn">from</span> <span class="nn">..._utilities.parametrization</span> <span class="kn">import</span> <span class="n">get_given_or_default</span> <span class="k">as</span> <span class="n">_get_given_or_default</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_cached_calculations</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">default_parameters</span> <span class="k">as</span> <span class="n">_dp</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">representation</span> <span class="k">as</span> <span class="n">_representation</span>
+
+
+<span class="c1"># Shortcuts for brevity and minor speedup</span>
+<span class="n">_GT</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span>
+<span class="n">_DT</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">DerivationTree</span>
+<span class="n">_NT</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span>
+
+
+<span class="k">def</span> <span class="nf">_fe</span><span class="p">(</span><span class="n">me</span><span class="p">,</span> <span class="n">re</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">re</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_max_expansion_error</span><span class="p">(</span><span class="n">me</span><span class="p">)</span>
+
+
+<span class="c1"># Forward mapping</span>
+<div class="viewcode-block" id="forward"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/whge/mapping/index.html#alogos.systems.whge.mapping.forward">[docs]</a><span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span>
+    <span class="n">genotype</span><span class="p">,</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">raise_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">return_derivation_tree</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Map a WHGE genotype to a string phenotype.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    genotype : `~.representation.Genotype` or data that can be converted to it</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`, optional</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``max_expansions``  (`int`): Maximum number of nonterminal</span>
+<span class="sd">          expansions allowed in the derivation created by the mapping</span>
+<span class="sd">          process.</span>
+<span class="sd">        - ``max_depth``  (`int`): Maximum tree depth. This is considered</span>
+<span class="sd">          only in calculating the expressive power of different rules.</span>
+<span class="sd">    raise_errors : `bool`, optional</span>
+<span class="sd">        Possible values:</span>
+
+<span class="sd">        - `True`: A mapping error will be raised if a derivation is</span>
+<span class="sd">          not finished within a limit provided in the parameters.</span>
+<span class="sd">        - `False`: A partial derivation is allowed. In this case, the</span>
+<span class="sd">          returned string will contain unexpanded nonterminal symbols.</span>
+<span class="sd">          Therefore it is not a valid phenotype, i.e. not a string of</span>
+<span class="sd">          the grammar&#39;s language but a so-called sentential form.</span>
+<span class="sd">    return_derivation_tree : `bool`, optional</span>
+<span class="sd">        If `True`, not only the phenotype is returned but additionally</span>
+<span class="sd">        also the derivation tree.</span>
+<span class="sd">    verbose : `bool`, optional</span>
+<span class="sd">        If `True`, output about steps of the mapping process is printed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    phenotype : `str`</span>
+<span class="sd">        If ``return_derivation_tree`` is `False`, which is the default.</span>
+<span class="sd">    (phenotype, derivation_tree) : `tuple` with two elements of type `str` and `~alogos._grammar.data_structures.DerivationTree`</span>
+<span class="sd">        If ``return_derivation_tree`` is `True`.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    MappingError</span>
+<span class="sd">        If ``raise_errors`` is `True` and the mapping process can not</span>
+<span class="sd">        generate a full derivation before reaching a limit provided in</span>
+<span class="sd">        the parameters.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">me</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;max_expansions&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+    <span class="n">md</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;max_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">_GT</span><span class="p">):</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_GT</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
+
+    <span class="c1"># Cache look-up</span>
+    <span class="n">sd</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;whge&quot;</span><span class="p">,</span> <span class="s2">&quot;sd&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">shortest_distances</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+    <span class="n">ep</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;whge&quot;</span><span class="p">,</span> <span class="s2">&quot;ep_d</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">md</span><span class="p">),</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">expressive_powers</span><span class="p">,</span> <span class="n">grammar</span><span class="p">,</span> <span class="n">md</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Mapping</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_forward_slow</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">me</span><span class="p">,</span> <span class="n">sd</span><span class="p">,</span> <span class="n">ep</span><span class="p">,</span> <span class="n">raise_errors</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_forward_fast</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">me</span><span class="p">,</span> <span class="n">sd</span><span class="p">,</span> <span class="n">ep</span><span class="p">,</span> <span class="n">raise_errors</span><span class="p">)</span>
+
+    <span class="c1"># Conditional return</span>
+    <span class="n">phe</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">string</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">return_derivation_tree</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">phe</span><span class="p">,</span> <span class="n">dt</span>
+    <span class="k">return</span> <span class="n">phe</span></div>
+
+
+<span class="k">def</span> <span class="nf">_forward_fast</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="n">me</span><span class="p">,</span> <span class="n">sd</span><span class="p">,</span> <span class="n">ep</span><span class="p">,</span> <span class="n">re</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the genotype-to-phenotype map of WHGE in a fast way.&quot;&quot;&quot;</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_DT</span><span class="p">(</span><span class="n">gr</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">_expand</span>
+    <span class="n">a1</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="n">st</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dt</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="n">gt</span><span class="p">)]</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">pop</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">append</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">production_rules</span>
+    <span class="n">ec</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">st</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">me</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">ec</span> <span class="o">&gt;=</span> <span class="n">me</span><span class="p">:</span>
+            <span class="n">_fe</span><span class="p">(</span><span class="n">me</span><span class="p">,</span> <span class="n">re</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="n">nd</span><span class="p">,</span> <span class="n">gt</span> <span class="o">=</span> <span class="n">p</span><span class="p">()</span>
+        <span class="n">sy</span> <span class="o">=</span> <span class="n">nd</span><span class="o">.</span><span class="n">symbol</span>
+        <span class="n">n1</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">gt</span><span class="p">)</span>
+        <span class="n">rs</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">sy</span><span class="p">]</span>
+        <span class="n">nr</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">nr</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">b</span> <span class="o">&gt;=</span> <span class="n">nr</span><span class="p">:</span>
+            <span class="n">lb</span> <span class="o">=</span> <span class="n">b</span> <span class="o">//</span> <span class="n">nr</span>
+            <span class="n">la</span> <span class="o">=</span> <span class="n">lb</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">b</span> <span class="o">%</span> <span class="n">nr</span>
+            <span class="n">gs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr</span><span class="p">):</span>
+                <span class="n">e</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="p">(</span><span class="n">la</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span> <span class="k">else</span> <span class="n">lb</span><span class="p">)</span>
+                <span class="n">gs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gt</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">])</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">e</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+            <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gs</span><span class="p">):</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">d</span><span class="p">:</span>
+                    <span class="n">v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">:</span>
+                    <span class="n">d</span> <span class="o">=</span> <span class="n">c</span>
+                    <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">n1</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">n1</span> <span class="k">if</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">a1</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">sd</span><span class="p">[</span><span class="n">sy</span><span class="p">]</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">c</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)]</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">nd</span><span class="p">,</span> <span class="n">rs</span><span class="p">[</span><span class="n">r</span><span class="p">])</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+        <span class="n">ec</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">u</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="n">gt</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">z</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="n">ep</span><span class="p">[</span><span class="n">n</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_NT</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">z</span><span class="p">]</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">h</span> <span class="o">/</span> <span class="n">t</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">e</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">e</span><span class="p">]</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">q</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">ms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span> <span class="o">/</span> <span class="n">q</span><span class="p">)</span>
+                <span class="n">nr</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">ms</span> <span class="o">*</span> <span class="n">q</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="n">ms</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">y</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">nr</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">q</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr</span><span class="p">):</span>
+                <span class="n">y</span><span class="p">[</span><span class="n">c</span> <span class="o">%</span> <span class="n">u</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">y</span><span class="p">:</span>
+                <span class="n">e</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">n</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gt</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">])</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">e</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
+                    <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="k">break</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_NT</span><span class="p">):</span>
+                <span class="n">a</span><span class="p">((</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">dt</span>
+
+
+<span class="k">def</span> <span class="nf">_forward_slow</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span>
+    <span class="n">genotype</span><span class="p">,</span>
+    <span class="n">max_expansions</span><span class="p">,</span>
+    <span class="n">shortest_distances</span><span class="p">,</span>
+    <span class="n">expressive_powers</span><span class="p">,</span>
+    <span class="n">raise_errors</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the genotype-to-phenotype map of WHGE in a slow way.</span>
+
+<span class="sd">    This is a readable implementation of the mapping process, which</span>
+<span class="sd">    also allows to print output about the steps it involves.</span>
+<span class="sd">    It served as basis for the faster, minified implementation in this</span>
+<span class="sd">    module and may be helpful in understanding, replicating or modifying</span>
+<span class="sd">    the algorithm.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">derivation_tree</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">DerivationTree</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">derivation_tree</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="n">genotype</span><span class="p">)]</span>
+    <span class="n">ones_in_full_genotype</span> <span class="o">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="n">expansion_counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;Start of the derivation&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;- Get start symbol of the grammar: &lt;</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">start_symbol</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sentential form: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">derivation_tree</span><span class="o">.</span><span class="n">string</span><span class="p">()))</span>
+        <span class="nb">print</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># Check stop conditions (not part of paper, but of all other mappings)</span>
+        <span class="k">if</span> <span class="n">max_expansions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">expansion_counter</span> <span class="o">&gt;=</span> <span class="n">max_expansions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;Stop condition fulfilled&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">&quot;- The maximum number of expansions is reached: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">max_expansions</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+                <span class="nb">print</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">raise_errors</span><span class="p">:</span>
+                <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_max_expansion_error</span><span class="p">(</span><span class="n">max_expansions</span><span class="p">)</span>
+            <span class="k">break</span>
+
+        <span class="c1"># 1) Choose nonterminal: WHGE is order-independent, simply use leftmost</span>
+        <span class="n">chosen_nt_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">current_genotype</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">chosen_nt_idx</span><span class="p">)</span>
+        <span class="n">current_symbol</span> <span class="o">=</span> <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span>
+        <span class="n">ones_in_current_genotype</span> <span class="o">=</span> <span class="n">current_genotype</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;Expansion </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">expansion_counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Choice of nonterminal to expand&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Index: </span><span class="si">{}</span><span class="s2"> by always using leftmost&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chosen_nt_idx</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Symbol s: &lt;</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s1">&#39;    Genotype substring g</span><span class="se">\&#39;</span><span class="s1">: &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">_bitarray_to_str</span><span class="p">(</span><span class="n">current_genotype</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="c1"># 2) Choose rule: WHGE decides with full information of a sub-genotype, not a single codon</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">_rules_for</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">current_symbol</span><span class="p">)</span>
+        <span class="n">num_bits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_genotype</span><span class="p">)</span>
+        <span class="n">num_rules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Choice of rule to apply&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Calculation steps&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      R_s = RulesFor(s)&quot;</span><span class="p">)</span>
+            <span class="n">operator</span> <span class="o">=</span> <span class="s2">&quot;&gt;=&quot;</span> <span class="k">if</span> <span class="n">num_bits</span> <span class="o">&gt;=</span> <span class="n">num_rules</span> <span class="k">else</span> <span class="s2">&quot;&lt;&quot;</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;      Number of bits |g&#39;|: </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> Number of rules |R_s|: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">num_bits</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">num_rules</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">num_rules</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">&quot;    Index: </span><span class="si">{}</span><span class="s2"> by using the only available rule without &quot;</span>
+                    <span class="s2">&quot;considering the genotype substring&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chosen_rule_idx</span><span class="p">)</span>
+                <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">num_bits</span> <span class="o">&gt;=</span> <span class="n">num_rules</span><span class="p">:</span>
+            <span class="n">new_genotypes_for_rule_choice</span> <span class="o">=</span> <span class="n">_split_for_rule</span><span class="p">(</span><span class="n">current_genotype</span><span class="p">,</span> <span class="n">rules</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        g</span><span class="se">\&quot;</span><span class="s2">_i = SplitForRule(g&#39;, |R_s|)&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">gen</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">new_genotypes_for_rule_choice</span><span class="p">):</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="s1">&#39;          g&quot;_</span><span class="si">{}</span><span class="s1">: &quot;</span><span class="si">{}</span><span class="s1">&quot; with </span><span class="si">{}</span><span class="s1"> bits&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                            <span class="n">i</span><span class="p">,</span> <span class="n">_bitarray_to_str</span><span class="p">(</span><span class="n">gen</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;        LargestCardIndex(g&quot;_i)&#39;</span><span class="p">)</span>
+            <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">_largest_card_index</span><span class="p">(</span>
+                <span class="n">new_genotypes_for_rule_choice</span><span class="p">,</span> <span class="n">ones_in_current_genotype</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">&quot;    Index: </span><span class="si">{}</span><span class="s2"> by calculation with SplitForRule and &quot;</span>
+                    <span class="s2">&quot;LargestCardIndex&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chosen_rule_idx</span><span class="p">)</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        ShortestRuleIndex(R_s)&quot;</span><span class="p">)</span>
+            <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">_shortest_rule_index</span><span class="p">(</span>
+                <span class="n">current_genotype</span><span class="p">,</span>
+                <span class="n">current_symbol</span><span class="p">,</span>
+                <span class="n">shortest_distances</span><span class="p">,</span>
+                <span class="n">ones_in_current_genotype</span><span class="p">,</span>
+                <span class="n">ones_in_full_genotype</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">&quot;    Index: </span><span class="si">{}</span><span class="s2"> by calculation with ShortestRuleIndex&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">chosen_rule_idx</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
+        <span class="c1"># 3) Expand the chosen nonterminal (1) with the rhs of the chosen rule (2)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Application of rule to nonterminal&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    ApplyRule(R_s, i=</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chosen_rule_idx</span><span class="p">))</span>
+        <span class="n">new_nodes</span> <span class="o">=</span> <span class="n">_apply_rule</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">chosen_rule_idx</span><span class="p">,</span> <span class="n">derivation_tree</span><span class="p">,</span> <span class="n">chosen_nt_node</span><span class="p">)</span>
+        <span class="n">expansion_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># 4) Calculate sub-genotypes belonging to each new nonterminal and terminal symbol</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Distribution of bits to new child nodes&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    g&#39;_i = SplitForChildren()&quot;</span><span class="p">)</span>
+        <span class="n">new_genotypes_for_children</span> <span class="o">=</span> <span class="n">_split_for_children</span><span class="p">(</span>
+            <span class="n">current_genotype</span><span class="p">,</span> <span class="n">new_nodes</span><span class="p">,</span> <span class="n">expressive_powers</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">child_genotype</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">new_genotypes_for_children</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">child_genotype</span> <span class="o">==</span> <span class="n">current_genotype</span><span class="p">:</span>
+                <span class="n">new_genotypes_for_children</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_drop_trailing_bit</span><span class="p">(</span><span class="n">child_genotype</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="s1">&#39;      g</span><span class="se">\&#39;</span><span class="s1">_</span><span class="si">{}</span><span class="s1">: &quot;</span><span class="si">{}</span><span class="s1">&quot; by DropTrailingBit(&quot;</span><span class="si">{}</span><span class="s1">&quot;)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                            <span class="n">i</span><span class="p">,</span>
+                            <span class="n">_bitarray_to_str</span><span class="p">(</span><span class="n">new_genotypes_for_children</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+                            <span class="n">_bitarray_to_str</span><span class="p">(</span><span class="n">child_genotype</span><span class="p">),</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="s1">&#39;      g</span><span class="se">\&#39;</span><span class="s1">_</span><span class="si">{}</span><span class="s1">: &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">_bitarray_to_str</span><span class="p">(</span><span class="n">child_genotype</span><span class="p">))</span>
+                    <span class="p">)</span>
+
+        <span class="c1"># 5) Add new nodes that contain a nonterminal and genotypes to the stack</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="n">_append_children</span><span class="p">(</span><span class="n">new_nodes</span><span class="p">,</span> <span class="n">new_genotypes_for_children</span><span class="p">,</span> <span class="n">stack</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sentential form: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">derivation_tree</span><span class="o">.</span><span class="n">string</span><span class="p">()))</span>
+            <span class="nb">print</span><span class="p">()</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;End of the derivation&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;String&quot;</span> <span class="k">if</span> <span class="n">derivation_tree</span><span class="o">.</span><span class="n">is_completely_expanded</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;Sentential form&quot;</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">derivation_tree</span><span class="o">.</span><span class="n">string</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="n">derivation_tree</span>
+
+
+<span class="c1"># Functions adhering closely to pseudocode in 2018 paper</span>
+
+
+<span class="k">def</span> <span class="nf">_rules_for</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">symbol</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_split_for_rule</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">rules</span><span class="p">):</span>
+    <span class="n">num_rules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span>
+    <span class="n">num_bits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
+    <span class="n">l_g</span> <span class="o">=</span> <span class="n">num_bits</span> <span class="o">//</span> <span class="n">num_rules</span>  <span class="c1"># equivalent to float division followed by floor</span>
+    <span class="n">first_n</span> <span class="o">=</span> <span class="n">num_bits</span> <span class="o">%</span> <span class="n">num_rules</span>
+    <span class="n">length1</span> <span class="o">=</span> <span class="n">l_g</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">length2</span> <span class="o">=</span> <span class="n">l_g</span>
+    <span class="n">new_genotypes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_rules</span><span class="p">):</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="n">length1</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">first_n</span> <span class="k">else</span> <span class="n">length2</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span>
+        <span class="n">sub_genotype</span> <span class="o">=</span> <span class="n">genotype</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+        <span class="n">new_genotypes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_genotype</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">end</span>
+    <span class="k">return</span> <span class="n">new_genotypes</span>
+
+
+<span class="k">def</span> <span class="nf">_largest_card_index</span><span class="p">(</span><span class="n">genotypes</span><span class="p">,</span> <span class="n">ones_in_current_genotype</span><span class="p">):</span>
+    <span class="c1"># Caution: card == largest_card should not be used to compare float</span>
+    <span class="c1"># values but is used in the Java reference implementation and</span>
+    <span class="c1"># therefore duplicated here to deliver identical behavior (perhaps</span>
+    <span class="c1"># only on identical machines!)</span>
+    <span class="c1"># Cleaner (and a bit slower) would be: abs(card - largest_card) &lt; EPS</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">largest_card</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">genotype</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">genotypes</span><span class="p">):</span>
+        <span class="n">num_bits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
+        <span class="n">num_1</span> <span class="o">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">num_1</span> <span class="o">/</span> <span class="n">num_bits</span>
+        <span class="k">if</span> <span class="n">card</span> <span class="o">==</span> <span class="n">largest_card</span><span class="p">:</span>
+            <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">card</span> <span class="o">&gt;</span> <span class="n">largest_card</span><span class="p">:</span>
+            <span class="n">largest_card</span> <span class="o">=</span> <span class="n">card</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">num_options</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">num_options</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">chosen_rule_index</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s1">&#39;          g&quot;_</span><span class="si">{}</span><span class="s1"> has highest relative cardinality </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">chosen_rule_index</span><span class="p">,</span> <span class="n">largest_card</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Comment in original Java code: for avoiding choosing always</span>
+        <span class="c1"># the 1st option in case of tie, choose depending on count of</span>
+        <span class="c1"># 1s in genotype</span>
+        <span class="n">chosen_option</span> <span class="o">=</span> <span class="n">ones_in_current_genotype</span> <span class="o">%</span> <span class="n">num_options</span>
+        <span class="n">chosen_rule_index</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="n">chosen_option</span><span class="p">]</span>
+        <span class="n">genotypes_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;g&quot;_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;          </span><span class="si">{}</span><span class="s2"> share the same highest relative cardinality </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">genotypes_str</span><span class="p">,</span> <span class="n">largest_card</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s1">&#39;          Selected g&quot;_</span><span class="si">{}</span><span class="s1"> by </span><span class="si">{}</span><span class="s1"> % </span><span class="si">{}</span><span class="s1"> = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">chosen_rule_index</span><span class="p">,</span>
+                <span class="n">ones_in_current_genotype</span><span class="p">,</span>
+                <span class="n">num_options</span><span class="p">,</span>
+                <span class="n">chosen_option</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">chosen_rule_index</span>
+
+
+<span class="k">def</span> <span class="nf">_shortest_rule_index</span><span class="p">(</span>
+    <span class="n">genotype</span><span class="p">,</span>
+    <span class="n">symbol</span><span class="p">,</span>
+    <span class="n">shortest_distances</span><span class="p">,</span>
+    <span class="n">ones_in_genotype</span><span class="p">,</span>
+    <span class="n">ones_in_full_genotype</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">ones_in_genotype</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">ones_in_full_genotype</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">shortest_distances</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span>
+    <span class="n">num_options</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="n">count</span> <span class="o">%</span> <span class="n">num_options</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">num_options</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;          Rule </span><span class="si">{}</span><span class="s2"> has the lowest number of steps to reach a &quot;</span>
+            <span class="s2">&quot;terminal sequence.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;          Rule </span><span class="si">{}</span><span class="s2"> share the same lowest number of steps to reach a &quot;</span>
+            <span class="s2">&quot;terminal sequence.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;          Selected rule </span><span class="si">{}</span><span class="s2"> by &quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> % </span><span class="si">{}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">num_options</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">index</span>
+
+
+<span class="k">def</span> <span class="nf">_apply_rule</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">chosen_rule_idx</span><span class="p">,</span> <span class="n">derivation_tree</span><span class="p">,</span> <span class="n">chosen_nt_node</span><span class="p">):</span>
+    <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+    <span class="n">new_nodes</span> <span class="o">=</span> <span class="n">derivation_tree</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">)</span>
+    <span class="n">rhs</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">sym</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">TerminalSymbol</span><span class="p">)</span>
+        <span class="k">else</span> <span class="s2">&quot;&lt;</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">sym</span> <span class="ow">in</span> <span class="n">chosen_rule</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      Substitution: &lt;</span><span class="si">{}</span><span class="s2">&gt; -&gt; </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">rhs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">new_nodes</span>
+
+
+<span class="k">def</span> <span class="nf">_drop_trailing_bit</span><span class="p">(</span><span class="n">genotype</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">genotype</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_split_for_children</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">child_nodes</span><span class="p">,</span> <span class="n">expressive_powers</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">child_nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">genotype</span><span class="p">):</span>
+        <span class="n">genotypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">genotype</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">child_nodes</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lengths</span> <span class="o">=</span> <span class="n">_weighted_partitioning</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">genotype</span><span class="p">),</span> <span class="n">child_nodes</span><span class="p">,</span> <span class="n">expressive_powers</span><span class="p">)</span>
+        <span class="n">genotypes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">last_length</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="n">lengths</span><span class="p">:</span>
+            <span class="n">new_length</span> <span class="o">=</span> <span class="n">last_length</span> <span class="o">+</span> <span class="n">length</span>
+            <span class="n">genotype_part</span> <span class="o">=</span> <span class="n">genotype</span><span class="p">[</span><span class="n">last_length</span><span class="p">:</span><span class="n">new_length</span><span class="p">]</span>
+            <span class="n">genotypes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">genotype_part</span><span class="p">)</span>
+            <span class="n">last_length</span> <span class="o">=</span> <span class="n">new_length</span>
+    <span class="k">return</span> <span class="n">genotypes</span>
+
+
+<span class="k">def</span> <span class="nf">_weighted_partitioning</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">child_nodes</span><span class="p">,</span> <span class="n">expressive_powers</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the length of each sub-genotype (=non-overlapping parts of genotype).&quot;&quot;&quot;</span>
+    <span class="c1"># Design choice: Don&#39;t store 0 values for terminals, because it is</span>
+    <span class="c1"># irrelevant information and omitting it may give a minor speedup</span>
+    <span class="c1"># (and prevents NT and T name clashes if using str)</span>
+    <span class="n">log_ep_values</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">expressive_powers</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">contains_nonterminal</span><span class="p">()</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">child_nodes</span>
+    <span class="p">]</span>
+    <span class="n">log_ep_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">log_ep_values</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">log_ep_sum</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">int</span><span class="p">(</span><span class="n">log_ep_val</span> <span class="o">/</span> <span class="n">log_ep_sum</span> <span class="o">*</span> <span class="n">length</span><span class="p">)</span> <span class="k">for</span> <span class="n">log_ep_val</span> <span class="ow">in</span> <span class="n">log_ep_values</span>
+        <span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">log_ep_values</span><span class="p">]</span>
+
+    <span class="c1"># Distribute remaining bits</span>
+    <span class="n">sum_lengths</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lengths</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sum_lengths</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">min_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="n">sum_lengths</span><span class="p">)</span>
+        <span class="n">num_remaining_bits</span> <span class="o">=</span> <span class="n">length</span> <span class="o">-</span> <span class="n">min_size</span> <span class="o">*</span> <span class="n">sum_lengths</span>
+        <span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="o">*</span> <span class="n">min_size</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">lengths</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">num_remaining_bits</span> <span class="o">=</span> <span class="n">length</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lengths</span><span class="p">)</span>
+    <span class="n">num_substrings</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">child_nodes</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_remaining_bits</span><span class="p">):</span>
+        <span class="n">position_j</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">cnt</span> <span class="o">%</span> <span class="n">num_substrings</span>
+        <span class="p">)</span>  <span class="c1"># Paper has +1 here because indexing starts with 1</span>
+        <span class="n">lengths</span><span class="p">[</span><span class="n">position_j</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">lengths</span>
+
+
+<span class="k">def</span> <span class="nf">_append_children</span><span class="p">(</span><span class="n">new_nodes</span><span class="p">,</span> <span class="n">new_genotypes</span><span class="p">,</span> <span class="n">stack</span><span class="p">):</span>
+    <span class="n">new_stack_entries</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">genotype</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">genotype</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">new_nodes</span><span class="p">,</span> <span class="n">new_genotypes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">contains_nonterminal</span><span class="p">()</span>
+    <span class="p">]</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="n">new_stack_entries</span> <span class="o">+</span> <span class="n">stack</span>
+    <span class="k">return</span> <span class="n">stack</span>
+
+
+<span class="c1"># Helper functions for printing</span>
+
+
+<span class="k">def</span> <span class="nf">_bitarray_to_str</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;1&quot;</span> <span class="k">if</span> <span class="n">bit</span> <span class="k">else</span> <span class="s2">&quot;0&quot;</span> <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">arr</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

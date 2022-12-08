@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._utilities.parametrization &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._utilities.parametrization</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos._utilities.parametrization">
+<span id="alogos-utilities-parametrization"></span><h1><a class="reference internal" href="#module-alogos._utilities.parametrization" title="alogos._utilities.parametrization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._utilities.parametrization</span></code></a><a class="headerlink" href="#module-alogos._utilities.parametrization" title="Permalink to this heading">¶</a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a></p></td>
+<td><p>A collection of parameters with initial values that can be changed by a user.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos._utilities.parametrization.get_given_or_default" title="alogos._utilities.parametrization.get_given_or_default"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_given_or_default</span></code></a>(name, given_parameters, default_parameters)</p></td>
+<td><p>Get a parameter from a collection of given parameters or otherwise from defaults.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="alogos._utilities.parametrization.ParameterCollection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos._utilities.parametrization.</span></span><span class="sig-name descname"><span class="pre">ParameterCollection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/parametrization.html#ParameterCollection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.parametrization.ParameterCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>A collection of parameters with initial values that can be changed by a user.</p>
+<p>Provided features:</p>
+<ul class="simple">
+<li><p>The set of available parameter names is defined once and for all
+by a dict passed to <code class="docutils literal notranslate"><span class="pre">__init__</span></code>.</p></li>
+<li><p>The user can get and set parameter values
+by dot notation (via <code class="docutils literal notranslate"><span class="pre">__setattr__</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">param.a</span> <span class="pre">=</span> <span class="pre">4</span></code>) and
+bracket notation (via <code class="docutils literal notranslate"><span class="pre">__getitem__</span></code> and <code class="docutils literal notranslate"><span class="pre">__setitem__</span></code>,
+e.g. <code class="docutils literal notranslate"><span class="pre">param['a']</span> <span class="pre">=</span> <span class="pre">4</span></code>).</p></li>
+<li><p>The user can check if a parameter name is included in the
+collection (via __contains__, e.g. ‘a’ in param).</p></li>
+<li><p>If a user tries to get or set an unknown parameter (detected via
+<code class="docutils literal notranslate"><span class="pre">__getattr__</span></code>), an error is raised, which lists all available
+parameters and their current and initial values.
+Note that there is a deliberate asymmetry between <code class="docutils literal notranslate"><span class="pre">__setattr__</span></code>
+and <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> in Python 3. The former is called on any
+attribute assignment, but the latter is only called when
+attribute lookup fails by all other methods.</p></li>
+</ul>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/reference/datamodel.html">https://docs.python.org/3/reference/datamodel.html</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/copy.html">https://docs.python.org/3/library/copy.html</a></p></li>
+<li><p><a class="reference external" href="https://ipython.readthedocs.io/en/stable/config/integrating.html">https://ipython.readthedocs.io/en/stable/config/integrating.html</a></p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.parametrization.ParameterCollection.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/parametrization.html#ParameterCollection.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.parametrization.ParameterCollection.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a parameter collection from a dictionary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.parametrization.ParameterCollection.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/parametrization.html#ParameterCollection.keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.parametrization.ParameterCollection.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameter names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.parametrization.ParameterCollection.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/parametrization.html#ParameterCollection.values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.parametrization.ParameterCollection.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameter values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.parametrization.ParameterCollection.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/parametrization.html#ParameterCollection.items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.parametrization.ParameterCollection.items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameter names and values.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos._utilities.parametrization.get_given_or_default">
+<span class="sig-prename descclassname"><span class="pre">alogos._utilities.parametrization.</span></span><span class="sig-name descname"><span class="pre">get_given_or_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">given_parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/parametrization.html#get_given_or_default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.parametrization.get_given_or_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a parameter from a collection of given parameters or otherwise from defaults.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

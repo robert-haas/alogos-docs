@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._grammar.parsing.parsing_with_lark &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos._grammar.parsing.parsing_with_lark</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos._grammar.parsing.parsing_with_lark</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">lark</span> <span class="k">as</span> <span class="nn">_lark</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">_exceptions</span>
+<span class="kn">from</span> <span class="nn">..._utilities</span> <span class="kn">import</span> <span class="n">argument_processing</span> <span class="k">as</span> <span class="n">_ap</span>
+<span class="kn">from</span> <span class="nn">..._utilities.operating_system</span> <span class="kn">import</span> <span class="n">NEWLINE</span> <span class="k">as</span> <span class="n">_NEWLINE</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">data_structures</span> <span class="k">as</span> <span class="n">_data_structures</span>
+
+
+<span class="c1"># Shortcuts</span>
+<span class="n">_NT</span> <span class="o">=</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span>
+<span class="n">_T</span> <span class="o">=</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">TerminalSymbol</span>
+<span class="n">_BACKSLASH</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span>  <span class="c1"># Caution: r&#39;\&#39; is not a valid string literal</span>
+
+
+<div class="viewcode-block" id="parse_string"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/parsing/parsing_with_lark/index.html#alogos._grammar.parsing.parse_string">[docs]</a><span class="k">def</span> <span class="nf">parse_string</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">get_multiple_trees</span><span class="p">,</span> <span class="n">max_num_trees</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse a string with Lark and construct a derivation tree of this package.</span>
+
+<span class="sd">    The derivation tree is built with the data structure defined in this package,</span>
+<span class="sd">    not with the parse tree object provided by Lark. The reason is that the</span>
+<span class="sd">    derivation tree is subsequently used for various tasks such as different</span>
+<span class="sd">    traversals, extracting strings or derivations and visualization. Therefore it</span>
+<span class="sd">    desirable to have it decoupled from the parser library and that it comes</span>
+<span class="sd">    with methods for the mentioned tasks.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - https://github.com/lark-parser/lark</span>
+<span class="sd">    - https://github.com/lark-parser/lark/blob/master/lark/exceptions.py</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Argument processing</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span><span class="s2">&quot;parser&quot;</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;earley&quot;</span><span class="p">,</span> <span class="s2">&quot;lalr&quot;</span><span class="p">])</span>
+    <span class="n">get_multiple_trees</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">bool_arg</span><span class="p">(</span>
+        <span class="s2">&quot;get_multiple_trees&quot;</span><span class="p">,</span> <span class="n">get_multiple_trees</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="n">max_num_trees</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">int_arg</span><span class="p">(</span>
+        <span class="s2">&quot;max_num_trees&quot;</span><span class="p">,</span> <span class="n">max_num_trees</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1_000_000_000_000</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">get_multiple_trees</span> <span class="ow">and</span> <span class="n">parser</span> <span class="o">!=</span> <span class="s2">&quot;earley&quot;</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_lark_parser_mult_error</span><span class="p">()</span>
+
+    <span class="c1"># Caching: Create the Lark parser once and reuse it in subsequent calls</span>
+    <span class="n">parser_id</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">parser</span> <span class="k">if</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;lalr&quot;</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">get_multiple_trees</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="n">lark_parser</span><span class="p">,</span> <span class="n">nt_map_fwd</span><span class="p">,</span> <span class="n">nt_map_rev</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;lark&quot;</span><span class="p">,</span>
+        <span class="n">parser_id</span><span class="p">,</span>
+        <span class="n">_calc_lark_parser_and_nt_maps</span><span class="p">,</span>
+        <span class="n">grammar</span><span class="p">,</span>
+        <span class="n">parser</span><span class="p">,</span>
+        <span class="n">get_multiple_trees</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Parsing</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tree_s</span> <span class="o">=</span> <span class="n">lark_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">excp</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">_raise_parser_string_error</span><span class="p">(</span><span class="n">excp</span><span class="p">)</span>
+
+    <span class="c1"># Tree conversion</span>
+    <span class="k">if</span> <span class="n">get_multiple_trees</span><span class="p">:</span>
+        <span class="n">tree_s</span> <span class="o">=</span> <span class="n">_ambig_lark_tree_to_dts</span><span class="p">(</span>
+            <span class="n">grammar</span><span class="p">,</span> <span class="n">tree_s</span><span class="p">,</span> <span class="n">nt_map_fwd</span><span class="p">,</span> <span class="n">nt_map_rev</span><span class="p">,</span> <span class="n">max_num_trees</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tree_s</span> <span class="o">=</span> <span class="n">_lark_tree_to_dt</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">tree_s</span><span class="p">,</span> <span class="n">nt_map_rev</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tree_s</span></div>
+
+
+<span class="c1"># Result conversion</span>
+
+
+<span class="k">def</span> <span class="nf">_lark_tree_to_dt</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">lark_tree</span><span class="p">,</span> <span class="n">nt_map_rev</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert a parse tree of lark-parser into a derivation tree of this package.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="n">lark_node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lark_node</span><span class="p">,</span> <span class="n">_lark</span><span class="o">.</span><span class="n">Tree</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_NT</span><span class="p">(</span><span class="n">nt_map_rev</span><span class="p">[</span><span class="n">lark_node</span><span class="o">.</span><span class="n">data</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_T</span><span class="p">(</span><span class="n">lark_node</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="c1"># Generate the derivation tree</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">DerivationTree</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">dt</span><span class="o">.</span><span class="n">root_node</span> <span class="o">=</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">start_symbol</span><span class="p">)</span>
+
+    <span class="c1"># Traverse the Lark tree via dfs and generate the go derivation tree node by node</span>
+    <span class="n">lark_stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">lark_tree</span><span class="p">]</span>
+    <span class="n">ori_stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">root_node</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">lark_stack</span><span class="p">:</span>
+        <span class="n">lark_node</span> <span class="o">=</span> <span class="n">lark_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">ori_node</span> <span class="o">=</span> <span class="n">ori_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lark_node</span><span class="p">,</span> <span class="n">_lark</span><span class="o">.</span><span class="n">Tree</span><span class="p">):</span>
+            <span class="n">lark_child_nodes</span> <span class="o">=</span> <span class="n">lark_node</span><span class="o">.</span><span class="n">children</span>
+            <span class="n">child_symbols</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_label</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">lark_child_nodes</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">child_symbols</span><span class="p">:</span>
+                <span class="c1"># Empty string is not a node in the Lark tree and hence needs special treatment</span>
+                <span class="n">empty_string</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">child_symbols</span> <span class="o">=</span> <span class="p">[</span><span class="n">empty_string</span><span class="p">]</span>
+                <span class="n">dt</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">ori_node</span><span class="p">,</span> <span class="n">child_symbols</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="n">ori_child_nodes</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">ori_node</span><span class="p">,</span> <span class="n">child_symbols</span><span class="p">)</span>
+            <span class="n">lark_stack</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">lark_child_nodes</span><span class="p">)</span>
+            <span class="n">ori_stack</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">ori_child_nodes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dt</span>
+
+
+<span class="k">def</span> <span class="nf">_ambig_lark_tree_to_dts</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">lark_tree</span><span class="p">,</span> <span class="n">nt_map_fwd</span><span class="p">,</span> <span class="n">nt_map_rev</span><span class="p">,</span> <span class="n">max_num_trees</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert an ambiguous parse tree of lark-parser into a list of derivation trees.&quot;&quot;&quot;</span>
+    <span class="c1"># Get all trees from the forest provided by Lark</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">lark_tree</span><span class="p">]</span>
+    <span class="n">lark_start_symbol</span> <span class="o">=</span> <span class="n">nt_map_fwd</span><span class="p">[</span><span class="n">grammar</span><span class="o">.</span><span class="n">start_symbol</span><span class="p">]</span>
+    <span class="n">valid_trees</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="n">candidate_tree</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">node_label</span> <span class="o">=</span> <span class="n">candidate_tree</span><span class="o">.</span><span class="n">data</span>
+        <span class="c1"># &quot;_ambig&quot; in a node means that multiple trees are present in the child nodes</span>
+        <span class="k">if</span> <span class="n">node_label</span> <span class="o">==</span> <span class="s2">&quot;_ambig&quot;</span><span class="p">:</span>
+            <span class="n">new_candidate_trees</span> <span class="o">=</span> <span class="n">candidate_tree</span><span class="o">.</span><span class="n">children</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">new_candidate_trees</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">node_label</span> <span class="o">==</span> <span class="n">lark_start_symbol</span><span class="p">:</span>
+            <span class="n">valid_trees</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidate_tree</span><span class="p">)</span>
+            <span class="c1"># Restrict number of trees</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_trees</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_num_trees</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">_raise_parser_node_error</span><span class="p">(</span><span class="n">node_label</span><span class="p">)</span>
+
+    <span class="c1"># Convert Lark trees to derivation trees of this package</span>
+    <span class="n">dts</span> <span class="o">=</span> <span class="p">[</span><span class="n">_lark_tree_to_dt</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">nt_map_rev</span><span class="p">)</span> <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">valid_trees</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dts</span>
+
+
+<span class="c1"># Cached calculations</span>
+
+
+<span class="k">def</span> <span class="nf">_calc_lark_parser_and_nt_maps</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">get_multiple_trees</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create all Lark objects in a single function.</span>
+
+<span class="sd">    This means that whenever a parser is generated, the same nonterminal map and</span>
+<span class="sd">    grammar are generated again. This redundant calculations are accepted in</span>
+<span class="sd">    order to improve lookup speed.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Nonterminal maps</span>
+    <span class="n">nt_map_fwd</span><span class="p">,</span> <span class="n">nt_map_rev</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;lark&quot;</span><span class="p">,</span> <span class="s2">&quot;nt_maps&quot;</span><span class="p">,</span> <span class="n">_calc_nonterminal_maps</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Lark grammar</span>
+    <span class="n">lark_grammar</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;lark&quot;</span><span class="p">,</span> <span class="s2">&quot;grammar&quot;</span><span class="p">,</span> <span class="n">_calc_lark_grammar</span><span class="p">,</span> <span class="n">grammar</span><span class="p">,</span> <span class="n">nt_map_fwd</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Lark parser: different parsers are created from the same nonterminal maps and Lark grammar</span>
+    <span class="n">lark_parser</span> <span class="o">=</span> <span class="n">_calc_lark_parser</span><span class="p">(</span>
+        <span class="n">grammar</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">nt_map_fwd</span><span class="p">,</span> <span class="n">lark_grammar</span><span class="p">,</span> <span class="n">get_multiple_trees</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">lark_parser</span><span class="p">,</span> <span class="n">nt_map_fwd</span><span class="p">,</span> <span class="n">nt_map_rev</span>
+
+
+<span class="k">def</span> <span class="nf">_calc_nonterminal_maps</span><span class="p">(</span><span class="n">grammar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a mapping between nonterminals of the original grammar and simplified symbols.&quot;&quot;&quot;</span>
+    <span class="n">nt_map_fwd</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">nt</span><span class="p">:</span> <span class="s2">&quot;nt</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">nt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">nt_map_rev</span> <span class="o">=</span> <span class="p">{</span><span class="n">val</span><span class="p">:</span> <span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">nt_map_fwd</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">return</span> <span class="n">nt_map_fwd</span><span class="p">,</span> <span class="n">nt_map_rev</span>
+
+
+<span class="k">def</span> <span class="nf">_calc_lark_grammar</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">nt_map_fwd</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert the grammar object into an EBNF-like text that Lark is guaranteed to recognize.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - https://lark-parser.readthedocs.io/en/latest/grammar</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">rhs_multiple</span> <span class="ow">in</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="c1"># Add a new lhs</span>
+        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_NEWLINE</span><span class="p">)</span>
+        <span class="n">used_text</span> <span class="o">=</span> <span class="n">nt_map_fwd</span><span class="p">[</span><span class="n">lhs</span><span class="p">]</span>
+        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">used_text</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add one or several rhs to this new lhs. If several, they are separted by | as &quot;or&quot; symbol</span>
+        <span class="k">for</span> <span class="n">rhs</span> <span class="ow">in</span> <span class="n">rhs_multiple</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">rhs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_NT</span><span class="p">):</span>
+                    <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nt_map_fwd</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_to_lark_terminal</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;| &quot;</span><span class="p">)</span>
+        <span class="n">parts</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># Remove last separator symbol</span>
+    <span class="n">parts</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Remove first newline</span>
+    <span class="n">lark_grammar</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lark_grammar</span>
+
+
+<span class="k">def</span> <span class="nf">_calc_lark_parser</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">nt_map_fwd</span><span class="p">,</span> <span class="n">lark_grammar</span><span class="p">,</span> <span class="n">get_multiple_trees</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a lark parser with or without ambiguity detection.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - https://lark-parser.readthedocs.io/en/latest/classes/</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Argument processing</span>
+    <span class="n">specific_options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">parser</span> <span class="o">==</span> <span class="s2">&quot;earley&quot;</span> <span class="ow">and</span> <span class="n">get_multiple_trees</span><span class="p">:</span>
+        <span class="n">specific_options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ambiguity</span><span class="o">=</span><span class="s2">&quot;explicit&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create the parser</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">lark_start_symbol</span> <span class="o">=</span> <span class="n">nt_map_fwd</span><span class="p">[</span><span class="n">grammar</span><span class="o">.</span><span class="n">start_symbol</span><span class="p">]</span>
+        <span class="n">lark_parser</span> <span class="o">=</span> <span class="n">_lark</span><span class="o">.</span><span class="n">Lark</span><span class="p">(</span>
+            <span class="n">grammar</span><span class="o">=</span><span class="n">lark_grammar</span><span class="p">,</span>
+            <span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">,</span>
+            <span class="n">start</span><span class="o">=</span><span class="n">lark_start_symbol</span><span class="p">,</span>
+            <span class="n">keep_all_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">specific_options</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">excp</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">_raise_parser_creation_error</span><span class="p">(</span><span class="n">excp</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lark_parser</span>
+
+
+<span class="k">def</span> <span class="nf">_to_lark_terminal</span><span class="p">(</span><span class="n">symbol</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prevent problems with certain characters inside the text of a terminal.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - https://stackoverflow.com/questions/647769/why-cant-pythons-raw-string-literals-end-with-a-single-backslash</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">symbol</span><span class="p">:</span>
+        <span class="c1"># A non-even number of backslashes at the end of a symbol would escape the last quote</span>
+        <span class="k">if</span> <span class="n">symbol</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">_BACKSLASH</span><span class="p">):</span>
+            <span class="n">num_trailing_backslashes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="n">_BACKSLASH</span><span class="p">))</span>
+            <span class="n">uneven_num_trailing_backslashes</span> <span class="o">=</span> <span class="n">num_trailing_backslashes</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">uneven_num_trailing_backslashes</span><span class="p">:</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span> <span class="o">+</span> <span class="n">_BACKSLASH</span>
+
+        <span class="c1"># A double quote symbol would end the terminal too early and lead to downstream problems</span>
+        <span class="k">if</span> <span class="s1">&#39;&quot;&#39;</span> <span class="ow">in</span> <span class="n">symbol</span><span class="p">:</span>
+            <span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># For some reason a newline symbol is not allowed and needs to be replaced with its</span>
+        <span class="c1"># escape sequence representation</span>
+        <span class="k">if</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">symbol</span><span class="p">:</span>
+            <span class="n">symbol</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\n&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Enclose the safe symbol in double quotes for Lark</span>
+        <span class="n">lark_terminal_symbol</span> <span class="o">=</span> <span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lark_terminal_symbol</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">lark_terminal_symbol</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

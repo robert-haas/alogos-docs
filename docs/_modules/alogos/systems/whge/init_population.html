@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.whge.init_population &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems.whge.init_population</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems.whge.init_population</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Initialization functions to generate a population for WHGE.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">.._shared</span> <span class="kn">import</span> <span class="n">init_population</span> <span class="k">as</span> <span class="n">_init_population</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">default_parameters</span> <span class="k">as</span> <span class="n">_dp</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">init_individual</span> <span class="k">as</span> <span class="n">_init_individual</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">representation</span> <span class="k">as</span> <span class="n">_representation</span>
+
+
+<div class="viewcode-block" id="given_genotypes"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/whge/init_population/index.html#alogos.systems.whge.init_population.given_genotypes">[docs]</a><span class="k">def</span> <span class="nf">given_genotypes</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a population from given genotypes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``init_pop_given_genotypes`` (`list` of `~.representation.Genotype` objects or data that can be converted to a genotype) : A</span>
+<span class="sd">          list of genotypes, which are used to initialize the</span>
+<span class="sd">          individuals of the population. Note that the length</span>
+<span class="sd">          of this list determines the size of the generated population.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    population : `~.representation.Population`</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    InitializationError</span>
+<span class="sd">        If creating the population fails.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_init_population</span><span class="o">.</span><span class="n">given_genotypes</span><span class="p">(</span>
+        <span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">,</span> <span class="n">_representation</span><span class="p">,</span> <span class="n">_init_individual</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="random_genotypes"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/whge/init_population/index.html#alogos.systems.whge.init_population.random_genotypes">[docs]</a><span class="k">def</span> <span class="nf">random_genotypes</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a population from random genotypes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``population_size`` (`int`)</span>
+<span class="sd">        - ``init_pop_unique_genotypes`` (`bool`)</span>
+<span class="sd">        - ``init_pop_unique_phenotypes`` (`bool`)</span>
+<span class="sd">        - ``init_pop_unique_max_tries`` (`int`)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    population : `~.representation.Population`</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    InitializationError</span>
+<span class="sd">        If creating the population fails.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Choice of genotype size:</span>
+
+<span class="sd">    - In the 2017 paper on HGE and WHGE the genotype size is set to</span>
+<span class="sd">      256, 512 and 1024 bits in the experiments.</span>
+<span class="sd">    - In the 2018 paper on WHGE the genotype size is set to 1024 bits.</span>
+<span class="sd">    - The reference implementation in Java comes with examples where the</span>
+<span class="sd">      genotype size is set mostly to 256 or 1024 bits.</span>
+
+<span class="sd">    Construction of a population of random individuals:</span>
+
+<span class="sd">    - The reference implementation in Java seems to construct random</span>
+<span class="sd">      individuals independently, without checking for duplicates on</span>
+<span class="sd">      genotype or phenotype level. Is is extremely unlikely to ever</span>
+<span class="sd">      create two identical individuals on the genotype level</span>
+<span class="sd">      (2^256 or 2^1024 possibilities), but on the phenotype level it</span>
+<span class="sd">      can happen quite often (depending on structure of the grammar).</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - Papers</span>
+
+<span class="sd">        - 2017: Medvet,</span>
+<span class="sd">          `Hierarchical Grammatical Evolution</span>
+<span class="sd">          &lt;https://doi.org/10.1145/3067695.3075972&gt;`__</span>
+
+<span class="sd">            - p. 250: &quot;For each GE variant, problem, and genotype size, we performed</span>
+<span class="sd">              30 independent executions of the evolutionary search by varying the</span>
+<span class="sd">              random seed and with the following evolution parameters:</span>
+<span class="sd">              population of 500 individuals randomly initialized [...]&quot;</span>
+
+<span class="sd">            - p. 250, Table 1: genotype sizes |g| 256, 512, 1024</span>
+
+<span class="sd">        - 2018: Bartoli, Castelli, Medvet:</span>
+<span class="sd">          `Weighted Hierarchical Grammatical Evolution</span>
+<span class="sd">          &lt;https://doi.org/10.1109/TCYB.2018.2876563&gt;`__</span>
+
+<span class="sd">            - p. 7: &quot;Concerning the variant-specific parameters, we set the</span>
+<span class="sd">              genotype size to 1024 bits for GE, πGE, and WHGE&quot;</span>
+
+<span class="sd">            - p. 8: &quot;This finding could be explained by the lower degeneracy of WHGE</span>
+<span class="sd">              (see Section IV-D) which results in a tendency of WHGE to better sample</span>
+<span class="sd">              the phenotype space given a random set of genotypes.&quot;</span>
+
+<span class="sd">    - Reference implementation in Java: `evolved-ge</span>
+<span class="sd">      &lt;https://github.com/ericmedvet/evolved-ge&gt;`__</span>
+
+<span class="sd">        - `Folder with initialization classes</span>
+<span class="sd">          &lt;https://github.com/ericmedvet/evolved-ge/tree/master/src/main/java/it/units/malelab/ege/core/initializer&gt;`__</span>
+
+<span class="sd">        - `Folder with example scripts</span>
+<span class="sd">          &lt;https://github.com/ericmedvet/evolved-ge/blob/master/src/main/java/it/units/malelab/ege&gt;`__</span>
+
+<span class="sd">            - Using 256 bits: ``GOM.java``</span>
+<span class="sd">            - Using 1024 bits: ``DeepExperimenter.java``, ``DeepDistributedExperimenter.java``</span>
+<span class="sd">            - Using 256 and 1024 bits: ``MapperGenerationExperimenter.java``,</span>
+<span class="sd">              ``MapperGenerationDistributedExperimenter.java``</span>
+<span class="sd">            - Using 64, 128, 256, 512 and 1024 bits: ``MappingPropertiesExperimenter.java``</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_init_population</span><span class="o">.</span><span class="n">random_genotypes</span><span class="p">(</span>
+        <span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">,</span> <span class="n">_representation</span><span class="p">,</span> <span class="n">_init_individual</span>
+    <span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

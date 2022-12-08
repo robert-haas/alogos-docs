@@ -1,0 +1,935 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Book examples &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Calendar facts by xkcd" href="xkcd_calendar_facts.html" />
+    <link rel="prev" title="Palindromes" href="palindromes.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../rst/examples.html">Code Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hello_world.html">Hello, world!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="palindromes.html">Palindromes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Book examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#1)-Sipser">1) Sipser</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a)-Palindromes">a) Palindromes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#b)-Expressions">b) Expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2)-Hopcroft-and-Ullman">2) Hopcroft and Ullman</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">a) Palindromes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">b) Expressions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="xkcd_calendar_facts.html">Calendar facts by xkcd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="semantic_versioning.html">Semantic versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_addresses.html">IPv4 addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onemax.html">OneMax Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diophantine_equation.html">Diophantine equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continued_fraction.html">Find a continued fraction that approximates Euler’s number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_numeric_literals.html">Numeric literals in Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rust_integer_literals.html">Number literals in Rust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_approximation.html">Image approximation with geometrical shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trading_strategy.html">Trading strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acrobot-v1.html">OpenAI Gym: Acrobot-v1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mountaincar-v0.html">OpenAI Gym: MountainCar-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartpole-v1.html">OpenAI Gym: CartPole-v1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pendulum-v0.html">OpenAI Gym: Pendulum-v0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../rst/examples.html">Code Examples</a> &raquo;</li>
+        
+      <li>Book examples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 1200;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="Book-examples">
+<h1>Book examples<a class="headerlink" href="#Book-examples" title="Permalink to this heading">¶</a></h1>
+<p>This notebook provides examples of very simple grammars taken from two well-known textbooks on formal language theory.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">alogos</span> <span class="k">as</span> <span class="nn">al</span>
+</pre></div>
+</div>
+</div>
+<section id="1)-Sipser">
+<h2>1) Sipser<a class="headerlink" href="#1)-Sipser" title="Permalink to this heading">¶</a></h2>
+<p>Reference: <a class="reference external" href="http://math.mit.edu/~sipser/book.html">Sipser: Introduction to the theory of computation, 3rd edition, 2013</a></p>
+<section id="a)-Palindromes">
+<h3>a) Palindromes<a class="headerlink" href="#a)-Palindromes" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Grammar on p. 102</p></li>
+<li><p>Derivation on p. 102</p></li>
+<li><p>Parse tree on p. 103</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bnf_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;A&gt; ::= 0&lt;A&gt;1</span>
+<span class="s2">&lt;A&gt; ::= &lt;B&gt;</span>
+<span class="s2">&lt;B&gt; ::= #</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="n">bnf_text</span><span class="o">=</span><span class="n">bnf_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">generate_language</span><span class="p">(</span><span class="n">max_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;#&#39;,
+ &#39;0#1&#39;,
+ &#39;00#11&#39;,
+ &#39;000#111&#39;,
+ &#39;0000#1111&#39;,
+ &#39;00000#11111&#39;,
+ &#39;000000#111111&#39;,
+ &#39;0000000#1111111&#39;,
+ &#39;00000000#11111111&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parse_tree</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="s1">&#39;000#111&#39;</span><span class="p">)</span>
+<span class="n">parse_tree</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<svg width="206pt" height="404pt" viewBox="0.00 0.00 206.00 404.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 400)"><title>%3</title><polygon fill="white" stroke="transparent" points="-4,4 -4,-400 202,-400 202,4 -4,4"/><!-- 0 --><g id="node1" class="node"><title>0</title><polygon fill="white" stroke="black" points="126,-396 72,-396 72,-360 126,-360 126,-396"/><text text-anchor="middle" x="99" y="-374.9" font-family="Mono" font-size="12.00">A</text></g><!-- 1 --><g id="node2" class="node"><title>1</title><ellipse fill="#00864b" stroke="black" cx="27" cy="-306" rx="27" ry="18"/><text text-anchor="middle" x="27" y="-302.9" font-family="Mono" font-size="12.00" fill="white">0</text></g><!-- 0&#45;&gt;1 --><g id="edge1" class="edge"><title>0&#45;&gt;1</title><path fill="none" stroke="black" d="M81.2,-359.7C71.51,-350.28 59.44,-338.53 49.14,-328.53"/><polygon fill="black" stroke="black" points="51.3,-325.74 41.69,-321.28 46.42,-330.76 51.3,-325.74"/></g><!-- 2 --><g id="node3" class="node"><title>2</title><polygon fill="white" stroke="black" points="126,-324 72,-324 72,-288 126,-288 126,-324"/><text text-anchor="middle" x="99" y="-302.9" font-family="Mono" font-size="12.00">A</text></g><!-- 0&#45;&gt;2 --><g id="edge2" class="edge"><title>0&#45;&gt;2</title><path fill="none" stroke="black" d="M99,-359.7C99,-351.98 99,-342.71 99,-334.11"/><polygon fill="black" stroke="black" points="102.5,-334.1 99,-324.1 95.5,-334.1 102.5,-334.1"/></g><!-- 3 --><g id="node4" class="node"><title>3</title><ellipse fill="#00864b" stroke="black" cx="171" cy="-306" rx="27" ry="18"/><text text-anchor="middle" x="171" y="-302.9" font-family="Mono" font-size="12.00" fill="white">1</text></g><!-- 0&#45;&gt;3 --><g id="edge3" class="edge"><title>0&#45;&gt;3</title><path fill="none" stroke="black" d="M116.8,-359.7C126.49,-350.28 138.56,-338.53 148.86,-328.53"/><polygon fill="black" stroke="black" points="151.58,-330.76 156.31,-321.28 146.7,-325.74 151.58,-330.76"/></g><!-- 4 --><g id="node5" class="node"><title>4</title><ellipse fill="#00864b" stroke="black" cx="27" cy="-234" rx="27" ry="18"/><text text-anchor="middle" x="27" y="-230.9" font-family="Mono" font-size="12.00" fill="white">0</text></g><!-- 2&#45;&gt;4 --><g id="edge4" class="edge"><title>2&#45;&gt;4</title><path fill="none" stroke="black" d="M81.2,-287.7C71.51,-278.28 59.44,-266.53 49.14,-256.53"/><polygon fill="black" stroke="black" points="51.3,-253.74 41.69,-249.28 46.42,-258.76 51.3,-253.74"/></g><!-- 5 --><g id="node6" class="node"><title>5</title><polygon fill="white" stroke="black" points="126,-252 72,-252 72,-216 126,-216 126,-252"/><text text-anchor="middle" x="99" y="-230.9" font-family="Mono" font-size="12.00">A</text></g><!-- 2&#45;&gt;5 --><g id="edge5" class="edge"><title>2&#45;&gt;5</title><path fill="none" stroke="black" d="M99,-287.7C99,-279.98 99,-270.71 99,-262.11"/><polygon fill="black" stroke="black" points="102.5,-262.1 99,-252.1 95.5,-262.1 102.5,-262.1"/></g><!-- 6 --><g id="node7" class="node"><title>6</title><ellipse fill="#00864b" stroke="black" cx="171" cy="-234" rx="27" ry="18"/><text text-anchor="middle" x="171" y="-230.9" font-family="Mono" font-size="12.00" fill="white">1</text></g><!-- 2&#45;&gt;6 --><g id="edge6" class="edge"><title>2&#45;&gt;6</title><path fill="none" stroke="black" d="M116.8,-287.7C126.49,-278.28 138.56,-266.53 148.86,-256.53"/><polygon fill="black" stroke="black" points="151.58,-258.76 156.31,-249.28 146.7,-253.74 151.58,-258.76"/></g><!-- 7 --><g id="node8" class="node"><title>7</title><ellipse fill="#00864b" stroke="black" cx="27" cy="-162" rx="27" ry="18"/><text text-anchor="middle" x="27" y="-158.9" font-family="Mono" font-size="12.00" fill="white">0</text></g><!-- 5&#45;&gt;7 --><g id="edge7" class="edge"><title>5&#45;&gt;7</title><path fill="none" stroke="black" d="M81.2,-215.7C71.51,-206.28 59.44,-194.53 49.14,-184.53"/><polygon fill="black" stroke="black" points="51.3,-181.74 41.69,-177.28 46.42,-186.76 51.3,-181.74"/></g><!-- 8 --><g id="node9" class="node"><title>8</title><polygon fill="white" stroke="black" points="126,-180 72,-180 72,-144 126,-144 126,-180"/><text text-anchor="middle" x="99" y="-158.9" font-family="Mono" font-size="12.00">A</text></g><!-- 5&#45;&gt;8 --><g id="edge8" class="edge"><title>5&#45;&gt;8</title><path fill="none" stroke="black" d="M99,-215.7C99,-207.98 99,-198.71 99,-190.11"/><polygon fill="black" stroke="black" points="102.5,-190.1 99,-180.1 95.5,-190.1 102.5,-190.1"/></g><!-- 9 --><g id="node10" class="node"><title>9</title><ellipse fill="#00864b" stroke="black" cx="171" cy="-162" rx="27" ry="18"/><text text-anchor="middle" x="171" y="-158.9" font-family="Mono" font-size="12.00" fill="white">1</text></g><!-- 5&#45;&gt;9 --><g id="edge9" class="edge"><title>5&#45;&gt;9</title><path fill="none" stroke="black" d="M116.8,-215.7C126.49,-206.28 138.56,-194.53 148.86,-184.53"/><polygon fill="black" stroke="black" points="151.58,-186.76 156.31,-177.28 146.7,-181.74 151.58,-186.76"/></g><!-- 10 --><g id="node11" class="node"><title>10</title><polygon fill="white" stroke="black" points="126,-108 72,-108 72,-72 126,-72 126,-108"/><text text-anchor="middle" x="99" y="-86.9" font-family="Mono" font-size="12.00">B</text></g><!-- 8&#45;&gt;10 --><g id="edge10" class="edge"><title>8&#45;&gt;10</title><path fill="none" stroke="black" d="M99,-143.7C99,-135.98 99,-126.71 99,-118.11"/><polygon fill="black" stroke="black" points="102.5,-118.1 99,-108.1 95.5,-118.1 102.5,-118.1"/></g><!-- 11 --><g id="node12" class="node"><title>11</title><ellipse fill="#00864b" stroke="black" cx="99" cy="-18" rx="27" ry="18"/><text text-anchor="middle" x="99" y="-14.9" font-family="Mono" font-size="12.00" fill="white">#</text></g><!-- 10&#45;&gt;11 --><g id="edge11" class="edge"><title>10&#45;&gt;11</title><path fill="none" stroke="black" d="M99,-71.7C99,-63.98 99,-54.71 99,-46.11"/><polygon fill="black" stroke="black" points="102.5,-46.1 99,-36.1 95.5,-46.1 102.5,-46.1"/></g></g></svg></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">derivation</span> <span class="o">=</span> <span class="n">parse_tree</span><span class="o">.</span><span class="n">derivation</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">derivation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;A&gt;
+=&gt; 0&lt;A&gt;1
+=&gt; 00&lt;A&gt;11
+=&gt; 000&lt;A&gt;111
+=&gt; 000&lt;B&gt;111
+=&gt; 000#111
+</pre></div></div>
+</div>
+</section>
+<section id="b)-Expressions">
+<h3>b) Expressions<a class="headerlink" href="#b)-Expressions" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Grammar on p. 105</p></li>
+<li><p>Parse tree on p. 105</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bnf_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;expr&gt; ::= &lt;expr&gt;+&lt;term&gt; | &lt;term&gt;</span>
+<span class="s2">&lt;term&gt; ::= &lt;term&gt;*&lt;factor&gt; | &lt;factor&gt;</span>
+<span class="s2">&lt;factor&gt; ::= (&lt;expr&gt;) | a</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="n">bnf_text</span><span class="o">=</span><span class="n">bnf_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">generate_language</span><span class="p">(</span><span class="n">max_steps</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sort_order</span><span class="o">=</span><span class="s1">&#39;shortlex&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;a&#39;,
+ &#39;a*a&#39;,
+ &#39;a+a&#39;,
+ &#39;a*a*a&#39;,
+ &#39;a*a+a&#39;,
+ &#39;a+a*a&#39;,
+ &#39;a+a+a&#39;,
+ &#39;a*a+a*a&#39;,
+ &#39;a+a*a*a&#39;,
+ &#39;a+a*a+a&#39;,
+ &#39;a+a+a*a&#39;,
+ &#39;a*a+a*a*a&#39;,
+ &#39;a+a*a+a*a&#39;,
+ &#39;a+a+a*a*a&#39;,
+ &#39;a+a*a+a*a*a&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parse_tree</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="s1">&#39;a+a*a&#39;</span><span class="p">)</span>
+<span class="n">parse_tree</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<svg width="297pt" height="332pt" viewBox="0.00 0.00 297.00 332.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 328)"><title>%3</title><polygon fill="white" stroke="transparent" points="-4,4 -4,-328 293,-328 293,4 -4,4"/><!-- 0 --><g id="node1" class="node"><title>0</title><polygon fill="white" stroke="black" points="137,-324 83,-324 83,-288 137,-288 137,-324"/><text text-anchor="middle" x="110" y="-302.9" font-family="Mono" font-size="12.00">expr</text></g><!-- 1 --><g id="node2" class="node"><title>1</title><polygon fill="white" stroke="black" points="64,-252 10,-252 10,-216 64,-216 64,-252"/><text text-anchor="middle" x="37" y="-230.9" font-family="Mono" font-size="12.00">expr</text></g><!-- 0&#45;&gt;1 --><g id="edge1" class="edge"><title>0&#45;&gt;1</title><path fill="none" stroke="black" d="M91.96,-287.7C82.94,-279.05 71.88,-268.45 62.06,-259.03"/><polygon fill="black" stroke="black" points="64.48,-256.5 54.84,-252.1 59.63,-261.55 64.48,-256.5"/></g><!-- 2 --><g id="node3" class="node"><title>2</title><ellipse fill="#00864b" stroke="black" cx="110" cy="-234" rx="27" ry="18"/><text text-anchor="middle" x="110" y="-230.9" font-family="Mono" font-size="12.00" fill="white">+</text></g><!-- 0&#45;&gt;2 --><g id="edge2" class="edge"><title>0&#45;&gt;2</title><path fill="none" stroke="black" d="M110,-287.7C110,-279.98 110,-270.71 110,-262.11"/><polygon fill="black" stroke="black" points="113.5,-262.1 110,-252.1 106.5,-262.1 113.5,-262.1"/></g><!-- 3 --><g id="node4" class="node"><title>3</title><polygon fill="white" stroke="black" points="209,-252 155,-252 155,-216 209,-216 209,-252"/><text text-anchor="middle" x="182" y="-230.9" font-family="Mono" font-size="12.00">term</text></g><!-- 0&#45;&gt;3 --><g id="edge3" class="edge"><title>0&#45;&gt;3</title><path fill="none" stroke="black" d="M127.8,-287.7C136.6,-279.14 147.38,-268.66 157,-259.3"/><polygon fill="black" stroke="black" points="159.68,-261.58 164.41,-252.1 154.8,-256.57 159.68,-261.58"/></g><!-- 4 --><g id="node5" class="node"><title>4</title><polygon fill="white" stroke="black" points="62,-180 8,-180 8,-144 62,-144 62,-180"/><text text-anchor="middle" x="35" y="-158.9" font-family="Mono" font-size="12.00">term</text></g><!-- 1&#45;&gt;4 --><g id="edge4" class="edge"><title>1&#45;&gt;4</title><path fill="none" stroke="black" d="M36.51,-215.7C36.29,-207.98 36.02,-198.71 35.77,-190.11"/><polygon fill="black" stroke="black" points="39.27,-190 35.49,-180.1 32.28,-190.2 39.27,-190"/></g><!-- 7 --><g id="node8" class="node"><title>7</title><polygon fill="white" stroke="black" points="137,-180 83,-180 83,-144 137,-144 137,-180"/><text text-anchor="middle" x="110" y="-158.9" font-family="Mono" font-size="12.00">term</text></g><!-- 3&#45;&gt;7 --><g id="edge7" class="edge"><title>3&#45;&gt;7</title><path fill="none" stroke="black" d="M164.2,-215.7C155.4,-207.14 144.62,-196.66 135,-187.3"/><polygon fill="black" stroke="black" points="137.2,-184.57 127.59,-180.1 132.32,-189.58 137.2,-184.57"/></g><!-- 8 --><g id="node9" class="node"><title>8</title><ellipse fill="#00864b" stroke="black" cx="182" cy="-162" rx="27" ry="18"/><text text-anchor="middle" x="182" y="-158.9" font-family="Mono" font-size="12.00" fill="white">*</text></g><!-- 3&#45;&gt;8 --><g id="edge8" class="edge"><title>3&#45;&gt;8</title><path fill="none" stroke="black" d="M182,-215.7C182,-207.98 182,-198.71 182,-190.11"/><polygon fill="black" stroke="black" points="185.5,-190.1 182,-180.1 178.5,-190.1 185.5,-190.1"/></g><!-- 9 --><g id="node10" class="node"><title>9</title><polygon fill="white" stroke="black" points="289,-180 227,-180 227,-144 289,-144 289,-180"/><text text-anchor="middle" x="258" y="-158.9" font-family="Mono" font-size="12.00">factor</text></g><!-- 3&#45;&gt;9 --><g id="edge9" class="edge"><title>3&#45;&gt;9</title><path fill="none" stroke="black" d="M200.79,-215.7C210.17,-207.05 221.68,-196.45 231.91,-187.03"/><polygon fill="black" stroke="black" points="234.45,-189.45 239.43,-180.1 229.7,-184.3 234.45,-189.45"/></g><!-- 5 --><g id="node6" class="node"><title>5</title><polygon fill="white" stroke="black" points="62,-108 0,-108 0,-72 62,-72 62,-108"/><text text-anchor="middle" x="31" y="-86.9" font-family="Mono" font-size="12.00">factor</text></g><!-- 4&#45;&gt;5 --><g id="edge5" class="edge"><title>4&#45;&gt;5</title><path fill="none" stroke="black" d="M34.01,-143.7C33.57,-135.98 33.04,-126.71 32.55,-118.11"/><polygon fill="black" stroke="black" points="36.04,-117.89 31.98,-108.1 29.05,-118.29 36.04,-117.89"/></g><!-- 6 --><g id="node7" class="node"><title>6</title><ellipse fill="#00864b" stroke="black" cx="31" cy="-18" rx="27" ry="18"/><text text-anchor="middle" x="31" y="-14.9" font-family="Mono" font-size="12.00" fill="white">a</text></g><!-- 5&#45;&gt;6 --><g id="edge6" class="edge"><title>5&#45;&gt;6</title><path fill="none" stroke="black" d="M31,-71.7C31,-63.98 31,-54.71 31,-46.11"/><polygon fill="black" stroke="black" points="34.5,-46.1 31,-36.1 27.5,-46.1 34.5,-46.1"/></g><!-- 10 --><g id="node11" class="node"><title>10</title><polygon fill="white" stroke="black" points="142,-108 80,-108 80,-72 142,-72 142,-108"/><text text-anchor="middle" x="111" y="-86.9" font-family="Mono" font-size="12.00">factor</text></g><!-- 7&#45;&gt;10 --><g id="edge10" class="edge"><title>7&#45;&gt;10</title><path fill="none" stroke="black" d="M110.25,-143.7C110.36,-135.98 110.49,-126.71 110.61,-118.11"/><polygon fill="black" stroke="black" points="114.11,-118.15 110.76,-108.1 107.11,-118.05 114.11,-118.15"/></g><!-- 12 --><g id="node13" class="node"><title>12</title><ellipse fill="#00864b" stroke="black" cx="258" cy="-90" rx="27" ry="18"/><text text-anchor="middle" x="258" y="-86.9" font-family="Mono" font-size="12.00" fill="white">a</text></g><!-- 9&#45;&gt;12 --><g id="edge12" class="edge"><title>9&#45;&gt;12</title><path fill="none" stroke="black" d="M258,-143.7C258,-135.98 258,-126.71 258,-118.11"/><polygon fill="black" stroke="black" points="261.5,-118.1 258,-108.1 254.5,-118.1 261.5,-118.1"/></g><!-- 11 --><g id="node12" class="node"><title>11</title><ellipse fill="#00864b" stroke="black" cx="111" cy="-18" rx="27" ry="18"/><text text-anchor="middle" x="111" y="-14.9" font-family="Mono" font-size="12.00" fill="white">a</text></g><!-- 10&#45;&gt;11 --><g id="edge11" class="edge"><title>10&#45;&gt;11</title><path fill="none" stroke="black" d="M111,-71.7C111,-63.98 111,-54.71 111,-46.11"/><polygon fill="black" stroke="black" points="114.5,-46.1 111,-36.1 107.5,-46.1 114.5,-46.1"/></g></g></svg></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parse_tree</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="s1">&#39;(a+a)*a&#39;</span><span class="p">)</span>
+<span class="n">parse_tree</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<svg width="290pt" height="620pt" viewBox="0.00 0.00 290.00 620.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 616)"><title>%3</title><polygon fill="white" stroke="transparent" points="-4,4 -4,-616 286,-616 286,4 -4,4"/><!-- 0 --><g id="node1" class="node"><title>0</title><polygon fill="white" stroke="black" points="202,-612 148,-612 148,-576 202,-576 202,-612"/><text text-anchor="middle" x="175" y="-590.9" font-family="Mono" font-size="12.00">expr</text></g><!-- 1 --><g id="node2" class="node"><title>1</title><polygon fill="white" stroke="black" points="202,-540 148,-540 148,-504 202,-504 202,-540"/><text text-anchor="middle" x="175" y="-518.9" font-family="Mono" font-size="12.00">term</text></g><!-- 0&#45;&gt;1 --><g id="edge1" class="edge"><title>0&#45;&gt;1</title><path fill="none" stroke="black" d="M175,-575.7C175,-567.98 175,-558.71 175,-550.11"/><polygon fill="black" stroke="black" points="178.5,-550.1 175,-540.1 171.5,-550.1 178.5,-550.1"/></g><!-- 2 --><g id="node3" class="node"><title>2</title><polygon fill="white" stroke="black" points="130,-468 76,-468 76,-432 130,-432 130,-468"/><text text-anchor="middle" x="103" y="-446.9" font-family="Mono" font-size="12.00">term</text></g><!-- 1&#45;&gt;2 --><g id="edge2" class="edge"><title>1&#45;&gt;2</title><path fill="none" stroke="black" d="M157.2,-503.7C148.4,-495.14 137.62,-484.66 128,-475.3"/><polygon fill="black" stroke="black" points="130.2,-472.57 120.59,-468.1 125.32,-477.58 130.2,-472.57"/></g><!-- 3 --><g id="node4" class="node"><title>3</title><ellipse fill="#00864b" stroke="black" cx="175" cy="-450" rx="27" ry="18"/><text text-anchor="middle" x="175" y="-446.9" font-family="Mono" font-size="12.00" fill="white">*</text></g><!-- 1&#45;&gt;3 --><g id="edge3" class="edge"><title>1&#45;&gt;3</title><path fill="none" stroke="black" d="M175,-503.7C175,-495.98 175,-486.71 175,-478.11"/><polygon fill="black" stroke="black" points="178.5,-478.1 175,-468.1 171.5,-478.1 178.5,-478.1"/></g><!-- 4 --><g id="node5" class="node"><title>4</title><polygon fill="white" stroke="black" points="282,-468 220,-468 220,-432 282,-432 282,-468"/><text text-anchor="middle" x="251" y="-446.9" font-family="Mono" font-size="12.00">factor</text></g><!-- 1&#45;&gt;4 --><g id="edge4" class="edge"><title>1&#45;&gt;4</title><path fill="none" stroke="black" d="M193.79,-503.7C203.17,-495.05 214.68,-484.45 224.91,-475.03"/><polygon fill="black" stroke="black" points="227.45,-477.45 232.43,-468.1 222.7,-472.3 227.45,-477.45"/></g><!-- 5 --><g id="node6" class="node"><title>5</title><polygon fill="white" stroke="black" points="134,-396 72,-396 72,-360 134,-360 134,-396"/><text text-anchor="middle" x="103" y="-374.9" font-family="Mono" font-size="12.00">factor</text></g><!-- 2&#45;&gt;5 --><g id="edge5" class="edge"><title>2&#45;&gt;5</title><path fill="none" stroke="black" d="M103,-431.7C103,-423.98 103,-414.71 103,-406.11"/><polygon fill="black" stroke="black" points="106.5,-406.1 103,-396.1 99.5,-406.1 106.5,-406.1"/></g><!-- 17 --><g id="node18" class="node"><title>17</title><ellipse fill="#00864b" stroke="black" cx="251" cy="-378" rx="27" ry="18"/><text text-anchor="middle" x="251" y="-374.9" font-family="Mono" font-size="12.00" fill="white">a</text></g><!-- 4&#45;&gt;17 --><g id="edge17" class="edge"><title>4&#45;&gt;17</title><path fill="none" stroke="black" d="M251,-431.7C251,-423.98 251,-414.71 251,-406.11"/><polygon fill="black" stroke="black" points="254.5,-406.1 251,-396.1 247.5,-406.1 254.5,-406.1"/></g><!-- 6 --><g id="node7" class="node"><title>6</title><ellipse fill="#00864b" stroke="black" cx="31" cy="-306" rx="27" ry="18"/><text text-anchor="middle" x="31" y="-302.9" font-family="Mono" font-size="12.00" fill="white">(</text></g><!-- 5&#45;&gt;6 --><g id="edge6" class="edge"><title>5&#45;&gt;6</title><path fill="none" stroke="black" d="M85.2,-359.7C75.51,-350.28 63.44,-338.53 53.14,-328.53"/><polygon fill="black" stroke="black" points="55.3,-325.74 45.69,-321.28 50.42,-330.76 55.3,-325.74"/></g><!-- 7 --><g id="node8" class="node"><title>7</title><polygon fill="white" stroke="black" points="130,-324 76,-324 76,-288 130,-288 130,-324"/><text text-anchor="middle" x="103" y="-302.9" font-family="Mono" font-size="12.00">expr</text></g><!-- 5&#45;&gt;7 --><g id="edge7" class="edge"><title>5&#45;&gt;7</title><path fill="none" stroke="black" d="M103,-359.7C103,-351.98 103,-342.71 103,-334.11"/><polygon fill="black" stroke="black" points="106.5,-334.1 103,-324.1 99.5,-334.1 106.5,-334.1"/></g><!-- 8 --><g id="node9" class="node"><title>8</title><ellipse fill="#00864b" stroke="black" cx="175" cy="-306" rx="27" ry="18"/><text text-anchor="middle" x="175" y="-302.9" font-family="Mono" font-size="12.00" fill="white">)</text></g><!-- 5&#45;&gt;8 --><g id="edge8" class="edge"><title>5&#45;&gt;8</title><path fill="none" stroke="black" d="M120.8,-359.7C130.49,-350.28 142.56,-338.53 152.86,-328.53"/><polygon fill="black" stroke="black" points="155.58,-330.76 160.31,-321.28 150.7,-325.74 155.58,-330.76"/></g><!-- 9 --><g id="node10" class="node"><title>9</title><polygon fill="white" stroke="black" points="58,-252 4,-252 4,-216 58,-216 58,-252"/><text text-anchor="middle" x="31" y="-230.9" font-family="Mono" font-size="12.00">expr</text></g><!-- 7&#45;&gt;9 --><g id="edge9" class="edge"><title>7&#45;&gt;9</title><path fill="none" stroke="black" d="M85.2,-287.7C76.4,-279.14 65.62,-268.66 56,-259.3"/><polygon fill="black" stroke="black" points="58.2,-256.57 48.59,-252.1 53.32,-261.58 58.2,-256.57"/></g><!-- 10 --><g id="node11" class="node"><title>10</title><ellipse fill="#00864b" stroke="black" cx="103" cy="-234" rx="27" ry="18"/><text text-anchor="middle" x="103" y="-230.9" font-family="Mono" font-size="12.00" fill="white">+</text></g><!-- 7&#45;&gt;10 --><g id="edge10" class="edge"><title>7&#45;&gt;10</title><path fill="none" stroke="black" d="M103,-287.7C103,-279.98 103,-270.71 103,-262.11"/><polygon fill="black" stroke="black" points="106.5,-262.1 103,-252.1 99.5,-262.1 106.5,-262.1"/></g><!-- 11 --><g id="node12" class="node"><title>11</title><polygon fill="white" stroke="black" points="202,-252 148,-252 148,-216 202,-216 202,-252"/><text text-anchor="middle" x="175" y="-230.9" font-family="Mono" font-size="12.00">term</text></g><!-- 7&#45;&gt;11 --><g id="edge11" class="edge"><title>7&#45;&gt;11</title><path fill="none" stroke="black" d="M120.8,-287.7C129.6,-279.14 140.38,-268.66 150,-259.3"/><polygon fill="black" stroke="black" points="152.68,-261.58 157.41,-252.1 147.8,-256.57 152.68,-261.58"/></g><!-- 12 --><g id="node13" class="node"><title>12</title><polygon fill="white" stroke="black" points="58,-180 4,-180 4,-144 58,-144 58,-180"/><text text-anchor="middle" x="31" y="-158.9" font-family="Mono" font-size="12.00">term</text></g><!-- 9&#45;&gt;12 --><g id="edge12" class="edge"><title>9&#45;&gt;12</title><path fill="none" stroke="black" d="M31,-215.7C31,-207.98 31,-198.71 31,-190.11"/><polygon fill="black" stroke="black" points="34.5,-190.1 31,-180.1 27.5,-190.1 34.5,-190.1"/></g><!-- 15 --><g id="node16" class="node"><title>15</title><polygon fill="white" stroke="black" points="206,-180 144,-180 144,-144 206,-144 206,-180"/><text text-anchor="middle" x="175" y="-158.9" font-family="Mono" font-size="12.00">factor</text></g><!-- 11&#45;&gt;15 --><g id="edge15" class="edge"><title>11&#45;&gt;15</title><path fill="none" stroke="black" d="M175,-215.7C175,-207.98 175,-198.71 175,-190.11"/><polygon fill="black" stroke="black" points="178.5,-190.1 175,-180.1 171.5,-190.1 178.5,-190.1"/></g><!-- 13 --><g id="node14" class="node"><title>13</title><polygon fill="white" stroke="black" points="62,-108 0,-108 0,-72 62,-72 62,-108"/><text text-anchor="middle" x="31" y="-86.9" font-family="Mono" font-size="12.00">factor</text></g><!-- 12&#45;&gt;13 --><g id="edge13" class="edge"><title>12&#45;&gt;13</title><path fill="none" stroke="black" d="M31,-143.7C31,-135.98 31,-126.71 31,-118.11"/><polygon fill="black" stroke="black" points="34.5,-118.1 31,-108.1 27.5,-118.1 34.5,-118.1"/></g><!-- 14 --><g id="node15" class="node"><title>14</title><ellipse fill="#00864b" stroke="black" cx="31" cy="-18" rx="27" ry="18"/><text text-anchor="middle" x="31" y="-14.9" font-family="Mono" font-size="12.00" fill="white">a</text></g><!-- 13&#45;&gt;14 --><g id="edge14" class="edge"><title>13&#45;&gt;14</title><path fill="none" stroke="black" d="M31,-71.7C31,-63.98 31,-54.71 31,-46.11"/><polygon fill="black" stroke="black" points="34.5,-46.1 31,-36.1 27.5,-46.1 34.5,-46.1"/></g><!-- 16 --><g id="node17" class="node"><title>16</title><ellipse fill="#00864b" stroke="black" cx="175" cy="-90" rx="27" ry="18"/><text text-anchor="middle" x="175" y="-86.9" font-family="Mono" font-size="12.00" fill="white">a</text></g><!-- 15&#45;&gt;16 --><g id="edge16" class="edge"><title>15&#45;&gt;16</title><path fill="none" stroke="black" d="M175,-143.7C175,-135.98 175,-126.71 175,-118.11"/><polygon fill="black" stroke="black" points="178.5,-118.1 175,-108.1 171.5,-118.1 178.5,-118.1"/></g></g></svg></div>
+</div>
+</section>
+</section>
+<section id="2)-Hopcroft-and-Ullman">
+<h2>2) Hopcroft and Ullman<a class="headerlink" href="#2)-Hopcroft-and-Ullman" title="Permalink to this heading">¶</a></h2>
+<p>Reference: <a class="reference external" href="https://www.pearson.com/us/higher-education/program/Hopcroft-Introduction-to-Automata-Theory-Languages-and-Computation-3rd-Edition/PGM64331.html">Hopcroft, Ullman: Introduction to Automata Theory, Languages, and Computation, 3rd edition, 2007</a></p>
+<section id="id1">
+<h3>a) Palindromes<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Grammar on p. 173</p></li>
+<li><p>Parse tree on p. 185</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bnf_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;P&gt; ::=</span>
+<span class="s2">      | 0</span>
+<span class="s2">      | 1</span>
+<span class="s2">      | 0&lt;P&gt;0</span>
+<span class="s2">      | 1&lt;P&gt;1</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="n">bnf_text</span><span class="o">=</span><span class="n">bnf_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grammar</span><span class="o">.</span><span class="n">generate_language</span><span class="p">(</span><span class="n">max_steps</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sort_order</span><span class="o">=</span><span class="s1">&#39;shortlex&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;&#39;,
+ &#39;0&#39;,
+ &#39;1&#39;,
+ &#39;00&#39;,
+ &#39;11&#39;,
+ &#39;000&#39;,
+ &#39;010&#39;,
+ &#39;101&#39;,
+ &#39;111&#39;,
+ &#39;0000&#39;,
+ &#39;0110&#39;,
+ &#39;1001&#39;,
+ &#39;1111&#39;,
+ &#39;00000&#39;,
+ &#39;00100&#39;,
+ &#39;01010&#39;,
+ &#39;01110&#39;,
+ &#39;10001&#39;,
+ &#39;10101&#39;,
+ &#39;11011&#39;,
+ &#39;11111&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parse_tree</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="s1">&#39;0110&#39;</span><span class="p">)</span>
+<span class="n">parse_tree</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<svg width="206pt" height="260pt" viewBox="0.00 0.00 206.00 260.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)"><title>%3</title><polygon fill="white" stroke="transparent" points="-4,4 -4,-256 202,-256 202,4 -4,4"/><!-- 0 --><g id="node1" class="node"><title>0</title><polygon fill="white" stroke="black" points="126,-252 72,-252 72,-216 126,-216 126,-252"/><text text-anchor="middle" x="99" y="-230.9" font-family="Mono" font-size="12.00">P</text></g><!-- 1 --><g id="node2" class="node"><title>1</title><ellipse fill="#00864b" stroke="black" cx="27" cy="-162" rx="27" ry="18"/><text text-anchor="middle" x="27" y="-158.9" font-family="Mono" font-size="12.00" fill="white">0</text></g><!-- 0&#45;&gt;1 --><g id="edge1" class="edge"><title>0&#45;&gt;1</title><path fill="none" stroke="black" d="M81.2,-215.7C71.51,-206.28 59.44,-194.53 49.14,-184.53"/><polygon fill="black" stroke="black" points="51.3,-181.74 41.69,-177.28 46.42,-186.76 51.3,-181.74"/></g><!-- 2 --><g id="node3" class="node"><title>2</title><polygon fill="white" stroke="black" points="126,-180 72,-180 72,-144 126,-144 126,-180"/><text text-anchor="middle" x="99" y="-158.9" font-family="Mono" font-size="12.00">P</text></g><!-- 0&#45;&gt;2 --><g id="edge2" class="edge"><title>0&#45;&gt;2</title><path fill="none" stroke="black" d="M99,-215.7C99,-207.98 99,-198.71 99,-190.11"/><polygon fill="black" stroke="black" points="102.5,-190.1 99,-180.1 95.5,-190.1 102.5,-190.1"/></g><!-- 3 --><g id="node4" class="node"><title>3</title><ellipse fill="#00864b" stroke="black" cx="171" cy="-162" rx="27" ry="18"/><text text-anchor="middle" x="171" y="-158.9" font-family="Mono" font-size="12.00" fill="white">0</text></g><!-- 0&#45;&gt;3 --><g id="edge3" class="edge"><title>0&#45;&gt;3</title><path fill="none" stroke="black" d="M116.8,-215.7C126.49,-206.28 138.56,-194.53 148.86,-184.53"/><polygon fill="black" stroke="black" points="151.58,-186.76 156.31,-177.28 146.7,-181.74 151.58,-186.76"/></g><!-- 4 --><g id="node5" class="node"><title>4</title><ellipse fill="#00864b" stroke="black" cx="27" cy="-90" rx="27" ry="18"/><text text-anchor="middle" x="27" y="-86.9" font-family="Mono" font-size="12.00" fill="white">1</text></g><!-- 2&#45;&gt;4 --><g id="edge4" class="edge"><title>2&#45;&gt;4</title><path fill="none" stroke="black" d="M81.2,-143.7C71.51,-134.28 59.44,-122.53 49.14,-112.53"/><polygon fill="black" stroke="black" points="51.3,-109.74 41.69,-105.28 46.42,-114.76 51.3,-109.74"/></g><!-- 5 --><g id="node6" class="node"><title>5</title><polygon fill="white" stroke="black" points="126,-108 72,-108 72,-72 126,-72 126,-108"/><text text-anchor="middle" x="99" y="-86.9" font-family="Mono" font-size="12.00">P</text></g><!-- 2&#45;&gt;5 --><g id="edge5" class="edge"><title>2&#45;&gt;5</title><path fill="none" stroke="black" d="M99,-143.7C99,-135.98 99,-126.71 99,-118.11"/><polygon fill="black" stroke="black" points="102.5,-118.1 99,-108.1 95.5,-118.1 102.5,-118.1"/></g><!-- 6 --><g id="node7" class="node"><title>6</title><ellipse fill="#00864b" stroke="black" cx="171" cy="-90" rx="27" ry="18"/><text text-anchor="middle" x="171" y="-86.9" font-family="Mono" font-size="12.00" fill="white">1</text></g><!-- 2&#45;&gt;6 --><g id="edge6" class="edge"><title>2&#45;&gt;6</title><path fill="none" stroke="black" d="M116.8,-143.7C126.49,-134.28 138.56,-122.53 148.86,-112.53"/><polygon fill="black" stroke="black" points="151.58,-114.76 156.31,-105.28 146.7,-109.74 151.58,-114.76"/></g><!-- 7 --><g id="node8" class="node"><title>7</title><ellipse fill="#00864b" stroke="black" cx="99" cy="-18" rx="27" ry="18"/><text text-anchor="middle" x="99" y="-14.9" font-family="Mono" font-size="12.00" fill="white">ɛ</text></g><!-- 5&#45;&gt;7 --><g id="edge7" class="edge"><title>5&#45;&gt;7</title><path fill="none" stroke="black" d="M99,-71.7C99,-63.98 99,-54.71 99,-46.11"/><polygon fill="black" stroke="black" points="102.5,-46.1 99,-36.1 95.5,-46.1 102.5,-46.1"/></g></g></svg></div>
+</div>
+</section>
+<section id="id2">
+<h3>b) Expressions<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Grammar on p. 174</p></li>
+<li><p>Derivation on p. 178 (leftmost) and p. 179 (rightmost)</p></li>
+<li><p>Parse tree on p. 186</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bnf_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;E&gt; ::= &lt;I&gt;</span>
+<span class="s2">      | &lt;E&gt;+&lt;E&gt;</span>
+<span class="s2">      | &lt;E&gt;*&lt;E&gt;</span>
+<span class="s2">      | (&lt;E&gt;)</span>
+<span class="s2">&lt;I&gt; ::= a</span>
+<span class="s2">      | b</span>
+<span class="s2">      | &lt;I&gt;a</span>
+<span class="s2">      | &lt;I&gt;b</span>
+<span class="s2">      | &lt;I&gt;0</span>
+<span class="s2">      | &lt;I&gt;1</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="n">bnf_text</span><span class="o">=</span><span class="n">bnf_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">language</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">generate_language</span><span class="p">(</span><span class="n">max_steps</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sort_order</span><span class="o">=</span><span class="s1">&#39;shortlex&#39;</span><span class="p">)</span>
+<span class="n">language</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;a&#39;,
+ &#39;b&#39;,
+ &#39;a0&#39;,
+ &#39;a1&#39;,
+ &#39;aa&#39;,
+ &#39;ab&#39;,
+ &#39;b0&#39;,
+ &#39;b1&#39;,
+ &#39;ba&#39;,
+ &#39;bb&#39;,
+ &#39;(a)&#39;,
+ &#39;(b)&#39;,
+ &#39;a*a&#39;,
+ &#39;a*b&#39;,
+ &#39;a+a&#39;,
+ &#39;a+b&#39;,
+ &#39;b*a&#39;,
+ &#39;b*b&#39;,
+ &#39;b+a&#39;,
+ &#39;b+b&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parse_tree</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="s1">&#39;a*(a+b00)&#39;</span><span class="p">)</span>
+<span class="n">parse_tree</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<svg width="314pt" height="548pt" viewBox="0.00 0.00 314.00 548.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 544)"><title>%3</title><polygon fill="white" stroke="transparent" points="-4,4 -4,-544 310,-544 310,4 -4,4"/><!-- 0 --><g id="node1" class="node"><title>0</title><polygon fill="white" stroke="black" points="126,-540 72,-540 72,-504 126,-504 126,-540"/><text text-anchor="middle" x="99" y="-518.9" font-family="Mono" font-size="12.00">E</text></g><!-- 1 --><g id="node2" class="node"><title>1</title><polygon fill="white" stroke="black" points="54,-468 0,-468 0,-432 54,-432 54,-468"/><text text-anchor="middle" x="27" y="-446.9" font-family="Mono" font-size="12.00">E</text></g><!-- 0&#45;&gt;1 --><g id="edge1" class="edge"><title>0&#45;&gt;1</title><path fill="none" stroke="black" d="M81.2,-503.7C72.4,-495.14 61.62,-484.66 52,-475.3"/><polygon fill="black" stroke="black" points="54.2,-472.57 44.59,-468.1 49.32,-477.58 54.2,-472.57"/></g><!-- 2 --><g id="node3" class="node"><title>2</title><ellipse fill="#00864b" stroke="black" cx="99" cy="-450" rx="27" ry="18"/><text text-anchor="middle" x="99" y="-446.9" font-family="Mono" font-size="12.00" fill="white">*</text></g><!-- 0&#45;&gt;2 --><g id="edge2" class="edge"><title>0&#45;&gt;2</title><path fill="none" stroke="black" d="M99,-503.7C99,-495.98 99,-486.71 99,-478.11"/><polygon fill="black" stroke="black" points="102.5,-478.1 99,-468.1 95.5,-478.1 102.5,-478.1"/></g><!-- 3 --><g id="node4" class="node"><title>3</title><polygon fill="white" stroke="black" points="198,-468 144,-468 144,-432 198,-432 198,-468"/><text text-anchor="middle" x="171" y="-446.9" font-family="Mono" font-size="12.00">E</text></g><!-- 0&#45;&gt;3 --><g id="edge3" class="edge"><title>0&#45;&gt;3</title><path fill="none" stroke="black" d="M116.8,-503.7C125.6,-495.14 136.38,-484.66 146,-475.3"/><polygon fill="black" stroke="black" points="148.68,-477.58 153.41,-468.1 143.8,-472.57 148.68,-477.58"/></g><!-- 4 --><g id="node5" class="node"><title>4</title><polygon fill="white" stroke="black" points="54,-396 0,-396 0,-360 54,-360 54,-396"/><text text-anchor="middle" x="27" y="-374.9" font-family="Mono" font-size="12.00">I</text></g><!-- 1&#45;&gt;4 --><g id="edge4" class="edge"><title>1&#45;&gt;4</title><path fill="none" stroke="black" d="M27,-431.7C27,-423.98 27,-414.71 27,-406.11"/><polygon fill="black" stroke="black" points="30.5,-406.1 27,-396.1 23.5,-406.1 30.5,-406.1"/></g><!-- 6 --><g id="node7" class="node"><title>6</title><ellipse fill="#00864b" stroke="black" cx="99" cy="-378" rx="27" ry="18"/><text text-anchor="middle" x="99" y="-374.9" font-family="Mono" font-size="12.00" fill="white">(</text></g><!-- 3&#45;&gt;6 --><g id="edge6" class="edge"><title>3&#45;&gt;6</title><path fill="none" stroke="black" d="M153.2,-431.7C143.51,-422.28 131.44,-410.53 121.14,-400.53"/><polygon fill="black" stroke="black" points="123.3,-397.74 113.69,-393.28 118.42,-402.76 123.3,-397.74"/></g><!-- 7 --><g id="node8" class="node"><title>7</title><polygon fill="white" stroke="black" points="198,-396 144,-396 144,-360 198,-360 198,-396"/><text text-anchor="middle" x="171" y="-374.9" font-family="Mono" font-size="12.00">E</text></g><!-- 3&#45;&gt;7 --><g id="edge7" class="edge"><title>3&#45;&gt;7</title><path fill="none" stroke="black" d="M171,-431.7C171,-423.98 171,-414.71 171,-406.11"/><polygon fill="black" stroke="black" points="174.5,-406.1 171,-396.1 167.5,-406.1 174.5,-406.1"/></g><!-- 8 --><g id="node9" class="node"><title>8</title><ellipse fill="#00864b" stroke="black" cx="243" cy="-378" rx="27" ry="18"/><text text-anchor="middle" x="243" y="-374.9" font-family="Mono" font-size="12.00" fill="white">)</text></g><!-- 3&#45;&gt;8 --><g id="edge8" class="edge"><title>3&#45;&gt;8</title><path fill="none" stroke="black" d="M188.8,-431.7C198.49,-422.28 210.56,-410.53 220.86,-400.53"/><polygon fill="black" stroke="black" points="223.58,-402.76 228.31,-393.28 218.7,-397.74 223.58,-402.76"/></g><!-- 5 --><g id="node6" class="node"><title>5</title><ellipse fill="#00864b" stroke="black" cx="27" cy="-306" rx="27" ry="18"/><text text-anchor="middle" x="27" y="-302.9" font-family="Mono" font-size="12.00" fill="white">a</text></g><!-- 4&#45;&gt;5 --><g id="edge5" class="edge"><title>4&#45;&gt;5</title><path fill="none" stroke="black" d="M27,-359.7C27,-351.98 27,-342.71 27,-334.11"/><polygon fill="black" stroke="black" points="30.5,-334.1 27,-324.1 23.5,-334.1 30.5,-334.1"/></g><!-- 9 --><g id="node10" class="node"><title>9</title><polygon fill="white" stroke="black" points="126,-324 72,-324 72,-288 126,-288 126,-324"/><text text-anchor="middle" x="99" y="-302.9" font-family="Mono" font-size="12.00">E</text></g><!-- 7&#45;&gt;9 --><g id="edge9" class="edge"><title>7&#45;&gt;9</title><path fill="none" stroke="black" d="M153.2,-359.7C144.4,-351.14 133.62,-340.66 124,-331.3"/><polygon fill="black" stroke="black" points="126.2,-328.57 116.59,-324.1 121.32,-333.58 126.2,-328.57"/></g><!-- 10 --><g id="node11" class="node"><title>10</title><ellipse fill="#00864b" stroke="black" cx="171" cy="-306" rx="27" ry="18"/><text text-anchor="middle" x="171" y="-302.9" font-family="Mono" font-size="12.00" fill="white">+</text></g><!-- 7&#45;&gt;10 --><g id="edge10" class="edge"><title>7&#45;&gt;10</title><path fill="none" stroke="black" d="M171,-359.7C171,-351.98 171,-342.71 171,-334.11"/><polygon fill="black" stroke="black" points="174.5,-334.1 171,-324.1 167.5,-334.1 174.5,-334.1"/></g><!-- 11 --><g id="node12" class="node"><title>11</title><polygon fill="white" stroke="black" points="270,-324 216,-324 216,-288 270,-288 270,-324"/><text text-anchor="middle" x="243" y="-302.9" font-family="Mono" font-size="12.00">E</text></g><!-- 7&#45;&gt;11 --><g id="edge11" class="edge"><title>7&#45;&gt;11</title><path fill="none" stroke="black" d="M188.8,-359.7C197.6,-351.14 208.38,-340.66 218,-331.3"/><polygon fill="black" stroke="black" points="220.68,-333.58 225.41,-324.1 215.8,-328.57 220.68,-333.58"/></g><!-- 12 --><g id="node13" class="node"><title>12</title><polygon fill="white" stroke="black" points="126,-252 72,-252 72,-216 126,-216 126,-252"/><text text-anchor="middle" x="99" y="-230.9" font-family="Mono" font-size="12.00">I</text></g><!-- 9&#45;&gt;12 --><g id="edge12" class="edge"><title>9&#45;&gt;12</title><path fill="none" stroke="black" d="M99,-287.7C99,-279.98 99,-270.71 99,-262.11"/><polygon fill="black" stroke="black" points="102.5,-262.1 99,-252.1 95.5,-262.1 102.5,-262.1"/></g><!-- 14 --><g id="node15" class="node"><title>14</title><polygon fill="white" stroke="black" points="270,-252 216,-252 216,-216 270,-216 270,-252"/><text text-anchor="middle" x="243" y="-230.9" font-family="Mono" font-size="12.00">I</text></g><!-- 11&#45;&gt;14 --><g id="edge14" class="edge"><title>11&#45;&gt;14</title><path fill="none" stroke="black" d="M243,-287.7C243,-279.98 243,-270.71 243,-262.11"/><polygon fill="black" stroke="black" points="246.5,-262.1 243,-252.1 239.5,-262.1 246.5,-262.1"/></g><!-- 13 --><g id="node14" class="node"><title>13</title><ellipse fill="#00864b" stroke="black" cx="99" cy="-162" rx="27" ry="18"/><text text-anchor="middle" x="99" y="-158.9" font-family="Mono" font-size="12.00" fill="white">a</text></g><!-- 12&#45;&gt;13 --><g id="edge13" class="edge"><title>12&#45;&gt;13</title><path fill="none" stroke="black" d="M99,-215.7C99,-207.98 99,-198.71 99,-190.11"/><polygon fill="black" stroke="black" points="102.5,-190.1 99,-180.1 95.5,-190.1 102.5,-190.1"/></g><!-- 15 --><g id="node16" class="node"><title>15</title><polygon fill="white" stroke="black" points="234,-180 180,-180 180,-144 234,-144 234,-180"/><text text-anchor="middle" x="207" y="-158.9" font-family="Mono" font-size="12.00">I</text></g><!-- 14&#45;&gt;15 --><g id="edge15" class="edge"><title>14&#45;&gt;15</title><path fill="none" stroke="black" d="M234.1,-215.7C230,-207.73 225.05,-198.1 220.51,-189.26"/><polygon fill="black" stroke="black" points="223.48,-187.4 215.8,-180.1 217.26,-190.6 223.48,-187.4"/></g><!-- 16 --><g id="node17" class="node"><title>16</title><ellipse fill="#00864b" stroke="black" cx="279" cy="-162" rx="27" ry="18"/><text text-anchor="middle" x="279" y="-158.9" font-family="Mono" font-size="12.00" fill="white">0</text></g><!-- 14&#45;&gt;16 --><g id="edge16" class="edge"><title>14&#45;&gt;16</title><path fill="none" stroke="black" d="M251.9,-215.7C256.16,-207.4 261.35,-197.31 266.05,-188.19"/><polygon fill="black" stroke="black" points="269.24,-189.64 270.7,-179.14 263.01,-186.44 269.24,-189.64"/></g><!-- 17 --><g id="node18" class="node"><title>17</title><polygon fill="white" stroke="black" points="198,-108 144,-108 144,-72 198,-72 198,-108"/><text text-anchor="middle" x="171" y="-86.9" font-family="Mono" font-size="12.00">I</text></g><!-- 15&#45;&gt;17 --><g id="edge17" class="edge"><title>15&#45;&gt;17</title><path fill="none" stroke="black" d="M198.1,-143.7C194,-135.73 189.05,-126.1 184.51,-117.26"/><polygon fill="black" stroke="black" points="187.48,-115.4 179.8,-108.1 181.26,-118.6 187.48,-115.4"/></g><!-- 18 --><g id="node19" class="node"><title>18</title><ellipse fill="#00864b" stroke="black" cx="243" cy="-90" rx="27" ry="18"/><text text-anchor="middle" x="243" y="-86.9" font-family="Mono" font-size="12.00" fill="white">0</text></g><!-- 15&#45;&gt;18 --><g id="edge18" class="edge"><title>15&#45;&gt;18</title><path fill="none" stroke="black" d="M215.9,-143.7C220.16,-135.4 225.35,-125.31 230.05,-116.19"/><polygon fill="black" stroke="black" points="233.24,-117.64 234.7,-107.14 227.01,-114.44 233.24,-117.64"/></g><!-- 19 --><g id="node20" class="node"><title>19</title><ellipse fill="#00864b" stroke="black" cx="171" cy="-18" rx="27" ry="18"/><text text-anchor="middle" x="171" y="-14.9" font-family="Mono" font-size="12.00" fill="white">b</text></g><!-- 17&#45;&gt;19 --><g id="edge19" class="edge"><title>17&#45;&gt;19</title><path fill="none" stroke="black" d="M171,-71.7C171,-63.98 171,-54.71 171,-46.11"/><polygon fill="black" stroke="black" points="174.5,-46.1 171,-36.1 167.5,-46.1 174.5,-46.1"/></g></g></svg></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lm_derivation</span> <span class="o">=</span> <span class="n">parse_tree</span><span class="o">.</span><span class="n">derivation</span><span class="p">(</span><span class="s1">&#39;leftmost&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lm_derivation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;E&gt;
+=&gt; &lt;E&gt;*&lt;E&gt;
+=&gt; &lt;I&gt;*&lt;E&gt;
+=&gt; a*&lt;E&gt;
+=&gt; a*(&lt;E&gt;)
+=&gt; a*(&lt;E&gt;+&lt;E&gt;)
+=&gt; a*(&lt;I&gt;+&lt;E&gt;)
+=&gt; a*(a+&lt;E&gt;)
+=&gt; a*(a+&lt;I&gt;)
+=&gt; a*(a+&lt;I&gt;0)
+=&gt; a*(a+&lt;I&gt;00)
+=&gt; a*(a+b00)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rm_derivation</span> <span class="o">=</span> <span class="n">parse_tree</span><span class="o">.</span><span class="n">derivation</span><span class="p">(</span><span class="s1">&#39;rightmost&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rm_derivation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;E&gt;
+=&gt; &lt;E&gt;*&lt;E&gt;
+=&gt; &lt;E&gt;*(&lt;E&gt;)
+=&gt; &lt;E&gt;*(&lt;E&gt;+&lt;E&gt;)
+=&gt; &lt;E&gt;*(&lt;E&gt;+&lt;I&gt;)
+=&gt; &lt;E&gt;*(&lt;E&gt;+&lt;I&gt;0)
+=&gt; &lt;E&gt;*(&lt;E&gt;+&lt;I&gt;00)
+=&gt; &lt;E&gt;*(&lt;E&gt;+b00)
+=&gt; &lt;E&gt;*(&lt;I&gt;+b00)
+=&gt; &lt;E&gt;*(a+b00)
+=&gt; &lt;I&gt;*(a+b00)
+=&gt; a*(a+b00)
+</pre></div></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="xkcd_calendar_facts.html" class="btn btn-neutral float-right" title="Calendar facts by xkcd" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="palindromes.html" class="btn btn-neutral float-left" title="Palindromes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

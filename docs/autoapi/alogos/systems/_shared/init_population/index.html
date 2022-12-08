@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems._shared.init_population &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems._shared.init_population</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos.systems._shared.init_population">
+<span id="alogos-systems-shared-init-population"></span><h1><a class="reference internal" href="#module-alogos.systems._shared.init_population" title="alogos.systems._shared.init_population"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems._shared.init_population</span></code></a><a class="headerlink" href="#module-alogos.systems._shared.init_population" title="Permalink to this heading">¶</a></h1>
+<p>Shared initialization functions for several systems.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems._shared.init_population.given_genotypes" title="alogos.systems._shared.init_population.given_genotypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">given_genotypes</span></code></a>(grammar, parameters, dp, _representation, _init_individual)</p></td>
+<td><p>Create a population from given genotypes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems._shared.init_population.given_derivation_trees" title="alogos.systems._shared.init_population.given_derivation_trees"><code class="xref py py-obj docutils literal notranslate"><span class="pre">given_derivation_trees</span></code></a>(grammar, parameters, dp, _representation, _init_individual)</p></td>
+<td><p>Create a population from given derivation trees.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems._shared.init_population.given_phenotypes" title="alogos.systems._shared.init_population.given_phenotypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">given_phenotypes</span></code></a>(grammar, parameters, dp, _representation, _init_individual)</p></td>
+<td><p>Create a population from given phenotypes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems._shared.init_population.random_genotypes" title="alogos.systems._shared.init_population.random_genotypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_genotypes</span></code></a>(grammar, parameters, dp, _representation, _init_individual)</p></td>
+<td><p>Create a population from random genotypes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems._shared.init_population.gp_rhh" title="alogos.systems._shared.init_population.gp_rhh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gp_rhh</span></code></a>(grammar, parameters, dp, _representation, _init_individual)</p></td>
+<td><p>Create a population with GP RHH.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems._shared.init_population.pi_rhh" title="alogos.systems._shared.init_population.pi_rhh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pi_rhh</span></code></a>(grammar, parameters, dp, _representation, _init_individual)</p></td>
+<td><p>Create a population with PI RHH.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems._shared.init_population.ptc2" title="alogos.systems._shared.init_population.ptc2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ptc2</span></code></a>(grammar, parameters, dp, _representation, _init_individual)</p></td>
+<td><p>Create a population with Nicolau's PTC2 method.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared.init_population.given_genotypes">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared.init_population.</span></span><span class="sig-name descname"><span class="pre">given_genotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_representation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_init_individual</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/init_population.html#given_genotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared.init_population.given_genotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population from given genotypes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared.init_population.given_derivation_trees">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared.init_population.</span></span><span class="sig-name descname"><span class="pre">given_derivation_trees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_representation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_init_individual</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/init_population.html#given_derivation_trees"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared.init_population.given_derivation_trees" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population from given derivation trees.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared.init_population.given_phenotypes">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared.init_population.</span></span><span class="sig-name descname"><span class="pre">given_phenotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_representation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_init_individual</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/init_population.html#given_phenotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared.init_population.given_phenotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population from given phenotypes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared.init_population.random_genotypes">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared.init_population.</span></span><span class="sig-name descname"><span class="pre">random_genotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_representation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_init_individual</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/init_population.html#random_genotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared.init_population.random_genotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population from random genotypes.</p>
+<p class="rubric">References</p>
+<ul>
+<li><p>2017, Nicolau: <a class="reference external" href="https://doi.org/10.1007/s10710-017-9309-9">Understanding grammatical evolution: initialisation</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>3.1 Random initialisation (RND): “The original implementations of GE</p></li>
+</ul>
+<p>used a random (RND) initialisation procedure. This simple procedure
+consists of generating random genotype arrays (either binary or integer)
+of a specified length, in a manner similar to random initialisation
+in (fixed-length) genetic algorithms.”</p>
+</div></blockquote>
+</li>
+<li><p>2018, Ryan, O’Neill, Collins: <a class="reference external" href="https://doi.org/10.1007/978-3-319-78717-6">Handbook of Grammatical Evolution</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>p. 11: “Originally, we used random initialisation for the GE population.
+However, as noted in [18, 26, 86], random initialisation can lead to
+very heavily biased initial populations. […] What is crucial though,
+is to put some effort into ensuring good variation in that initial
+population, and to avoid simple random initialisation.”</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared.init_population.gp_rhh">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared.init_population.</span></span><span class="sig-name descname"><span class="pre">gp_rhh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_representation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_init_individual</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/init_population.html#gp_rhh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared.init_population.gp_rhh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population with GP RHH.</p>
+<p class="rubric">Notes</p>
+<p>This approach was originally developed in genetic programming (GP),
+where it was termed “ramped half and half” (RHH).
+In grammatical evolution (GE), the adapted but conceptually
+identical approach is known as “sensible initialization”.</p>
+<p>Two main variants of it can be found in GE literature:</p>
+<ul class="simple">
+<li><p>Variant 1: It does not ensure that there are no duplicate trees.</p></li>
+<li><p>Variant 2: It removes duplicate trees by comparing their linear
+genotypes. First the linear encoding uses the smallest possible
+integers to represent the rules for each step. To increase
+variability within the generated genotypes, an “unmod” operator
+is applied to each codon, which uses a random integer from the
+whole possible range, which still represents the same rule as the
+original smallest possible integer.</p></li>
+</ul>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p>2003, Ryan et al.: <a class="reference external" href="https://doi.org/10.1007/3-540-36599-0_37">Sensible Initialisation in Chorus</a></p>
+<ul>
+<li><p>“This paper employs an approach similar to ramped half and half
+for Chorus. The abstract syntax trees used by Koza are replaced
+here by derivation trees, showing the sequence of derivations
+leading from the start symbol to a legal sentence of the
+grammar (a collection of only terminal symbols).”</p></li>
+</ul>
+</li>
+<li><p>2016, Fagan et al.: <a class="reference external" href="https://doi.org/10.1109/CEC.2016.7748331">Exploring position independent
+initialisation in grammatical evolution</a></p>
+<ul>
+<li><p>“It can be seen from Table II that both traditional Grow and
+traditional Ramped Half-and-Half generate excessive numbers of
+duplicate individuals. This is due to the propensity of the
+original Grow method towards generating small trees.
+With Full and PI-based methods, the creation of duplicate
+individuals reduces markedly as the ramping depth increases.”</p></li>
+</ul>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared.init_population.pi_rhh">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared.init_population.</span></span><span class="sig-name descname"><span class="pre">pi_rhh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_representation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_init_individual</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/init_population.html#pi_rhh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared.init_population.pi_rhh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population with PI RHH.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared.init_population.ptc2">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared.init_population.</span></span><span class="sig-name descname"><span class="pre">ptc2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_representation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_init_individual</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/init_population.html#ptc2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared.init_population.ptc2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population with Nicolau’s PTC2 method.</p>
+<p>In 2000, Luke created a new population initialization approach
+called “Probabilistic tree-creation 2” (PTC2).
+In 2010, Harper adapted it to grammatical evolution.
+In 2017, Nicolau created a variant of Harper’s PTC2 method, which
+is implemented here.</p>
+<p class="rubric">References</p>
+<ul>
+<li><p>2000, Luke: <a class="reference external" href="https://doi.org/10.1109/4235.873237">Two Fast Tree-Creation Algorithms for Genetic Programming</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“PTC1 is a modification of GROW that allows the user to
+provide probabilities of appearance of functions in the tree,
+plus a desired expected tree size, and guarantees that, on
+average, trees will be of that size.”</p></li>
+<li><p>“With PTC2, the user provides a probability distribution of
+requested tree sizes. PTC2 guarantees that, once it has picked
+a random tree size from this distribution, it will generate
+and return a tree of that size or slightly larger.”</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>2010, Harper: <a class="reference external" href="https://doi.org/10.1109/CEC.2010.5586336">GE, explosive grammars and the lasting legacy of bad initialisation</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“The PTC2 methodology is extended to GE and found to produce
+a more uniform distribution of parse trees.”</p></li>
+<li><p>“If the algorithm is called in a ramped way (i.e. starting
+with a low number of expansions, say 20, and increasing until
+say 240) then a large number of trees of different size and
+shapes will be generated.”</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>2017, Nicolau: <a class="reference external" href="https://doi.org/10.1007/s10710-017-9309-9">Understanding grammatical evolution: initialisation</a>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>3.3 Probabilistic tree-creation 2 (PTC2)</p></li>
+<li><p>3.6 Probabilistic tree-creation 2 with depth limit (PTC2D)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>2018, Ryan, O’Neill, Collins: <a class="reference external" href="https://doi.org/10.1007/978-3-319-78717-6">Handbook of Grammatical Evolution</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>p. 13: “More recent work on initialisation includes that of
+Nicolau, who demonstrated that across the problems examined
+in their study, a variant of Harper’s PTC2 consistently
+outperforms other initialisations”</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

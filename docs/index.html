@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Package References" href="rst/package_references.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#">
+          
+
+          
+            
+            <img src="_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>alogos</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="alogos">
+<h1>alogos<a class="headerlink" href="#alogos" title="Permalink to this heading">¶</a></h1>
+<p>Welcome! This is the documentation for
+<a class="reference internal" href="rst/package_references.html"><span class="doc">alogos</span></a>,
+an open-source Python 3.6+ package for solving optimization problems
+with grammar-guided genetic programming.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/girl_with_a_pearl_earring.gif"><img alt="Animation of an optimization example" src="_images/girl_with_a_pearl_earring.gif" style="width: 370.0px; height: 215.0px;" /></a>
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="code/examples/image_approximation.html"><span class="doc">Example</span></a>:
+Evolution of a program that draws 150 semi-transparent triangles
+to approximate an image.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<section id="what-is-this-project-about">
+<h2>What is this project about?<a class="headerlink" href="#what-is-this-project-about" title="Permalink to this heading">¶</a></h2>
+<p>The name alogos is an acronym for
+“a library of grammatical optimization systems”.</p>
+<ul class="simple">
+<li><p>“<a class="reference external" href="https://en.wikipedia.org/wiki/Mathematical_optimization">Optimization</a>”
+means to search for the best item in a set of candidates.
+This set is also known as the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Search_space">search space</a>
+and it can be explored by various
+<a class="reference external" href="https://en.wikipedia.org/wiki/Search_algorithm">search methods</a>
+in order to find a good or optimal element in it.
+Some methods can be applied to a wide range of
+<a class="reference external" href="https://en.wikipedia.org/wiki/Optimization_problem">optimization problems</a>
+but do not come with a guarantee to find the global optimum.
+These methods are called
+<a class="reference external" href="https://en.wikipedia.org/wiki/Metaheuristic">metaheuristics</a>
+in contrast to problem-specific heuristics or exact algorithms,
+which for many problems are not available or not feasible with
+limited time or computational resources.
+A well-known example of a metaheuristic is an
+<a class="reference external" href="https://en.wikipedia.org/wiki/Evolutionary_algorithm">evolutionary algorithm</a>
+and this package provides a specialized implementation of it.</p></li>
+<li><p>“Best item” implies that the user needs to provide a way to
+<a class="reference external" href="https://en.wikipedia.org/wiki/Ranking">rank</a>
+the candidates from best to worst. This is usually done by
+defining an
+<a class="reference external" href="https://en.wikipedia.org/wiki/Loss_function">objective function</a>,
+which gets a candidate as input and needs
+to return a numerical value as output. This value represents a
+quality or fitness score for each candidate, which makes them
+pairwise comparable and thereby induces a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Weak_ordering">weak ordering</a>
+on them. Additionally, the user must define whether the search
+should find an item with maximum or minimum value.</p></li>
+<li><p>“<a class="reference external" href="https://en.wikipedia.org/wiki/Formal_grammar">Grammatical</a>”
+means that a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar">context-free grammar</a>
+is used to define
+the search space. A grammar is a mathematical device frequently used
+in computer science to define a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Formal_language">formal language</a>
+such as JSON, Python, Rust but also much more basic ones.
+A language is just a set of strings and therefore each item of the
+search space can be a simple string such as “Hello world!” or a
+complex string such as a multi-line program.</p></li>
+<li><p>To summarize the previous points: This package provides several
+systems to search for the
+best string in a grammar’s language, where best means the item
+with highest or lowest value assigned by an objective function.</p></li>
+</ul>
+<p>The name alogos also stands for the greek word
+<a class="reference external" href="https://en.wiktionary.org/wiki/%CE%AC%CE%BB%CE%BF%CE%B3%CE%BF%CF%82">άλογος</a>,
+which means “irrational” or “without reason”.
+This property characterizes the stochastic search algorithms provided
+in this package well, yet does not hinder them from finding good
+solutions to hard optimization problems in limited time.
+An interesting open question is whether reasoning capabilities could
+be added to make the search process more effective without impacting
+its efficiency too much.</p>
+</section>
+<section id="which-goals-are-pursued-by-this-project">
+<h2>Which goals are pursued by this project?<a class="headerlink" href="#which-goals-are-pursued-by-this-project" title="Permalink to this heading">¶</a></h2>
+<p>This project revolves around a particular family of
+<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_algorithms#Optimization_algorithms">optimization algorithms</a>
+that are mainly studied in the field of
+<a class="reference external" href="https://en.wikipedia.org/wiki/Evolutionary_computation">evolutionary computation (EC)</a>
+and can be referred to with the umbrella term
+<a class="reference external" href="https://scholar.google.de/citations?view_op=view_citation&amp;citation_for_view=MVjWALEAAAAJ:4JMBOYKVnBMC">Grammar-Guided Genetic Programming (GGGP, G3P)</a>.
+This package currently provides implementations of five different
+G3P methods:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://scholar.google.de/citations?view_op=view_citation&amp;user=BA0ubm4AAAAJ&amp;citation_for_view=BA0ubm4AAAAJ:u5HHmVD_uO8C">Context-Free Grammar Genetic Programming (CFG-GP)</a></p></li>
+<li><p><a class="reference external" href="https://scholar.google.de/citations?view_op=view_citation&amp;user=KlZHzFgAAAAJ&amp;citation_for_view=KlZHzFgAAAAJ:AvfA0Oy_GE0C">Grammatical Evolution (GE)</a></p></li>
+<li><p><a class="reference external" href="https://scholar.google.de/citations?view_op=view_citation&amp;user=KlZHzFgAAAAJ&amp;citation_for_view=KlZHzFgAAAAJ:hFOr9nPyWt4C">Position-independent Grammatical Evolution (piGE)</a></p></li>
+<li><p><a class="reference external" href="https://scholar.google.de/citations?view_op=view_citation&amp;user=IC4uQLcAAAAJ&amp;citation_for_view=IC4uQLcAAAAJ:2P1L_qKh6hAC">Dynamic Structured Grammatical Evolution (DSGE)</a></p></li>
+<li><p><a class="reference external" href="https://scholar.google.de/citations?view_op=view_citation&amp;user=PMy0x0MAAAAJ&amp;citation_for_view=PMy0x0MAAAAJ:3WNXLiBY60kC">Weighted Hierarchical Grammatical Evolution (WHGE)</a></p></li>
+</ol>
+<p>This project tries to achieve two main goals:</p>
+<ol class="arabic simple">
+<li><p>Provide a modular implementation of several G3P methods
+to make them easier to study, compare and extend.</p></li>
+<li><p>Democratize the access to these methods, so they can be used
+more frequently and by a wider audience.</p></li>
+</ol>
+</section>
+<section id="how-can-you-get-started">
+<h2>How can you get started?<a class="headerlink" href="#how-can-you-get-started" title="Permalink to this heading">¶</a></h2>
+<p>If you want to use this package, the following steps should
+help you to get results in a short time:</p>
+<ol class="arabic simple">
+<li><p>The <a class="reference internal" href="rst/installation.html"><span class="doc">Installation Guide</span></a>
+describes how you can install the package and its optional
+dependencies.</p></li>
+<li><p>The <a class="reference internal" href="rst/quickstart.html"><span class="doc">Quickstart Example</span></a>
+is a short piece of code you can run immediately
+after the installation to see if it worked and to
+get a first impression of the package.</p></li>
+<li><p>The <a class="reference internal" href="rst/getting_started.html"><span class="doc">Getting Started Tutorial</span></a>
+explains the main concepts required to define and solve your
+own optimization problems, such as defining a grammar and objective
+function as well as applying an evolutionary algorithm to it.</p></li>
+<li><p>The <a class="reference internal" href="rst/examples.html"><span class="doc">Code Examples</span></a>
+contain solutions to optimization problems from different domains.
+They illustrate the generality and flexibility of the methods
+provided in this package. You can use the examples as templates or
+recipes that can be adapted to tackle similar problems.</p></li>
+<li><p>The <a class="reference internal" href="autoapi/index.html"><span class="doc">API Documentation</span></a>
+contains a comprehensive description of all user-facing
+functionality available in this package, so you can see the full
+range of available options.</p></li>
+</ol>
+</section>
+<section id="where-can-everything-be-found">
+<h2>Where can everything be found?<a class="headerlink" href="#where-can-everything-be-found" title="Permalink to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="rst/package_references.html"><span class="doc">Package References</span></a>
+page contains a collection of links to all parts of this project,
+including the source code, distributed code and documentation.</p>
+</section>
+<section id="who-is-involved-in-this-project">
+<h2>Who is involved in this project?<a class="headerlink" href="#who-is-involved-in-this-project" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The design, implementation and documentation of this package was
+done by
+<a class="reference external" href="https://github.com/robert-haas">Robert Haas</a>.</p></li>
+<li><p>Several research groups in the field of evolutionary computation
+invented the original G3P algorithms that are reproduced here.
+For a list of involved persons, please have a look at the authors of
+the research articles referenced above and in the API Documentation.</p></li>
+<li><p>Financial support to realize this project was granted by the
+<a class="reference external" href="https://deepfunding.ai">Deep Funding</a>
+initiative of
+<a class="reference external" href="https://singularitynet.io">SingularityNET</a>.
+If you are interested in using or providing ML/AI algorithms,
+you may want to have a look at SingularityNET’s decentralized
+<a class="reference external" href="https://beta.singularitynet.io/getstarted">marketplace of AI services</a>.</p></li>
+</ul>
+</section>
+<section id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Documentation</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="rst/package_references.html" class="btn btn-neutral float-right" title="Package References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

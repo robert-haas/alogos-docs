@@ -1,0 +1,999 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.exceptions &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.exceptions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.exceptions</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;All custom exceptions used in the package.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">._utilities.operating_system</span> <span class="kn">import</span> <span class="n">NEWLINE</span> <span class="k">as</span> <span class="n">_NEWLINE</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;GrammarError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ParserError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ParameterError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GenotypeError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;InitializationError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OperatorError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MappingError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DatabaseError&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="GrammarError"><a class="viewcode-back" href="../../autoapi/alogos/exceptions/index.html#alogos.exceptions.GrammarError">[docs]</a><span class="k">class</span> <span class="nc">GrammarError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Raised when a grammar can not be read, written or is ill-formed.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - The set of nonterminal symbols, terminal symbols or production</span>
+<span class="sd">      rules is empty.</span>
+<span class="sd">    - A nonterminal symbol has no production rule where its right-hand</span>
+<span class="sd">      side is defined.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="k">def</span> <span class="nf">raise_write_nonterminal_error</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Nonterminal symbol N(</span><span class="si">{}</span><span class="s2">) contains text that does not allow to &quot;</span>
+        <span class="s2">&quot;write it with the available surrounding markers.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_write_terminal_error</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Terminal symbol T(</span><span class="si">{}</span><span class="s2">) contains text that does not allow to &quot;</span>
+        <span class="s2">&quot;write it with the available surrounding markers.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_delimiting_symbol_error_1</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;Either &quot;start_terminal_symbol&quot; and &quot;end_terminal_symbol&quot;, &#39;</span>
+        <span class="s1">&#39;or &quot;start_terminal_symbol2&quot; and &quot;end_terminal_symbol2&quot;, or both need to &#39;</span>
+        <span class="s2">&quot;be nonempty strings in order to serve as indicators for terminal symbols.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_delimiting_symbol_error_2</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;Either &quot;start_terminal_symbol&quot; and &quot;end_terminal_symbol&quot;, &#39;</span>
+        <span class="s1">&#39;or &quot;start_terminal_symbol2&quot; and &quot;end_terminal_symbol2&quot;, or both need to &#39;</span>
+        <span class="s2">&quot;be nonempty strings in order to serve as indicators for terminal symbols.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_empty_productions_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The set of production rules is empty.&quot;</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_empty_nonterminals_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The set of nonterminal symbols is empty.&quot;</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_empty_terminals_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The set of terminal symbols is empty.&quot;</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_missing_nonterminals_error</span><span class="p">(</span><span class="n">missing_nonterminals</span><span class="p">):</span>
+    <span class="n">reported_text</span> <span class="o">=</span> <span class="n">_NEWLINE</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing_nonterminals</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Following nonterminals appeared on a right-hand side of a production rule &quot;</span>
+        <span class="s2">&quot;but on no left-hand side:</span><span class="si">{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_NEWLINE</span><span class="p">,</span> <span class="n">reported_text</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_delimiter_symbol_error_1</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;Please provide either both a nonempty &quot;start_nonterminal_symbol&quot; &#39;</span>
+        <span class="s1">&#39;and &quot;end_nonterminal_symbol&quot; or none of them.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_surrounding_symbol_error_2</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;Please provide either both a nonempty &quot;start_terminal_symbol&quot; &#39;</span>
+        <span class="s1">&#39;and &quot;end_terminal_symbol&quot; or none of them.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_surrounding_symbol_error_3</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;Please provide either both a nonempty &quot;start_terminal_symbol2&quot; &#39;</span>
+        <span class="s1">&#39;and &quot;end_terminal_symbol2&quot; or none of them.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_surrounding_symbol_error_4</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;Either &quot;start_nonterminal_symbol&quot;, &#39;</span>
+        <span class="s1">&#39;&quot;start_terminal_symbol&quot; or both need to be a nonempty string.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_surrounding_symbol_error_5</span><span class="p">(</span><span class="n">listing</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;&quot;start_nonterminal_symbol&quot; and &quot;end_nonterminal_symbol&quot; may not have &#39;</span>
+        <span class="s1">&#39;an overlap with any of &quot;start_terminal_symbol&quot;, &quot;end_terminal_symbol&quot;, &#39;</span>
+        <span class="s1">&#39;&quot;start_terminal_symbol2&quot; and &quot;end_terminal_symbol2&quot;. Following values &#39;</span>
+        <span class="s2">&quot;were found to cause a problem: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">listing</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GrammarError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ParserError"><a class="viewcode-back" href="../../autoapi/alogos/exceptions/index.html#alogos.exceptions.ParserError">[docs]</a><span class="k">class</span> <span class="nc">ParserError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Raised when parsing a string with a grammar fails.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - The string contains characters that are not part of any terminal</span>
+<span class="sd">      symbol.</span>
+<span class="sd">    - The string does not belong to the language of the given grammar.</span>
+<span class="sd">    - The chosen parser is not compatible with the given grammar.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="k">def</span> <span class="nf">raise_lark_parser_mult_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;Getting multiple parse trees is currently only supported with parser=&quot;earley&quot;.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">ParserError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_raise_parser_creation_error</span><span class="p">(</span><span class="n">excp</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Parsing failed during creation of the chosen parser. Perhaps it is not &quot;</span>
+        <span class="s2">&quot;compatible with the form of the provided grammar.</span><span class="si">{nl}{nl}</span><span class="s2">&quot;</span>
+        <span class="s1">&#39;Lark raised the exception &quot;</span><span class="si">{name}</span><span class="s1">&quot; with following message: &#39;</span>
+        <span class="s2">&quot;</span><span class="si">{text}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">excp</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">excp</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">ParserError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">_raise_parser_string_error</span><span class="p">(</span><span class="n">excp</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Parsing failed during analyzing the string.</span><span class="si">{nl}{nl}</span><span class="s2">&quot;</span>
+        <span class="s1">&#39;Lark raised the exception &quot;</span><span class="si">{name}</span><span class="s1">&quot; with following message: &#39;</span>
+        <span class="s2">&quot;</span><span class="si">{text}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">excp</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">excp</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">ParserError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">_raise_parser_node_error</span><span class="p">(</span><span class="n">node_label</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Discovered an unexpected symbol in the Lark tree that contains &quot;</span>
+        <span class="s1">&#39;all of the discovered parse trees: &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">node_label</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">ParserError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<div class="viewcode-block" id="ParameterError"><a class="viewcode-back" href="../../autoapi/alogos/exceptions/index.html#alogos.exceptions.ParameterError">[docs]</a><span class="k">class</span> <span class="nc">ParameterError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Raised when a parameter or collection of parameters is invalid.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - An unknown parameter is provided or requested by a user.</span>
+<span class="sd">    - All variation operators of an evolutionary algorithm are turned</span>
+<span class="sd">      off.</span>
+<span class="sd">    - All stop criteria of a search algorithm are inactive.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="k">def</span> <span class="nf">raise_unknown_parameter_error</span><span class="p">(</span><span class="n">parameter_name</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;An unknown parameter was attempted to be used: </span><span class="si">{val}</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;</span><span class="si">{nl}{nl}{defv}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">val</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="n">parameter_name</span><span class="p">),</span> <span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span><span class="p">,</span> <span class="n">defv</span><span class="o">=</span><span class="n">default_parameters</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_initial_parameter_error</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Got an invalid parameter name, which is reserved as &quot;</span>
+        <span class="s2">&quot;method name: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_stop_parameter_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;No stop criterion was set, therefore a search would continue to run indefinitely. &quot;</span>
+        <span class="s2">&quot;Please provide a value for one or more of the following parameters: &quot;</span>
+        <span class="s2">&quot;max_generations, max_fitness_evaluations, max_runtime_in_seconds, max_or_min_fitness&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_missing_variation_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Neither crossover nor mutation are activated. This means &quot;</span>
+        <span class="s2">&quot;there is no variation, no new candidate solutions are generated&quot;</span>
+        <span class="s2">&quot; and the optimization can not progress towards better &quot;</span>
+        <span class="s2">&quot;objective function values.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_operator_lookup_error</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">available</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">location</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">available</span> <span class="o">=</span> <span class="s2">&quot;None&quot;</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;</span><span class="si">{desc}</span><span class="s2"> operator is not known to the chosen algorithm in its current configuration. &quot;</span>
+        <span class="s2">&quot;</span><span class="si">{nl}</span><span class="s2">Given operator name: </span><span class="si">{name}</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;</span><span class="si">{nl}</span><span class="s2">Available operator names: </span><span class="si">{av}</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;</span><span class="si">{nl}</span><span class="s2">Lookup location: </span><span class="si">{loc}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">desc</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+            <span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">),</span>
+            <span class="n">av</span><span class="o">=</span><span class="n">available</span><span class="p">,</span>
+            <span class="n">loc</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="n">location</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">ParameterError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_no_genotype_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;No genotype was provided in the parameters dictionary &quot;</span>
+        <span class="s1">&#39;under the key &quot;init_genotype&quot;.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_no_phenotype_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;No phenotype was provided in the parameters dictionary &quot;</span>
+        <span class="s1">&#39;under the key &quot;init_phenotype&quot;.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_no_derivation_tree_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;No derivation tree was provided in the parameters dictionary &quot;</span>
+        <span class="s1">&#39;under the key &quot;init_derivation_tree&quot;.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_no_genotypes_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;No genotypes were provided in the parameters dictionary &quot;</span>
+        <span class="s1">&#39;under the key &quot;init_genotypes&quot;.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_no_phenotypes_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;No phenotypes were provided in the parameters dictionary &quot;</span>
+        <span class="s1">&#39;under the key &quot;init_phenotypes&quot;.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_no_derivation_trees_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;No derivation trees were provided in the parameters dictionary &quot;</span>
+        <span class="s1">&#39;under the key &quot;init_derivation_trees&quot;.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="GenotypeError"><a class="viewcode-back" href="../../autoapi/alogos/exceptions/index.html#alogos.exceptions.GenotypeError">[docs]</a><span class="k">class</span> <span class="nc">GenotypeError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Raised when a genotype is not well-formed or modified.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - The genotype can not be interpreted as a list of integers for</span>
+<span class="sd">      Grammatical Evolution (GE).</span>
+<span class="sd">    - The genotype can not be interpreted as a derivation tree for</span>
+<span class="sd">      Context-Free Grammar Genetic Programming (CFGGP).</span>
+<span class="sd">    - A user tries to modify the immutable genotype attribute of an</span>
+<span class="sd">      individual.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="k">def</span> <span class="nf">raise_data_write_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;The attribute &quot;data&quot; is immutable. It can only be assigned during &#39;</span>
+        <span class="s2">&quot;object creation. Afterwards it is used to identify a genotype, &quot;</span>
+        <span class="s2">&quot;e.g. when it is added to a set or used as a key in a dictionary, &quot;</span>
+        <span class="s2">&quot;and therefore it may not be modified.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GenotypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_cfggp_genotype_error</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The given data could not be interpreted as a CFG-GP genotype. &quot;</span>
+        <span class="s2">&quot;It needs to be a derivation tree or a serialized derivation tree. &quot;</span>
+        <span class="s2">&quot;Given data: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GenotypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_cfggpst_genotype_error</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The given data could not be interpreted as a CFG-GP-ST genotype. &quot;</span>
+        <span class="s2">&quot;It needs to be a serialized derivation tree in form of &quot;</span>
+        <span class="s2">&quot;two tuples of integers. &quot;</span>
+        <span class="s2">&quot;Given data: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GenotypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_dsge_genotype_error</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The given data could not be interpreted as a DSGE genotype. &quot;</span>
+        <span class="s2">&quot;It needs to be a non-empty tuple of tuples of integers. &quot;</span>
+        <span class="s2">&quot;Given data: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GenotypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_dsge_genotype_repair_error</span><span class="p">(</span><span class="n">max_expansions</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The provided DSGE genotype could not be repaired, because the number of &quot;</span>
+        <span class="s2">&quot;expansions reached the max_expansions limit: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">max_expansions</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GenotypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_ge_genotype_error</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The given data could not be interpreted as a GE genotype. &quot;</span>
+        <span class="s2">&quot;It needs to be a non-empty tuple of integers. &quot;</span>
+        <span class="s2">&quot;Given data: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GenotypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_pige_genotype_error</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The given data could not be interpreted as a piGE genotype. &quot;</span>
+        <span class="s2">&quot;It needs to be a non-empty tuple of integers. &quot;</span>
+        <span class="s2">&quot;Given data: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GenotypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_whge_genotype_error</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The given data could not be interpreted as a WHGE genotype. &quot;</span>
+        <span class="s2">&quot;It needs to be a non-empty bitarray. &quot;</span>
+        <span class="s2">&quot;Given data: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">GenotypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<div class="viewcode-block" id="InitializationError"><a class="viewcode-back" href="../../autoapi/alogos/exceptions/index.html#alogos.exceptions.InitializationError">[docs]</a><span class="k">class</span> <span class="nc">InitializationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Raised when intitialization of an individual or population fails.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - A user-provided genotype is not well-formed.</span>
+<span class="sd">    - A user-provided phenotype can not be parsed and reverse mapped to</span>
+<span class="sd">      a genotype.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="k">def</span> <span class="nf">raise_init_ind_from_gt_error</span><span class="p">(</span><span class="n">genotype</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Initialization of an individual from following given genotype &quot;</span>
+        <span class="s2">&quot;failed: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">genotype</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_ind_from_dt_error</span><span class="p">(</span><span class="n">derivation_tree</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Initialization of an individual from following given derivaton tree &quot;</span>
+        <span class="s2">&quot;failed: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">derivation_tree</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_ind_from_phe_error</span><span class="p">(</span><span class="n">phenotype</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Initialization of an individual from following given phenotype &quot;</span>
+        <span class="s2">&quot;failed: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">phenotype</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_ind_rand_gt_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Initialization of an individual from a random genotype failed.&quot;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_ind_valid_rand_gt_error</span><span class="p">(</span><span class="n">max_tries</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Initialization of a valid individual from a random genotype failed &quot;</span>
+        <span class="s2">&quot;after </span><span class="si">{}</span><span class="s2"> tries.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">max_tries</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_ind_grow_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Initialization of an individual with the &quot;grow&quot; method failed.&#39;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_ind_full_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Initialization of an individual with the &quot;full&quot; method failed.&#39;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_ind_pi_grow_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Initialization of an individual with the &quot;pi grow&quot; method failed.&#39;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_ind_ptc2_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Initialization of an individual with the &quot;PTC2&quot; method failed.&#39;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_pop_from_gt_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Initialization of a population from given genotypes failed.&quot;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_pop_from_dt_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Initialization of a population from given derivation trees failed.&quot;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_pop_from_phe_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Initialization of a population from given phenotypes failed.&quot;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_pop_rand_gt_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Initialization of a population from random genotypes failed.&quot;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_pop_gp_rhh_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Initialization of a population with gp_rhh (=&quot;ramped half and half&quot; from Genetic Programming) failed.&#39;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_pop_pi_rhh_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Initialization of a population with pi_rhh (=&quot;ramped half and half&quot; with PI Grow from piGE) failed.&#39;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_pop_ptc2_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Initialization of a population with PTC2 (=probabilistic tree creation 2) failed.&quot;</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_pop_unique_gen_error</span><span class="p">(</span>
+    <span class="n">num_found_genotypes</span><span class="p">,</span> <span class="n">num_wanted_genotypes</span><span class="p">,</span> <span class="n">num_tries</span>
+<span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Found only </span><span class="si">{}</span><span class="s2"> of </span><span class="si">{}</span><span class="s2"> unique genotypes after </span><span class="si">{}</span><span class="s2"> tries.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">num_found_genotypes</span><span class="p">,</span> <span class="n">num_wanted_genotypes</span><span class="p">,</span> <span class="n">num_tries</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_init_pop_unique_phe_error</span><span class="p">(</span>
+    <span class="n">num_found_phenotypes</span><span class="p">,</span> <span class="n">num_wanted_phenotypes</span><span class="p">,</span> <span class="n">num_tries</span>
+<span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Found only </span><span class="si">{}</span><span class="s2"> of </span><span class="si">{}</span><span class="s2"> unique phenotypes after </span><span class="si">{}</span><span class="s2"> tries.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">num_found_phenotypes</span><span class="p">,</span> <span class="n">num_wanted_phenotypes</span><span class="p">,</span> <span class="n">num_tries</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">InitializationError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_pop_assignment_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Only an individual can be assigned to a population. Got an object of &quot;</span>
+        <span class="s2">&quot;type </span><span class="si">{}</span><span class="s2"> instead.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="c1"># TypeError is required here by Python</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="OperatorError"><a class="viewcode-back" href="../../autoapi/alogos/exceptions/index.html#alogos.exceptions.OperatorError">[docs]</a><span class="k">class</span> <span class="nc">OperatorError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Raised when a search operator fails.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - A crossover operator that requires two parent genotypes of equal</span>
+<span class="sd">      length fails because it gets two individuals with different</span>
+<span class="sd">      genotype lengths as input.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="k">def</span> <span class="nf">raise_crossover_lp_error1</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The crossover operator is length preserving and requires that both &quot;</span>
+        <span class="s2">&quot;parent genotypes have equal length. Instead they had following two &quot;</span>
+        <span class="s2">&quot;different lengths: </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">OperatorError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_crossover_lp_error2</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The crossover operator requires that each parent has a minimal &quot;</span>
+        <span class="s2">&quot;genotype length of 2. This was not the case.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">OperatorError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="MappingError"><a class="viewcode-back" href="../../autoapi/alogos/exceptions/index.html#alogos.exceptions.MappingError">[docs]</a><span class="k">class</span> <span class="nc">MappingError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Raised when a genotype-to-phenotype mapping or its inverse fails.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - Forward mapping: No string of terminals could be found within the</span>
+<span class="sd">      allowed number of expansions or wrappings.</span>
+<span class="sd">    - Reverse mapping: The provided grammar contains no production rule</span>
+<span class="sd">      that would match a production found in a given derivation tree.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="k">def</span> <span class="nf">raise_max_expansion_error</span><span class="p">(</span><span class="n">max_expansions</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;No string of the grammar&#39;s language was found before reaching the provided &quot;</span>
+        <span class="s2">&quot;maximum number of expansions: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">max_expansions</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">MappingError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_max_wraps_error</span><span class="p">(</span><span class="n">max_wraps</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;No string of the grammar&#39;s language was found before reaching the provided &quot;</span>
+        <span class="s2">&quot;maximum number of wraps: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">max_wraps</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">MappingError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_missing_nt_error</span><span class="p">(</span><span class="n">nonterminal_node</span><span class="p">):</span>
+    <span class="n">nt_text</span> <span class="o">=</span> <span class="s2">&quot;&lt;</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nonterminal_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;For a nonterminal, no production rule could be found in the &quot;</span>
+        <span class="s2">&quot;grammar: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nt_text</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">MappingError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_missing_rhs_error</span><span class="p">(</span><span class="n">nonterminal_node</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;For a derivation step in the tree, no corresponding production rule &quot;</span>
+        <span class="s2">&quot;could be found in the grammar: &lt;</span><span class="si">{}</span><span class="s2">&gt; -&gt; </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nonterminal_node</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">MappingError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_invalid_mapping_data1</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Reverse mapping got invalid input data. &quot;</span>
+        <span class="s2">&quot;The given phenotype is a string that is not a &quot;</span>
+        <span class="s2">&quot;member of the grammar&#39;s language: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">MappingError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_invalid_mapping_data2</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Reverse mapping got invalid input data. It is neither a phenotype &quot;</span>
+        <span class="s2">&quot;nor derivation tree: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">MappingError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_limited_codon_size_error</span><span class="p">(</span><span class="n">chosen_rule_idx</span><span class="p">,</span> <span class="n">max_int</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Reverse mapping could not encode a choice within the given codon size limit. &quot;</span>
+        <span class="s2">&quot;The index of the chosen rule is </span><span class="si">{}</span><span class="s2">, but the maximum integer that can be &quot;</span>
+        <span class="s2">&quot;encoded is </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chosen_rule_idx</span><span class="p">,</span> <span class="n">max_int</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">MappingError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_dsge_mapping_error1</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">symbols</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The provided DSGE genotype is invalid, because the length of the &quot;</span>
+        <span class="s2">&quot;genotype (</span><span class="si">{}</span><span class="s2">) does not fit to the number of &quot;</span>
+        <span class="s2">&quot;nonterminal symbols (</span><span class="si">{}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">genotype</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">MappingError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_dsge_mapping_error2</span><span class="p">(</span><span class="n">gene_index</span><span class="p">,</span> <span class="n">symbol</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The provided DSGE genotype is invalid, because gene number </span><span class="si">{}</span><span class="s2"> (which corresponds to &quot;</span>
+        <span class="s2">&quot;nonterminal symbol &lt;</span><span class="si">{}</span><span class="s2">&gt;) does not contain enough integers to complete the &quot;</span>
+        <span class="s2">&quot;mapping.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gene_index</span><span class="p">,</span> <span class="n">symbol</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">MappingError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_dsge_mapping_error3</span><span class="p">(</span><span class="n">gene_index</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">chosen_rule_idx</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The provided DSGE genotype is invalid, because gene number </span><span class="si">{}</span><span class="s2"> (which corresponds to &quot;</span>
+        <span class="s2">&quot;nonterminal symbol &lt;</span><span class="si">{}</span><span class="s2">&gt;) contains the integer </span><span class="si">{}</span><span class="s2"> that can not be used to select &quot;</span>
+        <span class="s2">&quot;a production out of </span><span class="si">{}</span><span class="s2"> available &quot;</span>
+        <span class="s2">&quot;ones.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gene_index</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">chosen_rule_idx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">MappingError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<div class="viewcode-block" id="DatabaseError"><a class="viewcode-back" href="../../autoapi/alogos/exceptions/index.html#alogos.exceptions.DatabaseError">[docs]</a><span class="k">class</span> <span class="nc">DatabaseError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Raised when storing or retrieving data from a database fails.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - The provided filepath does not point to a valid file-based</span>
+<span class="sd">      database.</span>
+<span class="sd">    - There is no database entry that matches to a user-provided value.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="k">def</span> <span class="nf">raise_generation_range_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;The argument &quot;generation_range&quot; could not be interpreted as two integers.&#39;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_ind_max_id_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The maximum individual id returned by the database is NaN. &quot;</span>
+        <span class="s2">&quot;This could mean that there are no entries in the database yet.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_pop_size_min_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The minimum population size returned by the database is NaN. &quot;</span>
+        <span class="s2">&quot;This could mean that there are no entries in the database yet.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_pop_size_max_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The maximum population size returned by the database is NaN. &quot;</span>
+        <span class="s2">&quot;This could mean that there are no entries in the database yet.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_generation_first_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The first generation returned by the database is NaN. &quot;</span>
+        <span class="s2">&quot;This could mean that there are no entries in the database yet.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_generation_last_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The last generation returned by the database is NaN. &quot;</span>
+        <span class="s2">&quot;This could mean that there are no entries in the database yet.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_fitness_min_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The minimum fitness returned by the database is NaN. &quot;</span>
+        <span class="s2">&quot;This could mean that there are no entries in the database yet.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_fitness_max_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The maximum fitness returned by the database is NaN. &quot;</span>
+        <span class="s2">&quot;This could mean that there are no entries in the database yet.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_fitness_min_n_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The minimum fitness after n evaluations returned by the database is NaN. &quot;</span>
+        <span class="s2">&quot;This could mean that there are no entries in the database yet.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_fitness_max_n_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The maximum fitness after n evaluations returned by the database is NaN. &quot;</span>
+        <span class="s2">&quot;This could mean that there are no entries in the database yet.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">raise_no_database_export_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;There is no data to export. &quot;</span>
+        <span class="s1">&#39;The parameter &quot;database_on&quot; needs to be set to &quot;True&quot; in order &#39;</span>
+        <span class="s2">&quot;for a database to be created and filled with data &quot;</span>
+        <span class="s2">&quot;by the evolutionary search.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_reset_database_error</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">n_tries</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Tried to rename the database file located at </span><span class="si">{}</span><span class="s2"> during search reset. &quot;</span>
+        <span class="s2">&quot;Could not find a new filepath after </span><span class="si">{}</span><span class="s2"> tries.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">filepath</span><span class="p">),</span> <span class="n">n_tries</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_import_database_error</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Could not load the database from filepath </span><span class="si">{}</span><span class="s2"> because it is &quot;</span>
+        <span class="s2">&quot;not a file.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">filepath</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_load_population_error</span><span class="p">(</span><span class="n">generation</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Attempted to load generation </span><span class="si">{}</span><span class="s2"> from the database but could not find any &quot;</span>
+        <span class="s2">&quot;entries for it. This population seems not to be stored in the &quot;</span>
+        <span class="s2">&quot;database.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">generation</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_individual_clash_error</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Failed to load an individual from the old database. There is &quot;</span>
+        <span class="s2">&quot;another individual with the same id in the current database.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">raise_serialization_error</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Could not serialize the given string. &quot;</span>
+        <span class="s2">&quot;It can not be enclosed in any quotes, since it contains &quot;</span>
+        <span class="s2">&quot;all available variants: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

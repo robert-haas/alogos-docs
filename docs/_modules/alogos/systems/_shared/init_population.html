@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems._shared.init_population &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems._shared.init_population</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems._shared.init_population</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Shared initialization functions for several systems.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">_exceptions</span>
+<span class="kn">from</span> <span class="nn">..._utilities.parametrization</span> <span class="kn">import</span> <span class="n">get_given_or_default</span> <span class="k">as</span> <span class="n">_get_given_or_default</span>
+
+
+<div class="viewcode-block" id="given_genotypes"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_population/index.html#alogos.systems._shared.init_population.given_genotypes">[docs]</a><span class="k">def</span> <span class="nf">given_genotypes</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">_representation</span><span class="p">,</span> <span class="n">_init_individual</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a population from given genotypes.&quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">init_pop_given_genotypes</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_pop_given_genotypes&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="c1"># Transformation</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">init_pop_given_genotypes</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_no_genotypes_error</span><span class="p">()</span>
+        <span class="n">individuals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">gt</span> <span class="ow">in</span> <span class="n">init_pop_given_genotypes</span><span class="p">:</span>
+            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;init_ind_given_genotype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gt</span>
+            <span class="n">ind</span> <span class="o">=</span> <span class="n">_init_individual</span><span class="o">.</span><span class="n">given_genotype</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+            <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span><span class="n">individuals</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_pop_from_gt_error</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">population</span></div>
+
+
+<div class="viewcode-block" id="given_derivation_trees"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_population/index.html#alogos.systems._shared.init_population.given_derivation_trees">[docs]</a><span class="k">def</span> <span class="nf">given_derivation_trees</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">_representation</span><span class="p">,</span> <span class="n">_init_individual</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a population from given derivation trees.&quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">init_pop_given_derivation_trees</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_pop_given_derivation_trees&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="c1"># Transformation</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">init_pop_given_derivation_trees</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_no_derivation_trees_error</span><span class="p">()</span>
+        <span class="n">individuals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">init_pop_given_derivation_trees</span><span class="p">:</span>
+            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;init_ind_given_derivation_tree&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span>
+            <span class="n">ind</span> <span class="o">=</span> <span class="n">_init_individual</span><span class="o">.</span><span class="n">given_derivation_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+            <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span><span class="n">individuals</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_pop_from_dt_error</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">population</span></div>
+
+
+<div class="viewcode-block" id="given_phenotypes"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_population/index.html#alogos.systems._shared.init_population.given_phenotypes">[docs]</a><span class="k">def</span> <span class="nf">given_phenotypes</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">_representation</span><span class="p">,</span> <span class="n">_init_individual</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a population from given phenotypes.&quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">init_pop_given_phenotypes</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_pop_given_phenotypes&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="c1"># Transformation</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">init_pop_given_phenotypes</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_no_phenotypes_error</span><span class="p">()</span>
+        <span class="n">individuals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">phe</span> <span class="ow">in</span> <span class="n">init_pop_given_phenotypes</span><span class="p">:</span>
+            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;init_ind_given_phenotype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">phe</span>
+            <span class="n">ind</span> <span class="o">=</span> <span class="n">_init_individual</span><span class="o">.</span><span class="n">given_phenotype</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+            <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span><span class="n">individuals</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_pop_from_phe_error</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">population</span></div>
+
+
+<div class="viewcode-block" id="random_genotypes"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_population/index.html#alogos.systems._shared.init_population.random_genotypes">[docs]</a><span class="k">def</span> <span class="nf">random_genotypes</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">_representation</span><span class="p">,</span> <span class="n">_init_individual</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a population from random genotypes.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - 2017, Nicolau: `Understanding grammatical evolution: initialisation</span>
+<span class="sd">      &lt;https://doi.org/10.1007/s10710-017-9309-9&gt;`__</span>
+
+<span class="sd">         - 3.1 Random initialisation (RND): &quot;The original implementations of GE</span>
+<span class="sd">         used a random (RND) initialisation procedure. This simple procedure</span>
+<span class="sd">         consists of generating random genotype arrays (either binary or integer)</span>
+<span class="sd">         of a specified length, in a manner similar to random initialisation</span>
+<span class="sd">         in (fixed-length) genetic algorithms.&quot;</span>
+
+<span class="sd">    - 2018, Ryan, O&#39;Neill, Collins: `Handbook of Grammatical Evolution</span>
+<span class="sd">      &lt;https://doi.org/10.1007/978-3-319-78717-6&gt;`__</span>
+
+<span class="sd">        - p. 11: &quot;Originally, we used random initialisation for the GE population.</span>
+<span class="sd">          However, as noted in [18, 26, 86], random initialisation can lead to</span>
+<span class="sd">          very heavily biased initial populations. [...] What is crucial though,</span>
+<span class="sd">          is to put some effort into ensuring good variation in that initial</span>
+<span class="sd">          population, and to avoid simple random initialisation.&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">population_size</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_size&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">max_tries</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_unique_max_tries&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">ensure_uniqueness_func</span> <span class="o">=</span> <span class="n">_get_ensure_uniqueness_func</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create individuals (and optionally ensure their uniqueness)</span>
+        <span class="k">def</span> <span class="nf">create_ind_func</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">_init_individual</span><span class="o">.</span><span class="n">random_genotype</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+        <span class="n">individuals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_tries</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">known</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">population_size</span><span class="p">):</span>
+            <span class="n">ind</span><span class="p">,</span> <span class="n">num_tries</span> <span class="o">=</span> <span class="n">ensure_uniqueness_func</span><span class="p">(</span>
+                <span class="n">create_ind_func</span><span class="p">,</span> <span class="n">known</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span>
+            <span class="p">)</span>
+            <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+
+        <span class="c1"># Create population</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span><span class="n">individuals</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_pop_rand_gt_error</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">population</span></div>
+
+
+<div class="viewcode-block" id="gp_rhh"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_population/index.html#alogos.systems._shared.init_population.gp_rhh">[docs]</a><span class="k">def</span> <span class="nf">gp_rhh</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">_representation</span><span class="p">,</span> <span class="n">_init_individual</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a population with GP RHH.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This approach was originally developed in genetic programming (GP),</span>
+<span class="sd">    where it was termed &quot;ramped half and half&quot; (RHH).</span>
+<span class="sd">    In grammatical evolution (GE), the adapted but conceptually</span>
+<span class="sd">    identical approach is known as &quot;sensible initialization&quot;.</span>
+
+<span class="sd">    Two main variants of it can be found in GE literature:</span>
+
+<span class="sd">    - Variant 1: It does not ensure that there are no duplicate trees.</span>
+<span class="sd">    - Variant 2: It removes duplicate trees by comparing their linear</span>
+<span class="sd">      genotypes. First the linear encoding uses the smallest possible</span>
+<span class="sd">      integers to represent the rules for each step. To increase</span>
+<span class="sd">      variability within the generated genotypes, an &quot;unmod&quot; operator</span>
+<span class="sd">      is applied to each codon, which uses a random integer from the</span>
+<span class="sd">      whole possible range, which still represents the same rule as the</span>
+<span class="sd">      original smallest possible integer.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - 2003, Ryan et al.: `Sensible Initialisation in Chorus</span>
+<span class="sd">      &lt;https://doi.org/10.1007/3-540-36599-0_37&gt;`__</span>
+
+<span class="sd">      - &quot;This paper employs an approach similar to ramped half and half</span>
+<span class="sd">        for Chorus. The abstract syntax trees used by Koza are replaced</span>
+<span class="sd">        here by derivation trees, showing the sequence of derivations</span>
+<span class="sd">        leading from the start symbol to a legal sentence of the</span>
+<span class="sd">        grammar (a collection of only terminal symbols).&quot;</span>
+
+<span class="sd">    - 2016, Fagan et al.: `Exploring position independent</span>
+<span class="sd">      initialisation in grammatical evolution</span>
+<span class="sd">      &lt;https://doi.org/10.1109/CEC.2016.7748331&gt;`__</span>
+
+<span class="sd">      - &quot;It can be seen from Table II that both traditional Grow and</span>
+<span class="sd">        traditional Ramped Half-and-Half generate excessive numbers of</span>
+<span class="sd">        duplicate individuals. This is due to the propensity of the</span>
+<span class="sd">        original Grow method towards generating small trees.</span>
+<span class="sd">        With Full and PI-based methods, the creation of duplicate</span>
+<span class="sd">        individuals reduces markedly as the ramping depth increases.&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">population_size</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_size&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">max_tries</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_unique_max_tries&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">start_depth</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_gp_rhh_start_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">end_depth</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_gp_rhh_end_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">ensure_uniqueness_func</span> <span class="o">=</span> <span class="n">_get_ensure_uniqueness_func</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create the ramp of depths: slight preference for larger values by starting from max</span>
+        <span class="n">ramped_depths</span> <span class="o">=</span> <span class="n">_create_ramp</span><span class="p">(</span><span class="n">start_depth</span><span class="p">,</span> <span class="n">end_depth</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ramped_depths</span><span class="p">)</span>
+
+        <span class="c1"># Create individuals (and optionally ensure their uniqueness)</span>
+        <span class="n">individuals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_tries</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">known</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">population_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="c1"># grow</span>
+            <span class="k">def</span> <span class="nf">create_ind_func</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">_init_individual</span><span class="o">.</span><span class="n">gp_grow_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;init_ind_gp_grow_max_depth&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ramped_depths</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">n</span><span class="p">]</span>
+            <span class="n">ind</span><span class="p">,</span> <span class="n">num_tries</span> <span class="o">=</span> <span class="n">ensure_uniqueness_func</span><span class="p">(</span>
+                <span class="n">create_ind_func</span><span class="p">,</span> <span class="n">known</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span>
+            <span class="p">)</span>
+            <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+
+            <span class="c1"># full</span>
+            <span class="k">def</span> <span class="nf">create_ind_func</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">_init_individual</span><span class="o">.</span><span class="n">gp_full_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;init_ind_gp_full_max_depth&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ramped_depths</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">n</span><span class="p">]</span>
+            <span class="n">ind</span><span class="p">,</span> <span class="n">num_tries</span> <span class="o">=</span> <span class="n">ensure_uniqueness_func</span><span class="p">(</span>
+                <span class="n">create_ind_func</span><span class="p">,</span> <span class="n">known</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span>
+            <span class="p">)</span>
+            <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">population_size</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># grow: the last individual if population size is odd</span>
+            <span class="k">def</span> <span class="nf">create_ind_func</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">_init_individual</span><span class="o">.</span><span class="n">gp_grow_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;init_ind_gp_grow_max_depth&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ramped_depths</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">n</span><span class="p">]</span>
+            <span class="n">ind</span><span class="p">,</span> <span class="n">num_tries</span> <span class="o">=</span> <span class="n">ensure_uniqueness_func</span><span class="p">(</span>
+                <span class="n">create_ind_func</span><span class="p">,</span> <span class="n">known</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span>
+            <span class="p">)</span>
+            <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+
+        <span class="c1"># Create population</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span><span class="n">individuals</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_pop_gp_rhh_error</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">population</span></div>
+
+
+<div class="viewcode-block" id="pi_rhh"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_population/index.html#alogos.systems._shared.init_population.pi_rhh">[docs]</a><span class="k">def</span> <span class="nf">pi_rhh</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">_representation</span><span class="p">,</span> <span class="n">_init_individual</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a population with PI RHH.&quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">population_size</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_size&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">max_tries</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_unique_max_tries&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">start_depth</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_pi_rhh_start_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">end_depth</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_pi_rhh_end_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">ensure_uniqueness_func</span> <span class="o">=</span> <span class="n">_get_ensure_uniqueness_func</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create the ramp of depths: slight preference for larger values by starting from max</span>
+        <span class="n">ramped_depths</span> <span class="o">=</span> <span class="n">_create_ramp</span><span class="p">(</span><span class="n">start_depth</span><span class="p">,</span> <span class="n">end_depth</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ramped_depths</span><span class="p">)</span>
+
+        <span class="c1"># Create individuals (and optionally ensure their uniqueness)</span>
+        <span class="n">individuals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_tries</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">known</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">population_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="c1"># grow</span>
+            <span class="k">def</span> <span class="nf">create_ind_func</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">_init_individual</span><span class="o">.</span><span class="n">gp_grow_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;init_ind_pi_grow_max_depth&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ramped_depths</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">n</span><span class="p">]</span>
+            <span class="n">ind</span><span class="p">,</span> <span class="n">num_tries</span> <span class="o">=</span> <span class="n">ensure_uniqueness_func</span><span class="p">(</span>
+                <span class="n">create_ind_func</span><span class="p">,</span> <span class="n">known</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span>
+            <span class="p">)</span>
+            <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+
+            <span class="c1"># full</span>
+            <span class="k">def</span> <span class="nf">create_ind_func</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">_init_individual</span><span class="o">.</span><span class="n">gp_full_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;init_ind_gp_full_max_depth&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ramped_depths</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">n</span><span class="p">]</span>
+            <span class="n">ind</span><span class="p">,</span> <span class="n">num_tries</span> <span class="o">=</span> <span class="n">ensure_uniqueness_func</span><span class="p">(</span>
+                <span class="n">create_ind_func</span><span class="p">,</span> <span class="n">known</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span>
+            <span class="p">)</span>
+            <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">population_size</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># grow: the last individual if population size is odd</span>
+            <span class="k">def</span> <span class="nf">create_ind_func</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">_init_individual</span><span class="o">.</span><span class="n">gp_grow_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;init_ind_pi_grow_max_depth&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ramped_depths</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">n</span><span class="p">]</span>
+            <span class="n">ind</span><span class="p">,</span> <span class="n">num_tries</span> <span class="o">=</span> <span class="n">ensure_uniqueness_func</span><span class="p">(</span>
+                <span class="n">create_ind_func</span><span class="p">,</span> <span class="n">known</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span>
+            <span class="p">)</span>
+            <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+
+        <span class="c1"># Create population</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span><span class="n">individuals</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_pop_pi_rhh_error</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">population</span></div>
+
+
+<div class="viewcode-block" id="ptc2"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_population/index.html#alogos.systems._shared.init_population.ptc2">[docs]</a><span class="k">def</span> <span class="nf">ptc2</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">_representation</span><span class="p">,</span> <span class="n">_init_individual</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a population with Nicolau&#39;s PTC2 method.</span>
+
+<span class="sd">    In 2000, Luke created a new population initialization approach</span>
+<span class="sd">    called &quot;Probabilistic tree-creation 2&quot; (PTC2).</span>
+<span class="sd">    In 2010, Harper adapted it to grammatical evolution.</span>
+<span class="sd">    In 2017, Nicolau created a variant of Harper&#39;s PTC2 method, which</span>
+<span class="sd">    is implemented here.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - 2000, Luke: `Two Fast Tree-Creation Algorithms for Genetic Programming</span>
+<span class="sd">      &lt;https://doi.org/10.1109/4235.873237&gt;`__</span>
+
+<span class="sd">        - &quot;PTC1 is a modification of GROW that allows the user to</span>
+<span class="sd">          provide probabilities of appearance of functions in the tree,</span>
+<span class="sd">          plus a desired expected tree size, and guarantees that, on</span>
+<span class="sd">          average, trees will be of that size.&quot;</span>
+
+<span class="sd">        - &quot;With PTC2, the user provides a probability distribution of</span>
+<span class="sd">          requested tree sizes. PTC2 guarantees that, once it has picked</span>
+<span class="sd">          a random tree size from this distribution, it will generate</span>
+<span class="sd">          and return a tree of that size or slightly larger.&quot;</span>
+
+<span class="sd">    - 2010, Harper: `GE, explosive grammars and the lasting legacy of bad initialisation</span>
+<span class="sd">      &lt;https://doi.org/10.1109/CEC.2010.5586336&gt;`__</span>
+
+<span class="sd">        - &quot;The PTC2 methodology is extended to GE and found to produce</span>
+<span class="sd">          a more uniform distribution of parse trees.&quot;</span>
+
+<span class="sd">        - &quot;If the algorithm is called in a ramped way (i.e. starting</span>
+<span class="sd">          with a low number of expansions, say 20, and increasing until</span>
+<span class="sd">          say 240) then a large number of trees of different size and</span>
+<span class="sd">          shapes will be generated.&quot;</span>
+
+<span class="sd">    - 2017, Nicolau: `Understanding grammatical evolution: initialisation</span>
+<span class="sd">      &lt;https://doi.org/10.1007/s10710-017-9309-9&gt;`__:</span>
+
+<span class="sd">        - 3.3 Probabilistic tree-creation 2 (PTC2)</span>
+<span class="sd">        - 3.6 Probabilistic tree-creation 2 with depth limit (PTC2D)</span>
+
+<span class="sd">    - 2018, Ryan, O&#39;Neill, Collins: `Handbook of Grammatical Evolution</span>
+<span class="sd">      &lt;https://doi.org/10.1007/978-3-319-78717-6&gt;`__</span>
+
+<span class="sd">        - p. 13: &quot;More recent work on initialisation includes that of</span>
+<span class="sd">          Nicolau, who demonstrated that across the problems examined</span>
+<span class="sd">          in their study, a variant of Harper’s PTC2 consistently</span>
+<span class="sd">          outperforms other initialisations&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">population_size</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_size&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">max_tries</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_unique_max_tries&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">start_expansions</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_pop_ptc2_start_expansions&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span>
+    <span class="p">)</span>
+    <span class="n">end_expansions</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_pop_ptc2_end_expansions&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span>
+    <span class="p">)</span>
+    <span class="n">ensure_uniqueness_func</span> <span class="o">=</span> <span class="n">_get_ensure_uniqueness_func</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create the ramp of expansions: slight preference for larger values by starting from max</span>
+        <span class="n">ramped_exp</span> <span class="o">=</span> <span class="n">_create_ramp</span><span class="p">(</span><span class="n">start_expansions</span><span class="p">,</span> <span class="n">end_expansions</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ramped_exp</span><span class="p">)</span>
+
+        <span class="c1"># Create individuals (and optionally ensure their uniqueness)</span>
+        <span class="n">individuals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_tries</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">known</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">population_size</span><span class="p">):</span>
+
+            <span class="k">def</span> <span class="nf">create_ind_func</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">_init_individual</span><span class="o">.</span><span class="n">ptc2_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+            <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;init_ind_ptc2_max_expansions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ramped_exp</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">n</span><span class="p">]</span>
+            <span class="n">ind</span><span class="p">,</span> <span class="n">num_tries</span> <span class="o">=</span> <span class="n">ensure_uniqueness_func</span><span class="p">(</span>
+                <span class="n">create_ind_func</span><span class="p">,</span> <span class="n">known</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span>
+            <span class="p">)</span>
+            <span class="n">individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span>
+
+        <span class="c1"># Create population</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span><span class="n">individuals</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_pop_ptc2_error</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">population</span></div>
+
+
+<span class="c1"># Helper functions</span>
+
+
+<span class="k">def</span> <span class="nf">_create_ramp</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a ramp of values.</span>
+
+<span class="sd">    Downstream it can lead to a slight preference for larger values</span>
+<span class="sd">    because it starts with the maximum and goes towards the minimum.</span>
+<span class="sd">    The number of individuals does not need to be divisable by the</span>
+<span class="sd">    length of the list of values.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;For creating a ramp, the chosen start value of </span><span class="si">{}</span><span class="s2"> is bigger than the chosen end value of </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">start</span><span class="p">,</span> <span class="n">end</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">start</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_get_ensure_uniqueness_func</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a function that ensures some aspect of a new individual is unique.&quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">unique_phe</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_unique_phenotypes&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+    <span class="n">unique_gen</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;init_pop_unique_genotypes&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">dp</span><span class="p">)</span>
+
+    <span class="c1"># Transformation</span>
+    <span class="k">if</span> <span class="n">unique_phe</span><span class="p">:</span>
+        <span class="n">ensure_uniqueness_func</span> <span class="o">=</span> <span class="n">_ind_with_unique_phenotype</span>
+    <span class="k">elif</span> <span class="n">unique_gen</span><span class="p">:</span>
+        <span class="n">ensure_uniqueness_func</span> <span class="o">=</span> <span class="n">_ind_with_unique_genotype</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ensure_uniqueness_func</span> <span class="o">=</span> <span class="n">_ind_without_uniqueness</span>
+    <span class="k">return</span> <span class="n">ensure_uniqueness_func</span>
+
+
+<span class="k">def</span> <span class="nf">_ind_without_uniqueness</span><span class="p">(</span>
+    <span class="n">create_ind_func</span><span class="p">,</span> <span class="n">known</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a new individual without ensuring anything is unique.&quot;&quot;&quot;</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">create_ind_func</span><span class="p">()</span>
+    <span class="n">new_num_tries</span> <span class="o">=</span> <span class="n">num_tries</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">ind</span><span class="p">,</span> <span class="n">new_num_tries</span>
+
+
+<span class="k">def</span> <span class="nf">_ind_with_unique_genotype</span><span class="p">(</span>
+    <span class="n">create_ind_func</span><span class="p">,</span> <span class="n">known_genotypes</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a new individual and ensure its genotype is unique.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">new_num_tries</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># noqa: B007</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">create_ind_func</span><span class="p">()</span>
+        <span class="n">gen</span> <span class="o">=</span> <span class="n">ind</span><span class="o">.</span><span class="n">genotype</span>
+        <span class="k">if</span> <span class="n">gen</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">known_genotypes</span><span class="p">:</span>
+            <span class="n">known_genotypes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_pop_unique_gen_error</span><span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">known_genotypes</span><span class="p">),</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">new_num_tries</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ind</span><span class="p">,</span> <span class="n">new_num_tries</span>
+
+
+<span class="k">def</span> <span class="nf">_ind_with_unique_phenotype</span><span class="p">(</span>
+    <span class="n">create_ind_func</span><span class="p">,</span> <span class="n">known_phenotypes</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a new individual and ensure its phenotype is unique.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">new_num_tries</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_tries</span><span class="p">,</span> <span class="n">max_tries</span><span class="p">):</span>  <span class="c1"># noqa: B007</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">create_ind_func</span><span class="p">()</span>
+        <span class="n">phe</span> <span class="o">=</span> <span class="n">ind</span><span class="o">.</span><span class="n">phenotype</span>
+        <span class="k">if</span> <span class="n">phe</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">known_phenotypes</span><span class="p">:</span>
+            <span class="n">known_phenotypes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">phe</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_pop_unique_phe_error</span><span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">known_phenotypes</span><span class="p">),</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">new_num_tries</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ind</span><span class="p">,</span> <span class="n">new_num_tries</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

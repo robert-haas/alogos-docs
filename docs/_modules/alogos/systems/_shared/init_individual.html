@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems._shared.init_individual &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems._shared.init_individual</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems._shared.init_individual</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Shared individual initialization functions of different systems.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">_random</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">_exceptions</span>
+<span class="kn">from</span> <span class="nn">..._utilities.parametrization</span> <span class="kn">import</span> <span class="n">get_given_or_default</span> <span class="k">as</span> <span class="n">_get_given_or_default</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">init_tree</span> <span class="k">as</span> <span class="n">_init_tree</span>
+
+
+<div class="viewcode-block" id="given_genotype"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_individual/index.html#alogos.systems._shared.init_individual.given_genotype">[docs]</a><span class="k">def</span> <span class="nf">given_genotype</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an individual from a given genotype.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``init_ind_given_genotype`` : Data for a Genotype.</span>
+<span class="sd">    default_parameters : `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Default parameters of the system that calls this generic</span>
+<span class="sd">        function.</span>
+<span class="sd">    representation : module</span>
+<span class="sd">        Representation module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific</span>
+<span class="sd">        `~.representation.Genotype` subclass of the system, which is</span>
+<span class="sd">        used here to create the genotype for the individual.</span>
+<span class="sd">    mapping : function</span>
+<span class="sd">        Mapping module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific `forward` function</span>
+<span class="sd">        of the system, which is used here to map the genotype of the</span>
+<span class="sd">        individual to a derivation tree and phenotype.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    InitializationError</span>
+<span class="sd">        If the initialization of the individual fails.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">gt</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_ind_given_genotype&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gt</span><span class="p">,</span> <span class="n">representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">gt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_no_genotype_error</span><span class="p">()</span>
+            <span class="n">gt</span> <span class="o">=</span> <span class="n">representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">gt</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_ind_from_gt_error</span><span class="p">(</span><span class="n">gt</span><span class="p">)</span>
+
+    <span class="c1"># Transformation</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">phe</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">mapping</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">return_derivation_tree</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">_exceptions</span><span class="o">.</span><span class="n">MappingError</span><span class="p">:</span>
+        <span class="n">phe</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">representation</span><span class="o">.</span><span class="n">Individual</span><span class="p">(</span><span class="n">gt</span><span class="p">,</span> <span class="n">phe</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">derivation_tree</span><span class="o">=</span><span class="n">dt</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="given_derivation_tree"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_individual/index.html#alogos.systems._shared.init_individual.given_derivation_tree">[docs]</a><span class="k">def</span> <span class="nf">given_derivation_tree</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an individual from a given derivation tree.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``init_ind_given_derivation_tree`` : Data for a</span>
+<span class="sd">          `~alogos._grammar.data_structures.DerivationTree`.</span>
+<span class="sd">    default_parameters : `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Default parameters of the system that calls this generic</span>
+<span class="sd">        function.</span>
+<span class="sd">    representation : module</span>
+<span class="sd">        Representation module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific</span>
+<span class="sd">        `~.representation.Genotype` subclass of the system, which is</span>
+<span class="sd">        used here to create the genotype for the individual.</span>
+<span class="sd">    mapping : function</span>
+<span class="sd">        Mapping module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific `reverse` function</span>
+<span class="sd">        of the system, which is used here to map the phenotype (read</span>
+<span class="sd">        from the leaves of the derivation tree) to a genotype.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    InitializationError</span>
+<span class="sd">        If the initialization of the individual fails.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_ind_given_derivation_tree&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Transformation</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_no_derivation_tree_error</span><span class="p">()</span>
+        <span class="n">gt</span> <span class="o">=</span> <span class="n">mapping</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_ind_from_dt_error</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">phe</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">string</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">representation</span><span class="o">.</span><span class="n">Individual</span><span class="p">(</span><span class="n">gt</span><span class="p">,</span> <span class="n">phe</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">derivation_tree</span><span class="o">=</span><span class="n">dt</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="given_phenotype"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_individual/index.html#alogos.systems._shared.init_individual.given_phenotype">[docs]</a><span class="k">def</span> <span class="nf">given_phenotype</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an individual from a given phenotype.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``init_ind_given_phenotype`` (`str`) : Data for a phenotype,</span>
+<span class="sd">          which needs to be a string of the grammar&#39;s language.</span>
+<span class="sd">    default_parameters : `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Default parameters of the system that calls this generic</span>
+<span class="sd">        function.</span>
+<span class="sd">    representation : module</span>
+<span class="sd">        Representation module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific</span>
+<span class="sd">        `~.representation.Genotype` subclass of the system, which is</span>
+<span class="sd">        used here to create the genotype for the individual.</span>
+<span class="sd">    mapping : function</span>
+<span class="sd">        Mapping module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific `reverse` function</span>
+<span class="sd">        of the system, which is used here to map the phenotype</span>
+<span class="sd">        to a genotype and derivation tree.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    InitializationError</span>
+<span class="sd">        If the initialization of the individual fails.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">phe</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_ind_given_phenotype&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Transformation</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">phe</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_no_phenotype_error</span><span class="p">()</span>
+        <span class="n">gt</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">mapping</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">phe</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">return_derivation_tree</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_ind_from_phe_error</span><span class="p">(</span><span class="n">phe</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">representation</span><span class="o">.</span><span class="n">Individual</span><span class="p">(</span><span class="n">gt</span><span class="p">,</span> <span class="n">phe</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">derivation_tree</span><span class="o">=</span><span class="n">dt</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="random_genotype"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_individual/index.html#alogos.systems._shared.init_individual.random_genotype">[docs]</a><span class="k">def</span> <span class="nf">random_genotype</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an individual from a random genotype.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``genotype_length`` (`int`) : Number of integers in the GE</span>
+<span class="sd">          or piGE `~.representation.Genotype`.</span>
+<span class="sd">        - ``codon_size`` (`int`) : Number of bits used for a codon,</span>
+<span class="sd">          which determines the maximum integer value a codon can take.</span>
+<span class="sd">          For example, a codon size of 8 bits allows integers from</span>
+<span class="sd">          0 to 255 (from 2**8-1).</span>
+<span class="sd">    default_parameters : `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Default parameters of the system that calls this generic</span>
+<span class="sd">        function.</span>
+<span class="sd">    representation : module</span>
+<span class="sd">        Representation module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific</span>
+<span class="sd">        `~.representation.Genotype` subclass of the system, which is</span>
+<span class="sd">        used here to create the genotype for the individual.</span>
+<span class="sd">    mapping : function</span>
+<span class="sd">        Mapping module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific `forward` function</span>
+<span class="sd">        of the system, which is used here to map the genotype</span>
+<span class="sd">        to a phenotype and derivation tree.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    InitializationError</span>
+<span class="sd">        If the initialization of the individual fails.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;genotype_length&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">)</span>
+    <span class="n">cs</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;codon_size&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">)</span>
+
+    <span class="c1"># Transformation</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">cs</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">max_int</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">cs</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">random_genotype</span> <span class="o">=</span> <span class="p">[</span><span class="n">_random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_int</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gl</span><span class="p">)]</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_ind_rand_gt_error</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;init_ind_given_genotype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">random_genotype</span>
+    <span class="k">return</span> <span class="n">given_genotype</span><span class="p">(</span>
+        <span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="random_valid_genotype"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_individual/index.html#alogos.systems._shared.init_individual.random_valid_genotype">[docs]</a><span class="k">def</span> <span class="nf">random_valid_genotype</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an individual from a random genotype likely to be valid.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``genotype_length`` (`int`) : Number of integers in the GE</span>
+<span class="sd">          or piGE `~.representation.Genotype`.</span>
+<span class="sd">        - ``codon_size`` (`int`) : Number of bits used for a codon,</span>
+<span class="sd">          which determines the maximum integer value a codon can take.</span>
+<span class="sd">          For example, a codon size of 8 bits allows integers from</span>
+<span class="sd">          0 to 255 (from 2**8-1).</span>
+<span class="sd">        - ``init_ind_random_valid_genotype_max_tries`` (`int`) : Number</span>
+<span class="sd">          of tries to generate a random valid genotype.</span>
+<span class="sd">    default_parameters : `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Default parameters of the system that calls this generic</span>
+<span class="sd">        function.</span>
+<span class="sd">    representation : module</span>
+<span class="sd">        Representation module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific</span>
+<span class="sd">        `~.representation.Genotype` subclass of the system, which is</span>
+<span class="sd">        used here to create the genotype for the individual.</span>
+<span class="sd">    mapping : function</span>
+<span class="sd">        Mapping module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific `forward` function</span>
+<span class="sd">        of the system, which is used here to map the genotype</span>
+<span class="sd">        to a phenotype and derivation tree.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    InitializationError</span>
+<span class="sd">        If the initialization of the individual fails.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function repeatedly calls `random_genotype` until it returns</span>
+<span class="sd">    a genotype that can be mapped to a phenotype or a given maximum</span>
+<span class="sd">    number of tries is reached.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">mt</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_ind_random_valid_genotype_max_tries&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Transformation</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mt</span><span class="p">):</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">random_genotype</span><span class="p">(</span>
+            <span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">ind</span><span class="o">.</span><span class="n">phenotype</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_ind_valid_rand_gt_error</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ind</span></div>
+
+
+<div class="viewcode-block" id="gp_grow_tree"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_individual/index.html#alogos.systems._shared.init_individual.gp_grow_tree">[docs]</a><span class="k">def</span> <span class="nf">gp_grow_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an individual from a tree created with &quot;Grow&quot; from GP.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - 2016, Fagan et al.: `Exploring position independent</span>
+<span class="sd">      initialisation in grammatical evolution</span>
+<span class="sd">      &lt;https://doi.org/10.1109/CEC.2016.7748331&gt;`__</span>
+
+<span class="sd">      - &quot;Traditional Grow in GP looks to construct a tree that is at</span>
+<span class="sd">        most a certain depth. The trees are generally grown in a</span>
+<span class="sd">        recursive manner, randomly picking production choices until</span>
+<span class="sd">        only leaf nodes remain. If the tree approaches the depth limit</span>
+<span class="sd">        then a terminating sequence is selected to make sure the depth</span>
+<span class="sd">        limit is not breached&quot;</span>
+
+<span class="sd">      - &quot;Grow randomly builds a tree up to a maximum speciﬁed depth.</span>
+<span class="sd">        If a branch of the tree reaches the imposed depth limit the</span>
+<span class="sd">        branch is ﬁnished by selecting only terminals. There is no</span>
+<span class="sd">        guarantee of the tree reaching the depth limit.&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">md</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_ind_gp_grow_max_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span>
+    <span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create the tree with the &quot;grow&quot; strategy</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_init_tree</span><span class="o">.</span><span class="n">grow_all_branches_within_max_depth</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">md</span><span class="p">)</span>
+
+        <span class="c1"># Map tree to genotype and phenotype</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">_create_ind_from_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_ind_grow_error</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ind</span></div>
+
+
+<div class="viewcode-block" id="gp_full_tree"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_individual/index.html#alogos.systems._shared.init_individual.gp_full_tree">[docs]</a><span class="k">def</span> <span class="nf">gp_full_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an individual from a tree created with &quot;Full&quot; from GP.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - 2016, Fagan et al.: `Exploring position independent</span>
+<span class="sd">      initialisation in grammatical evolution</span>
+<span class="sd">      &lt;https://doi.org/10.1109/CEC.2016.7748331&gt;`__</span>
+
+<span class="sd">        - &quot;Full constructs a tree where every branch extends to the set</span>
+<span class="sd">          maximum depth. This generally results in very bushy or full</span>
+<span class="sd">          trees.&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">md</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_ind_gp_full_max_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span>
+    <span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create the tree with the &quot;full&quot; strategy</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_init_tree</span><span class="o">.</span><span class="n">grow_all_branches_to_max_depth</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">md</span><span class="p">)</span>
+
+        <span class="c1"># Map tree to genotype and phenotype</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">_create_ind_from_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_ind_full_error</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ind</span></div>
+
+
+<div class="viewcode-block" id="pi_grow_tree"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_individual/index.html#alogos.systems._shared.init_individual.pi_grow_tree">[docs]</a><span class="k">def</span> <span class="nf">pi_grow_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an individual from a tree created with Fagan&#39;s &quot;PI Grow&quot;.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - 2016, Fagan et al.: `Exploring position independent</span>
+<span class="sd">      initialisation in grammatical evolution</span>
+<span class="sd">      &lt;https://doi.org/10.1109/CEC.2016.7748331&gt;`__</span>
+
+<span class="sd">        - &quot;PI Grow now randomly selects a new non-terminal from the</span>
+<span class="sd">          queue and again a production is done and the resulting</span>
+<span class="sd">          symbols are added to the queue in the position from which the</span>
+<span class="sd">          parent node was removed.&quot;</span>
+
+<span class="sd">        - &quot;As the tree is being expanded, the algorithm checks to see</span>
+<span class="sd">          if the current symbol is the last recursive symbol remaining</span>
+<span class="sd">          in the queue. If the depth limit hasn’t been reached, and</span>
+<span class="sd">          PI Grow currently has the last recursive symbol to expand,</span>
+<span class="sd">          Pi Grow will only pick a production that results in</span>
+<span class="sd">          recursive symbols. This process guarantees that at least one</span>
+<span class="sd">          branch will reach the specified depth limit. This gives the</span>
+<span class="sd">          initialiser the freedom to generate trees of both a Full and</span>
+<span class="sd">          Grow nature.&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">md</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_ind_pi_grow_max_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span>
+    <span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create the tree with the &quot;pi grow&quot; strategy, mix of &quot;grow&quot; + &quot;full&quot; for a single branch</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_init_tree</span><span class="o">.</span><span class="n">grow_one_branch_to_max_depth</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">md</span><span class="p">)</span>
+
+        <span class="c1"># Map tree to genotype and phenotype</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">_create_ind_from_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_ind_pi_grow_error</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ind</span></div>
+
+
+<div class="viewcode-block" id="ptc2_tree"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_individual/index.html#alogos.systems._shared.init_individual.ptc2_tree">[docs]</a><span class="k">def</span> <span class="nf">ptc2_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an individual from a tree grown with Nicolau&#39;s &quot;PTC2&quot;.</span>
+
+<span class="sd">    The original PTC2 method for growing random trees was invented by</span>
+<span class="sd">    Sean Luke in 2000. Some slightly modified variants were</span>
+<span class="sd">    introduced later by other authors.</span>
+
+<span class="sd">    This function implements a PTC2 variant described by Miguel Nicolau</span>
+<span class="sd">    in 2017 in section &quot;3.3 Probabilistic tree-creation 2 (PTC2)&quot; of</span>
+<span class="sd">    the publication. It restricts tree size not with a maximum tree</span>
+<span class="sd">    depth but rather with a maximum number of expansions and if</span>
+<span class="sd">    possible remains strictly below this limit.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`, optional</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``init_ind_ptc2_max_expansions`` (`int`): The maximum number</span>
+<span class="sd">          of nonterminal expansions that may be used to grow the tree.</span>
+<span class="sd">    default_parameters : `~alogos._utilities.parametrization.ParameterCollection`</span>
+<span class="sd">        Default parameters of the system that calls this generic</span>
+<span class="sd">        function.</span>
+<span class="sd">    representation : module</span>
+<span class="sd">        Representation module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific</span>
+<span class="sd">        `~.representation.Genotype` subclass of the system, which is</span>
+<span class="sd">        used here to create the genotype for the individual.</span>
+<span class="sd">    mapping : function</span>
+<span class="sd">        Mapping module of the system that calls this generic</span>
+<span class="sd">        function. This module contains the specific `reverse` function</span>
+<span class="sd">        of the system, which is used here to map the phenotype</span>
+<span class="sd">        to a genotype and derivation tree.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    InitializationError</span>
+<span class="sd">        If the initialization of the individual fails.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - 2000, Luke: `Two Fast Tree-Creation Algorithms for Genetic</span>
+<span class="sd">      Programming &lt;https://doi.org/10.1109/4235.873237&gt;`__</span>
+
+<span class="sd">        - &quot;PTC1 is a modification of GROW that allows the user to</span>
+<span class="sd">          provide probabilities of appearance of functions in the tree,</span>
+<span class="sd">          plus a desired expected tree size, and guarantees that, on</span>
+<span class="sd">          average, trees will be of that size.&quot;</span>
+
+<span class="sd">        - &quot;With PTC2, the user provides a probability distribution of</span>
+<span class="sd">          requested tree sizes. PTC2 guarantees that, once it has picked</span>
+<span class="sd">          a random tree size from this distribution, it will generate</span>
+<span class="sd">          and return a tree of that size or slightly larger.&quot;</span>
+
+<span class="sd">    - 2010, Harper: `GE, explosive grammars and the lasting legacy of</span>
+<span class="sd">      bad initialisation</span>
+<span class="sd">      &lt;https://doi.org/10.1109/CEC.2010.5586336&gt;`__</span>
+
+<span class="sd">        - &quot;The PTC2 methodology is extended to GE and found to produce</span>
+<span class="sd">          a more uniform distribution of parse trees.&quot;</span>
+
+<span class="sd">        - &quot;If the algorithm is called in a ramped way (i.e. starting</span>
+<span class="sd">          with a low number of expansions, say 20, and increasing until</span>
+<span class="sd">          say 240) then a large number of trees of different size and</span>
+<span class="sd">          shapes will be generated.&quot;</span>
+
+<span class="sd">    - 2017, Nicolau: `Understanding grammatical evolution:</span>
+<span class="sd">      initialisation &lt;https://doi.org/10.1007/s10710-017-9309-9&gt;`__:</span>
+
+<span class="sd">        - 3.3 Probabilistic tree-creation 2 (PTC2)</span>
+<span class="sd">        - 3.6 Probabilistic tree-creation 2 with depth limit (PTC2D)</span>
+
+<span class="sd">    - 2018, Ryan, O&#39;Neill, Collins: `Handbook of Grammatical Evolution</span>
+<span class="sd">      &lt;https://doi.org/10.1007/978-3-319-78717-6&gt;`__</span>
+
+<span class="sd">        - p. 13: &quot;More recent work on initialisation includes that of</span>
+<span class="sd">          Nicolau, who demonstrated that across the problems examined</span>
+<span class="sd">          in their study, a variant of Harper’s PTC2 consistently</span>
+<span class="sd">          outperforms other initialisations&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">me</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;init_ind_ptc2_max_expansions&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">default_parameters</span>
+    <span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create the tree with the &quot;PTC2&quot; strategy</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_init_tree</span><span class="o">.</span><span class="n">ptc2</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">me</span><span class="p">)</span>
+
+        <span class="c1"># Map tree to genotype and phenotype</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">_create_ind_from_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_init_ind_ptc2_error</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ind</span></div>
+
+
+<span class="k">def</span> <span class="nf">_create_ind_from_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">representation</span><span class="p">,</span> <span class="n">mapping</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a derivation tree, construct an individual with genotype and phenotype from it.&quot;&quot;&quot;</span>
+    <span class="c1"># Genotype can be found by reverse mapping of the derivation tree, reading the decisions in it</span>
+    <span class="n">gt</span> <span class="o">=</span> <span class="n">mapping</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+    <span class="c1"># Phenotype can be retrieved by reading the tree leaves, which contain the terminals</span>
+    <span class="n">phe</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">string</span><span class="p">()</span>
+
+    <span class="c1"># Combine data into a single Individual object</span>
+    <span class="k">return</span> <span class="n">representation</span><span class="o">.</span><span class="n">Individual</span><span class="p">(</span><span class="n">gt</span><span class="p">,</span> <span class="n">phe</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">derivation_tree</span><span class="o">=</span><span class="n">dt</span><span class="p">))</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

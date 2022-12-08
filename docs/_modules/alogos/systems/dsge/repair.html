@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.dsge.repair &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems.dsge.repair</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems.dsge.repair</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Repair function to correct modified genotypes for DSGE.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">_grammar</span>
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">_exceptions</span>
+<span class="kn">from</span> <span class="nn">..._utilities.parametrization</span> <span class="kn">import</span> <span class="n">get_given_or_default</span> <span class="k">as</span> <span class="n">_get_given_or_default</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_cached_calculations</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">default_parameters</span> <span class="k">as</span> <span class="n">_dp</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">representation</span> <span class="k">as</span> <span class="n">_representation</span>
+
+
+<span class="n">_DT</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">DerivationTree</span>
+<span class="n">_NT</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span>
+
+
+<div class="viewcode-block" id="fix_genotype"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/dsge/repair/index.html#alogos.systems.dsge.repair.fix_genotype">[docs]</a><span class="k">def</span> <span class="nf">fix_genotype</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">raise_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Repair a genotype after modification by other operators.</span>
+
+<span class="sd">    Parts of the genotype repair procedure:</span>
+
+<span class="sd">    - The genes and codons guide a derivation, which is constructed here</span>
+<span class="sd">      step-by-step to see how far it works and correct where it fails.</span>
+<span class="sd">    - Repair 1: If the derivation is not finished yet, but every codon</span>
+<span class="sd">      of a gene was used, all choices following afterwards are made by</span>
+<span class="sd">      adding random codons.</span>
+<span class="sd">    - Repair 2: If the derivation comes to a point where an encountered</span>
+<span class="sd">      codon value is invalid, it is replaced by a random valid codon.</span>
+<span class="sd">    - Repair 3: If the derivation ends before all codons of a gene were</span>
+<span class="sd">      used, each unused codon following afterwards is deleted.</span>
+<span class="sd">    - If the derivation reaches max depth in a branch, only</span>
+<span class="sd">      non-recursive options are used from there on. This can mean that</span>
+<span class="sd">      existing codons have to be replaced if they stand for recursive</span>
+<span class="sd">      options, or new random codons have to be added which stand for</span>
+<span class="sd">      recursive options.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The maximum tree-depth restriction is enforced in following way:</span>
+
+<span class="sd">    - It is considered in each branch of the tree separately, instead</span>
+<span class="sd">      of looking at the depth of the entire tree.</span>
+<span class="sd">    - It is enforced as a soft limit and therefore a tree can become a</span>
+<span class="sd">      bit deeper than the max depth value. Whenever a branch reaches</span>
+<span class="sd">      the max depth, recursive rules are no longer used in expansions,</span>
+<span class="sd">      but the branch can still grow a bit by applying non-recursive</span>
+<span class="sd">      rules.</span>
+
+<span class="sd">    The maximum expansion limit, which is not present in the original</span>
+<span class="sd">    authors&#39; conception, is used in following way when the user</span>
+<span class="sd">    provides it:</span>
+
+<span class="sd">    - It is enforced as a hard limit, a tree can not have more</span>
+<span class="sd">      expansions in it.</span>
+<span class="sd">    - If it is hit, a repair error is raised.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">max_depth</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;max_depth&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+    <span class="n">max_expansions</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;max_expansions&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+    <span class="n">repair_with_random_choices</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;repair_with_random_choices&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Cache look-up</span>
+    <span class="n">non_recursive_rhs</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;dsge&quot;</span><span class="p">,</span> <span class="s2">&quot;non_recursive_rhs&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">non_recursive_rhs</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+    <span class="p">(</span>
+        <span class="n">gene_to_nt</span><span class="p">,</span>
+        <span class="n">nt_to_gene</span><span class="p">,</span>
+        <span class="n">nt_to_cnt</span><span class="p">,</span>
+        <span class="n">nt_to_num_options</span><span class="p">,</span>
+        <span class="n">mutable_genes</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span><span class="s2">&quot;dsge&quot;</span><span class="p">,</span> <span class="s2">&quot;maps&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span> <span class="n">grammar</span><span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">):</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
+
+    <span class="c1"># Transformation: Go through the derivation, add or remove codons when necessary</span>
+    <span class="n">nt_to_cnt</span> <span class="o">=</span> <span class="n">nt_to_cnt</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">gene</span><span class="p">)</span> <span class="k">for</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">derivation_tree</span> <span class="o">=</span> <span class="n">_DT</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">current_depth</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">expansion_counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">derivation_tree</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="n">current_depth</span><span class="p">)]</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># Check stop conditions</span>
+        <span class="k">if</span> <span class="n">max_expansions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">expansion_counter</span> <span class="o">&gt;=</span> <span class="n">max_expansions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">raise_errors</span><span class="p">:</span>
+                <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_dsge_genotype_repair_error</span><span class="p">(</span><span class="n">max_expansions</span><span class="p">)</span>
+            <span class="k">break</span>
+
+        <span class="c1"># 1) Choose nonterminal: DSGE uses the leftmost, unexpanded nonterminal</span>
+        <span class="n">chosen_nt_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">current_depth</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">chosen_nt_idx</span><span class="p">)</span>
+        <span class="n">chosen_nt</span> <span class="o">=</span> <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span>
+        <span class="n">gene_idx</span> <span class="o">=</span> <span class="n">nt_to_gene</span><span class="p">[</span><span class="n">chosen_nt</span><span class="p">]</span>
+        <span class="c1"># 2) Choose rule: DSGE decides by the next integer in the gene of the nonterminal</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">chosen_nt</span><span class="p">]</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="n">nt_to_cnt</span><span class="p">[</span><span class="n">chosen_nt</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Codon can be read from the genotype</span>
+            <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">gene_idx</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="c1"># Repair type 1: Add a valid codon</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">repair_with_random_choices</span><span class="p">:</span>
+                    <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">get_random_valid_codon</span><span class="p">(</span>
+                        <span class="n">chosen_nt</span><span class="p">,</span>
+                        <span class="n">current_depth</span><span class="p">,</span>
+                        <span class="n">max_depth</span><span class="p">,</span>
+                        <span class="n">nt_to_num_options</span><span class="p">,</span>
+                        <span class="n">non_recursive_rhs</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">get_first_valid_codon</span><span class="p">(</span>
+                        <span class="n">chosen_nt</span><span class="p">,</span>
+                        <span class="n">current_depth</span><span class="p">,</span>
+                        <span class="n">max_depth</span><span class="p">,</span>
+                        <span class="n">nt_to_num_options</span><span class="p">,</span>
+                        <span class="n">non_recursive_rhs</span><span class="p">,</span>
+                    <span class="p">)</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">gene_idx</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chosen_rule_idx</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Codon can be used to select a rule</span>
+            <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="c1"># Repair type 2: Replace an invalid codon with a valid one</span>
+            <span class="k">if</span> <span class="n">repair_with_random_choices</span><span class="p">:</span>
+                <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">get_random_valid_codon</span><span class="p">(</span>
+                    <span class="n">chosen_nt</span><span class="p">,</span>
+                    <span class="n">current_depth</span><span class="p">,</span>
+                    <span class="n">max_depth</span><span class="p">,</span>
+                    <span class="n">nt_to_num_options</span><span class="p">,</span>
+                    <span class="n">non_recursive_rhs</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">get_first_valid_codon</span><span class="p">(</span>
+                    <span class="n">chosen_nt</span><span class="p">,</span>
+                    <span class="n">current_depth</span><span class="p">,</span>
+                    <span class="n">max_depth</span><span class="p">,</span>
+                    <span class="n">nt_to_num_options</span><span class="p">,</span>
+                    <span class="n">non_recursive_rhs</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">gene_idx</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">chosen_rule_idx</span>
+            <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+        <span class="n">nt_to_cnt</span><span class="p">[</span><span class="n">chosen_nt</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># 3) Expand the chosen nonterminal (1) with the rhs of the chosen rule (2)</span>
+        <span class="n">new_nodes</span> <span class="o">=</span> <span class="n">derivation_tree</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">)</span>
+        <span class="n">expansion_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># 4) Add new nodes that contain a nonterminal to the stack</span>
+        <span class="n">new_nt_nodes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">current_depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">new_nodes</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_NT</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="n">new_nt_nodes</span> <span class="o">+</span> <span class="n">stack</span>
+
+    <span class="c1"># Repair type 3: Remove codons that were not used</span>
+    <span class="k">for</span> <span class="n">nt</span> <span class="ow">in</span> <span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span><span class="p">:</span>
+        <span class="n">gene_idx</span> <span class="o">=</span> <span class="n">nt_to_gene</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span>
+        <span class="n">last_codon_idx</span> <span class="o">=</span> <span class="n">nt_to_cnt</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">gene_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">gene_idx</span><span class="p">][:</span><span class="n">last_codon_idx</span><span class="p">]</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">gene</span><span class="p">)</span> <span class="k">for</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

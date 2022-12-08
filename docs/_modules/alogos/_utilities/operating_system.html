@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._utilities.operating_system &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos._utilities.operating_system</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos._utilities.operating_system</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span> <span class="k">as</span> <span class="nn">_os</span>
+<span class="kn">import</span> <span class="nn">re</span> <span class="k">as</span> <span class="nn">_re</span>
+
+
+<span class="n">NEWLINE</span> <span class="o">=</span> <span class="n">_os</span><span class="o">.</span><span class="n">linesep</span>
+
+
+<div class="viewcode-block" id="ensure_file_extension"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/operating_system/index.html#alogos._utilities.operating_system.ensure_file_extension">[docs]</a><span class="k">def</span> <span class="nf">ensure_file_extension</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">extension</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Ensure that a filepath ends with a given extension.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - https://docs.python.org/3.8/library/os.path.html#os.path.splitext</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Precondition</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filepath</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid filepath: &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filepath</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">extension</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid extension: &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filepath</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">extension</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+        <span class="n">extension</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">extension</span>
+
+    <span class="c1"># Transformation</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filepath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">extension</span><span class="p">):</span>
+        <span class="n">filepath</span> <span class="o">+=</span> <span class="n">extension</span>
+
+    <span class="c1"># Postcondition</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filepath</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Could not create a valid filepath: &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filepath</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">filepath</span></div>
+
+
+<div class="viewcode-block" id="delete_file"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/operating_system/index.html#alogos._utilities.operating_system.delete_file">[docs]</a><span class="k">def</span> <span class="nf">delete_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Delete a file.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - https://docs.python.org/3/library/os.html#os.remove</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ensure_new_path"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/operating_system/index.html#alogos._utilities.operating_system.ensure_new_path">[docs]</a><span class="k">def</span> <span class="nf">ensure_new_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check whether a given path exists. If yes, try to find a novel, incremented variant of it.</span>
+
+<span class="sd">    Caution: Not threadsafe.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - If ``some_dir`` exists, it becomes ``some_dir_1.mp3``, then ``some_dir_2.mp3``, ...</span>
+<span class="sd">    - If ``some_file`` exists, it becomes ``some_file_1``, then ``some_file_2``, ...</span>
+<span class="sd">    - If ``some_file.mp3`` exists, it becomes ``some_file_1.mp3``, then ``some_file_2.mp3``, ...</span>
+<span class="sd">    - If ``x_1.y_2.z.txt`` exists, it becomes ``x_1.y_2.z_1.txt``, then ``x_1.y_2.z_2.txt``, ...</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">parse_type1</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">_re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?P&lt;base&gt;.*?_)(?P&lt;num&gt;\d+)(?P&lt;ext&gt;\.[^\.]+)$&quot;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;base&quot;</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;ext&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">parse_type2</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">_re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?P&lt;base&gt;.*?)(?P&lt;ext&gt;\.[^\.]+)$&quot;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;base&quot;</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;ext&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">parse_type3</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">_re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?P&lt;base&gt;.*?_)(?P&lt;num&gt;\d+)$&quot;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;base&quot;</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">while</span> <span class="n">_os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">res1</span> <span class="o">=</span> <span class="n">parse_type1</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">res2</span> <span class="o">=</span> <span class="n">parse_type2</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">res3</span> <span class="o">=</span> <span class="n">parse_type3</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">res1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">base</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">res1</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">ext</span>
+        <span class="k">elif</span> <span class="n">res2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">base</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">res2</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="s2">&quot;_1&quot;</span> <span class="o">+</span> <span class="n">ext</span>
+        <span class="k">elif</span> <span class="n">res3</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">base</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="n">res3</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;_1&quot;</span>
+    <span class="k">return</span> <span class="n">path</span></div>
+
+
+<div class="viewcode-block" id="create_directory"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/operating_system/index.html#alogos._utilities.operating_system.create_directory">[docs]</a><span class="k">def</span> <span class="nf">create_directory</span><span class="p">(</span><span class="n">dirpath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a directory path, create it and all necessary parent directories.</span>
+
+<span class="sd">    Do nothing if the directory already exists.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - https://docs.python.org/2/library/os.html#os.makedirs</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dirpath</span></div>
+
+
+<div class="viewcode-block" id="open_in_webbrowser"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/operating_system/index.html#alogos._utilities.operating_system.open_in_webbrowser">[docs]</a><span class="k">def</span> <span class="nf">open_in_webbrowser</span><span class="p">(</span>
+    <span class="n">html_text</span><span class="p">,</span> <span class="n">start_delay</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">stop_delay_fast</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">stop_delay_slow</span><span class="o">=</span><span class="mf">10.0</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Open the given HTML text in the default webbrowser.</span>
+
+<span class="sd">    A short-lived local HTTP server is created that serves HTML text, so that</span>
+<span class="sd">    it can be opened in the default webbrowser. An alternative would be to write</span>
+<span class="sd">    the HTML text to a temporary file and open this file in the webbrowser.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    html_text : str</span>
+<span class="sd">    start_delay : float</span>
+<span class="sd">        Delay between starting the server and opening the webbrowser in another thread.</span>
+<span class="sd">        If too short, the webbrowser might send the request before the server is running.</span>
+<span class="sd">    stop_delay_fast : float</span>
+<span class="sd">        Delay between opening the webbrowser (or a new tab) and shutting down the server</span>
+<span class="sd">        after it received the first GET request from the browser.</span>
+<span class="sd">    stop_delay_slow : float</span>
+<span class="sd">        Delay between opening the webbrowser (or a new tab) and shutting down the server</span>
+<span class="sd">        even if it never receives a GET request, e.g. because the browser does not open.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - https://stackoverflow.com/questions/19040055/how-do-i-shutdown-an-httpserver-from-inside-a-request-handler-in-python</span>
+<span class="sd">    - https://stackoverflow.com/questions/3389305/how-to-silent-quiet-httpserver-and-basichttprequesthandlers-stderr-output</span>
+<span class="sd">    - https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Note</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">http.server</span>
+    <span class="kn">import</span> <span class="nn">random</span>
+    <span class="kn">import</span> <span class="nn">threading</span>
+    <span class="kn">import</span> <span class="nn">webbrowser</span>
+
+    <span class="k">def</span> <span class="nf">open_browser_and_stop_server</span><span class="p">():</span>
+        <span class="c1"># Open webbrowser</span>
+        <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="c1"># Start thread 2: Stop the server slowly, even if no GET request is ever received</span>
+        <span class="n">timer_stop_slow</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">stop_all</span><span class="p">():</span>
+        <span class="c1"># Stop server</span>
+        <span class="n">server</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+        <span class="c1"># Stop all timer threads</span>
+        <span class="n">timer_stop_slow</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+        <span class="n">timer_stop_fast</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+
+    <span class="k">class</span> <span class="nc">MyHandler</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">BaseHTTPRequestHandler</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;Serve the given HTML text to a GET request from the webbrowser.&quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send_response</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;OK&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send_header</span><span class="p">(</span><span class="s2">&quot;Content-type&quot;</span><span class="p">,</span> <span class="s2">&quot;text/html&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">end_headers</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">html_text</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+            <span class="c1"># Start thread 3: Stop the server quickly after the first GET request was received</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">timer_stop_fast</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
+                <span class="n">timer_stop_fast</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">log_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;Show no log messages.&quot;&quot;&quot;</span>
+
+    <span class="n">local_host</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">random_port</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span>
+                <span class="mi">49152</span><span class="p">,</span> <span class="mi">65535</span>
+            <span class="p">)</span>  <span class="c1"># port range used for &quot;temporary purposes&quot;</span>
+            <span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="n">local_host</span><span class="p">,</span> <span class="n">random_port</span><span class="p">)</span>
+            <span class="n">server</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">(</span><span class="n">server_address</span><span class="p">,</span> <span class="n">MyHandler</span><span class="p">)</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">local_host</span><span class="p">,</span> <span class="n">random_port</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;Could not start a local webserver for serving HTML text to a webbrowser. &quot;</span>
+            <span class="s2">&quot;No free port could be found.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+    <span class="c1"># Define threads 1 to 3</span>
+    <span class="n">timer_run</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">start_delay</span><span class="p">,</span> <span class="n">open_browser_and_stop_server</span><span class="p">)</span>
+    <span class="n">timer_stop_slow</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stop_delay_slow</span><span class="p">,</span> <span class="n">stop_all</span><span class="p">)</span>
+    <span class="n">timer_stop_fast</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stop_delay_fast</span><span class="p">,</span> <span class="n">stop_all</span><span class="p">)</span>
+
+    <span class="c1"># Start thread 1: Open webbrowser with some delay, stop the server with some delay</span>
+    <span class="n">timer_run</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="c1"># Go into server loop</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._optimization.ea.reporting &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos._optimization.ea.reporting</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos._optimization.ea.reporting</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="MinimalReporter"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter">[docs]</a><span></span><span class="k">class</span> <span class="nc">MinimalReporter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A reporter that generates minimal output for an algorithm run.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MinimalReporter.init_start"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.init_start">[docs]</a>    <span class="k">def</span> <span class="nf">init_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">time_start</span><span class="p">,</span> <span class="n">time_now</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on start of initialization of the first generation.&quot;&quot;&quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:&lt;16}</span><span class="s2"> </span><span class="si">{:&lt;16}</span><span class="s2"> </span><span class="si">{:&lt;16}</span><span class="s2"> </span><span class="si">{:&lt;16}</span><span class="s2"> </span><span class="si">{:&lt;16}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="s2">&quot;Progress&quot;</span><span class="p">,</span> <span class="s2">&quot;Generations&quot;</span><span class="p">,</span> <span class="s2">&quot;Evaluations&quot;</span><span class="p">,</span> <span class="s2">&quot;Runtime (sec)&quot;</span><span class="p">,</span> <span class="s2">&quot;Best fitness&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.init_end"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.init_end">[docs]</a>    <span class="k">def</span> <span class="nf">init_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on end of initialization of the first generation.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.map_gen_phe"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.map_gen_phe">[docs]</a>    <span class="k">def</span> <span class="nf">map_gen_phe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on performing genotype-to-phenotype evaluation.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.map_phe_fit"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.map_phe_fit">[docs]</a>    <span class="k">def</span> <span class="nf">map_phe_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on performing phenotype-to-fitness evaluation.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.calc_phe"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.calc_phe">[docs]</a>    <span class="k">def</span> <span class="nf">calc_phe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n_unique</span><span class="p">,</span> <span class="n">n_cached</span><span class="p">,</span> <span class="n">n_calc</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on genotype-to-phenotype evaluation results.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.calc_fit"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.calc_fit">[docs]</a>    <span class="k">def</span> <span class="nf">calc_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n_unique</span><span class="p">,</span> <span class="n">n_cached</span><span class="p">,</span> <span class="n">n_db</span><span class="p">,</span> <span class="n">n_calc</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on phenotype-to-fitness evaluation results.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.select_par"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.select_par">[docs]</a>    <span class="k">def</span> <span class="nf">select_par</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n_par</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on parent selection.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.select_sur"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.select_sur">[docs]</a>    <span class="k">def</span> <span class="nf">select_sur</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_old</span><span class="p">,</span> <span class="n">n_off</span><span class="p">,</span> <span class="n">n_sel</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on survivor selection.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.cross_over"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.cross_over">[docs]</a>    <span class="k">def</span> <span class="nf">cross_over</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_par</span><span class="p">,</span> <span class="n">n_crs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on variation by crossover.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.mutate"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.mutate">[docs]</a>    <span class="k">def</span> <span class="nf">mutate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_crs</span><span class="p">,</span> <span class="n">n_mut</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on variation by mutation.&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.gen_end"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.gen_end">[docs]</a>    <span class="k">def</span> <span class="nf">gen_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on end of a generation.&quot;&quot;&quot;</span>
+        <span class="n">gen</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">num_generations</span>
+        <span class="k">if</span> <span class="n">gen</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">runtime</span>
+            <span class="n">evals</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">num_phe_to_fit_evaluations</span>
+            <span class="n">fit</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">best_individual</span><span class="o">.</span><span class="n">fitness</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;.      </span><span class="si">{:&lt;16}</span><span class="s2"> </span><span class="si">{:&lt;16}</span><span class="s2"> </span><span class="si">{:&lt;16.1f}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">evals</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">fit</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">gen</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.run_end"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.run_end">[docs]</a>    <span class="k">def</span> <span class="nf">run_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on end of a run.&quot;&quot;&quot;</span>
+        <span class="n">gen</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">num_generations</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">runtime</span>
+        <span class="n">evals</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">num_phe_to_fit_evaluations</span>
+        <span class="n">fit</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">best_individual</span><span class="o">.</span><span class="n">fitness</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:&lt;16}</span><span class="s2"> </span><span class="si">{:&lt;16}</span><span class="s2"> </span><span class="si">{:&lt;16}</span><span class="s2"> </span><span class="si">{:&lt;16.1f}</span><span class="s2"> </span><span class="si">{:&lt;16}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="s2">&quot;Finished&quot;</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">evals</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">fit</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MinimalReporter.write"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.MinimalReporter.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Write a single message with context-sensitive formatting.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="VerboseReporter"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter">[docs]</a><span class="k">class</span> <span class="nc">VerboseReporter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A reporter that generates verbose output for an algorithm run.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="VerboseReporter.init_start"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.init_start">[docs]</a>    <span class="k">def</span> <span class="nf">init_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">time_start</span><span class="p">,</span> <span class="n">time_now</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on start of initialization of the first generation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;╭─ Run started ── </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_start</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;├ Generation </span><span class="si">{}</span><span class="s2"> ── </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">time_now</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Population initialization&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.init_end"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.init_end">[docs]</a>    <span class="k">def</span> <span class="nf">init_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on end of initialization of the first generation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Created </span><span class="si">{}</span><span class="s2"> individuals.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.map_gen_phe"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.map_gen_phe">[docs]</a>    <span class="k">def</span> <span class="nf">map_gen_phe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on performing genotype-to-phenotype evaluation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Genotype-to-phenotype evaluation&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.map_phe_fit"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.map_phe_fit">[docs]</a>    <span class="k">def</span> <span class="nf">map_phe_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on performing phenotype-to-fitness evaluation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Phenotype-to-fitness evaluation&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.calc_phe"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.calc_phe">[docs]</a>    <span class="k">def</span> <span class="nf">calc_phe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n_unique</span><span class="p">,</span> <span class="n">n_cached</span><span class="p">,</span> <span class="n">n_calc</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on genotype-to-phenotype evaluation results.&quot;&quot;&quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> individuals with </span><span class="si">{}</span><span class="s2"> unique genotypes: &quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> found in cache, </span><span class="si">{}</span><span class="s2"> calculated.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n_unique</span><span class="p">,</span> <span class="n">n_cached</span><span class="p">,</span> <span class="n">n_calc</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.calc_fit"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.calc_fit">[docs]</a>    <span class="k">def</span> <span class="nf">calc_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n_unique</span><span class="p">,</span> <span class="n">n_cached</span><span class="p">,</span> <span class="n">n_db</span><span class="p">,</span> <span class="n">n_calc</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on phenotype-to-fitness evaluation results.&quot;&quot;&quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> individuals with </span><span class="si">{}</span><span class="s2"> unique phenotypes: </span><span class="si">{}</span><span class="s2"> found in cache, &quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> found in db, </span><span class="si">{}</span><span class="s2"> calculated.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n_unique</span><span class="p">,</span> <span class="n">n_cached</span><span class="p">,</span> <span class="n">n_db</span><span class="p">,</span> <span class="n">n_calc</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.select_par"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.select_par">[docs]</a>    <span class="k">def</span> <span class="nf">select_par</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gen</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">n_par</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on parent selection.&quot;&quot;&quot;</span>
+        <span class="c1"># Generation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;├ Generation </span><span class="si">{}</span><span class="s2"> ── </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">time</span><span class="p">))</span>
+        <span class="c1"># Parent selection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Parent selection&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+            <span class="s2">&quot;Selected </span><span class="si">{}</span><span class="s2"> individuals from a population of </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_par</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.select_sur"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.select_sur">[docs]</a>    <span class="k">def</span> <span class="nf">select_sur</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_old</span><span class="p">,</span> <span class="n">n_off</span><span class="p">,</span> <span class="n">n_sel</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on survivor selection.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Survivor selection&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+            <span class="s2">&quot;Selected </span><span class="si">{}</span><span class="s2"> individuals from the old population of </span><span class="si">{}</span><span class="s2"> and the offspring &quot;</span>
+            <span class="s2">&quot;population of </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_sel</span><span class="p">,</span> <span class="n">n_old</span><span class="p">,</span> <span class="n">n_off</span><span class="p">),</span>
+            <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.cross_over"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.cross_over">[docs]</a>    <span class="k">def</span> <span class="nf">cross_over</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_par</span><span class="p">,</span> <span class="n">n_crs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on variation by crossover.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Crossover&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+            <span class="s2">&quot;Created </span><span class="si">{}</span><span class="s2"> crossed-over individuals from </span><span class="si">{}</span><span class="s2"> parents.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_crs</span><span class="p">,</span> <span class="n">n_par</span><span class="p">),</span>
+            <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.mutate"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.mutate">[docs]</a>    <span class="k">def</span> <span class="nf">mutate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_crs</span><span class="p">,</span> <span class="n">n_mut</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on variation by mutation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Mutation&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+            <span class="s2">&quot;Created </span><span class="si">{}</span><span class="s2"> mutated individuals from </span><span class="si">{}</span><span class="s2"> individuals.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_mut</span><span class="p">,</span> <span class="n">n_crs</span><span class="p">),</span>
+            <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.gen_end"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.gen_end">[docs]</a>    <span class="k">def</span> <span class="nf">gen_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on end of a generation.&quot;&quot;&quot;</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">best_individual</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Best individual:&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;  Genotype: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ind</span><span class="o">.</span><span class="n">genotype</span><span class="p">),</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;  Phenotype: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ind</span><span class="o">.</span><span class="n">phenotype</span><span class="p">),</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;  Fitness: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ind</span><span class="o">.</span><span class="n">fitness</span><span class="p">),</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.run_end"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.run_end">[docs]</a>    <span class="k">def</span> <span class="nf">run_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Report on end of a run.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;╰─ Run finished ── </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="VerboseReporter.write"><a class="viewcode-back" href="../../../../autoapi/alogos/_optimization/ea/reporting/index.html#alogos._optimization.ea.reporting.VerboseReporter.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Write a single message with context-sensitive formatting.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">level</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">level</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;│ </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;  &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">level</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">message</span><span class="p">))</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

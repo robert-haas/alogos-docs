@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.whge.init_population &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.whge.init_population</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos.systems.whge.init_population">
+<span id="alogos-systems-whge-init-population"></span><h1><a class="reference internal" href="#module-alogos.systems.whge.init_population" title="alogos.systems.whge.init_population"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.whge.init_population</span></code></a><a class="headerlink" href="#module-alogos.systems.whge.init_population" title="Permalink to this heading">¶</a></h1>
+<p>Initialization functions to generate a population for WHGE.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.whge.init_population.given_genotypes" title="alogos.systems.whge.init_population.given_genotypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">given_genotypes</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create a population from given genotypes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.whge.init_population.random_genotypes" title="alogos.systems.whge.init_population.random_genotypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_genotypes</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create a population from random genotypes.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.whge.init_population.given_genotypes">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.whge.init_population.</span></span><span class="sig-name descname"><span class="pre">given_genotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/whge/init_population.html#given_genotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.whge.init_population.given_genotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population from given genotypes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_given_genotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../../cfggp/representation/index.html#alogos.systems.cfggp.representation.Genotype" title="alogos.systems.cfggp.representation.Genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Genotype</span></code></a> objects or data that can be converted to a genotype) : A
+list of genotypes, which are used to initialize the
+individuals of the population. Note that the length
+of this list determines the size of the generated population.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>population</strong> (<a class="reference internal" href="../../cfggp/representation/index.html#alogos.systems.cfggp.representation.Population" title="alogos.systems.cfggp.representation.Population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Population</span></code></a>)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If creating the population fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.whge.init_population.random_genotypes">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.whge.init_population.</span></span><span class="sig-name descname"><span class="pre">random_genotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/whge/init_population.html#random_genotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.whge.init_population.random_genotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population from random genotypes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">population_size</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_genotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_phenotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_max_tries</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>population</strong> (<a class="reference internal" href="../../cfggp/representation/index.html#alogos.systems.cfggp.representation.Population" title="alogos.systems.cfggp.representation.Population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Population</span></code></a>)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If creating the population fails.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Choice of genotype size:</p>
+<ul class="simple">
+<li><p>In the 2017 paper on HGE and WHGE the genotype size is set to
+256, 512 and 1024 bits in the experiments.</p></li>
+<li><p>In the 2018 paper on WHGE the genotype size is set to 1024 bits.</p></li>
+<li><p>The reference implementation in Java comes with examples where the
+genotype size is set mostly to 256 or 1024 bits.</p></li>
+</ul>
+<p>Construction of a population of random individuals:</p>
+<ul class="simple">
+<li><p>The reference implementation in Java seems to construct random
+individuals independently, without checking for duplicates on
+genotype or phenotype level. Is is extremely unlikely to ever
+create two identical individuals on the genotype level
+(2^256 or 2^1024 possibilities), but on the phenotype level it
+can happen quite often (depending on structure of the grammar).</p></li>
+</ul>
+<p class="rubric">References</p>
+<ul>
+<li><p>Papers</p>
+<blockquote>
+<div><ul>
+<li><p>2017: Medvet,
+<a class="reference external" href="https://doi.org/10.1145/3067695.3075972">Hierarchical Grammatical Evolution</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>p. 250: “For each GE variant, problem, and genotype size, we performed
+30 independent executions of the evolutionary search by varying the
+random seed and with the following evolution parameters:
+population of 500 individuals randomly initialized […]”</p></li>
+<li><ol class="loweralpha simple" start="16">
+<li><p>250, Table 1: genotype sizes <a href="#id1"><span class="problematic" id="id2">|g|</span></a> 256, 512, 1024</p></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>2018: Bartoli, Castelli, Medvet:
+<a class="reference external" href="https://doi.org/10.1109/TCYB.2018.2876563">Weighted Hierarchical Grammatical Evolution</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>p. 7: “Concerning the variant-specific parameters, we set the
+genotype size to 1024 bits for GE, πGE, and WHGE”</p></li>
+<li><p>p. 8: “This finding could be explained by the lower degeneracy of WHGE
+(see Section IV-D) which results in a tendency of WHGE to better sample
+the phenotype space given a random set of genotypes.”</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Reference implementation in Java: <a class="reference external" href="https://github.com/ericmedvet/evolved-ge">evolved-ge</a></p>
+<blockquote>
+<div><ul>
+<li><p><a class="reference external" href="https://github.com/ericmedvet/evolved-ge/tree/master/src/main/java/it/units/malelab/ege/core/initializer">Folder with initialization classes</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ericmedvet/evolved-ge/blob/master/src/main/java/it/units/malelab/ege">Folder with example scripts</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Using 256 bits: <code class="docutils literal notranslate"><span class="pre">GOM.java</span></code></p></li>
+<li><p>Using 1024 bits: <code class="docutils literal notranslate"><span class="pre">DeepExperimenter.java</span></code>, <code class="docutils literal notranslate"><span class="pre">DeepDistributedExperimenter.java</span></code></p></li>
+<li><p>Using 256 and 1024 bits: <code class="docutils literal notranslate"><span class="pre">MapperGenerationExperimenter.java</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MapperGenerationDistributedExperimenter.java</span></code></p></li>
+<li><p>Using 64, 128, 256, 512 and 1024 bits: <code class="docutils literal notranslate"><span class="pre">MappingPropertiesExperimenter.java</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

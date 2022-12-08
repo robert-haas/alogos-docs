@@ -1,0 +1,975 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Numeric literals in Python 3 &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Number literals in Rust" href="rust_integer_literals.html" />
+    <link rel="prev" title="Find a continued fraction that approximates Euler’s number" href="continued_fraction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../rst/examples.html">Code Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hello_world.html">Hello, world!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="palindromes.html">Palindromes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammars_from_books.html">Book examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xkcd_calendar_facts.html">Calendar facts by xkcd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="semantic_versioning.html">Semantic versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_addresses.html">IPv4 addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onemax.html">OneMax Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diophantine_equation.html">Diophantine equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continued_fraction.html">Find a continued fraction that approximates Euler’s number</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Numeric literals in Python 3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#1)-Create-the-grammar">1) Create the grammar</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Grammar-for-Python-3-integer-literals">Grammar for Python 3 integer literals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Grammar-for-Python-3-floating-point-literals">Grammar for Python 3 floating point literals</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2)-Use-the-grammar-to-generate-strings">2) Use the grammar to generate strings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a)-Some-random-strings">a) Some random strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#b)-A-subset-of-the-grammar’s-infinite-language">b) A subset of the grammar’s infinite language</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3)-Use-the-grammar-to-parse-strings">3) Use the grammar to parse strings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a)-Recognize-if-a-string-belongs-to-the-language-defined-by-a-grammar">a) Recognize if a string belongs to the language defined by a grammar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#b)-Analyze-the-syntactic-structure-of-a-string-with-its-parse-tree">b) Analyze the syntactic structure of a string with its parse tree</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Optimization">Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rust_integer_literals.html">Number literals in Rust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_approximation.html">Image approximation with geometrical shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trading_strategy.html">Trading strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acrobot-v1.html">OpenAI Gym: Acrobot-v1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mountaincar-v0.html">OpenAI Gym: MountainCar-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartpole-v1.html">OpenAI Gym: CartPole-v1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pendulum-v0.html">OpenAI Gym: Pendulum-v0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../rst/examples.html">Code Examples</a> &raquo;</li>
+        
+      <li>Numeric literals in Python 3</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 1200;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="Numeric-literals-in-Python-3">
+<h1>Numeric literals in Python 3<a class="headerlink" href="#Numeric-literals-in-Python-3" title="Permalink to this heading">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">alogos</span> <span class="k">as</span> <span class="nn">al</span>
+</pre></div>
+</div>
+</div>
+<section id="1)-Create-the-grammar">
+<h2>1) Create the grammar<a class="headerlink" href="#1)-Create-the-grammar" title="Permalink to this heading">¶</a></h2>
+<section id="Grammar-for-Python-3-integer-literals">
+<h3>Grammar for Python 3 integer literals<a class="headerlink" href="#Grammar-for-Python-3-integer-literals" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/reference/lexical_analysis.html#integer-literals">Python: Integer literals</a></p></li>
+</ul>
+<p>Ellipses in the original text need to be replaced by the productions they stand for.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">&quot;1&quot;...&quot;9&quot;</span></code> becomes <code class="docutils literal notranslate"><span class="pre">&quot;0&quot;</span> <span class="pre">|</span> <span class="pre">&quot;1&quot;</span> <span class="pre">|</span> <span class="pre">&quot;2&quot;</span> <span class="pre">|</span> <span class="pre">&quot;3&quot;</span> <span class="pre">|</span> <span class="pre">&quot;4&quot;</span> <span class="pre">|</span> <span class="pre">&quot;5&quot;</span> <span class="pre">|</span> <span class="pre">&quot;6&quot;</span> <span class="pre">|</span> <span class="pre">&quot;7&quot;</span> <span class="pre">|</span> <span class="pre">&quot;8&quot;</span> <span class="pre">|</span> <span class="pre">&quot;9&quot;</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ebnf</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">integer      ::=  decinteger | bininteger | octinteger | hexinteger</span>
+<span class="s2">decinteger   ::=  nonzerodigit ([&quot;_&quot;] digit)* | &quot;0&quot;+ ([&quot;_&quot;] &quot;0&quot;)*</span>
+<span class="s2">bininteger   ::=  &quot;0&quot; (&quot;b&quot; | &quot;B&quot;) ([&quot;_&quot;] bindigit)+</span>
+<span class="s2">octinteger   ::=  &quot;0&quot; (&quot;o&quot; | &quot;O&quot;) ([&quot;_&quot;] octdigit)+</span>
+<span class="s2">hexinteger   ::=  &quot;0&quot; (&quot;x&quot; | &quot;X&quot;) ([&quot;_&quot;] hexdigit)+</span>
+<span class="s2">nonzerodigit ::=  &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;</span>
+<span class="s2">digit        ::=  &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;</span>
+<span class="s2">bindigit     ::=  &quot;0&quot; | &quot;1&quot;</span>
+<span class="s2">octdigit     ::=  &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot;</span>
+<span class="s2">hexdigit     ::=  digit | &quot;a&quot; | &quot;b&quot; | &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;f&quot; | &quot;A&quot; | &quot;B&quot; | &quot;C&quot; | &quot;D&quot; | &quot;E&quot; | &quot;F&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">grammar_int</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="n">ebnf_text</span><span class="o">=</span><span class="n">ebnf</span><span class="p">,</span> <span class="n">defining_symbol</span><span class="o">=</span><span class="s1">&#39;::=&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Grammar-for-Python-3-floating-point-literals">
+<h3>Grammar for Python 3 floating point literals<a class="headerlink" href="#Grammar-for-Python-3-floating-point-literals" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/reference/lexical_analysis.html#floating-point-literals">Python: Floating-point literals</a></p></li>
+</ul>
+<p>The rule for the <code class="docutils literal notranslate"><span class="pre">digit</span></code> nonterminal needs to be copied from the definition of integer literals</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ebnf</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">floatnumber   ::=  pointfloat | exponentfloat</span>
+<span class="s2">pointfloat    ::=  [digitpart] fraction | digitpart &quot;.&quot;</span>
+<span class="s2">exponentfloat ::=  (digitpart | pointfloat) exponent</span>
+<span class="s2">digitpart     ::=  digit ([&quot;_&quot;] digit)*</span>
+<span class="s2">fraction      ::=  &quot;.&quot; digitpart</span>
+<span class="s2">exponent      ::=  (&quot;e&quot; | &quot;E&quot;) [&quot;+&quot; | &quot;-&quot;] digitpart</span>
+
+<span class="s2">digit         ::=  &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">grammar_float</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="n">ebnf_text</span><span class="o">=</span><span class="n">ebnf</span><span class="p">,</span> <span class="n">defining_symbol</span><span class="o">=</span><span class="s1">&#39;::=&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="2)-Use-the-grammar-to-generate-strings">
+<h2>2) Use the grammar to generate strings<a class="headerlink" href="#2)-Use-the-grammar-to-generate-strings" title="Permalink to this heading">¶</a></h2>
+<section id="a)-Some-random-strings">
+<h3>a) Some random strings<a class="headerlink" href="#a)-Some-random-strings" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">left</span> <span class="o">=</span> <span class="s1">&#39;Examples of integer literals&#39;</span>
+<span class="n">right</span> <span class="o">=</span> <span class="s1">&#39;Number when evaluated (with this Python implementation)&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">grammar_int</span><span class="o">.</span><span class="n">generate_string</span><span class="p">()</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">number</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Examples of integer literals   Number when evaluated (with this Python implementation)
+----------------------------   -------------------------------------------------------
+0B1_1_1_0                      14
+0o_5_3                         43
+0B1_0                          2
+0B_0                           0
+0b_1_1                         3
+00_0                           0
+0                              0
+0x_c_bcf_B                     834811
+0B_0                           0
+0_00                           0
+0O3_6_1                        241
+0                              0
+0b1_00                         4
+0x_a_E                         174
+0o_4_4                         36
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">left</span> <span class="o">=</span> <span class="s1">&#39;Examples of float literals&#39;</span>
+<span class="n">right</span> <span class="o">=</span> <span class="s1">&#39;Number when evaluated (with this Python implementation)&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">grammar_float</span><span class="o">.</span><span class="n">generate_string</span><span class="p">()</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">number</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Examples of float literals     Number when evaluated (with this Python implementation)
+--------------------------     -------------------------------------------------------
+7.                             7.0
+9.                             9.0
+5.8e+7                         58000000.0
+6_8.3e1                        683.0
+9e1                            90.0
+3_7.                           37.0
+10597.e8                       1059700000000.0
+6.                             6.0
+9.                             9.0
+0E+6                           0.0
+6e-6                           6e-06
+51_7.E9                        517000000000.0
+1_5e-3_9                       1.5e-38
+3.2_6e-7                       3.26e-07
+5.                             5.0
+</pre></div></div>
+</div>
+</section>
+<section id="b)-A-subset-of-the-grammar’s-infinite-language">
+<h3>b) A subset of the grammar’s infinite language<a class="headerlink" href="#b)-A-subset-of-the-grammar’s-infinite-language" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>For a <strong>finite language</strong> it is possible to generate all strings.</p></li>
+<li><p>For an <strong>infinite language</strong>, as it is the case here, the construction process needs to be limited with the parameter <code class="docutils literal notranslate"><span class="pre">max_steps</span></code> to only get simple strings that can be generated with a few derivation steps from the start symbol.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">language</span> <span class="o">=</span> <span class="n">grammar_int</span><span class="o">.</span><span class="n">generate_language</span><span class="p">(</span><span class="n">max_steps</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">sort_order</span><span class="o">=</span><span class="s1">&#39;shortlex&#39;</span><span class="p">)</span> <span class="c1">#, verbose=True)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> strings were generated, a subset of the inifinite language of integer literals.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">language</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Here are some of these strings:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1001</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">4001</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">5001</span><span class="p">,</span> <span class="mi">6000</span><span class="p">,</span> <span class="mi">6001</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">language</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+6592 strings were generated, a subset of the inifinite language of integer literals.
+
+Here are some of these strings:
+0
+1
+00
+10
+99
+000
+863
+864
+0X_Bd
+0X_Be
+0xf_2
+0xf_3
+0X_A_8
+0X_A_9
+000_0_0
+0000_0_0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">language</span> <span class="o">=</span> <span class="n">grammar_float</span><span class="o">.</span><span class="n">generate_language</span><span class="p">(</span><span class="n">max_steps</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">sort_order</span><span class="o">=</span><span class="s1">&#39;shortlex&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> strings were generated, a subset of the inifinite language of float literals.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">language</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Here are some of these strings:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1001</span><span class="p">,</span> <span class="mi">1201</span><span class="p">,</span> <span class="mi">1202</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">language</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1520 strings were generated, a subset of the inifinite language of float literals.
+
+Here are some of these strings:
+.0
+.1
+0.
+1.
+2.0
+2.1
+8E+0
+8E+1
+2.E+1
+2.E+2
+9.e-8
+9.e-9
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="3)-Use-the-grammar-to-parse-strings">
+<h2>3) Use the grammar to parse strings<a class="headerlink" href="#3)-Use-the-grammar-to-parse-strings" title="Permalink to this heading">¶</a></h2>
+<section id="a)-Recognize-if-a-string-belongs-to-the-language-defined-by-a-grammar">
+<h3>a) Recognize if a string belongs to the language defined by a grammar<a class="headerlink" href="#a)-Recognize-if-a-string-belongs-to-the-language-defined-by-a-grammar" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Examples from website</span>
+<span class="n">examples_int</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;7&#39;</span><span class="p">,</span> <span class="s1">&#39;2147483647&#39;</span><span class="p">,</span> <span class="s1">&#39;0o177&#39;</span><span class="p">,</span> <span class="s1">&#39;0b100110111&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;79228162514264337593543950336&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;0o377&#39;</span><span class="p">,</span> <span class="s1">&#39;0xdeadbeef&#39;</span><span class="p">,</span> <span class="s1">&#39;100_000_000_000&#39;</span><span class="p">,</span> <span class="s1">&#39;0b_1110_0101&#39;</span><span class="p">]</span>
+
+<span class="c1"># Counterexamples by myself</span>
+<span class="n">counterexamples_int</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;007&#39;</span><span class="p">,</span> <span class="s1">&#39;1__0&#39;</span><span class="p">,</span> <span class="s1">&#39;0o8&#39;</span><span class="p">,</span> <span class="s1">&#39;0xEFG&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">left</span> <span class="o">=</span> <span class="s1">&#39;Candidate string&#39;</span>
+<span class="n">right</span> <span class="o">=</span> <span class="s1">&#39;Is it recognized as valid Python integer literal?&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">examples_int</span> <span class="o">+</span> <span class="n">counterexamples_int</span><span class="p">:</span>
+    <span class="n">is_recognized</span> <span class="o">=</span> <span class="n">grammar_int</span><span class="o">.</span><span class="n">recognize_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">is_recognized</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Candidate string               Is it recognized as valid Python integer literal?
+----------------               -------------------------------------------------
+7                              True
+2147483647                     True
+0o177                          True
+0b100110111                    True
+3                              True
+79228162514264337593543950336  True
+0o377                          True
+0xdeadbeef                     True
+100_000_000_000                True
+0b_1110_0101                   True
+007                            False
+1__0                           False
+0o8                            False
+0xEFG                          False
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Examples from website</span>
+<span class="n">examples_float</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;3.14&#39;</span><span class="p">,</span> <span class="s1">&#39;10.&#39;</span><span class="p">,</span> <span class="s1">&#39;.001&#39;</span><span class="p">,</span> <span class="s1">&#39;1e100&#39;</span><span class="p">,</span> <span class="s1">&#39;3.14e-10&#39;</span><span class="p">,</span> <span class="s1">&#39;0e0&#39;</span><span class="p">,</span> <span class="s1">&#39;3.14_15_93&#39;</span><span class="p">]</span>
+
+<span class="c1"># Counterexamples by myself</span>
+<span class="n">counterexamples_float</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;3.1.4&#39;</span><span class="p">,</span> <span class="s1">&#39;10.0_&#39;</span><span class="p">,</span> <span class="s1">&#39;1e_100&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">left</span> <span class="o">=</span> <span class="s1">&#39;Candidate string&#39;</span>
+<span class="n">right</span> <span class="o">=</span> <span class="s1">&#39;Is it recognized as valid Python floating-point literal?&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">examples_float</span> <span class="o">+</span> <span class="n">counterexamples_float</span><span class="p">:</span>
+    <span class="n">is_recognized</span> <span class="o">=</span> <span class="n">grammar_float</span><span class="o">.</span><span class="n">recognize_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:30}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">is_recognized</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Candidate string               Is it recognized as valid Python floating-point literal?
+----------------               --------------------------------------------------------
+3.14                           True
+10.                            True
+.001                           True
+1e100                          True
+3.14e-10                       True
+0e0                            True
+3.14_15_93                     True
+3.1.4                          False
+10.0_                          False
+1e_100                         False
+</pre></div></div>
+</div>
+</section>
+<section id="b)-Analyze-the-syntactic-structure-of-a-string-with-its-parse-tree">
+<h3>b) Analyze the syntactic structure of a string with its parse tree<a class="headerlink" href="#b)-Analyze-the-syntactic-structure-of-a-string-with-its-parse-tree" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parse_tree</span> <span class="o">=</span> <span class="n">grammar_int</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="s1">&#39;0xC3&#39;</span><span class="p">)</span>
+<span class="n">parse_tree</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<svg width="539pt" height="476pt" viewBox="0.00 0.00 538.50 476.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 472)"><title>%3</title><polygon fill="white" stroke="transparent" points="-4,4 -4,-472 534.5,-472 534.5,4 -4,4"/><!-- 0 --><g id="node1" class="node"><title>0</title><polygon fill="white" stroke="black" points="163.5,-468 94.5,-468 94.5,-432 163.5,-432 163.5,-468"/><text text-anchor="middle" x="129" y="-446.9" font-family="Mono" font-size="12.00">integer</text></g><!-- 1 --><g id="node2" class="node"><title>1</title><polygon fill="white" stroke="black" points="175,-396 83,-396 83,-360 175,-360 175,-396"/><text text-anchor="middle" x="129" y="-374.9" font-family="Mono" font-size="12.00">hexinteger</text></g><!-- 0&#45;&gt;1 --><g id="edge1" class="edge"><title>0&#45;&gt;1</title><path fill="none" stroke="black" d="M129,-431.7C129,-423.98 129,-414.71 129,-406.11"/><polygon fill="black" stroke="black" points="132.5,-406.1 129,-396.1 125.5,-406.1 132.5,-406.1"/></g><!-- 2 --><g id="node3" class="node"><title>2</title><ellipse fill="#00864b" stroke="black" cx="27" cy="-306" rx="27" ry="18"/><text text-anchor="middle" x="27" y="-302.9" font-family="Mono" font-size="12.00" fill="white">0</text></g><!-- 1&#45;&gt;2 --><g id="edge2" class="edge"><title>1&#45;&gt;2</title><path fill="none" stroke="black" d="M104.05,-359.88C88.86,-349.45 69.47,-336.14 53.93,-325.48"/><polygon fill="black" stroke="black" points="55.52,-322.33 45.3,-319.56 51.56,-328.1 55.52,-322.33"/></g><!-- 3 --><g id="node4" class="node"><title>3</title><polygon fill="white" stroke="black" points="186,-324 72,-324 72,-288 186,-288 186,-324"/><text text-anchor="middle" x="129" y="-302.9" font-family="Mono" font-size="12.00">hexinteger_§0</text></g><!-- 1&#45;&gt;3 --><g id="edge3" class="edge"><title>1&#45;&gt;3</title><path fill="none" stroke="black" d="M129,-359.7C129,-351.98 129,-342.71 129,-334.11"/><polygon fill="black" stroke="black" points="132.5,-334.1 129,-324.1 125.5,-334.1 132.5,-334.1"/></g><!-- 4 --><g id="node5" class="node"><title>4</title><polygon fill="white" stroke="black" points="318,-324 204,-324 204,-288 318,-288 318,-324"/><text text-anchor="middle" x="261" y="-302.9" font-family="Mono" font-size="12.00">hexinteger_§3</text></g><!-- 1&#45;&gt;4 --><g id="edge4" class="edge"><title>1&#45;&gt;4</title><path fill="none" stroke="black" d="M161.29,-359.88C178.87,-350.55 200.81,-338.92 219.63,-328.94"/><polygon fill="black" stroke="black" points="221.39,-331.97 228.59,-324.19 218.11,-325.78 221.39,-331.97"/></g><!-- 5 --><g id="node6" class="node"><title>5</title><ellipse fill="#00864b" stroke="black" cx="129" cy="-234" rx="27" ry="18"/><text text-anchor="middle" x="129" y="-230.9" font-family="Mono" font-size="12.00" fill="white">x</text></g><!-- 3&#45;&gt;5 --><g id="edge5" class="edge"><title>3&#45;&gt;5</title><path fill="none" stroke="black" d="M129,-287.7C129,-279.98 129,-270.71 129,-262.11"/><polygon fill="black" stroke="black" points="132.5,-262.1 129,-252.1 125.5,-262.1 132.5,-262.1"/></g><!-- 6 --><g id="node7" class="node"><title>6</title><polygon fill="white" stroke="black" points="303,-252 189,-252 189,-216 303,-216 303,-252"/><text text-anchor="middle" x="246" y="-230.9" font-family="Mono" font-size="12.00">hexinteger_§3</text></g><!-- 4&#45;&gt;6 --><g id="edge6" class="edge"><title>4&#45;&gt;6</title><path fill="none" stroke="black" d="M257.29,-287.7C255.64,-279.98 253.65,-270.71 251.81,-262.11"/><polygon fill="black" stroke="black" points="255.18,-261.15 249.67,-252.1 248.34,-262.62 255.18,-261.15"/></g><!-- 7 --><g id="node8" class="node"><title>7</title><polygon fill="white" stroke="black" points="435,-252 321,-252 321,-216 435,-216 435,-252"/><text text-anchor="middle" x="378" y="-230.9" font-family="Mono" font-size="12.00">hexinteger_§2</text></g><!-- 4&#45;&gt;7 --><g id="edge7" class="edge"><title>4&#45;&gt;7</title><path fill="none" stroke="black" d="M289.62,-287.88C304.92,-278.72 323.94,-267.34 340.42,-257.48"/><polygon fill="black" stroke="black" points="342.48,-260.33 349.27,-252.19 338.89,-254.32 342.48,-260.33"/></g><!-- 8 --><g id="node9" class="node"><title>8</title><polygon fill="white" stroke="black" points="303,-180 189,-180 189,-144 303,-144 303,-180"/><text text-anchor="middle" x="246" y="-158.9" font-family="Mono" font-size="12.00">hexinteger_§2</text></g><!-- 6&#45;&gt;8 --><g id="edge8" class="edge"><title>6&#45;&gt;8</title><path fill="none" stroke="black" d="M246,-215.7C246,-207.98 246,-198.71 246,-190.11"/><polygon fill="black" stroke="black" points="249.5,-190.1 246,-180.1 242.5,-190.1 249.5,-190.1"/></g><!-- 13 --><g id="node14" class="node"><title>13</title><polygon fill="white" stroke="black" points="435,-180 321,-180 321,-144 435,-144 435,-180"/><text text-anchor="middle" x="378" y="-158.9" font-family="Mono" font-size="12.00">decinteger_§0</text></g><!-- 7&#45;&gt;13 --><g id="edge13" class="edge"><title>7&#45;&gt;13</title><path fill="none" stroke="black" d="M378,-215.7C378,-207.98 378,-198.71 378,-190.11"/><polygon fill="black" stroke="black" points="381.5,-190.1 378,-180.1 374.5,-190.1 381.5,-190.1"/></g><!-- 14 --><g id="node15" class="node"><title>14</title><polygon fill="white" stroke="black" points="530.5,-180 453.5,-180 453.5,-144 530.5,-144 530.5,-180"/><text text-anchor="middle" x="492" y="-158.9" font-family="Mono" font-size="12.00">hexdigit</text></g><!-- 7&#45;&gt;14 --><g id="edge14" class="edge"><title>7&#45;&gt;14</title><path fill="none" stroke="black" d="M405.89,-215.88C420.79,-206.72 439.33,-195.34 455.38,-185.48"/><polygon fill="black" stroke="black" points="457.31,-188.41 464.01,-180.19 453.65,-182.44 457.31,-188.41"/></g><!-- 9 --><g id="node10" class="node"><title>9</title><polygon fill="white" stroke="black" points="213,-108 99,-108 99,-72 213,-72 213,-108"/><text text-anchor="middle" x="156" y="-86.9" font-family="Mono" font-size="12.00">decinteger_§0</text></g><!-- 8&#45;&gt;9 --><g id="edge9" class="edge"><title>8&#45;&gt;9</title><path fill="none" stroke="black" d="M223.75,-143.7C212.42,-134.88 198.47,-124.03 186.18,-114.47"/><polygon fill="black" stroke="black" points="188.03,-111.48 177.99,-108.1 183.74,-117.01 188.03,-111.48"/></g><!-- 10 --><g id="node11" class="node"><title>10</title><polygon fill="white" stroke="black" points="308.5,-108 231.5,-108 231.5,-72 308.5,-72 308.5,-108"/><text text-anchor="middle" x="270" y="-86.9" font-family="Mono" font-size="12.00">hexdigit</text></g><!-- 8&#45;&gt;10 --><g id="edge10" class="edge"><title>8&#45;&gt;10</title><path fill="none" stroke="black" d="M251.93,-143.7C254.61,-135.9 257.83,-126.51 260.8,-117.83"/><polygon fill="black" stroke="black" points="264.2,-118.7 264.14,-108.1 257.58,-116.43 264.2,-118.7"/></g><!-- 11 --><g id="node12" class="node"><title>11</title><ellipse fill="#00864b" stroke="black" cx="156" cy="-18" rx="27" ry="18"/><text text-anchor="middle" x="156" y="-14.9" font-family="Mono" font-size="12.00" fill="white">ɛ</text></g><!-- 9&#45;&gt;11 --><g id="edge11" class="edge"><title>9&#45;&gt;11</title><path fill="none" stroke="black" d="M156,-71.7C156,-63.98 156,-54.71 156,-46.11"/><polygon fill="black" stroke="black" points="159.5,-46.1 156,-36.1 152.5,-46.1 159.5,-46.1"/></g><!-- 12 --><g id="node13" class="node"><title>12</title><ellipse fill="#00864b" stroke="black" cx="270" cy="-18" rx="27" ry="18"/><text text-anchor="middle" x="270" y="-14.9" font-family="Mono" font-size="12.00" fill="white">C</text></g><!-- 10&#45;&gt;12 --><g id="edge12" class="edge"><title>10&#45;&gt;12</title><path fill="none" stroke="black" d="M270,-71.7C270,-63.98 270,-54.71 270,-46.11"/><polygon fill="black" stroke="black" points="273.5,-46.1 270,-36.1 266.5,-46.1 273.5,-46.1"/></g><!-- 15 --><g id="node16" class="node"><title>15</title><ellipse fill="#00864b" stroke="black" cx="378" cy="-90" rx="27" ry="18"/><text text-anchor="middle" x="378" y="-86.9" font-family="Mono" font-size="12.00" fill="white">ɛ</text></g><!-- 13&#45;&gt;15 --><g id="edge15" class="edge"><title>13&#45;&gt;15</title><path fill="none" stroke="black" d="M378,-143.7C378,-135.98 378,-126.71 378,-118.11"/><polygon fill="black" stroke="black" points="381.5,-118.1 378,-108.1 374.5,-118.1 381.5,-118.1"/></g><!-- 16 --><g id="node17" class="node"><title>16</title><polygon fill="white" stroke="black" points="519,-108 465,-108 465,-72 519,-72 519,-108"/><text text-anchor="middle" x="492" y="-86.9" font-family="Mono" font-size="12.00">digit</text></g><!-- 14&#45;&gt;16 --><g id="edge16" class="edge"><title>14&#45;&gt;16</title><path fill="none" stroke="black" d="M492,-143.7C492,-135.98 492,-126.71 492,-118.11"/><polygon fill="black" stroke="black" points="495.5,-118.1 492,-108.1 488.5,-118.1 495.5,-118.1"/></g><!-- 17 --><g id="node18" class="node"><title>17</title><ellipse fill="#00864b" stroke="black" cx="492" cy="-18" rx="27" ry="18"/><text text-anchor="middle" x="492" y="-14.9" font-family="Mono" font-size="12.00" fill="white">3</text></g><!-- 16&#45;&gt;17 --><g id="edge17" class="edge"><title>16&#45;&gt;17</title><path fill="none" stroke="black" d="M492,-71.7C492,-63.98 492,-54.71 492,-46.11"/><polygon fill="black" stroke="black" points="495.5,-46.1 492,-36.1 488.5,-46.1 495.5,-46.1"/></g></g></svg></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parse_tree</span> <span class="o">=</span> <span class="n">grammar_float</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="s1">&#39;3.14&#39;</span><span class="p">)</span>
+<span class="n">parse_tree</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">shape_nt</span><span class="o">=</span><span class="s1">&#39;hexagon&#39;</span><span class="p">,</span> <span class="n">fillcolor_nt</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">shape_t</span><span class="o">=</span><span class="s1">&#39;circle&#39;</span><span class="p">,</span> <span class="n">fillcolor_t</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<svg width="788pt" height="548pt" viewBox="0.00 0.00 787.77 548.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 544)"><title>%3</title><polygon fill="white" stroke="transparent" points="-4,4 -4,-544 783.77,-544 783.77,4 -4,4"/><!-- 0 --><g id="node1" class="node"><title>0</title><polygon fill="lightblue" stroke="black" points="294.63,-522 259.51,-540 189.26,-540 154.14,-522 189.26,-504 259.51,-504 294.63,-522"/><text text-anchor="middle" x="224.38" y="-518.9" font-family="Mono" font-size="12.00">floatnumber</text></g><!-- 1 --><g id="node2" class="node"><title>1</title><polygon fill="lightblue" stroke="black" points="289.68,-450 257.03,-468 191.74,-468 159.09,-450 191.74,-432 257.03,-432 289.68,-450"/><text text-anchor="middle" x="224.38" y="-446.9" font-family="Mono" font-size="12.00">pointfloat</text></g><!-- 0&#45;&gt;1 --><g id="edge1" class="edge"><title>0&#45;&gt;1</title><path fill="none" stroke="black" d="M224.38,-503.7C224.38,-495.98 224.38,-486.71 224.38,-478.11"/><polygon fill="black" stroke="black" points="227.88,-478.1 224.38,-468.1 220.88,-478.1 227.88,-478.1"/></g><!-- 2 --><g id="node3" class="node"><title>2</title><polygon fill="lightblue" stroke="black" points="228.45,-378 187.92,-396 106.85,-396 66.32,-378 106.85,-360 187.92,-360 228.45,-378"/><text text-anchor="middle" x="147.38" y="-374.9" font-family="Mono" font-size="12.00">pointfloat_§0</text></g><!-- 1&#45;&gt;2 --><g id="edge2" class="edge"><title>1&#45;&gt;2</title><path fill="none" stroke="black" d="M205.35,-431.7C195.84,-423.05 184.18,-412.45 173.81,-403.03"/><polygon fill="black" stroke="black" points="175.95,-400.24 166.2,-396.1 171.24,-405.42 175.95,-400.24"/></g><!-- 3 --><g id="node4" class="node"><title>3</title><polygon fill="lightblue" stroke="black" points="356.35,-378 328.87,-396 273.9,-396 246.42,-378 273.9,-360 328.87,-360 356.35,-378"/><text text-anchor="middle" x="301.38" y="-374.9" font-family="Mono" font-size="12.00">fraction</text></g><!-- 1&#45;&gt;3 --><g id="edge3" class="edge"><title>1&#45;&gt;3</title><path fill="none" stroke="black" d="M243.42,-431.7C252.93,-423.05 264.59,-412.45 274.95,-403.03"/><polygon fill="black" stroke="black" points="277.52,-405.42 282.57,-396.1 272.82,-400.24 277.52,-405.42"/></g><!-- 4 --><g id="node5" class="node"><title>4</title><polygon fill="lightblue" stroke="black" points="207.3,-306 177.34,-324 117.43,-324 87.47,-306 117.43,-288 177.34,-288 207.3,-306"/><text text-anchor="middle" x="147.38" y="-302.9" font-family="Mono" font-size="12.00">digitpart</text></g><!-- 2&#45;&gt;4 --><g id="edge4" class="edge"><title>2&#45;&gt;4</title><path fill="none" stroke="black" d="M147.38,-359.7C147.38,-351.98 147.38,-342.71 147.38,-334.11"/><polygon fill="black" stroke="black" points="150.88,-334.1 147.38,-324.1 143.88,-334.1 150.88,-334.1"/></g><!-- 9 --><g id="node10" class="node"><title>9</title><ellipse fill="black" stroke="black" cx="272.38" cy="-306" rx="18" ry="18"/><text text-anchor="middle" x="272.38" y="-302.9" font-family="Mono" font-size="12.00" fill="white">.</text></g><!-- 3&#45;&gt;9 --><g id="edge9" class="edge"><title>3&#45;&gt;9</title><path fill="none" stroke="black" d="M294.22,-359.7C290.82,-351.49 286.69,-341.52 282.94,-332.48"/><polygon fill="black" stroke="black" points="286.13,-331.04 279.07,-323.14 279.67,-333.72 286.13,-331.04"/></g><!-- 10 --><g id="node11" class="node"><title>10</title><polygon fill="lightblue" stroke="black" points="428.3,-306 398.34,-324 338.43,-324 308.47,-306 338.43,-288 398.34,-288 428.3,-306"/><text text-anchor="middle" x="368.38" y="-302.9" font-family="Mono" font-size="12.00">digitpart</text></g><!-- 3&#45;&gt;10 --><g id="edge10" class="edge"><title>3&#45;&gt;10</title><path fill="none" stroke="black" d="M317.95,-359.7C326.06,-351.22 335.97,-340.86 344.86,-331.58"/><polygon fill="black" stroke="black" points="347.63,-333.75 352.01,-324.1 342.57,-328.91 347.63,-333.75"/></g><!-- 5 --><g id="node6" class="node"><title>5</title><polygon fill="lightblue" stroke="black" points="76.65,-234 57.52,-252 19.25,-252 0.12,-234 19.25,-216 57.52,-216 76.65,-234"/><text text-anchor="middle" x="38.38" y="-230.9" font-family="Mono" font-size="12.00">digit</text></g><!-- 4&#45;&gt;5 --><g id="edge5" class="edge"><title>4&#45;&gt;5</title><path fill="none" stroke="black" d="M120.72,-287.88C105.19,-277.9 85.54,-265.29 69.33,-254.88"/><polygon fill="black" stroke="black" points="71.04,-251.81 60.73,-249.35 67.25,-257.7 71.04,-251.81"/></g><!-- 6 --><g id="node7" class="node"><title>6</title><polygon fill="lightblue" stroke="black" points="246.5,-234 208.44,-252 132.33,-252 94.27,-234 132.33,-216 208.44,-216 246.5,-234"/><text text-anchor="middle" x="170.38" y="-230.9" font-family="Mono" font-size="12.00">digitpart_§2</text></g><!-- 4&#45;&gt;6 --><g id="edge6" class="edge"><title>4&#45;&gt;6</title><path fill="none" stroke="black" d="M153.07,-287.7C155.63,-279.9 158.72,-270.51 161.57,-261.83"/><polygon fill="black" stroke="black" points="164.97,-262.7 164.76,-252.1 158.32,-260.51 164.97,-262.7"/></g><!-- 7 --><g id="node8" class="node"><title>7</title><ellipse fill="black" stroke="black" cx="38.38" cy="-162" rx="18" ry="18"/><text text-anchor="middle" x="38.38" y="-158.9" font-family="Mono" font-size="12.00" fill="white">3</text></g><!-- 5&#45;&gt;7 --><g id="edge7" class="edge"><title>5&#45;&gt;7</title><path fill="none" stroke="black" d="M38.38,-215.7C38.38,-207.98 38.38,-198.71 38.38,-190.11"/><polygon fill="black" stroke="black" points="41.88,-190.1 38.38,-180.1 34.88,-190.1 41.88,-190.1"/></g><!-- 8 --><g id="node9" class="node"><title>8</title><ellipse fill="black" stroke="black" cx="170.38" cy="-162" rx="18" ry="18"/><text text-anchor="middle" x="170.38" y="-158.9" font-family="Mono" font-size="12.00" fill="white">ɛ</text></g><!-- 6&#45;&gt;8 --><g id="edge8" class="edge"><title>6&#45;&gt;8</title><path fill="none" stroke="black" d="M170.38,-215.7C170.38,-207.98 170.38,-198.71 170.38,-190.11"/><polygon fill="black" stroke="black" points="173.88,-190.1 170.38,-180.1 166.88,-190.1 173.88,-190.1"/></g><!-- 11 --><g id="node12" class="node"><title>11</title><polygon fill="lightblue" stroke="black" points="384.65,-234 365.52,-252 327.25,-252 308.12,-234 327.25,-216 365.52,-216 384.65,-234"/><text text-anchor="middle" x="346.38" y="-230.9" font-family="Mono" font-size="12.00">digit</text></g><!-- 10&#45;&gt;11 --><g id="edge11" class="edge"><title>10&#45;&gt;11</title><path fill="none" stroke="black" d="M362.95,-287.7C360.49,-279.9 357.54,-270.51 354.82,-261.83"/><polygon fill="black" stroke="black" points="358.1,-260.59 351.76,-252.1 351.42,-262.69 358.1,-260.59"/></g><!-- 12 --><g id="node13" class="node"><title>12</title><polygon fill="lightblue" stroke="black" points="554.5,-234 516.44,-252 440.33,-252 402.27,-234 440.33,-216 516.44,-216 554.5,-234"/><text text-anchor="middle" x="478.38" y="-230.9" font-family="Mono" font-size="12.00">digitpart_§2</text></g><!-- 10&#45;&gt;12 --><g id="edge12" class="edge"><title>10&#45;&gt;12</title><path fill="none" stroke="black" d="M395.29,-287.88C409.54,-278.81 427.23,-267.55 442.62,-257.76"/><polygon fill="black" stroke="black" points="444.81,-260.51 451.37,-252.19 441.06,-254.61 444.81,-260.51"/></g><!-- 13 --><g id="node14" class="node"><title>13</title><ellipse fill="black" stroke="black" cx="346.38" cy="-162" rx="18" ry="18"/><text text-anchor="middle" x="346.38" y="-158.9" font-family="Mono" font-size="12.00" fill="white">1</text></g><!-- 11&#45;&gt;13 --><g id="edge13" class="edge"><title>11&#45;&gt;13</title><path fill="none" stroke="black" d="M346.38,-215.7C346.38,-207.98 346.38,-198.71 346.38,-190.11"/><polygon fill="black" stroke="black" points="349.88,-190.1 346.38,-180.1 342.88,-190.1 349.88,-190.1"/></g><!-- 14 --><g id="node15" class="node"><title>14</title><polygon fill="lightblue" stroke="black" points="544.5,-162 506.44,-180 430.33,-180 392.27,-162 430.33,-144 506.44,-144 544.5,-162"/><text text-anchor="middle" x="468.38" y="-158.9" font-family="Mono" font-size="12.00">digitpart_§2</text></g><!-- 12&#45;&gt;14 --><g id="edge14" class="edge"><title>12&#45;&gt;14</title><path fill="none" stroke="black" d="M475.91,-215.7C474.81,-207.98 473.49,-198.71 472.26,-190.11"/><polygon fill="black" stroke="black" points="475.71,-189.51 470.83,-180.1 468.78,-190.5 475.71,-189.51"/></g><!-- 15 --><g id="node16" class="node"><title>15</title><polygon fill="lightblue" stroke="black" points="714.5,-162 676.44,-180 600.33,-180 562.27,-162 600.33,-144 676.44,-144 714.5,-162"/><text text-anchor="middle" x="638.38" y="-158.9" font-family="Mono" font-size="12.00">digitpart_§1</text></g><!-- 12&#45;&gt;15 --><g id="edge15" class="edge"><title>12&#45;&gt;15</title><path fill="none" stroke="black" d="M517.12,-216.05C539.14,-206.42 566.92,-194.26 590.33,-184.02"/><polygon fill="black" stroke="black" points="591.97,-187.12 599.73,-179.91 589.17,-180.71 591.97,-187.12"/></g><!-- 16 --><g id="node17" class="node"><title>16</title><ellipse fill="black" stroke="black" cx="468.38" cy="-90" rx="18" ry="18"/><text text-anchor="middle" x="468.38" y="-86.9" font-family="Mono" font-size="12.00" fill="white">ɛ</text></g><!-- 14&#45;&gt;16 --><g id="edge16" class="edge"><title>14&#45;&gt;16</title><path fill="none" stroke="black" d="M468.38,-143.7C468.38,-135.98 468.38,-126.71 468.38,-118.11"/><polygon fill="black" stroke="black" points="471.88,-118.1 468.38,-108.1 464.88,-118.1 471.88,-118.1"/></g><!-- 17 --><g id="node18" class="node"><title>17</title><polygon fill="lightblue" stroke="black" points="685.5,-90 647.44,-108 571.33,-108 533.27,-90 571.33,-72 647.44,-72 685.5,-90"/><text text-anchor="middle" x="609.38" y="-86.9" font-family="Mono" font-size="12.00">digitpart_§0</text></g><!-- 15&#45;&gt;17 --><g id="edge17" class="edge"><title>15&#45;&gt;17</title><path fill="none" stroke="black" d="M631.22,-143.7C627.95,-135.81 624.01,-126.3 620.38,-117.55"/><polygon fill="black" stroke="black" points="623.53,-116 616.47,-108.1 617.06,-118.68 623.53,-116"/></g><!-- 18 --><g id="node19" class="node"><title>18</title><polygon fill="lightblue" stroke="black" points="779.65,-90 760.52,-108 722.25,-108 703.12,-90 722.25,-72 760.52,-72 779.65,-90"/><text text-anchor="middle" x="741.38" y="-86.9" font-family="Mono" font-size="12.00">digit</text></g><!-- 15&#45;&gt;18 --><g id="edge18" class="edge"><title>15&#45;&gt;18</title><path fill="none" stroke="black" d="M663.58,-143.88C677.92,-134.13 695.98,-121.86 711.08,-111.59"/><polygon fill="black" stroke="black" points="713.28,-114.33 719.59,-105.81 709.35,-108.54 713.28,-114.33"/></g><!-- 19 --><g id="node20" class="node"><title>19</title><ellipse fill="black" stroke="black" cx="609.38" cy="-18" rx="18" ry="18"/><text text-anchor="middle" x="609.38" y="-14.9" font-family="Mono" font-size="12.00" fill="white">ɛ</text></g><!-- 17&#45;&gt;19 --><g id="edge19" class="edge"><title>17&#45;&gt;19</title><path fill="none" stroke="black" d="M609.38,-71.7C609.38,-63.98 609.38,-54.71 609.38,-46.11"/><polygon fill="black" stroke="black" points="612.88,-46.1 609.38,-36.1 605.88,-46.1 612.88,-46.1"/></g><!-- 20 --><g id="node21" class="node"><title>20</title><ellipse fill="black" stroke="black" cx="741.38" cy="-18" rx="18" ry="18"/><text text-anchor="middle" x="741.38" y="-14.9" font-family="Mono" font-size="12.00" fill="white">4</text></g><!-- 18&#45;&gt;20 --><g id="edge20" class="edge"><title>18&#45;&gt;20</title><path fill="none" stroke="black" d="M741.38,-71.7C741.38,-63.98 741.38,-54.71 741.38,-46.11"/><polygon fill="black" stroke="black" points="744.88,-46.1 741.38,-36.1 737.88,-46.1 744.88,-46.1"/></g></g></svg></div>
+</div>
+</section>
+</section>
+<section id="Optimization">
+<h2>Optimization<a class="headerlink" href="#Optimization" title="Permalink to this heading">¶</a></h2>
+<p>Grammar-guided genetic programming allows to search for optimal strings within a finite or infinite language. An objective function defines what is optimal. It takes a string as input (a member of the language) and returns a number as output (the objective value or fitness value of that string).</p>
+<p>Aim here: Try to find a float literal of length 4 that evaluates to the highest possible number.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Undesired string, wrong length.&#39;</span><span class="p">)</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">number</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test whether the function creates the expected numerical output</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">objective_function</span><span class="p">(</span><span class="s1">&#39;1234&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">objective_function</span><span class="p">(</span><span class="s1">&#39;1_01&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">objective_function</span><span class="p">(</span><span class="s1">&#39;3.e7&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1234
+101
+30000000.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ea</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">EvolutionaryAlgorithm</span><span class="p">(</span><span class="n">grammar_float</span><span class="p">,</span> <span class="n">objective_function</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="n">max_generations</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">best_individual</span> <span class="o">=</span> <span class="n">ea</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">best_individual</span><span class="o">.</span><span class="n">phenotype</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;9E99&#39;
+</pre></div></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="rust_integer_literals.html" class="btn btn-neutral float-right" title="Number literals in Rust" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="continued_fraction.html" class="btn btn-neutral float-left" title="Find a continued fraction that approximates Euler’s number" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

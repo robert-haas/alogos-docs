@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.warnings &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.warnings</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.warnings</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;All custom warnings used in the package.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span> <span class="k">as</span> <span class="nn">_warnings</span>
+
+<span class="kn">from</span> <span class="nn">._utilities.operating_system</span> <span class="kn">import</span> <span class="n">NEWLINE</span> <span class="k">as</span> <span class="n">_NEWLINE</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;turn_on&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;turn_off&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GrammarWarning&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OptimizationWarning&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DatabaseWarning&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="turn_on"><a class="viewcode-back" href="../../autoapi/alogos/warnings/index.html#alogos.warnings.turn_on">[docs]</a><span class="k">def</span> <span class="nf">turn_on</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Turn on all warnings of this package.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This package uses Python&#39;s</span>
+<span class="sd">    `warnings &lt;https://docs.python.org/3/library/warnings.html&gt;`__</span>
+<span class="sd">    module.</span>
+<span class="sd">    This means that functions like</span>
+<span class="sd">    `warnings.filterwarnings &lt;https://docs.python.org/3/library/warnings.html#warnings.filterwarnings&gt;`__</span>
+<span class="sd">    will have effect on the warnings issued by this package.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">_WARNINGS</span><span class="p">:</span>
+        <span class="n">_warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;always&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">cat</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="turn_off"><a class="viewcode-back" href="../../autoapi/alogos/warnings/index.html#alogos.warnings.turn_off">[docs]</a><span class="k">def</span> <span class="nf">turn_off</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Turn off all warnings of this package.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This package uses Python&#39;s</span>
+<span class="sd">    `warnings &lt;https://docs.python.org/3/library/warnings.html&gt;`__</span>
+<span class="sd">    module.</span>
+<span class="sd">    This means that functions like</span>
+<span class="sd">    `warnings.filterwarnings &lt;https://docs.python.org/3/library/warnings.html#warnings.filterwarnings&gt;`__</span>
+<span class="sd">    will have effect on the warnings issued by this package.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">_WARNINGS</span><span class="p">:</span>
+        <span class="n">_warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">cat</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GrammarWarning"><a class="viewcode-back" href="../../autoapi/alogos/warnings/index.html#alogos.warnings.GrammarWarning">[docs]</a><span class="k">class</span> <span class="nc">GrammarWarning</span><span class="p">(</span><span class="ne">Warning</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Issued when a grammar is ill-formed but still usable.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - The same production rule appears more than once.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="k">def</span> <span class="nf">_warn_multiple_grammar_specs</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;More than one grammar specification was provided. &quot;</span>
+        <span class="s2">&quot;Only the first one is used in following order of precedence: &quot;</span>
+        <span class="s2">&quot;bnf_text &gt; bnf_file &gt; ebnf_text &gt; ebnf_file.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">_warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">GrammarWarning</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_warn_repeated_productions</span><span class="p">(</span><span class="n">redundant_rules</span><span class="p">):</span>
+    <span class="n">reported_text</span> <span class="o">=</span> <span class="n">_NEWLINE</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">redundant_rules</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Problematic grammar specification: Some production rules are &quot;</span>
+        <span class="s2">&quot;redundant. This package can deal with it, but in general it &quot;</span>
+        <span class="s2">&quot;is not recommended. In particular, it introduces bias in &quot;</span>
+        <span class="s2">&quot;random string generation. Following rules are contained more &quot;</span>
+        <span class="s2">&quot;than one time:</span><span class="si">{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_NEWLINE</span><span class="p">,</span> <span class="n">reported_text</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">_warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">GrammarWarning</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_warn_symbol_set_overlap</span><span class="p">(</span><span class="n">intersection</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">_NEWLINE</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="s2">&quot;  </span><span class="si">{sym}</span><span class="s2"> as nonterminal &lt;</span><span class="si">{sym}</span><span class="s2">&gt; and terminal &quot;</span> <span class="s1">&#39;&quot;</span><span class="si">{sym}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sym</span><span class="o">=</span><span class="n">sym</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">sym</span> <span class="ow">in</span> <span class="n">intersection</span>
+    <span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Problematic grammar specification: &quot;</span>
+        <span class="s2">&quot;The sets of nonterminal and terminal symbols are not &quot;</span>
+        <span class="s2">&quot;disjoint, as required by the mathematical definition of a &quot;</span>
+        <span class="s2">&quot;grammar. This package can deal with it, but in general it is &quot;</span>
+        <span class="s2">&quot;not recommended. Following symbols appear in both sets:&quot;</span>
+        <span class="s2">&quot;</span><span class="si">{}{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_NEWLINE</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">_warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">GrammarWarning</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_warn_language_gen_stopped</span><span class="p">(</span><span class="n">max_steps</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Language generation stopped due to reaching max_steps=</span><span class="si">{}</span><span class="s2">, &quot;</span>
+        <span class="s2">&quot;but it did not produce all possible strings yet. To explore &quot;</span>
+        <span class="s2">&quot;it further, the max_steps parameter can be &quot;</span>
+        <span class="s2">&quot;increased.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">max_steps</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">_warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">GrammarWarning</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="OptimizationWarning"><a class="viewcode-back" href="../../autoapi/alogos/warnings/index.html#alogos.warnings.OptimizationWarning">[docs]</a><span class="k">class</span> <span class="nc">OptimizationWarning</span><span class="p">(</span><span class="ne">Warning</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Issued when an optimization algorithm might behave unexpected.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - No optimization step was performed due to the parameter settings.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="k">def</span> <span class="nf">_warn_no_step_in_ea_performed</span><span class="p">(</span><span class="n">generation</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Started and stopped the run at generation </span><span class="si">{}</span><span class="s2">. Nothing new was &quot;</span>
+        <span class="s2">&quot;calculated because a stop criterion was immediately True and &quot;</span>
+        <span class="s2">&quot;led to an exit before creating a new generation. &quot;</span>
+        <span class="s2">&quot;If your intention is to re-run the search you can use the &quot;</span>
+        <span class="s2">&quot;reset() method, which deletes the search state but preserves &quot;</span>
+        <span class="s2">&quot;the current parameters.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">generation</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">_warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">OptimizationWarning</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="DatabaseWarning"><a class="viewcode-back" href="../../autoapi/alogos/warnings/index.html#alogos.warnings.DatabaseWarning">[docs]</a><span class="k">class</span> <span class="nc">DatabaseWarning</span><span class="p">(</span><span class="ne">Warning</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Issued when a potential problem with a database occurs.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    - Not all the data could be imported from the database.</span>
+<span class="sd">    - An import argument did not fit to the data and had to be ignored.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<span class="k">def</span> <span class="nf">_warn_database_renamed</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Renamed database file from </span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">source</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
+    <span class="n">_warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">DatabaseWarning</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_warn_database_import_partial</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Loaded data of a previous run from the provided filepath. &quot;</span>
+        <span class="s2">&quot;Note, however, that the contained mapping data can not be &quot;</span>
+        <span class="s2">&quot;added to a cache and therefore also can not be used to &quot;</span>
+        <span class="s1">&#39;prevent recalculations because the parameter &quot;database_on&quot; is &#39;</span>
+        <span class="s2">&quot;currently set to False.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">_warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">DatabaseWarning</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_warn_database_import_first</span><span class="p">(</span><span class="n">first_gen_in_db</span><span class="p">,</span> <span class="n">first_generation</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The provided value for first generation (</span><span class="si">{}</span><span class="s2">) is invalid. The &quot;</span>
+        <span class="s2">&quot;first generation in the database (</span><span class="si">{}</span><span class="s2">) was used &quot;</span>
+        <span class="s2">&quot;instead.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first_generation</span><span class="p">,</span> <span class="n">first_gen_in_db</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">_warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">DatabaseWarning</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_warn_database_import_last</span><span class="p">(</span><span class="n">last_gen_in_db</span><span class="p">,</span> <span class="n">last_generation</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The provided value for last generation (</span><span class="si">{}</span><span class="s2">) is invalid. The &quot;</span>
+        <span class="s2">&quot;last generation in the database (</span><span class="si">{}</span><span class="s2">) was used &quot;</span>
+        <span class="s2">&quot;instead.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">last_generation</span><span class="p">,</span> <span class="n">last_gen_in_db</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">_warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">DatabaseWarning</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_warn_import_database_empty</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;The database at filepath </span><span class="si">{}</span><span class="s2"> contains the correct table for &quot;</span>
+        <span class="s2">&quot;phenotype-to-fitness evaluation data, but no entries are &quot;</span>
+        <span class="s2">&quot;stored in it and therefore no data could be &quot;</span>
+        <span class="s2">&quot;imported.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">filepath</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="n">_warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">DatabaseWarning</span><span class="p">)</span>
+
+
+<span class="n">_WARNINGS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">GrammarWarning</span><span class="p">,</span>
+    <span class="n">OptimizationWarning</span><span class="p">,</span>
+    <span class="n">DatabaseWarning</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,816 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._optimization.ea.database &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._optimization.ea.database</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos._optimization.ea.database">
+<span id="alogos-optimization-ea-database"></span><h1><a class="reference internal" href="#module-alogos._optimization.ea.database" title="alogos._optimization.ea.database"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._optimization.ea.database</span></code></a><a class="headerlink" href="#module-alogos._optimization.ea.database" title="Permalink to this heading">¶</a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos._optimization.ea.database.Database" title="alogos._optimization.ea.database.Database"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Database</span></code></a></p></td>
+<td><p>Database wrapper for easily storing algorithm results.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos._optimization.ea.database.Deserializer" title="alogos._optimization.ea.database.Deserializer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Deserializer</span></code></a></p></td>
+<td><p>Convert database entries back to Python objects.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos._optimization.ea.database.</span></span><span class="sig-name descname"><span class="pre">Database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Database wrapper for easily storing algorithm results.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a database object referring to a file-based or in-memory SQLite3 database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.export_sql">
+<span class="sig-name descname"><span class="pre">export_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sqlite3'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.export_sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.export_sql" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export the evolutionary search by storing the current database to an SQL file.</p>
+<p>All tables and views are exported to a single SQL file that
+adheres to
+<a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">SQLite version 3</a>.
+It can be used for a later import in order to continue and
+analyze a run, or it may be opened with an external tools such
+as <a class="reference external" href="https://sqlitebrowser.org/">DB Browser for SQLite</a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>filepath</strong> (<em>str</em>) – The given filepath may automatically be modified in two
+ways:</p>
+<ul>
+<li><p>It is ensured to end with the extension defined by the
+<code class="docutils literal notranslate"><span class="pre">ext</span></code> argument.</p></li>
+<li><p>It is ensured to be a filepath that does not exist yet by
+adding a numerical suffix.</p>
+<p>Example: If <code class="docutils literal notranslate"><span class="pre">some_file.sqlite3</span></code> exists, it uses
+<code class="docutils literal notranslate"><span class="pre">some_file_1.sqlite3</span></code> or if that also exists then
+<code class="docutils literal notranslate"><span class="pre">some_file_2.sqlite3</span></code> and so on.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>ext</strong> (<em>str</em>) – The extension that the filepath is ensured to end with.</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, no extension is added.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">db</span></code>, the filepath is ensured to end with <code class="docutils literal notranslate"><span class="pre">.db</span></code>.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">.sql</span></code>, the filepath is ensured to end with <code class="docutils literal notranslate"><span class="pre">.sql</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>filepath_used</strong> (<em>str</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.export_csv">
+<span class="sig-name descname"><span class="pre">export_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.export_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.export_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export the database of this evolutionary search as CSV file.</p>
+<p>Only the main view, which gathers information from all
+individual tables, is exported to a single CSV file. As such
+it provides all information stored in the database in a
+redundant manner. Currently it can not be used for a later
+import, but it can be opened with external tools that can read
+CSV files, such as
+<a class="reference external" href="https://www.libreoffice.org/discover/calc/">LibreOffice Calc</a>
+or
+<a class="reference external" href="https://www.tadviewer.com">Tad</a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>filepath</strong> (<em>str</em>) – The given filepath may automatically be modified in two ways:</p>
+<ul>
+<li><p>It is ensured to end with the extension defined by the
+<code class="docutils literal notranslate"><span class="pre">ext</span></code> argument.</p></li>
+<li><p>It is ensured to be a filepath that does not exist yet by
+adding a numerical suffix.</p>
+<p>Example: If <code class="docutils literal notranslate"><span class="pre">some_file.sqlite3</span></code> exists, it uses
+<code class="docutils literal notranslate"><span class="pre">some_file_1.sqlite3</span></code> or if that also exists then
+<code class="docutils literal notranslate"><span class="pre">some_file_2.sqlite3</span></code> and so on.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>ext</strong> (<em>str</em>) – The extension that the filepath is ensured to end with.</p>
+<ul class="simple">
+<li><p>If it is <code class="docutils literal notranslate"><span class="pre">None</span></code>, no extension is added.</p></li>
+<li><p>If it is <code class="docutils literal notranslate"><span class="pre">csv</span></code>, the filepath is ensured to end with
+<code class="docutils literal notranslate"><span class="pre">.csv</span></code>.</p></li>
+<li><p>If it is <code class="docutils literal notranslate"><span class="pre">.csv</span></code>, the filepath is ensured to end with
+<code class="docutils literal notranslate"><span class="pre">.csv</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>filepath_used</strong> (<em>str</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.import_sql">
+<span class="sig-name descname"><span class="pre">import_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.import_sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.import_sql" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import an evolutionary search by loading the SQL file of a previous run.</p>
+<p>Either all generations (default) or only a subset defined by the
+interval <code class="docutils literal notranslate"><span class="pre">[first_generation,</span> <span class="pre">last_generation]</span></code> can be loaded.</p>
+<p>Caution: The method <code class="xref py py-meth docutils literal notranslate"><span class="pre">reset()</span></code> is called, so that the current
+state and database are dropped and can be replaced in a clean
+fashion by new data from the SQL file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – Filepath of an SQLite3 file exported by a previous run.</p></li>
+<li><p><strong>generation_range</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> of two <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – The first and last generation to include in the import.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">first_generation=0</span></code> and <code class="docutils literal notranslate"><span class="pre">last_generation=2</span></code> loads the
+first three generations of a previous run. The last generation
+is reconstructed as population in memory, so that the search can
+be continued from this point. If <code class="xref py py-meth docutils literal notranslate"><span class="pre">run_step()</span></code> is called,
+the last generation loaded from the database (2) is used to
+construct the next generation (3). The resulting search state
+can again be exported to an SQL file if desired.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.import_sql_evaluations">
+<span class="sig-name descname"><span class="pre">import_sql_evaluations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.import_sql_evaluations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.import_sql_evaluations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import only phenotype-to-fitness evaluation data from an SQL file.</p>
+<p>This method allows to load phenotype-to-fitness calculations
+from a previous run. It is relevant when the objective funtion
+is computationally demanding and prevention of some
+recalculations may speed up the search significantly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – Filepath of an SQLite3 file exported by a previous run.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.num_generations">
+<span class="sig-name descname"><span class="pre">num_generations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.num_generations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.num_generations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of generations stored in the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.num_individuals">
+<span class="sig-name descname"><span class="pre">num_individuals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.num_individuals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.num_individuals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of individuals stored in the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.num_genotypes">
+<span class="sig-name descname"><span class="pre">num_genotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.num_genotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.num_genotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of unique genotypes stored in the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.num_phenotypes">
+<span class="sig-name descname"><span class="pre">num_phenotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.num_phenotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.num_phenotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of unique phenotypes stored in the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.num_fitnesses">
+<span class="sig-name descname"><span class="pre">num_fitnesses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.num_fitnesses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.num_fitnesses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of unique fitness values stored in the database.</p>
+<p>NaN values are not counted. These values appear in individuals
+that were not evaluated, e.g. those generated by crossover but
+then modified by mutation before being evaluated and selected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.num_details">
+<span class="sig-name descname"><span class="pre">num_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.num_details"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.num_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of unique details stored in the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.num_gen_to_phe_evaluations">
+<span class="sig-name descname"><span class="pre">num_gen_to_phe_evaluations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.num_gen_to_phe_evaluations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.num_gen_to_phe_evaluations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of genotype-to-phenotype evaluations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.num_phe_to_fit_evaluations">
+<span class="sig-name descname"><span class="pre">num_phe_to_fit_evaluations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_unique</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.num_phe_to_fit_evaluations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.num_phe_to_fit_evaluations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of phenotype-to-fitness evaluations.</p>
+<p>Note: It assumes that no phenotype was evaluated more than once,
+which depends on the parametrization (cache and/or database
+lookups).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.generation_first">
+<span class="sig-name descname"><span class="pre">generation_first</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.generation_first"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.generation_first" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the first generation stored in the database.</p>
+<p>Raises an error if the database does not contain any entries yet.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.generation_last">
+<span class="sig-name descname"><span class="pre">generation_last</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.generation_last"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.generation_last" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the last generation stored in the database.</p>
+<p>Raises an error if the database does not contain any entries yet.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.individuals">
+<span class="sig-name descname"><span class="pre">individuals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.individuals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.individuals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all individuals stored in the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.individuals_with_given_fitness">
+<span class="sig-name descname"><span class="pre">individuals_with_given_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.individuals_with_given_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.individuals_with_given_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all individuals that have the same user-provided fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.individuals_with_min_fitness">
+<span class="sig-name descname"><span class="pre">individuals_with_min_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.individuals_with_min_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.individuals_with_min_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all individuals that have the same minimum fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.individuals_with_max_fitness">
+<span class="sig-name descname"><span class="pre">individuals_with_max_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.individuals_with_max_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.individuals_with_max_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all individuals that have the same maximum fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.individuals_with_low_fitness">
+<span class="sig-name descname"><span class="pre">individuals_with_low_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.individuals_with_low_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.individuals_with_low_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the first n elements from a list of individuals sorted by lowest fitness.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.individuals_with_high_fitness">
+<span class="sig-name descname"><span class="pre">individuals_with_high_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.individuals_with_high_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.individuals_with_high_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the first n individuals, when all of them are sorted by hightest fitness.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.population_size_min">
+<span class="sig-name descname"><span class="pre">population_size_min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.population_size_min"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.population_size_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get smallest population size of any generation stored in the database.</p>
+<p>Raises an error if the database does not contain any entries yet.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.population_size_max">
+<span class="sig-name descname"><span class="pre">population_size_max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.population_size_max"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.population_size_max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get largest population size of any generation stored in the database.</p>
+<p>Raises an error if the database does not contain any entries yet.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.genotypes">
+<span class="sig-name descname"><span class="pre">genotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.genotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.genotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get unique genotypes stored in the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.genotypes_with_given_fitness">
+<span class="sig-name descname"><span class="pre">genotypes_with_given_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.genotypes_with_given_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.genotypes_with_given_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get unique genotypes that have the same user-provided fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.genotypes_with_min_fitness">
+<span class="sig-name descname"><span class="pre">genotypes_with_min_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.genotypes_with_min_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.genotypes_with_min_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load unique genotypes that have the same minimum fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.genotypes_with_max_fitness">
+<span class="sig-name descname"><span class="pre">genotypes_with_max_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.genotypes_with_max_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.genotypes_with_max_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load unique genotypes that have the same maximum fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.phenotypes">
+<span class="sig-name descname"><span class="pre">phenotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.phenotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.phenotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load unique phenotypes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.phenotypes_with_given_fitness">
+<span class="sig-name descname"><span class="pre">phenotypes_with_given_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.phenotypes_with_given_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.phenotypes_with_given_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load unique phenotypes that have the same user-provided fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.phenotypes_with_min_fitness">
+<span class="sig-name descname"><span class="pre">phenotypes_with_min_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.phenotypes_with_min_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.phenotypes_with_min_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load unique phenotypes that have the same minimum fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.phenotypes_with_max_fitness">
+<span class="sig-name descname"><span class="pre">phenotypes_with_max_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.phenotypes_with_max_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.phenotypes_with_max_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load unique phenotypes that have the same minimum fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.details">
+<span class="sig-name descname"><span class="pre">details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.details"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load unique details (returned by the objective function).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.details_with_given_fitness">
+<span class="sig-name descname"><span class="pre">details_with_given_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.details_with_given_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.details_with_given_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load unique details that have the same user-provided fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.details_with_min_fitness">
+<span class="sig-name descname"><span class="pre">details_with_min_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.details_with_min_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.details_with_min_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load unique details that have the same minimum fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.details_with_max_fitness">
+<span class="sig-name descname"><span class="pre">details_with_max_fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.details_with_max_fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.details_with_max_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load unique details that have the same maximum fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.fitnesses">
+<span class="sig-name descname"><span class="pre">fitnesses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.fitnesses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.fitnesses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load unique fitness values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.fitness_min">
+<span class="sig-name descname"><span class="pre">fitness_min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.fitness_min"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.fitness_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the minimum fitness value that was found.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.fitness_max">
+<span class="sig-name descname"><span class="pre">fitness_max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.fitness_max"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.fitness_max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the maximum fitness value that was found.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.fitness_min_after_num_evals">
+<span class="sig-name descname"><span class="pre">fitness_min_after_num_evals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_evaluations</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.fitness_min_after_num_evals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.fitness_min_after_num_evals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the minimum fitness value that was found after a number of fitness evaluations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.fitness_max_after_num_evals">
+<span class="sig-name descname"><span class="pre">fitness_max_after_num_evals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_evaluations</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.fitness_max_after_num_evals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.fitness_max_after_num_evals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the maximum fitness value that was found after a number of fitness evaluations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.gen_to_phe_evaluations">
+<span class="sig-name descname"><span class="pre">gen_to_phe_evaluations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_evaluations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.gen_to_phe_evaluations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.gen_to_phe_evaluations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get genotype-to-phenotype evaluations that were performed during the search.</p>
+<p>Guaranteed:
+- The order of the list is the order of performed evaluations.</p>
+<p>Not guaranteed:
+- The same evaluations may have been performed multiple times during the run,</p>
+<blockquote>
+<div><p>depending on cache settings, which is not available as information in the
+database.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.phe_to_fit_evaluations">
+<span class="sig-name descname"><span class="pre">phe_to_fit_evaluations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_evaluations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_details</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.phe_to_fit_evaluations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.phe_to_fit_evaluations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get phenotype-to-fitness evaluations that were performed during the search.</p>
+<p>Guaranteed:
+- The order of the list is the order of performed evaluations.
+- Genotype-phenotype pairs that were loaded from previous runs are not considered.</p>
+<p>Not guaranteed:
+- The same evaluations may have been performed multiple times during the run,</p>
+<blockquote>
+<div><p>depending on cache and database lookup settings, which is not available
+as information in the database.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.to_list">
+<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.to_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the database entries to a list of rows and add some derived information.</p>
+<p>It uses lazy loading, i.e. it is only constructed again if the database
+has changed since the last call.</p>
+<p>The first list entry contains the column names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.to_columns">
+<span class="sig-name descname"><span class="pre">to_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.to_columns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.to_columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the columns available in all data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.to_dataframe">
+<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.to_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.to_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the database entries to a Pandas DataFrame.</p>
+<p>Some derived information is added during the conversion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>only_main_populations</strong> (<em>bool</em>) – From the complete dataframe, only main populations are kept
+and intermediate ones (selected parents, crossed-over or
+mutated populations) are filtered out. Note that the
+crossed-over population is not evaluated if a mutation
+operator is provided, so that they have no associated
+phenotype and fitness values.</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.total_changes">https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.total_changes</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.to_network">
+<span class="sig-name descname"><span class="pre">to_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.to_network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.to_network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the database entries to NetworkX graph and add some derived information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.to_jgf">
+<span class="sig-name descname"><span class="pre">to_jgf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.to_jgf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.to_jgf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the data into JSON graph format for visualization.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Database.plot_genealogy">
+<span class="sig-name descname"><span class="pre">plot_genealogy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Database.plot_genealogy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Database.plot_genealogy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a genealogy plot.</p>
+<p>It shows the relationships between all individuals created
+throughout a run.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos._optimization.ea.database.</span></span><span class="sig-name descname"><span class="pre">Deserializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert database entries back to Python objects.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a deserializer that knows the chosen G3P system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.individual_id">
+<span class="sig-name descname"><span class="pre">individual_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.individual_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.individual_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the id of an individual.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.parent_ids">
+<span class="sig-name descname"><span class="pre">parent_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.parent_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.parent_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ids of parent individuals.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.genotype">
+<span class="sig-name descname"><span class="pre">genotype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.genotype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.genotype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct a genotype.</p>
+<p>This generates a Genotype object. Its exact type depends on the
+grammar-based genetic programming system being used.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.genotypes">
+<span class="sig-name descname"><span class="pre">genotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.genotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.genotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct a list of genotypes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.phenotype">
+<span class="sig-name descname"><span class="pre">phenotype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.phenotype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.phenotype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct a phenotypes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.phenotypes">
+<span class="sig-name descname"><span class="pre">phenotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.phenotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.phenotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct a list of phenotypes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.fitness">
+<span class="sig-name descname"><span class="pre">fitness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.fitness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct a fitness value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.fitnesses">
+<span class="sig-name descname"><span class="pre">fitnesses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.fitnesses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.fitnesses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct a list of fitness values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.details">
+<span class="sig-name descname"><span class="pre">details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.details"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct a details object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.multiple_details">
+<span class="sig-name descname"><span class="pre">multiple_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.multiple_details"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.multiple_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct a list of details objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.gt_phe_map">
+<span class="sig-name descname"><span class="pre">gt_phe_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.gt_phe_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.gt_phe_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct genotype-to-phenotype mappings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.phe_fit_map">
+<span class="sig-name descname"><span class="pre">phe_fit_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.phe_fit_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.phe_fit_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct phenotype-to-fitness mappings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.phe_fit_det_map">
+<span class="sig-name descname"><span class="pre">phe_fit_det_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.phe_fit_det_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.phe_fit_det_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct phenotype-to-fitness-and-details mappings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.individual">
+<span class="sig-name descname"><span class="pre">individual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">without_parent_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.individual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.individual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct an individual.</p>
+<p>This generates an Individual object. Its exact type depends on
+the grammar-based genetic programming system being used.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.individuals">
+<span class="sig-name descname"><span class="pre">individuals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.individuals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.individuals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct a list of individuals.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.database.Deserializer.population">
+<span class="sig-name descname"><span class="pre">population</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/database.html#Deserializer.population"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.database.Deserializer.population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct a population.</p>
+<p>This generates a Population object. Its exact type depends on
+the grammar-based genetic programming system being used.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

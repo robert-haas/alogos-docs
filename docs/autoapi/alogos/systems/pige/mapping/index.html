@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.pige.mapping &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.pige.mapping</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos.systems.pige.mapping">
+<span id="alogos-systems-pige-mapping"></span><h1><a class="reference internal" href="#module-alogos.systems.pige.mapping" title="alogos.systems.pige.mapping"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.pige.mapping</span></code></a><a class="headerlink" href="#module-alogos.systems.pige.mapping" title="Permalink to this heading">¶</a></h1>
+<p>Forward and reverse mapping functions for piGE.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.pige.mapping.forward" title="alogos.systems.pige.mapping.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(grammar, genotype, parameters=None, raise_errors=True, return_derivation_tree=False, verbose=False)</p></td>
+<td><p>Map a piGE genotype to a string phenotype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.pige.mapping.reverse" title="alogos.systems.pige.mapping.reverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reverse</span></code></a>(grammar, phenotype_or_derivation_tree, parameters=None, return_derivation_tree=False)</p></td>
+<td><p>Map a string phenotype (or derivation tree) to a piGE genotype.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.pige.mapping.forward">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.pige.mapping.</span></span><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genotype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_derivation_tree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/pige/mapping.html#forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.pige.mapping.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map a piGE genotype to a string phenotype.</p>
+<p>Beginning with the start symbol, each nonterminal symbol is expanded
+by applying a production rule. These rule applications are done
+until the sequence of symbols contains only terminals. Then the
+symbols form a sentence of the language defined by the grammar and
+hence are a valid phenotype.</p>
+<p>Choices to be made in the mapping process:</p>
+<ol class="arabic">
+<li><p>Which nonterminal is expanded if several are present in the
+current sequence of symbols?</p>
+<p>While standard GE always uses the leftmost nonterminal, here the
+next nonterminal is chosen by the next codon in the data
+(aka “order codon”).</p>
+</li>
+<li><p>Which production rule is used to expand a selected nonterminal?</p>
+<p>In case there is more than one production rule available for the
+nonterminal, both GE and piGE use the next codon in the data to
+select one (aka “content codon”).</p>
+<p>The formula used is: <code class="docutils literal notranslate"><span class="pre">rule</span> <span class="pre">id</span> <span class="pre">=</span> <span class="pre">codon</span> <span class="pre">value</span> <span class="pre">%</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">rules</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">NT</span></code>.</p>
+<p>The data is read from left to right. If the end is reached, a
+so-called wrap is done to restart again from the left, i.e.
+codons can be used more than once. If a maximum number of wraps
+is reached, the mapping process is stopped and the individual
+has no valid phenotype and should receive the worst possible
+fitness during fitness evaluation.</p>
+</li>
+</ol>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>genotype</strong> (<a class="reference internal" href="../../cfggp/representation/index.html#alogos.systems.cfggp.representation.Genotype" title="alogos.systems.cfggp.representation.Genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Genotype</span></code></a> or data that can be converted to it)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>, optional) –</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_expansions</span></code>  (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>): Maximum number of nonterminal
+expansions allowed in the derivation created by the mapping
+process.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_wraps</span></code>  (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>): Maximum number of times the genotype
+is allowed to be wrapped in order to have more codons
+available for making decisions in the mapping process.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stack_mode</span></code> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>): Mode by which newly discovered symbols
+are added to the stack of all currently present symbols in
+a derivation.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;start&quot;</span></code>: Insert new nodes at the start of the stack.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;end&quot;</span></code>: Insert new nodes at the end of the stack.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;inplace&quot;</span></code>: Insert new nodes at the same place as the
+expanded nonterminal in the stack.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>raise_errors</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – Possible values:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>: A mapping error will be raised if a derivation is
+not finished within a limit provided in the parameters.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>: A partial derivation is allowed. In this case, the
+returned string will contain unexpanded nonterminal symbols.
+Therefore it is not a valid phenotype, i.e. not a string of
+the grammar’s language but a so-called sentential form.</p></li>
+</ul>
+</li>
+<li><p><strong>return_derivation_tree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, not only the phenotype is returned but additionally
+also the derivation tree.</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, output about steps of the mapping process is printed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>phenotype</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – If <code class="docutils literal notranslate"><span class="pre">return_derivation_tree</span></code> is <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, which is the default.</p></li>
+<li><p><strong>(phenotype, derivation_tree)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> with two elements of type <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> and <a class="reference internal" href="../../../_grammar/data_structures/index.html#alogos._grammar.data_structures.DerivationTree" title="alogos._grammar.data_structures.DerivationTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DerivationTree</span></code></a>) – If <code class="docutils literal notranslate"><span class="pre">return_derivation_tree</span></code> is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.MappingError" title="alogos.exceptions.MappingError"><strong>MappingError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">raise_errors</span></code> is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> and the mapping process can not
+generate a full derivation before reaching a limit provided in
+the parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.pige.mapping.reverse">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.pige.mapping.</span></span><span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phenotype_or_derivation_tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_derivation_tree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/pige/mapping.html#reverse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.pige.mapping.reverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map a string phenotype (or derivation tree) to a piGE genotype.</p>
+<p>This is a reversal of the mapping procedure of
+position-independent Grammatical Evolution (piGE).
+Note that many different piGE genotypes can encode the same
+derivation tree and phenotype. It is possible to return a
+deterministic piGE genotype that uses the lowest possible integer
+value for each choice of expansion, or a random piGE genotype that
+uses a random integer value within the codon size limit.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>phenotype_or_derivation_tree</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../../../_grammar/data_structures/index.html#alogos._grammar.data_structures.DerivationTree" title="alogos._grammar.data_structures.DerivationTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DerivationTree</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>, optional) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">codon_size</span></code>  (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>): Codon size in bits. The number of
+different integer values a codon can assume is therefore
+determined by <code class="docutils literal notranslate"><span class="pre">2**codon_size</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">codon_randomization</span></code>  (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>): If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, the reverse
+mapping will use the so-called “unmod” operation and therefore
+generate random integers that encode the required rule choice.
+If <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, the lowest possible integer will be used and the
+reverse mapping becomes deterministic.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">derivation_order</span></code> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>): Choice of next nonterminal to
+expand, which in piGE is chosen by a codon in the genotype.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;leftmost&quot;</span></code>: Always choose the leftmost unexpanded
+nonterminal in the partial derivation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;rightmost&quot;</span></code>: Always choose the rightmost unexpanded
+nonterminal in the partial derivation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;random&quot;</span></code>: Always choose a random unexpanded
+nonterminal in the partial derivation. This makes the
+reverse mapping stochastic.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stack_mode</span></code> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>): Mode by which newly discovered symbols
+are added to the stack of all currently present symbols in
+a derivation.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;start&quot;</span></code>: Insert new nodes at the start of the stack.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;end&quot;</span></code>: Insert new nodes at the end of the stack.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;inplace&quot;</span></code>: Insert new nodes at the same place as the
+expanded nonterminal in the stack.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>return_derivation_tree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, not only the genotype is returned but additionally
+also the derivation tree.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>genotype</strong> (<a class="reference internal" href="../../cfggp/representation/index.html#alogos.systems.cfggp.representation.Genotype" title="alogos.systems.cfggp.representation.Genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Genotype</span></code></a>) – If <code class="docutils literal notranslate"><span class="pre">return_derivation_tree</span></code> is <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, which is the default.</p></li>
+<li><p><strong>(genotype, derivation_tree)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> with two elements of type <a class="reference internal" href="../../cfggp/representation/index.html#alogos.systems.cfggp.representation.Genotype" title="alogos.systems.cfggp.representation.Genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Genotype</span></code></a> and <a class="reference internal" href="../../../_grammar/data_structures/index.html#alogos._grammar.data_structures.DerivationTree" title="alogos._grammar.data_structures.DerivationTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DerivationTree</span></code></a>) – If <code class="docutils literal notranslate"><span class="pre">return_derivation_tree</span></code> is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.MappingError" title="alogos.exceptions.MappingError"><strong>MappingError</strong></a> – If the reverse mapping fails because the string does not belong
+to the grammar’s language or the derivation tree does not
+represent a valid derivation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

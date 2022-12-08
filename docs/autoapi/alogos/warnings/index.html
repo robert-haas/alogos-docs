@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.warnings &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.warnings</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos.warnings">
+<span id="alogos-warnings"></span><h1><a class="reference internal" href="#module-alogos.warnings" title="alogos.warnings"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.warnings</span></code></a><a class="headerlink" href="#module-alogos.warnings" title="Permalink to this heading">¶</a></h1>
+<p>All custom warnings used in the package.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.warnings.turn_on" title="alogos.warnings.turn_on"><code class="xref py py-obj docutils literal notranslate"><span class="pre">turn_on</span></code></a>()</p></td>
+<td><p>Turn on all warnings of this package.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.warnings.turn_off" title="alogos.warnings.turn_off"><code class="xref py py-obj docutils literal notranslate"><span class="pre">turn_off</span></code></a>()</p></td>
+<td><p>Turn off all warnings of this package.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.warnings.turn_on">
+<span class="sig-prename descclassname"><span class="pre">alogos.warnings.</span></span><span class="sig-name descname"><span class="pre">turn_on</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/alogos/warnings.html#turn_on"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.warnings.turn_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn on all warnings of this package.</p>
+<p class="rubric">Notes</p>
+<p>This package uses Python’s
+<a class="reference external" href="https://docs.python.org/3/library/warnings.html">warnings</a>
+module.
+This means that functions like
+<a class="reference external" href="https://docs.python.org/3/library/warnings.html#warnings.filterwarnings">warnings.filterwarnings</a>
+will have effect on the warnings issued by this package.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.warnings.turn_off">
+<span class="sig-prename descclassname"><span class="pre">alogos.warnings.</span></span><span class="sig-name descname"><span class="pre">turn_off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/alogos/warnings.html#turn_off"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.warnings.turn_off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn off all warnings of this package.</p>
+<p class="rubric">Notes</p>
+<p>This package uses Python’s
+<a class="reference external" href="https://docs.python.org/3/library/warnings.html">warnings</a>
+module.
+This means that functions like
+<a class="reference external" href="https://docs.python.org/3/library/warnings.html#warnings.filterwarnings">warnings.filterwarnings</a>
+will have effect on the warnings issued by this package.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="alogos.warnings.GrammarWarning">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos.warnings.</span></span><span class="sig-name descname"><span class="pre">GrammarWarning</span></span><a class="reference internal" href="../../../_modules/alogos/warnings.html#GrammarWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.warnings.GrammarWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Warning" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Warning</span></code></a></p>
+<p>Issued when a grammar is ill-formed but still usable.</p>
+<p class="rubric">Examples</p>
+<ul class="simple">
+<li><p>The same production rule appears more than once.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="alogos.warnings.OptimizationWarning">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos.warnings.</span></span><span class="sig-name descname"><span class="pre">OptimizationWarning</span></span><a class="reference internal" href="../../../_modules/alogos/warnings.html#OptimizationWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.warnings.OptimizationWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Warning" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Warning</span></code></a></p>
+<p>Issued when an optimization algorithm might behave unexpected.</p>
+<p class="rubric">Examples</p>
+<ul class="simple">
+<li><p>No optimization step was performed due to the parameter settings.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="alogos.warnings.DatabaseWarning">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos.warnings.</span></span><span class="sig-name descname"><span class="pre">DatabaseWarning</span></span><a class="reference internal" href="../../../_modules/alogos/warnings.html#DatabaseWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.warnings.DatabaseWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Warning" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Warning</span></code></a></p>
+<p>Issued when a potential problem with a database occurs.</p>
+<p class="rubric">Examples</p>
+<ul class="simple">
+<li><p>Not all the data could be imported from the database.</p></li>
+<li><p>An import argument did not fit to the data and had to be ignored.</p></li>
+</ul>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

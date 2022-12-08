@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._optimization.ea.operators.generation_model &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos._optimization.ea.operators.generation_model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos._optimization.ea.operators.generation_model</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Generation models implemented as functions with identical interface</span>
+
+
+<div class="viewcode-block" id="overlapping"><a class="viewcode-back" href="../../../../../autoapi/alogos/_optimization/ea/operators/generation_model/index.html#alogos._optimization.ea.operators.generation_model.overlapping">[docs]</a><span class="k">def</span> <span class="nf">overlapping</span><span class="p">(</span><span class="n">parent_population</span><span class="p">,</span> <span class="n">offspring_population</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Use an overlapping generation model.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - Overlapping pooling together with rank-based survivor selection</span>
+<span class="sd">      is equivalent to &quot;(lambda + mu) selection&quot; [1]_.</span>
+<span class="sd">    - Overlapping pooling together with tournament survivor selection</span>
+<span class="sd">      is equivalent to &quot;round-robin tournament&quot;.</span>
+
+<span class="sd">    - &quot;However, a much more significant effect on selection pressure</span>
+<span class="sd">      occurs when using an EA with an overlapping-generation model such</span>
+<span class="sd">      as a &quot;steady-state GA&quot;, a &quot;µ + λ&quot; ES, or any EP algorithm.</span>
+<span class="sd">      In this case, parents and offspring compete with each other for</span>
+<span class="sd">      survival. The combination of a larger selection pool (m + n) and</span>
+<span class="sd">      the fact that, as evolution proceeds, the m parents provide</span>
+<span class="sd">      stronger and stronger competition, results in a significant</span>
+<span class="sd">      increase in selection pressure over a non-overlapping version of</span>
+<span class="sd">      the same EA.&quot; [2]_</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Eiben p. 89</span>
+<span class="sd">    .. [2] DeJong p. 59</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">parent_population</span> <span class="o">+</span> <span class="n">offspring_population</span></div>
+
+
+<div class="viewcode-block" id="non_overlapping"><a class="viewcode-back" href="../../../../../autoapi/alogos/_optimization/ea/operators/generation_model/index.html#alogos._optimization.ea.operators.generation_model.non_overlapping">[docs]</a><span class="k">def</span> <span class="nf">non_overlapping</span><span class="p">(</span><span class="n">parent_population</span><span class="p">,</span> <span class="n">offspring_population</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Use a non-overlapping generation model.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This is also known as &quot;generational model&quot; of population</span>
+<span class="sd">    management [2]_ or (lambda, mu) selection [3]_.</span>
+
+<span class="sd">    - &quot;With non-overlapping models, the entire parent population dies</span>
+<span class="sd">      off each generation and the offspring only compete with each other</span>
+<span class="sd">      for survival. Historical examples of non-overlapping EAs include</span>
+<span class="sd">      &quot;generational GAs&quot; and the &quot;µ, λ&quot; variation of ESs.</span>
+<span class="sd">      In non-overlapping models, if the offspring population size n is</span>
+<span class="sd">      significantly larger than the parent population size m</span>
+<span class="sd">      (e.g., traditional ESs), then competition for survival</span>
+<span class="sd">      increases.&quot; [4]_</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [2] Eiben p. 79</span>
+<span class="sd">    .. [3] Eiben p. 89</span>
+<span class="sd">    .. [4] DeJong p. 59</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">offspring_population</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

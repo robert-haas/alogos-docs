@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._utilities.argument_processing &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos._utilities.argument_processing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos._utilities.argument_processing</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span> <span class="k">as</span> <span class="n">_Callable</span>
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span> <span class="k">as</span> <span class="n">_Number</span>
+
+<span class="kn">from</span> <span class="nn">.operating_system</span> <span class="kn">import</span> <span class="n">NEWLINE</span> <span class="k">as</span> <span class="n">_NEWLINE</span>
+
+
+<div class="viewcode-block" id="check_arg"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/argument_processing/index.html#alogos._utilities.argument_processing.check_arg">[docs]</a><span class="k">def</span> <span class="nf">check_arg</span><span class="p">(</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_val</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conv</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check an argument by inspecting its type and value.&quot;&quot;&quot;</span>
+    <span class="c1"># Check if the argument type is valid</span>
+    <span class="k">if</span> <span class="n">types</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">arg_val</span><span class="p">,</span> <span class="n">typ</span><span class="p">)</span> <span class="k">for</span> <span class="n">typ</span> <span class="ow">in</span> <span class="n">types</span><span class="p">):</span>
+            <span class="n">arg_val_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">arg_val</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="n">type_names</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">typ</span><span class="p">)</span> <span class="k">for</span> <span class="n">typ</span> <span class="ow">in</span> <span class="n">types</span><span class="p">)</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s1">&#39;Argument &quot;</span><span class="si">{name}</span><span class="s1">&quot; got a value with an invalid type.</span><span class="si">{nl}</span><span class="s1">&#39;</span>
+                <span class="s2">&quot;Given value: </span><span class="si">{val}{nl}</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;Given type: </span><span class="si">{typ}{nl}</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;Possible types: </span><span class="si">{options}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">arg_name</span><span class="p">,</span>
+                    <span class="n">val</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="n">arg_val</span><span class="p">),</span>
+                    <span class="n">typ</span><span class="o">=</span><span class="n">arg_val_type</span><span class="p">,</span>
+                    <span class="n">options</span><span class="o">=</span><span class="n">type_names</span><span class="p">,</span>
+                    <span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+    <span class="c1"># Check if the argument value is valid</span>
+    <span class="k">if</span> <span class="n">vals</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">arg_val</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>
+            <span class="n">val_names</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">)</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s1">&#39;Argument &quot;</span><span class="si">{name}</span><span class="s1">&quot; got an invalid value.</span><span class="si">{nl}</span><span class="s1">&#39;</span>
+                <span class="s2">&quot;Given value: </span><span class="si">{val}{nl}</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;Possible values: </span><span class="si">{options}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="n">arg_val</span><span class="p">),</span> <span class="n">options</span><span class="o">=</span><span class="n">val_names</span><span class="p">,</span> <span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+
+    <span class="c1"># Convert the argument value</span>
+    <span class="k">if</span> <span class="n">conv</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">arg_val</span> <span class="ow">in</span> <span class="n">conv</span><span class="p">:</span>
+            <span class="n">arg_val</span> <span class="o">=</span> <span class="n">conv</span><span class="p">[</span><span class="n">arg_val</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">arg_val</span></div>
+
+
+<div class="viewcode-block" id="str_arg"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/argument_processing/index.html#alogos._utilities.argument_processing.str_arg">[docs]</a><span class="k">def</span> <span class="nf">str_arg</span><span class="p">(</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_val</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_lower</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check a string argument.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">to_lower</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">arg_val</span> <span class="o">=</span> <span class="n">arg_val</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="n">types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">,)</span> <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">check_arg</span><span class="p">(</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_val</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="n">types</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="p">,</span> <span class="n">conv</span><span class="o">=</span><span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">default</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="int_arg"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/argument_processing/index.html#alogos._utilities.argument_processing.int_arg">[docs]</a><span class="k">def</span> <span class="nf">int_arg</span><span class="p">(</span>
+    <span class="n">arg_name</span><span class="p">,</span>
+    <span class="n">arg_val</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">vals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">min_incl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_incl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">allow_none</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check an integer argument.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">allow_none</span><span class="p">:</span>
+        <span class="n">types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">,)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">check_arg</span><span class="p">(</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_val</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="n">types</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="p">,</span> <span class="n">conv</span><span class="o">=</span><span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">default</span><span class="p">})</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">min_incl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">min_incl</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s1">&#39;Argument &quot;</span><span class="si">{name}</span><span class="s1">&quot; got an invalid value.</span><span class="si">{nl}</span><span class="s1">&#39;</span>
+                <span class="s2">&quot;Given value: </span><span class="si">{val}{nl}</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;Lowest possible value: </span><span class="si">{minval}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">arg_val</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="n">min_incl</span><span class="p">,</span> <span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">max_incl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">max_incl</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s1">&#39;Argument &quot;</span><span class="si">{name}</span><span class="s1">&quot; got an invalid value.</span><span class="si">{nl}</span><span class="s1">&#39;</span>
+                <span class="s2">&quot;Given value: </span><span class="si">{val}{nl}</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;Highest possible value: </span><span class="si">{maxval}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">arg_val</span><span class="p">,</span> <span class="n">maxval</span><span class="o">=</span><span class="n">max_incl</span><span class="p">,</span> <span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="num_arg"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/argument_processing/index.html#alogos._utilities.argument_processing.num_arg">[docs]</a><span class="k">def</span> <span class="nf">num_arg</span><span class="p">(</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_val</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_incl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_incl</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check a numerical argument.&quot;&quot;&quot;</span>
+    <span class="n">types</span> <span class="o">=</span> <span class="p">(</span><span class="n">_Number</span><span class="p">,)</span> <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="n">_Number</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">check_arg</span><span class="p">(</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_val</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="n">types</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="p">,</span> <span class="n">conv</span><span class="o">=</span><span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">default</span><span class="p">})</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">min_incl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">min_incl</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s1">&#39;Argument &quot;</span><span class="si">{name}</span><span class="s1">&quot; got an invalid value.</span><span class="si">{nl}</span><span class="s1">&#39;</span>
+                <span class="s2">&quot;Given value: </span><span class="si">{val}{nl}</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;Lowest possible value: </span><span class="si">{minval}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">arg_val</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="n">min_incl</span><span class="p">,</span> <span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">max_incl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">max_incl</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s1">&#39;Argument &quot;</span><span class="si">{name}</span><span class="s1">&quot; got an invalid value.</span><span class="si">{nl}</span><span class="s1">&#39;</span>
+                <span class="s2">&quot;Given value: </span><span class="si">{val}{nl}</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;Highest possible value: </span><span class="si">{maxval}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">arg_val</span><span class="p">,</span> <span class="n">maxval</span><span class="o">=</span><span class="n">max_incl</span><span class="p">,</span> <span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="bool_arg"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/argument_processing/index.html#alogos._utilities.argument_processing.bool_arg">[docs]</a><span class="k">def</span> <span class="nf">bool_arg</span><span class="p">(</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_val</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check a boolean argument.&quot;&quot;&quot;</span>
+    <span class="n">types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">bool</span><span class="p">,)</span> <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">check_arg</span><span class="p">(</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_val</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="n">types</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="p">,</span> <span class="n">conv</span><span class="o">=</span><span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">default</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="callable_arg"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/argument_processing/index.html#alogos._utilities.argument_processing.callable_arg">[docs]</a><span class="k">def</span> <span class="nf">callable_arg</span><span class="p">(</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_val</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check a callable argument.&quot;&quot;&quot;</span>
+    <span class="n">types</span> <span class="o">=</span> <span class="p">(</span><span class="n">_Callable</span><span class="p">,)</span> <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="n">_Callable</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">check_arg</span><span class="p">(</span><span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_val</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="n">types</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="n">vals</span><span class="p">,</span> <span class="n">conv</span><span class="o">=</span><span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">default</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="logical_xor"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/argument_processing/index.html#alogos._utilities.argument_processing.logical_xor">[docs]</a><span class="k">def</span> <span class="nf">logical_xor</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute logical XOR between two inputs.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">var1</span><span class="p">)</span> <span class="o">^</span> <span class="nb">bool</span><span class="p">(</span><span class="n">var2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ensure_file_extension"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/argument_processing/index.html#alogos._utilities.argument_processing.ensure_file_extension">[docs]</a><span class="k">def</span> <span class="nf">ensure_file_extension</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">ending</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Ensure a filepath ends with a certain extension.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ending</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+        <span class="n">ending</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ending</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filepath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">ending</span><span class="p">):</span>
+        <span class="n">filepath</span> <span class="o">+=</span> <span class="n">ending</span>
+    <span class="k">return</span> <span class="n">filepath</span></div>
+
+
+<div class="viewcode-block" id="ensure_no_file_extension"><a class="viewcode-back" href="../../../autoapi/alogos/_utilities/argument_processing/index.html#alogos._utilities.argument_processing.ensure_no_file_extension">[docs]</a><span class="k">def</span> <span class="nf">ensure_no_file_extension</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">ending</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Ensure a filepath ends without a certain extension.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ending</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+        <span class="n">ending</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ending</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">filepath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">ending</span><span class="p">):</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">filepath</span><span class="p">[:</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">ending</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">filepath</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

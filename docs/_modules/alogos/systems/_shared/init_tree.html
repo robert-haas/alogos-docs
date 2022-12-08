@@ -1,0 +1,763 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems._shared.init_tree &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems._shared.init_tree</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems._shared.init_tree</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Shared functions for generating derivation trees.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">copy</span> <span class="k">as</span> <span class="nn">_copy</span>
+<span class="kn">import</span> <span class="nn">itertools</span> <span class="k">as</span> <span class="nn">_itertools</span>
+<span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">_random</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">_exceptions</span>
+<span class="kn">from</span> <span class="nn">..._grammar</span> <span class="kn">import</span> <span class="n">data_structures</span> <span class="k">as</span> <span class="n">_data_structures</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_cached_calculations</span>
+
+
+<div class="viewcode-block" id="uniform"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.uniform">[docs]</a><span class="k">def</span> <span class="nf">uniform</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">max_expansions</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a derivation tree by choosing uniformly random rules.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    max_expansions : `int`</span>
+<span class="sd">        Maximum number of expansions of nonterminal symbols.</span>
+<span class="sd">        This is a limit value. Reaching it leads to raising an error.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    derivation_tree : `~alogos._grammar.data_structures.DerivationTree`</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    `~alogos.exceptions.MappingError`</span>
+<span class="sd">        If the maximum number of expansions is reached.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Each possible rule has the same probability of being selected</span>
+<span class="sd">    throughout the entire derivation [1]_.</span>
+
+<span class="sd">    This is a problem if there are recursive rules that tend to</span>
+<span class="sd">    introduce more symbols than they remove. It is unlikely to</span>
+<span class="sd">    generate a finished derivation tree in this case.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `Generating random sentences from a context free grammar</span>
+<span class="sd">       &lt;https://eli.thegreenplace.net/2010/01/28/generating-random-sentences-from-a-context-free-grammar&gt;`__</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Generate the derivation tree</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">DerivationTree</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">root_node</span><span class="p">]</span>
+    <span class="n">expansion_counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># Check max expansions limit</span>
+        <span class="k">if</span> <span class="n">expansion_counter</span> <span class="o">&gt;=</span> <span class="n">max_expansions</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_max_expansion_error</span><span class="p">(</span><span class="n">max_expansions</span><span class="p">)</span>
+
+        <span class="c1"># 1) Choose nonterminal: leftmost for simplicity</span>
+        <span class="n">chosen_nt_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">chosen_nt_node</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">chosen_nt_idx</span><span class="p">)</span>
+
+        <span class="c1"># 2) Choose rule: randomly</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+
+        <span class="c1"># 3) Expand the chosen nonterminal with the rhs of the chosen rule</span>
+        <span class="n">new_nodes</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">)</span>
+        <span class="n">new_nt_nodes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">node</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">new_nodes</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">stack</span><span class="p">[</span><span class="n">chosen_nt_idx</span><span class="p">:</span><span class="n">chosen_nt_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_nt_nodes</span>
+        <span class="n">expansion_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">dt</span></div>
+
+
+<div class="viewcode-block" id="weighted"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.weighted">[docs]</a><span class="k">def</span> <span class="nf">weighted</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">max_expansions</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span> <span class="n">reduction_factor</span><span class="o">=</span><span class="mf">0.96</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a derivation tree by choosing weighted random rules.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    max_expansions : `int`, optional</span>
+<span class="sd">        Maximum number of expansions of nonterminal symbols.</span>
+<span class="sd">        This is a limit value. Reaching it leads to raising an error.</span>
+<span class="sd">    reduction_factor : `float`, optional</span>
+<span class="sd">        Factor by which the weight of a rule is multiplied to</span>
+<span class="sd">        reduce its probability of being selected again within</span>
+<span class="sd">        the same branch. Its value should be between 0.0 and 1.0.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    derivation_tree : `~alogos._grammar.data_structures.DerivationTree`</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    `~alogos.exceptions.MappingError`</span>
+<span class="sd">        If the maximum number of expansions is reached.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Each rule gets an initial weight of 1.0 that influences its</span>
+<span class="sd">    chance of being selected in the next expansion of a</span>
+<span class="sd">    nonterminal. Every time a rule is chosen within a branch of the</span>
+<span class="sd">    tree, its weight gets reduced (only in that branch) by multiplying</span>
+<span class="sd">    it with a provided factor [2]_.</span>
+
+<span class="sd">    This limits the chance of a single rule</span>
+<span class="sd">    being chosen over and over again in the same branch, which leads</span>
+<span class="sd">    to a better chance of generating a finished derivation tree</span>
+<span class="sd">    within a given maximum number of expansions, especially in the</span>
+<span class="sd">    presence of recursive rules.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [2] `Generating random sentences from a context free grammar</span>
+<span class="sd">       &lt;https://eli.thegreenplace.net/2010/01/28/generating-random-sentences-from-a-context-free-grammar&gt;`__</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">weighted_choice</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+        <span class="n">rhs_list</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">lhs</span><span class="p">]</span>
+        <span class="n">weight_list</span> <span class="o">=</span> <span class="n">weights</span><span class="p">[</span><span class="n">lhs</span><span class="p">]</span>
+        <span class="n">chosen_rule_cumulative_weight</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">weight_list</span><span class="p">)</span> <span class="o">*</span> <span class="n">_random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+        <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">cumulative_weight</span> <span class="ow">in</span> <span class="n">_itertools</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">weight_list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">cumulative_weight</span> <span class="o">&gt;=</span> <span class="n">chosen_rule_cumulative_weight</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">chosen_rule_idx</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rhs_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rhs_list</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+        <span class="n">new_weights</span> <span class="o">=</span> <span class="n">_copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+        <span class="n">new_weights</span><span class="p">[</span><span class="n">lhs</span><span class="p">][</span><span class="n">chosen_rule_idx</span><span class="p">]</span> <span class="o">*=</span> <span class="n">reduction_factor</span>
+        <span class="k">return</span> <span class="n">chosen_rule_idx</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">,</span> <span class="n">new_weights</span>
+
+    <span class="c1"># Generate the derivation tree</span>
+    <span class="n">initial_weights</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">lhs</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span> <span class="k">for</span> <span class="n">rhs</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">]</span> <span class="k">for</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">rules</span> <span class="ow">in</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">DerivationTree</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dt</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="n">initial_weights</span><span class="p">)]</span>
+    <span class="n">expansion_counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># Check max expansions limit</span>
+        <span class="k">if</span> <span class="n">expansion_counter</span> <span class="o">&gt;=</span> <span class="n">max_expansions</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_max_expansion_error</span><span class="p">(</span><span class="n">max_expansions</span><span class="p">)</span>
+
+        <span class="c1"># 1) Choose nonterminal: leftmost</span>
+        <span class="n">chosen_nt_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">chosen_nt_idx</span><span class="p">)</span>
+
+        <span class="c1"># 2) Choose rule: randomly with shrinking weights for rules used repeatetly in this subtree</span>
+        <span class="n">lhs</span> <span class="o">=</span> <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">lhs</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">chosen_rule_idx</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">weighted_choice</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+
+        <span class="c1"># 3) Expand the chosen nonterminal with the rhs of the chosen rule</span>
+        <span class="n">new_nodes</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">)</span>
+        <span class="n">new_nt_nodes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">new_nodes</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">stack</span><span class="p">[</span><span class="n">chosen_nt_idx</span><span class="p">:</span><span class="n">chosen_nt_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_nt_nodes</span>
+        <span class="n">expansion_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">dt</span></div>
+
+
+<div class="viewcode-block" id="ptc2"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.ptc2">[docs]</a><span class="k">def</span> <span class="nf">ptc2</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">max_expansions</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a derivation tree with Nicolau&#39;s PTC2 variant.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    max_expansions : `int`, optional</span>
+<span class="sd">        Desired maximum number of nonterminal expansions.</span>
+<span class="sd">        This is a target value. Missing it slightly below or above</span>
+<span class="sd">        does not raise an error.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    derivation_tree : `~alogos._grammar.data_structures.DerivationTree`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Caching</span>
+    <span class="n">is_recursive</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;shared&quot;</span><span class="p">,</span> <span class="s2">&quot;is_recursive&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">is_recursive</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+    <span class="n">min_expansions</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;shared&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;min_expansions&quot;</span><span class="p">,</span>
+        <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">min_expansions_to_terminals</span><span class="p">,</span>
+        <span class="n">grammar</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">min_expansions_per_symbol</span> <span class="o">=</span> <span class="p">{</span><span class="n">sym</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="k">for</span> <span class="n">sym</span><span class="p">,</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">min_expansions</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="c1"># Random tree construction</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">DerivationTree</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">root_node</span><span class="p">]</span>
+    <span class="n">expansions</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># 1) Choose nonterminal: random</span>
+        <span class="n">chosen_nt_idx</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)))</span>
+        <span class="n">chosen_nt_node</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">chosen_nt_idx</span><span class="p">)</span>
+        <span class="c1"># 2) Choose rule: randomly from those that do not lead over the wanted expansions</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span>
+        <span class="c1"># Check if max_expansions was reached</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">_filter_rules_for_ptc2</span><span class="p">(</span>
+            <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span>
+            <span class="n">rules</span><span class="p">,</span>
+            <span class="n">expansions</span><span class="p">,</span>
+            <span class="n">max_expansions</span><span class="p">,</span>
+            <span class="n">is_recursive</span><span class="p">,</span>
+            <span class="n">min_expansions</span><span class="p">,</span>
+            <span class="n">min_expansions_per_symbol</span><span class="p">,</span>
+            <span class="n">stack</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+        <span class="c1"># 3) Expand the chosen nonterminal with the rhs of the chosen rule</span>
+        <span class="n">new_nodes</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">)</span>
+        <span class="n">new_nt_nodes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">node</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">new_nodes</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">stack</span><span class="p">[</span><span class="n">chosen_nt_idx</span><span class="p">:</span><span class="n">chosen_nt_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_nt_nodes</span>
+        <span class="n">expansions</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">dt</span></div>
+
+
+<div class="viewcode-block" id="grow_one_branch_to_max_depth"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.grow_one_branch_to_max_depth">[docs]</a><span class="k">def</span> <span class="nf">grow_one_branch_to_max_depth</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Randomly grow a tree and try to reach a maximum depth in at least one branch.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    max_depth : `int`, optional</span>
+<span class="sd">        Desired maximum depth of the tree.</span>
+<span class="sd">        This is a target value. Missing it slightly below or above</span>
+<span class="sd">        does not raise an error.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    derivation_tree : `~alogos._grammar.data_structures.DerivationTree`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Caching</span>
+    <span class="n">is_recursive</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;shared&quot;</span><span class="p">,</span> <span class="s2">&quot;is_recursive&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">is_recursive</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+    <span class="n">min_depths</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;shared&quot;</span><span class="p">,</span> <span class="s2">&quot;min_depths&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">min_depths_to_terminals</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Random tree construction</span>
+    <span class="n">max_depth_reached</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">last_recursive_symbol</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">DerivationTree</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dt</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># 1) Choose nonterminal: random</span>
+        <span class="n">chosen_nt_idx</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)))</span>
+        <span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">chosen_nt_idx</span><span class="p">)</span>
+        <span class="c1"># 2) Choose rule: randomly from those that do not lead over the wanted depth</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span>
+        <span class="c1"># Check if max_depth was reached once</span>
+        <span class="k">if</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">max_depth</span><span class="p">:</span>
+            <span class="n">max_depth_reached</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="c1"># Check if no recursive nonterminal remains on the stack currently</span>
+        <span class="n">last_recursive_symbol</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span>
+            <span class="nb">any</span><span class="p">(</span><span class="n">is_recursive</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">])</span> <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">depth</span> <span class="ow">in</span> <span class="n">stack</span>
+        <span class="p">)</span>
+        <span class="c1"># If necessary, use &quot;full&quot; to expand the last recursive nonterminal towards max_depth</span>
+        <span class="k">if</span> <span class="n">last_recursive_symbol</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">max_depth_reached</span><span class="p">:</span>
+            <span class="n">rules</span> <span class="o">=</span> <span class="n">_filter_rules_for_full</span><span class="p">(</span>
+                <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">min_depths</span><span class="p">,</span> <span class="n">is_recursive</span>
+            <span class="p">)</span>
+        <span class="c1"># Otherwise, use &quot;grow&quot; as usual</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rules</span> <span class="o">=</span> <span class="n">_filter_rules_for_grow</span><span class="p">(</span>
+                <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">min_depths</span>
+            <span class="p">)</span>
+        <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+        <span class="c1"># 3) Expand the chosen nonterminal with the rhs of the chosen rule</span>
+        <span class="n">new_nodes</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">)</span>
+        <span class="n">new_nt_nodes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">new_nodes</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">stack</span><span class="p">[</span><span class="n">chosen_nt_idx</span><span class="p">:</span><span class="n">chosen_nt_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_nt_nodes</span>
+    <span class="k">return</span> <span class="n">dt</span></div>
+
+
+<div class="viewcode-block" id="grow_all_branches_within_max_depth"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.grow_all_branches_within_max_depth">[docs]</a><span class="k">def</span> <span class="nf">grow_all_branches_within_max_depth</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Randomly grow a tree and try to stay below a maximum depth in all branches.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    max_depth : `int`, optional</span>
+<span class="sd">        Desired maximum depth of the tree.</span>
+<span class="sd">        This is a target value. Missing it slightly below or above</span>
+<span class="sd">        does not raise an error.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    derivation_tree : `~alogos._grammar.data_structures.DerivationTree`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Caching</span>
+    <span class="n">min_depths</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;shared&quot;</span><span class="p">,</span> <span class="s2">&quot;min_depths&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">min_depths_to_terminals</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Random tree construction</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">DerivationTree</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dt</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># 1) Choose nonterminal: leftmost</span>
+        <span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># 2) Choose rule: randomly from those that do not lead over the wanted depth</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">_filter_rules_for_grow</span><span class="p">(</span>
+            <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">min_depths</span>
+        <span class="p">)</span>
+        <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+        <span class="c1"># 3) Expand the chosen nonterminal with the rhs of the chosen rule</span>
+        <span class="n">new_nodes</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">)</span>
+        <span class="n">new_nt_nodes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">new_nodes</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="n">new_nt_nodes</span> <span class="o">+</span> <span class="n">stack</span>
+    <span class="k">return</span> <span class="n">dt</span></div>
+
+
+<div class="viewcode-block" id="grow_all_branches_to_max_depth"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.grow_all_branches_to_max_depth">[docs]</a><span class="k">def</span> <span class="nf">grow_all_branches_to_max_depth</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Randomly grow a tree and try to reach a maximum depth in all branches.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    max_depth : `int`, optional</span>
+<span class="sd">        Desired maximum depth of the tree.</span>
+<span class="sd">        This is a target value. Missing it slightly below or above</span>
+<span class="sd">        does not raise an error.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    derivation_tree : `~alogos._grammar.data_structures.DerivationTree`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Caching</span>
+    <span class="n">is_recursive</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;shared&quot;</span><span class="p">,</span> <span class="s2">&quot;is_recursive&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">is_recursive</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+    <span class="n">min_depths</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;shared&quot;</span><span class="p">,</span> <span class="s2">&quot;min_depths&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">min_depths_to_terminals</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Random tree construction</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">DerivationTree</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dt</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># 1) Choose nonterminal: leftmost</span>
+        <span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># 2) Choose rule: randomly from recursive ones, if they do not lead over the wanted depth</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">_filter_rules_for_full</span><span class="p">(</span>
+            <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">min_depths</span><span class="p">,</span> <span class="n">is_recursive</span>
+        <span class="p">)</span>
+        <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+        <span class="c1"># 3) Expand the chosen nonterminal with the rhs of the chosen rule</span>
+        <span class="n">new_nodes</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">)</span>
+        <span class="n">new_nt_nodes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">new_nodes</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="n">new_nt_nodes</span> <span class="o">+</span> <span class="n">stack</span>
+    <span class="k">return</span> <span class="n">dt</span></div>
+
+
+<span class="k">def</span> <span class="nf">_filter_rules_for_grow</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">current_depth</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">min_depths</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Filter rules depending on current tree depth and min remaining depth required by each rule.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - 2017, Nicolau: `Understanding grammatical evolution:</span>
+<span class="sd">      initialisation &lt;https://doi.org/10.1007/s10710-017-9309-9&gt;`__</span>
+
+<span class="sd">        - &quot;only productions whose minimum depths lead to a branch depth</span>
+<span class="sd">          less than or equal to the (ramped) maximum depth specified</span>
+<span class="sd">          are chosen&quot;</span>
+
+<span class="sd">        - &quot;SI can occasionally generate deeper trees than requested,</span>
+<span class="sd">          when non-recursive productions exist that require deeper</span>
+<span class="sd">          sub-trees to terminate than recursive productions. Thus the</span>
+<span class="sd">          specified maximum derivation tree depth is a soft constraint.&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Try to choose rules that do not lead the tree to grow beyond max_depth</span>
+    <span class="n">depths_per_rule</span> <span class="o">=</span> <span class="n">min_depths</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span>
+    <span class="n">used_rules</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">rule</span><span class="p">,</span> <span class="n">rule_depth</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">depths_per_rule</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">current_depth</span> <span class="o">+</span> <span class="n">rule_depth</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">max_depth</span><span class="p">:</span>
+            <span class="n">used_rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+    <span class="c1"># If not possible, choose those rules that share the lowest depth</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">used_rules</span><span class="p">:</span>
+        <span class="n">min_depth</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">depths_per_rule</span><span class="p">)</span>
+        <span class="n">used_rules</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">depths_per_rule</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">min_depth</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">used_rules</span>
+
+
+<span class="k">def</span> <span class="nf">_filter_rules_for_full</span><span class="p">(</span>
+    <span class="n">nt</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">current_depth</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">min_depths</span><span class="p">,</span> <span class="n">is_recursive</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Filter rules depending on current tree depth and min remaining depth required by each rule.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - 2017, Nicolau: `Understanding grammatical evolution: initialisation</span>
+<span class="sd">      &lt;https://doi.org/10.1007/s10710-017-9309-9&gt;`__</span>
+
+<span class="sd">        - &quot;only productions whose minimum depths lead to a branch depth</span>
+<span class="sd">          less than or equal to the (ramped) maximum depth specified</span>
+<span class="sd">          are chosen&quot;</span>
+
+<span class="sd">        - &quot;When using Full, only recursive productions are chosen (if</span>
+<span class="sd">          possible)&quot;</span>
+
+<span class="sd">        - &quot;depending on the grammar used, not all can reach the desired</span>
+<span class="sd">          depth, even when using the Full method&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Try to choose recursive rules that do not lead the tree to grow beyond max_depth</span>
+    <span class="n">depths_per_rule</span> <span class="o">=</span> <span class="n">min_depths</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span>
+    <span class="n">rec_per_rule</span> <span class="o">=</span> <span class="n">is_recursive</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span>
+    <span class="n">used_rules</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">rule</span><span class="p">,</span> <span class="n">rule_depth</span><span class="p">,</span> <span class="n">rec</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">depths_per_rule</span><span class="p">,</span> <span class="n">rec_per_rule</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rec</span> <span class="ow">and</span> <span class="p">(</span><span class="n">current_depth</span> <span class="o">+</span> <span class="n">rule_depth</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">max_depth</span><span class="p">:</span>
+            <span class="n">used_rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+    <span class="c1"># If not possible, try the same with non-recursive rules</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">used_rules</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">rule</span><span class="p">,</span> <span class="n">rule_depth</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">depths_per_rule</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">current_depth</span> <span class="o">+</span> <span class="n">rule_depth</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">max_depth</span><span class="p">:</span>
+                <span class="n">used_rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+    <span class="c1"># If not possible, choose those rules that share the lowest depth</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">used_rules</span><span class="p">:</span>
+        <span class="n">min_depth</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">depths_per_rule</span><span class="p">)</span>
+        <span class="n">used_rules</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">depths_per_rule</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">min_depth</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">used_rules</span>
+
+
+<span class="k">def</span> <span class="nf">_filter_rules_for_ptc2</span><span class="p">(</span>
+    <span class="n">nt</span><span class="p">,</span>
+    <span class="n">rules</span><span class="p">,</span>
+    <span class="n">current_expansions</span><span class="p">,</span>
+    <span class="n">max_expansions</span><span class="p">,</span>
+    <span class="n">is_recursive</span><span class="p">,</span>
+    <span class="n">min_expansions</span><span class="p">,</span>
+    <span class="n">min_expansions_per_symbol</span><span class="p">,</span>
+    <span class="n">stack</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Filter rules based on number of expansions.</span>
+
+<span class="sd">    Used:</span>
+
+<span class="sd">    - Maximum number of expansions that are desired.</span>
+<span class="sd">    - Current number of expansions.</span>
+<span class="sd">    - Minimum number of expansions required by each rule to reach</span>
+<span class="sd">      a sequence consisting only of terminals.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - 2000, Luke: `Two Fast Tree-Creation Algorithms for Genetic</span>
+<span class="sd">      Programming &lt;https://doi.org/10.1109/4235.873237&gt;`__</span>
+
+<span class="sd">        - &quot;With PTC2, the user provides a probability distribution of</span>
+<span class="sd">          requested tree sizes. PTC2 guarantees that, once it has</span>
+<span class="sd">          picked a random tree size from this distribution, it will</span>
+<span class="sd">          generate and return a tree of that size or slightly larger.&quot;</span>
+
+<span class="sd">    - 2010, Harper: `GE, explosive grammars and the lasting legacy of</span>
+<span class="sd">      bad initialisation &lt;https://doi.org/10.1109/CEC.2010.5586336&gt;`__</span>
+
+<span class="sd">        - &quot;PTC2 is the second algorithm introduced by Luke and</span>
+<span class="sd">          guarantees that once a random tree size has been picked it</span>
+<span class="sd">          will return a tree of that size or slightly larger. [...]</span>
+<span class="sd">          In essence the algorithm keeps track of all the current</span>
+<span class="sd">          non-terminals in the parse tree and chooses which one to</span>
+<span class="sd">          expand randomly. This is repeated until the requisite number</span>
+<span class="sd">          of expansions has been carried out. If the algorithm is</span>
+<span class="sd">          called in a ramped way (i.e. starting with a low number of</span>
+<span class="sd">          expansions, say 20, and increasing until say 240) then a</span>
+<span class="sd">          large number of trees of different size and shapes will be</span>
+<span class="sd">          generated.&quot;</span>
+
+<span class="sd">    - 2017, Nicolau: `Understanding grammatical evolution:</span>
+<span class="sd">      initialisation &lt;https://doi.org/10.1007/s10710-017-9309-9&gt;`__</span>
+
+<span class="sd">        - &quot;A refined version of Luke’s and Harper’s PTC2 is used in</span>
+<span class="sd">          this study. As with SI, grammar productions can also be</span>
+<span class="sd">          labelled in terms of the minimum number of expansions</span>
+<span class="sd">          required for termination&quot;</span>
+
+<span class="sd">        - &quot;recursive productions will be chosen only if they will not</span>
+<span class="sd">          exceed the specified number of expansions while also taking</span>
+<span class="sd">          into account the minimum number of expansions required to map</span>
+<span class="sd">          all outstanding (not fully mapped) branches&quot;</span>
+
+<span class="sd">        - &quot;unlike Luke’s and Harper’s implementations, no maximum tree</span>
+<span class="sd">          depth is employed in this PTC2 version.&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Calculate how many of the remaining expansions can be consumed by this branch</span>
+    <span class="n">expansions_for_other_branches</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+        <span class="n">min_expansions_per_symbol</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">stack</span>
+    <span class="p">)</span>
+    <span class="n">free_expansions</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">max_expansions</span> <span class="o">-</span> <span class="n">current_expansions</span> <span class="o">-</span> <span class="n">expansions_for_other_branches</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Try to choose recursive rules that do not lead the branch to grow beyond the free expansions</span>
+    <span class="n">expansions_per_rule</span> <span class="o">=</span> <span class="n">min_expansions</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span>
+    <span class="n">rec_per_rule</span> <span class="o">=</span> <span class="n">is_recursive</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span>
+    <span class="n">used_rules</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">rule</span><span class="p">,</span> <span class="n">rule_expansions</span><span class="p">,</span> <span class="n">rec</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">expansions_per_rule</span><span class="p">,</span> <span class="n">rec_per_rule</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rec</span> <span class="ow">and</span> <span class="n">rule_expansions</span> <span class="o">&lt;=</span> <span class="n">free_expansions</span><span class="p">:</span>
+            <span class="n">used_rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+    <span class="c1"># If not possible, use all non-recursive rules</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">used_rules</span><span class="p">:</span>
+        <span class="n">used_rules</span> <span class="o">=</span> <span class="p">[</span><span class="n">rule</span> <span class="k">for</span> <span class="n">rule</span><span class="p">,</span> <span class="n">rec</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">rec_per_rule</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">rec</span><span class="p">]</span>
+    <span class="c1"># If also not possible, use all rules</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">used_rules</span><span class="p">:</span>
+        <span class="n">used_rules</span> <span class="o">=</span> <span class="n">rules</span>
+    <span class="k">return</span> <span class="n">used_rules</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.dsge.mapping &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems.dsge.mapping</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems.dsge.mapping</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Forward and reverse mapping functions for DSGE.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">_grammar</span>
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">_exceptions</span>
+<span class="kn">from</span> <span class="nn">..._utilities.parametrization</span> <span class="kn">import</span> <span class="n">get_given_or_default</span> <span class="k">as</span> <span class="n">_get_given_or_default</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">_shared</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">_cached_calculations</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">default_parameters</span> <span class="k">as</span> <span class="n">_dp</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">representation</span> <span class="k">as</span> <span class="n">_representation</span>
+
+
+<span class="c1"># Shortcuts for brevity and minor speedup</span>
+<span class="n">_GT</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span>
+<span class="n">_DT</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">DerivationTree</span>
+<span class="n">_NT</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span>
+<span class="n">_T</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">TerminalSymbol</span>
+
+
+<span class="k">def</span> <span class="nf">_fe</span><span class="p">(</span><span class="n">me</span><span class="p">,</span> <span class="n">re</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">re</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_max_expansion_error</span><span class="p">(</span><span class="n">me</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_ge</span><span class="p">(</span><span class="n">gi</span><span class="p">,</span> <span class="n">nt</span><span class="p">,</span> <span class="n">re</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">re</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_dsge_mapping_error2</span><span class="p">(</span><span class="n">gi</span><span class="p">,</span> <span class="n">nt</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_he</span><span class="p">(</span><span class="n">gi</span><span class="p">,</span> <span class="n">sym</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">ri</span><span class="p">,</span> <span class="n">re</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">re</span><span class="p">:</span>
+        <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_dsge_mapping_error3</span><span class="p">(</span><span class="n">gi</span><span class="p">,</span> <span class="n">sym</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">ri</span><span class="p">)</span>
+
+
+<span class="c1"># Forward mapping</span>
+<div class="viewcode-block" id="forward"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/dsge/mapping/index.html#alogos.systems.dsge.mapping.forward">[docs]</a><span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span>
+    <span class="n">genotype</span><span class="p">,</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">raise_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">return_derivation_tree</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Map a DSGE genotype to a string phenotype.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    genotype : `~.representation.Genotype` or data that can be converted to it</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`, optional</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``max_expansions``  (`int`): Maximum number of nonterminal</span>
+<span class="sd">          expansions allowed in the derivation created by the mapping</span>
+<span class="sd">          process.</span>
+<span class="sd">    raise_errors : `bool`, optional</span>
+<span class="sd">        Possible values:</span>
+
+<span class="sd">        - `True`: A mapping error will be raised if a derivation is</span>
+<span class="sd">          not finished within a limit provided in the parameters.</span>
+<span class="sd">        - `False`: A partial derivation is allowed. In this case, the</span>
+<span class="sd">          returned string will contain unexpanded nonterminal symbols.</span>
+<span class="sd">          Therefore it is not a valid phenotype, i.e. not a string of</span>
+<span class="sd">          the grammar&#39;s language but a so-called sentential form.</span>
+<span class="sd">    return_derivation_tree : `bool`, optional</span>
+<span class="sd">        If `True`, not only the phenotype is returned but additionally</span>
+<span class="sd">        also the derivation tree.</span>
+<span class="sd">    verbose : `bool`, optional</span>
+<span class="sd">        If `True`, output about steps of the mapping process is printed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    phenotype : `str`</span>
+<span class="sd">        If ``return_derivation_tree`` is `False`, which is the default.</span>
+<span class="sd">    (phenotype, derivation_tree) : `tuple` with two elements of type `str` and `~alogos._grammar.data_structures.DerivationTree`</span>
+<span class="sd">        If ``return_derivation_tree`` is `True`.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    MappingError</span>
+<span class="sd">        If ``raise_errors`` is `True` and the mapping process can not</span>
+<span class="sd">        generate a full derivation before reaching a limit provided in</span>
+<span class="sd">        the parameters.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The 2018 paper describes that the mapping function sometimes has to</span>
+<span class="sd">    randomly select rules during a derivation. This is necessary when</span>
+<span class="sd">    the genotype was modified by a variation operator in such a way that</span>
+<span class="sd">    not enough codons are available in a gene of the genotype to fully</span>
+<span class="sd">    encode a phenotype. Here, in this implementation of DSGE, the random</span>
+<span class="sd">    selection of rules was removed from the mapping function. Instead, a</span>
+<span class="sd">    dedicated repair function was added to the system, which is</span>
+<span class="sd">    responsible to add missing or remove superfluous codons of a</span>
+<span class="sd">    genotype after it was modified by a variation operator. The</span>
+<span class="sd">    advantage with this approach is that the mapping function becomes</span>
+<span class="sd">    deterministic, meaning that the same genotype is always mapped to</span>
+<span class="sd">    the same phenotype, as is the usually the case for systems inspired</span>
+<span class="sd">    by Grammatical Evolution (GE). This eases the analysis of completed</span>
+<span class="sd">    runs and the reuse of genotypes in future runs.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">me</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;max_expansions&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">_GT</span><span class="p">):</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_GT</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
+
+    <span class="c1"># Cache look-up</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">nt_to_gene</span><span class="p">,</span> <span class="n">nt_to_cnt</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;dsge&quot;</span><span class="p">,</span> <span class="s2">&quot;maps&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+    <span class="n">nt_to_cnt</span> <span class="o">=</span> <span class="n">nt_to_cnt</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># Mapping</span>
+    <span class="k">if</span> <span class="n">raise_errors</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span><span class="p">):</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_dsge_mapping_error1</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_forward_slow</span><span class="p">(</span>
+            <span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">me</span><span class="p">,</span> <span class="n">nt_to_gene</span><span class="p">,</span> <span class="n">nt_to_cnt</span><span class="p">,</span> <span class="n">raise_errors</span><span class="p">,</span> <span class="n">verbose</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_forward_fast</span><span class="p">(</span>
+            <span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">me</span><span class="p">,</span> <span class="n">nt_to_gene</span><span class="p">,</span> <span class="n">nt_to_cnt</span><span class="p">,</span> <span class="n">raise_errors</span>
+        <span class="p">)</span>
+    <span class="n">phe</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">string</span><span class="p">()</span>
+
+    <span class="c1"># Conditional return</span>
+    <span class="k">if</span> <span class="n">return_derivation_tree</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">phe</span><span class="p">,</span> <span class="n">dt</span>
+    <span class="k">return</span> <span class="n">phe</span></div>
+
+
+<span class="k">def</span> <span class="nf">_forward_fast</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="n">me</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">re</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the genotype-to-phenotype map of DSGE in a fast way.&quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">_DT</span><span class="p">(</span><span class="n">gr</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">root_node</span><span class="p">]</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">_expand</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">production_rules</span>
+    <span class="k">while</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">me</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">e</span> <span class="o">&gt;=</span> <span class="n">me</span><span class="p">:</span>
+            <span class="n">_fe</span><span class="p">(</span><span class="n">me</span><span class="p">,</span> <span class="n">re</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">symbol</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">m1</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">m2</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">gt</span><span class="p">[</span><span class="n">g</span><span class="p">][</span><span class="n">c</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="n">_ge</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">re</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="n">m2</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="n">_he</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">re</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">x</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_NT</span><span class="p">)]</span>
+        <span class="n">e</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+
+<span class="k">def</span> <span class="nf">_forward_slow</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">max_expansions</span><span class="p">,</span> <span class="n">nt_to_gene</span><span class="p">,</span> <span class="n">nt_to_cnt</span><span class="p">,</span> <span class="n">raise_errors</span><span class="p">,</span> <span class="n">verbose</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the genotype-to-phenotype map of DSGE in a slow way.</span>
+
+<span class="sd">    This is a readable implementation of the mapping process, which</span>
+<span class="sd">    also allows to print output about the steps it involves.</span>
+<span class="sd">    It served as basis for the faster, minified implementation in this</span>
+<span class="sd">    module and may be helpful in understanding, replicating or modifying</span>
+<span class="sd">    the algorithm.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">derivation_tree</span> <span class="o">=</span> <span class="n">_DT</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">derivation_tree</span><span class="o">.</span><span class="n">root_node</span><span class="p">]</span>
+    <span class="n">expansion_counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;Start of the derivation&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;- Get start symbol of the grammar: &lt;</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">start_symbol</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sentential form: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">derivation_tree</span><span class="o">.</span><span class="n">string</span><span class="p">()))</span>
+        <span class="nb">print</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># Check stop conditions</span>
+        <span class="k">if</span> <span class="n">max_expansions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">expansion_counter</span> <span class="o">&gt;=</span> <span class="n">max_expansions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;Stop condition fulfilled&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">&quot;- The maximum number of expansions is reached: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">max_expansions</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+                <span class="nb">print</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">raise_errors</span><span class="p">:</span>
+                <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_max_expansion_error</span><span class="p">(</span><span class="n">max_expansions</span><span class="p">)</span>
+            <span class="k">break</span>
+
+        <span class="c1"># 1) Choose nonterminal: DSGE uses the leftmost, unexpanded nonterminal</span>
+        <span class="n">chosen_nt_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">chosen_nt_node</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">chosen_nt_idx</span><span class="p">)</span>
+        <span class="n">chosen_nt</span> <span class="o">=</span> <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;Expansion </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">expansion_counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Choice of nonterminal to expand&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Index: </span><span class="si">{}</span><span class="s2"> by always using leftmost&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chosen_nt_idx</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Symbol: &lt;</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chosen_nt</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+
+        <span class="c1"># 2) Choose rule: DSGE decides by the next integer in the gene of the nonterminal</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Choice of rule to apply&quot;</span><span class="p">)</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">chosen_nt</span><span class="p">]</span>
+        <span class="n">gi</span> <span class="o">=</span> <span class="n">nt_to_gene</span><span class="p">[</span><span class="n">chosen_nt</span><span class="p">]</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="n">nt_to_cnt</span><span class="p">[</span><span class="n">chosen_nt</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">genotype</span><span class="p">[</span><span class="n">gi</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">raise_errors</span><span class="p">:</span>
+                <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_dsge_mapping_error2</span><span class="p">(</span><span class="n">gi</span><span class="p">,</span> <span class="n">chosen_nt</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="n">nt_to_cnt</span><span class="p">[</span><span class="n">chosen_nt</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;    Index: </span><span class="si">{}</span><span class="s2"> by codon value </span><span class="si">{}</span><span class="s2"> from gene </span><span class="si">{}</span><span class="s2"> at position </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">chosen_rule_idx</span><span class="p">,</span> <span class="n">genotype</span><span class="p">[</span><span class="n">gi</span><span class="p">][</span><span class="n">cnt</span><span class="p">],</span> <span class="n">gi</span><span class="p">,</span> <span class="n">cnt</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">raise_errors</span><span class="p">:</span>
+                <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_dsge_mapping_error3</span><span class="p">(</span>
+                    <span class="n">gi</span><span class="p">,</span> <span class="n">chosen_nt</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="n">chosen_rule_idx</span>
+                <span class="p">)</span>
+            <span class="k">break</span>
+
+        <span class="c1"># 3) Expand the chosen nonterminal (1) with the rhs of the chosen rule (2)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Application of rule to nonterminal&quot;</span><span class="p">)</span>
+        <span class="n">new_nodes</span> <span class="o">=</span> <span class="n">derivation_tree</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">)</span>
+        <span class="n">expansion_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">rhs</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="n">sym</span><span class="o">.</span><span class="n">text</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">_T</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;&lt;</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">sym</span> <span class="ow">in</span> <span class="n">chosen_rule</span>
+            <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Substitution: &lt;</span><span class="si">{}</span><span class="s2">&gt; -&gt; </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chosen_nt</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">rhs</span><span class="p">))</span>
+
+        <span class="c1"># 4) Add new nodes that contain a nonterminal to the stack</span>
+        <span class="n">new_nt_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">new_nodes</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_NT</span><span class="p">)]</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="n">new_nt_nodes</span> <span class="o">+</span> <span class="n">stack</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sentential form: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">derivation_tree</span><span class="o">.</span><span class="n">string</span><span class="p">()))</span>
+            <span class="nb">print</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;End of the derivation&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+        <span class="n">complete</span> <span class="o">=</span> <span class="n">derivation_tree</span><span class="o">.</span><span class="n">is_completely_expanded</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">complete</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s2">&quot;The derivation is finished. The result contains only terminal symbols.&quot;</span>
+            <span class="p">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;String&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s2">&quot;The derivation is not finished. The result contains unexpanded &quot;</span>
+                <span class="s2">&quot;nonterminal symbols.&quot;</span>
+            <span class="p">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Sentential form&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Completeness check: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">derivation_tree</span><span class="o">.</span><span class="n">string</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="n">derivation_tree</span>
+
+
+<span class="c1"># Reverse mapping</span>
+<div class="viewcode-block" id="reverse"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/dsge/mapping/index.html#alogos.systems.dsge.mapping.reverse">[docs]</a><span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span> <span class="n">phenotype_or_derivation_tree</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_derivation_tree</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Map a string phenotype (or derivation tree) to a DSGE genotype.&quot;&quot;&quot;</span>
+    <span class="c1"># Cache look-up</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">nt_to_gene</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">_lookup_or_calc</span><span class="p">(</span>
+        <span class="s2">&quot;dsge&quot;</span><span class="p">,</span> <span class="s2">&quot;maps&quot;</span><span class="p">,</span> <span class="n">_cached_calculations</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span> <span class="n">grammar</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Preparation of data structures</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_shared</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">get_derivation_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">phenotype_or_derivation_tree</span><span class="p">)</span>
+    <span class="n">gt</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span><span class="p">))]</span>
+
+    <span class="c1"># Trace all decisions contained in the given derivation tree</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">root_node</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># 1) Choose nonterminal: DSGE uses leftmost -&gt; Choose it accordingly</span>
+        <span class="n">chosen_nt_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">chosen_nt_node</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">chosen_nt_idx</span><span class="p">)</span>
+
+        <span class="c1"># 2) Choose rule: DSGE decides via next integer in NT&#39;s gene -&gt; Deduce it from tree</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rules</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_missing_nt_error</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">chosen_rule</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">children</span><span class="p">]</span>
+            <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">chosen_rule</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_missing_rhs_error</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">)</span>
+
+        <span class="c1"># 3) Expand the chosen nonterminal with the rhs of the chosen rule -&gt; Follow the expansion</span>
+        <span class="n">new_nt_nodes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">children</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_NT</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="n">new_nt_nodes</span> <span class="o">+</span> <span class="n">stack</span>
+
+        <span class="c1"># Store the observed decision, even if there was only one option</span>
+        <span class="n">gene_idx</span> <span class="o">=</span> <span class="n">nt_to_gene</span><span class="p">[</span><span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span>
+        <span class="n">gt</span><span class="p">[</span><span class="n">gene_idx</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chosen_rule_idx</span><span class="p">)</span>
+
+    <span class="c1"># Finalization of data structures</span>
+    <span class="n">gt</span> <span class="o">=</span> <span class="n">_GT</span><span class="p">(</span><span class="n">gt</span><span class="p">)</span>
+
+    <span class="c1"># Conditional return</span>
+    <span class="k">if</span> <span class="n">return_derivation_tree</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">gt</span><span class="p">,</span> <span class="n">dt</span>
+    <span class="k">return</span> <span class="n">gt</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

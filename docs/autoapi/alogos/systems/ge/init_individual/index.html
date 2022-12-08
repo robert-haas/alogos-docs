@@ -1,0 +1,532 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.ge.init_individual &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.ge.init_individual</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos.systems.ge.init_individual">
+<span id="alogos-systems-ge-init-individual"></span><h1><a class="reference internal" href="#module-alogos.systems.ge.init_individual" title="alogos.systems.ge.init_individual"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.ge.init_individual</span></code></a><a class="headerlink" href="#module-alogos.systems.ge.init_individual" title="Permalink to this heading">¶</a></h1>
+<p>Initialization functions to create a GE individual.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.ge.init_individual.given_genotype" title="alogos.systems.ge.init_individual.given_genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">given_genotype</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create an individual from a given genotype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.ge.init_individual.given_derivation_tree" title="alogos.systems.ge.init_individual.given_derivation_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">given_derivation_tree</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create an individual from a given derivation tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.ge.init_individual.given_phenotype" title="alogos.systems.ge.init_individual.given_phenotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">given_phenotype</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create an individual from a given phenotype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.ge.init_individual.random_genotype" title="alogos.systems.ge.init_individual.random_genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_genotype</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create an individual from a random genotype.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.ge.init_individual.random_valid_genotype" title="alogos.systems.ge.init_individual.random_valid_genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_valid_genotype</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create an individual from a random genotype likely to be valid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.ge.init_individual.gp_grow_tree" title="alogos.systems.ge.init_individual.gp_grow_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gp_grow_tree</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create an individual from a randomly grown tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.ge.init_individual.pi_grow_tree" title="alogos.systems.ge.init_individual.pi_grow_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pi_grow_tree</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create an individual from a position-independently, randomly grown tree.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.ge.init_individual.gp_full_tree" title="alogos.systems.ge.init_individual.gp_full_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gp_full_tree</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create an individual from a fully grown tree up to a maximum depth.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.ge.init_individual.ptc2_tree" title="alogos.systems.ge.init_individual.ptc2_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ptc2_tree</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create an individual from a tree grown with Nicolau's &quot;PTC2&quot;.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.ge.init_individual.given_genotype">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.ge.init_individual.</span></span><span class="sig-name descname"><span class="pre">given_genotype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/ge/init_individual.html#given_genotype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.ge.init_individual.given_genotype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an individual from a given genotype.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>, optional) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_ind_given_genotype</span></code> : Data for a GE
+<a class="reference internal" href="../../cfggp/representation/index.html#alogos.systems.cfggp.representation.Genotype" title="alogos.systems.cfggp.representation.Genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Genotype</span></code></a>.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If the initialization of the individual fails.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The genotype is converted to a derivation tree and phenotype with
+the <a class="reference internal" href="../../cfggp/mapping/index.html#alogos.systems.cfggp.mapping.forward" title="alogos.systems.cfggp.mapping.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a> mapping function of this system.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.ge.init_individual.given_derivation_tree">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.ge.init_individual.</span></span><span class="sig-name descname"><span class="pre">given_derivation_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/ge/init_individual.html#given_derivation_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.ge.init_individual.given_derivation_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an individual from a given derivation tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>, optional) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_ind_given_derivation_tree</span></code> : Data for a
+<a class="reference internal" href="../../../_grammar/data_structures/index.html#alogos._grammar.data_structures.DerivationTree" title="alogos._grammar.data_structures.DerivationTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DerivationTree</span></code></a>.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If the initialization of the individual fails.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The leaf nodes of the derivation tree are read to create the
+phenotype.
+The phenotype is converted to a genotype with
+the <a class="reference internal" href="../../cfggp/mapping/index.html#alogos.systems.cfggp.mapping.reverse" title="alogos.systems.cfggp.mapping.reverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reverse</span></code></a> mapping function of this system.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.ge.init_individual.given_phenotype">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.ge.init_individual.</span></span><span class="sig-name descname"><span class="pre">given_phenotype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/ge/init_individual.html#given_phenotype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.ge.init_individual.given_phenotype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an individual from a given phenotype.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>, optional) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_ind_given_phenotype</span></code> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) : Data for a phenotype,
+which needs to be a string of the grammar’s language.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If the initialization of the individual fails.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The phenotype is converted to a genotype and derivation tree with
+the <a class="reference internal" href="../../cfggp/mapping/index.html#alogos.systems.cfggp.mapping.reverse" title="alogos.systems.cfggp.mapping.reverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reverse</span></code></a> mapping function of this system.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.ge.init_individual.random_genotype">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.ge.init_individual.</span></span><span class="sig-name descname"><span class="pre">random_genotype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/ge/init_individual.html#random_genotype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.ge.init_individual.random_genotype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an individual from a random genotype.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>, optional) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">genotype_length</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) : Number of integers in the GE
+<a class="reference internal" href="../../cfggp/representation/index.html#alogos.systems.cfggp.representation.Genotype" title="alogos.systems.cfggp.representation.Genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Genotype</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">codon_size</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) : Number of bits used for a codon,
+which determines the maximum integer value a codon can take.
+For example, a codon size of 8 bits allows integers from
+0 to 255 (from 2**8-1).</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If the initialization of the individual fails.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The random genotype is a fixed-length <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> which are
+drawn independently from a uniform distribution of numbers in the
+interval <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">2**codon_size)</span></code>.</p>
+<p class="rubric">References</p>
+<ul>
+<li><p>2016, Nicolau, Fenton: <a class="reference external" href="https://doi.org/10.1145/2908812.2908904">Managing Repetition in Grammar-Based Genetic Programming</a></p></li>
+<li><p>2017, Nicolau: <a class="reference external" href="https://doi.org/10.1007/s10710-017-9309-9">Understanding grammatical evolution: initialisation</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>3.1 Random initialisation (RND)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.ge.init_individual.random_valid_genotype">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.ge.init_individual.</span></span><span class="sig-name descname"><span class="pre">random_valid_genotype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/ge/init_individual.html#random_valid_genotype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.ge.init_individual.random_valid_genotype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an individual from a random genotype likely to be valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>, optional) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">genotype_length</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) : Number of integers in the GE
+<a class="reference internal" href="../../cfggp/representation/index.html#alogos.systems.cfggp.representation.Genotype" title="alogos.systems.cfggp.representation.Genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Genotype</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">codon_size</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) : Number of bits used for a codon,
+which determines the maximum integer value a codon can take.
+For example, a codon size of 8 bits allows integers from
+0 to 255 (from 2**8-1).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_ind_random_valid_genotype_max_tries</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) : Number
+of tries to generate a random valid genotype.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If the initialization of the individual fails.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function repeatedly calls <a class="reference internal" href="#alogos.systems.ge.init_individual.random_genotype" title="alogos.systems.ge.init_individual.random_genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_genotype</span></code></a> until it returns
+a genotype that can be mapped to a phenotype or a given maximum
+number of tries is reached.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.ge.init_individual.gp_grow_tree">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.ge.init_individual.</span></span><span class="sig-name descname"><span class="pre">gp_grow_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/ge/init_individual.html#gp_grow_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.ge.init_individual.gp_grow_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an individual from a randomly grown tree.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.ge.init_individual.pi_grow_tree">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.ge.init_individual.</span></span><span class="sig-name descname"><span class="pre">pi_grow_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/ge/init_individual.html#pi_grow_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.ge.init_individual.pi_grow_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an individual from a position-independently, randomly grown tree.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.ge.init_individual.gp_full_tree">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.ge.init_individual.</span></span><span class="sig-name descname"><span class="pre">gp_full_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/ge/init_individual.html#gp_full_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.ge.init_individual.gp_full_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an individual from a fully grown tree up to a maximum depth.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.ge.init_individual.ptc2_tree">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.ge.init_individual.</span></span><span class="sig-name descname"><span class="pre">ptc2_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/ge/init_individual.html#ptc2_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.ge.init_individual.ptc2_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an individual from a tree grown with Nicolau’s “PTC2”.</p>
+<p>The original PTC2 method for growing random trees was invented by
+Sean Luke in 2000. Some slightly modified variants were
+introduced later by other authors.
+This function implements a PTC2 variant described by Miguel Nicolau
+in 2017 in section “3.3 Probabilistic tree-creation 2 (PTC2)” of
+the publication. It restricts tree size not with a maximum tree
+depth but rather with a maximum number of expansions and if
+possible remains strictly below this limit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>, optional) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_ind_ptc2_max_expansions</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>): The maximum number
+of nonterminal expansions that may be used to grow the tree.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If the initialization of the individual fails.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The leaf nodes of the derivation tree are read to create the
+phenotype.
+The phenotype is converted to a genotype with
+the <a class="reference internal" href="../../cfggp/mapping/index.html#alogos.systems.cfggp.mapping.reverse" title="alogos.systems.cfggp.mapping.reverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reverse</span></code></a> mapping function of this system.</p>
+<p class="rubric">References</p>
+<ul>
+<li><p>2000, Luke: <a class="reference external" href="https://doi.org/10.1109/4235.873237">Two Fast Tree-Creation Algorithms for Genetic
+Programming</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“PTC1 is a modification of GROW that allows the user to
+provide probabilities of appearance of functions in the tree,
+plus a desired expected tree size, and guarantees that, on
+average, trees will be of that size.”</p></li>
+<li><p>“With PTC2, the user provides a probability distribution of
+requested tree sizes. PTC2 guarantees that, once it has picked
+a random tree size from this distribution, it will generate
+and return a tree of that size or slightly larger.”</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>2010, Harper: <a class="reference external" href="https://doi.org/10.1109/CEC.2010.5586336">GE, explosive grammars and the lasting legacy of
+bad initialisation</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“The PTC2 methodology is extended to GE and found to produce
+a more uniform distribution of parse trees.”</p></li>
+<li><p>“If the algorithm is called in a ramped way (i.e. starting
+with a low number of expansions, say 20, and increasing until
+say 240) then a large number of trees of different size and
+shapes will be generated.”</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>2017, Nicolau: <a class="reference external" href="https://doi.org/10.1007/s10710-017-9309-9">Understanding grammatical evolution:
+initialisation</a>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>3.3 Probabilistic tree-creation 2 (PTC2)</p></li>
+<li><p>3.6 Probabilistic tree-creation 2 with depth limit (PTC2D)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>2018, Ryan, O’Neill, Collins: <a class="reference external" href="https://doi.org/10.1007/978-3-319-78717-6">Handbook of Grammatical Evolution</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>p. 13: “More recent work on initialisation includes that of
+Nicolau, who demonstrated that across the problems examined
+in their study, a variant of Harper’s PTC2 consistently
+outperforms other initialisations”</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

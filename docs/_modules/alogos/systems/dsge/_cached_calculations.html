@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.dsge._cached_calculations &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems.dsge._cached_calculations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems.dsge._cached_calculations</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">_random</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">_grammar</span>
+
+
+<div class="viewcode-block" id="maps"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/dsge/_cached_calculations/index.html#alogos.systems.dsge._cached_calculations.maps">[docs]</a><span class="k">def</span> <span class="nf">maps</span><span class="p">(</span><span class="n">grammar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate different mappings used by DSGE at various points.&quot;&quot;&quot;</span>
+    <span class="n">gene_to_nt</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">nt_to_gene</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">nt_to_cnt</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">nt_to_num_options</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">mutable_genes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">nt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span><span class="p">):</span>
+        <span class="n">gene_to_nt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nt</span>
+        <span class="n">nt_to_gene</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">nt_to_cnt</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">num_options</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">nt</span><span class="p">])</span>
+        <span class="n">nt_to_num_options</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_options</span>
+        <span class="k">if</span> <span class="n">num_options</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">mutable_genes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">gene_to_nt</span><span class="p">,</span> <span class="n">nt_to_gene</span><span class="p">,</span> <span class="n">nt_to_cnt</span><span class="p">,</span> <span class="n">nt_to_num_options</span><span class="p">,</span> <span class="n">mutable_genes</span></div>
+
+
+<div class="viewcode-block" id="non_recursive_rhs"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/dsge/_cached_calculations/index.html#alogos.systems.dsge._cached_calculations.non_recursive_rhs">[docs]</a><span class="k">def</span> <span class="nf">non_recursive_rhs</span><span class="p">(</span><span class="n">grammar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine which right-hand sides of rules are not recursive.&quot;&quot;&quot;</span>
+    <span class="n">non_recursive_rhs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">nt</span> <span class="ow">in</span> <span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span><span class="p">:</span>
+        <span class="n">nr_rhs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">rhs</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">nt</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">rhs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">symbol</span> <span class="o">==</span> <span class="n">nt</span><span class="p">:</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">nr_rhs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+        <span class="n">non_recursive_rhs</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span> <span class="o">=</span> <span class="n">nr_rhs</span>
+    <span class="k">return</span> <span class="n">non_recursive_rhs</span></div>
+
+
+<span class="c1"># Functions that could be cached, but are not, because it provides no speedup and requires memory</span>
+
+
+<div class="viewcode-block" id="get_all_valid_codons"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/dsge/_cached_calculations/index.html#alogos.systems.dsge._cached_calculations.get_all_valid_codons">[docs]</a><span class="k">def</span> <span class="nf">get_all_valid_codons</span><span class="p">(</span>
+    <span class="n">nt</span><span class="p">,</span> <span class="n">current_depth</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">nt_to_num_options</span><span class="p">,</span> <span class="n">non_recursive_rhs</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get all valid codons depending on current and max depth.&quot;&quot;&quot;</span>
+    <span class="c1"># Used in repair mechanism and neighborhood generation</span>
+    <span class="k">if</span> <span class="n">current_depth</span> <span class="o">&gt;=</span> <span class="n">max_depth</span><span class="p">:</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">non_recursive_rhs</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nt_to_num_options</span><span class="p">[</span><span class="n">nt</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">options</span></div>
+
+
+<div class="viewcode-block" id="get_first_valid_codon"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/dsge/_cached_calculations/index.html#alogos.systems.dsge._cached_calculations.get_first_valid_codon">[docs]</a><span class="k">def</span> <span class="nf">get_first_valid_codon</span><span class="p">(</span>
+    <span class="n">nt</span><span class="p">,</span> <span class="n">current_depth</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">nt_to_num_options</span><span class="p">,</span> <span class="n">non_recursive_rhs</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the first valid codon depending on current and max depth.&quot;&quot;&quot;</span>
+    <span class="c1"># Used in deterministic repair mechanism</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">get_all_valid_codons</span><span class="p">(</span>
+        <span class="n">nt</span><span class="p">,</span> <span class="n">current_depth</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">nt_to_num_options</span><span class="p">,</span> <span class="n">non_recursive_rhs</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">options</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="get_random_valid_codon"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/dsge/_cached_calculations/index.html#alogos.systems.dsge._cached_calculations.get_random_valid_codon">[docs]</a><span class="k">def</span> <span class="nf">get_random_valid_codon</span><span class="p">(</span>
+    <span class="n">nt</span><span class="p">,</span> <span class="n">current_depth</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">nt_to_num_options</span><span class="p">,</span> <span class="n">non_recursive_rhs</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get a random valid codons depending on current and max depth.&quot;&quot;&quot;</span>
+    <span class="c1"># Used in stochastic repair mechanism</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">get_all_valid_codons</span><span class="p">(</span>
+        <span class="n">nt</span><span class="p">,</span> <span class="n">current_depth</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">,</span> <span class="n">nt_to_num_options</span><span class="p">,</span> <span class="n">non_recursive_rhs</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">_random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">options</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_tree_depth"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/dsge/_cached_calculations/index.html#alogos.systems.dsge._cached_calculations.get_tree_depth">[docs]</a><span class="k">def</span> <span class="nf">get_tree_depth</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">nt_to_gene</span><span class="p">,</span> <span class="n">nt_to_cnt</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Determine the depth of the derivation tree encoded by a genotype.&quot;&quot;&quot;</span>
+    <span class="n">nt_to_cnt</span> <span class="o">=</span> <span class="n">nt_to_cnt</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">DerivationTree</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dt</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># 1) Choose nonterminal: DSGE uses the leftmost, unexpanded nonterminal</span>
+        <span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">dn</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dn</span> <span class="o">&gt;</span> <span class="n">depth</span><span class="p">:</span>
+            <span class="n">depth</span> <span class="o">=</span> <span class="n">dn</span>
+        <span class="n">nt</span> <span class="o">=</span> <span class="n">chosen_nt_node</span><span class="o">.</span><span class="n">symbol</span>
+        <span class="n">gene_idx</span> <span class="o">=</span> <span class="n">nt_to_gene</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span>
+        <span class="c1"># 2) Choose rule: DSGE decides by the next integer in the gene of the nonterminal</span>
+        <span class="n">rules</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="n">nt_to_cnt</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span>
+        <span class="n">chosen_rule_idx</span> <span class="o">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">gene_idx</span><span class="p">][</span><span class="n">cnt</span><span class="p">]</span>
+        <span class="n">chosen_rule</span> <span class="o">=</span> <span class="n">rules</span><span class="p">[</span><span class="n">chosen_rule_idx</span><span class="p">]</span>
+        <span class="n">nt_to_cnt</span><span class="p">[</span><span class="n">nt</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># 3) Expand the chosen nonterminal (1) with the rhs of the chosen rule (2)</span>
+        <span class="n">new_nodes</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">_expand</span><span class="p">(</span><span class="n">chosen_nt_node</span><span class="p">,</span> <span class="n">chosen_rule</span><span class="p">)</span>
+        <span class="c1"># 4) Add new nodes that contain a nonterminal to the stack</span>
+        <span class="n">new_nt_nodes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">dn</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">new_nodes</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="n">new_nt_nodes</span> <span class="o">+</span> <span class="n">stack</span>
+    <span class="k">return</span> <span class="n">depth</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

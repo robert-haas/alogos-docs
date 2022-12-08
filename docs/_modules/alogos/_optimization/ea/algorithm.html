@@ -1,0 +1,1357 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._optimization.ea.algorithm &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos._optimization.ea.algorithm</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos._optimization.ea.algorithm</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Data structure for a evolutionary algorithm that uses G3P systems.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">_random</span>
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span> <span class="k">as</span> <span class="n">_Number</span>
+
+<span class="kn">import</span> <span class="nn">pylru</span> <span class="k">as</span> <span class="nn">_pylru</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">Grammar</span> <span class="k">as</span> <span class="n">_Grammar</span>
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">_utilities</span>
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">_exceptions</span>
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">systems</span> <span class="k">as</span> <span class="n">_systems</span>
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">warnings</span> <span class="k">as</span> <span class="n">_warnings</span>
+<span class="kn">from</span> <span class="nn">..._utilities</span> <span class="kn">import</span> <span class="n">argument_processing</span> <span class="k">as</span> <span class="n">_ap</span>
+<span class="kn">from</span> <span class="nn">..._utilities.parametrization</span> <span class="kn">import</span> <span class="n">ParameterCollection</span> <span class="k">as</span> <span class="n">_ParameterCollection</span>
+<span class="kn">from</span> <span class="nn">..shared</span> <span class="kn">import</span> <span class="n">evaluation</span> <span class="k">as</span> <span class="n">_evaluation</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">database</span> <span class="k">as</span> <span class="n">_database</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">operators</span> <span class="k">as</span> <span class="n">_operators</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">parameters</span> <span class="k">as</span> <span class="n">_parameters</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">reporting</span> <span class="k">as</span> <span class="n">_reporting</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">state</span> <span class="k">as</span> <span class="n">_state</span>
+
+
+<div class="viewcode-block" id="EvolutionaryAlgorithm"><a class="viewcode-back" href="../../../../autoapi/alogos/index.html#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm">[docs]</a><span class="k">class</span> <span class="nc">EvolutionaryAlgorithm</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Evolutionary algorithm for searching an optimal string in a grammar&#39;s language.</span>
+
+<span class="sd">    The role of this class is explained by first introducing</span>
+<span class="sd">    basic concepts from optimization theory and the field of</span>
+<span class="sd">    grammar-guided genetic programming.</span>
+<span class="sd">    Then the usage of this evolutionary algorithm is explained.</span>
+
+<span class="sd">    1. Concepts from optimization theory</span>
+
+<span class="sd">        - Optimization: In general terms, optimization means to search</span>
+<span class="sd">          for the best item out of many alternatives, or in other words,</span>
+<span class="sd">          an optimal solution out of many candidate solutions.</span>
+<span class="sd">        - Search space: The set of all candidate solutions is called</span>
+<span class="sd">          the search space. It can have a finite or infinite number of</span>
+<span class="sd">          elements and there can be mathematical relationships between</span>
+<span class="sd">          them, which can be used to efficiently sample the space.</span>
+<span class="sd">        - Search goal: Having a best or optimal item in the space</span>
+<span class="sd">          requires that there is an order on the items. Such an order</span>
+<span class="sd">          can be established in different ways, but the most common one</span>
+<span class="sd">          is to define an objective function, which takes an item as</span>
+<span class="sd">          input and returns a number as output. This number represents</span>
+<span class="sd">          a quality score or fitness of the item and puts a weak order</span>
+<span class="sd">          on all items, which means that some of them can be equally</span>
+<span class="sd">          good and therefore multiple optimal items may exist that</span>
+<span class="sd">          share the best quality score.</span>
+<span class="sd">        - Search method: There are many optimization algorithms that</span>
+<span class="sd">          work very efficiently on specific search spaces with certain</span>
+<span class="sd">          mathematical structure. Methods that are more general and can</span>
+<span class="sd">          act on a large variety of search spaces are sometimes called</span>
+<span class="sd">          metaheuristics. They are usually stochastic optimization</span>
+<span class="sd">          algorithms, which means they have a random element to them</span>
+<span class="sd">          and that implies that running them several times can produce</span>
+<span class="sd">          different results, i.e. find candidate solutions of different</span>
+<span class="sd">          quality. They don&#39;t come with any guarantee to find a good</span>
+<span class="sd">          or optimal solution, but often can successfully do so in</span>
+<span class="sd">          hard optimization problems and are therefore often used in</span>
+<span class="sd">          practice when the search space can not be tackled with exact</span>
+<span class="sd">          methods. An evolutionary algorithm is a prominent</span>
+<span class="sd">          example of a population-based metaheuristic, which was</span>
+<span class="sd">          originally inspired by the process of natural evolution.</span>
+<span class="sd">          Genetic programming is one subdiscipline in the field of</span>
+<span class="sd">          evolutionary computation that deals with optimization in</span>
+<span class="sd">          spaces of programs. Grammar-guided genetic programming (G3P)</span>
+<span class="sd">          is one flavor of it that allows to define the search space</span>
+<span class="sd">          with a context-free grammar, which is very often used in</span>
+<span class="sd">          computer science to define various kinds of formal languages,</span>
+<span class="sd">          including modern programming languages like Python or Rust.</span>
+
+<span class="sd">    2. Concepts from grammar-guided genetic programming</span>
+
+<span class="sd">        - A grammar can be used to define a formal language.</span>
+<span class="sd">        - A formal language is a finite or infinite set of string.</span>
+<span class="sd">        - A search algorithm can try to find the best item in</span>
+<span class="sd">          a set according to a given search goal.</span>
+<span class="sd">        - An objective function can define a search goal by assigning</span>
+<span class="sd">          a score to each item in a set, so that the item with</span>
+<span class="sd">          minimum or maximum score are considered the best ones and</span>
+<span class="sd">          need to be found.</span>
+
+<span class="sd">    This class provides a metaheuristic search method known as</span>
+<span class="sd">    evolutionary algorithm, which was tailored for use with different</span>
+<span class="sd">    grammar-guided genetic programming systems such as Grammatical</span>
+<span class="sd">    Evolution (GE) and Context-Free Grammar Genetic</span>
+<span class="sd">    Programming (CFG-GP). It uses following concepts that are directly</span>
+<span class="sd">    relevant for the usage of this class:</span>
+<span class="sd">    </span>
+<span class="sd">    - Individual: An individual represents a single candidate solution</span>
+<span class="sd">      and comes with a genotype, phenotype and fitness.</span>
+<span class="sd">      The genotype can be modified with variation operators to give</span>
+<span class="sd">      rise to new closely related genotypes and thereby move through</span>
+<span class="sd">      the search space. It also allows to derive a phenotype, which is</span>
+<span class="sd">      an element of the search space that in the case of grammar-guided</span>
+<span class="sd">      genetic programming is simply a string of the grammar&#39;s language.</span>
+<span class="sd">      The fitness is a number that indicates the quality of a candidate</span>
+<span class="sd">      solution and is</span>
+<span class="sd">      calculated by a user-provided objective function.</span>
+<span class="sd">    - Population: A population is a collection of individuals.</span>
+<span class="sd">    - Generation: A generation is one of several consecutive populations</span>
+<span class="sd">      used throughout a search with an evolutionary algorithm.</span>
+<span class="sd">      The search begins with the creation of a random initial population</span>
+<span class="sd">      and proceeds by generating one population after the other, each</span>
+<span class="sd">      based on the previous one. The idea is that the average fitness</span>
+<span class="sd">      of the individuals in the generations can be increased by</span>
+<span class="sd">      using variation operators to generate new, closely related</span>
+<span class="sd">      individuals together with selection operators that introduce a</span>
+<span class="sd">      preference for individuals with higher fitness. This is done by</span>
+
+<span class="sd">      1. Parent selection to choose individuals that are allowed to</span>
+<span class="sd">         create offspring.</span>
+<span class="sd">      2. Crossover to create new individuals by mixing the genotypes of</span>
+<span class="sd">         parent individuals.</span>
+<span class="sd">      3. Mutation to introduce slight random variations into the</span>
+<span class="sd">         offspring individuals.</span>
+<span class="sd">      4. Survivor selection to choose individuals that are allowed to</span>
+<span class="sd">         continue into the next generation.</span>
+
+<span class="sd">      All of these steps can be performed by different operators and</span>
+<span class="sd">      this class provides several well-known ones to modify how the</span>
+<span class="sd">      search is performed.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="s2">&quot;parameters&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;_report&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Initialization and reset</span>
+<div class="viewcode-block" id="EvolutionaryAlgorithm.__init__"><a class="viewcode-back" href="../../../../autoapi/alogos/index.html#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">grammar</span><span class="p">,</span>
+        <span class="n">objective_function</span><span class="p">,</span>
+        <span class="n">objective</span><span class="p">,</span>
+        <span class="n">system</span><span class="o">=</span><span class="s2">&quot;cfggpst&quot;</span><span class="p">,</span>
+        <span class="n">evaluator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create and parameterize an evolutionary algorithm.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        grammar : `~alogos.Grammar`</span>
+<span class="sd">            Context-free grammar that defines the search space.</span>
+<span class="sd">            A grammar specifies a formal language, which is a finite or</span>
+<span class="sd">            infinite set of strings. Each item of the search space</span>
+<span class="sd">            is simply a string of the grammar&#39;s language. The aim is</span>
+<span class="sd">            to find an optimal string according to a user-provided</span>
+<span class="sd">            objective.</span>
+<span class="sd">        objective_function : `~collections.abc.Callable`</span>
+<span class="sd">            A function that gets an item of the search space as input</span>
+<span class="sd">            and needs to return a numerical value for it as output.</span>
+<span class="sd">            In other words, it gets a phenotype and returns a fitness</span>
+<span class="sd">            value for it that represents how good it is.</span>
+
+<span class="sd">            Given that the search space is a grammar&#39;s language,</span>
+<span class="sd">            each candidate solution or phenotype is a string. Therefore</span>
+<span class="sd">            a very simple objective function could just measure the</span>
+<span class="sd">            length of each string and return that as fitness value::</span>
+
+<span class="sd">                def obj_fun(string):</span>
+<span class="sd">                    fitness = len(string)</span>
+<span class="sd">                    return fitness</span>
+
+<span class="sd">            More realistic objective functions will usually evaluate</span>
+<span class="sd">            the string in some way and measure how well it performs on</span>
+<span class="sd">            a task.</span>
+<span class="sd">        objective : `str`</span>
+<span class="sd">            Goal of the optimization, which is to find a candidate</span>
+<span class="sd">            solution that has either the minimum or maximum value</span>
+<span class="sd">            assigned to it by the objective function.</span>
+
+<span class="sd">            Possible values:</span>
+
+<span class="sd">            - ``&quot;min&quot;``: Minimization, i.e. looking for a candidate</span>
+<span class="sd">              solution with the smallest possible fitness value.</span>
+<span class="sd">            - ``&quot;max&quot;``: Maximization, i.e. looking for a candidate</span>
+<span class="sd">              solution with the highest possible fitness value.</span>
+<span class="sd">        system : `str`, optional</span>
+<span class="sd">            Grammar-guided gentic programming system used by the</span>
+<span class="sd">            evolutionary algorithm.</span>
+
+<span class="sd">            Possible values:</span>
+
+<span class="sd">            - ``&quot;cfggp&quot;``: CFG-GP, see `~alogos.systems.cfggp`.</span>
+<span class="sd">            - ``&quot;cfggpst&quot;``: CFG-GP-ST, see `~alogos.systems.cfggpst`.</span>
+<span class="sd">            - ``&quot;dsge&quot;``: DSGE, see `~alogos.systems.dsge`.</span>
+<span class="sd">            - ``&quot;ge&quot;``: GE, see `~alogos.systems.ge`.</span>
+<span class="sd">            - ``&quot;pige&quot;``: piGE, see `~alogos.systems.pige`.</span>
+<span class="sd">            - ``&quot;whge&quot;``: WHGE, see `~alogos.systems.whge`.</span>
+
+<span class="sd">            The system provides following components to the search</span>
+<span class="sd">            algorithm:</span>
+
+<span class="sd">            - Genotype representation: This is a system-specific,</span>
+<span class="sd">              indirect representation of a candidate solution,</span>
+<span class="sd">              e.g. a list of int, a bitarray, or a tree.</span>
+<span class="sd">            - Genotype-phenotype mapping: This is used to translate a</span>
+<span class="sd">              genotype to a phenotype. Note that a genotype is</span>
+<span class="sd">              system-specific, while a phenotype is a string of</span>
+<span class="sd">              the grammar&#39;s language.</span>
+<span class="sd">            - Random variation operators: These are used to move through</span>
+<span class="sd">              the search space by generating new genotypes that are</span>
+<span class="sd">              close or related to the original ones. This is achieved</span>
+<span class="sd">              by randomly introducing slight changes into a genotype</span>
+<span class="sd">              (mutation) or recombining multiple genotypes</span>
+<span class="sd">              into new ones (crossover).</span>
+<span class="sd">        evaluator : `~collections.abc.Callable`, optional</span>
+<span class="sd">            A function that gets a function together with a list of</span>
+<span class="sd">            items as input and needs to return a list of new items as</span>
+<span class="sd">            output. The task of this function is to evaluate the given</span>
+<span class="sd">            function for each item in the list, and collect the return</span>
+<span class="sd">            values in a new list. All function calls are assumed to be</span>
+<span class="sd">            independent and may be computed serially, in parallel or in</span>
+<span class="sd">            a distributed fashion.</span>
+<span class="sd">        **kwargs : `dict`, optional</span>
+<span class="sd">            Further keyword arguments are forwarded either to the</span>
+<span class="sd">            evolutionary algorithm or to the chosen `system`. This</span>
+<span class="sd">            allows to control the search process in great detail.</span>
+<span class="sd">            Every parameter can also be changed later on via the</span>
+<span class="sd">            attribute `parameters` of the generated instance.</span>
+<span class="sd">            This can be done before starting a run with the `run`</span>
+<span class="sd">            method, but also throughout a run when it is performed</span>
+<span class="sd">            one step at a time by repeatedly calling the `step` method.</span>
+
+<span class="sd">            For a description of available keyword arguments, see</span>
+
+<span class="sd">            - Parameters for the evolutionary algorithm itself:</span>
+<span class="sd">              `~alogos._optimization.ea.parameters.default_parameters`</span>
+<span class="sd">            - Parameters of the chosen G3P system:</span>
+
+<span class="sd">              - CFG-GP: `~alogos.systems.cfggp.default_parameters`</span>
+<span class="sd">              - CFG-GP-ST: `~alogos.systems.cfggpst.default_parameters`</span>
+<span class="sd">              - DSGE: `~alogos.systems.dsge.default_parameters`</span>
+<span class="sd">              - GE: `~alogos.systems.ge.default_parameters`</span>
+<span class="sd">              - piGE: `~alogos.systems.pige.default_parameters`</span>
+<span class="sd">              - WHGE: `~alogos.systems.whge.default_parameters`</span>
+
+<span class="sd">            For example, when the chosen system is GE, the creation</span>
+<span class="sd">            and parametrization of the evolutionary algorithm could</span>
+<span class="sd">            look like this::</span>
+
+<span class="sd">                import alogos as al</span>
+
+<span class="sd">                grammar = al.Grammar(&quot;&lt;S&gt; ::= 1 | 22 | 333&quot;)</span>
+
+<span class="sd">                def obj_fun(string):</span>
+<span class="sd">                    return len(string)</span>
+
+<span class="sd">                ea = al.EvolutionaryAlgorithm(</span>
+<span class="sd">                    grammar, obj_fun, &quot;max&quot;, system=&quot;ge&quot;,</span>
+<span class="sd">                    max_generations=10, max_wraps=2)</span>
+<span class="sd">                ea.run()</span>
+
+<span class="sd">            Note that in this example ``max_generations`` is a parameter</span>
+<span class="sd">            of the evolutionary algorithm itself and therefore it can be</span>
+<span class="sd">            used no matter which system is chosen.</span>
+<span class="sd">            In contrast, ``max_wraps`` is a parameter specific to</span>
+<span class="sd">            the system GE and would not be accepted if for example the</span>
+<span class="sd">            system CFG-GP were chosen by passing ``system=&quot;cfggp&quot;``</span>
+<span class="sd">            instead of ``system=&quot;ge&quot;``.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ParameterError</span>
+<span class="sd">            If a parameter is provided that is not known to the</span>
+<span class="sd">            evolutionary algorithm or to the chosen system.</span>
+<span class="sd">            A list of available parameters and their default values</span>
+<span class="sd">            will be printed.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Argument processing</span>
+        <span class="n">_ap</span><span class="o">.</span><span class="n">check_arg</span><span class="p">(</span><span class="s2">&quot;grammar&quot;</span><span class="p">,</span> <span class="n">grammar</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="p">(</span><span class="n">_Grammar</span><span class="p">,))</span>
+        <span class="n">_ap</span><span class="o">.</span><span class="n">callable_arg</span><span class="p">(</span><span class="s2">&quot;objective_function&quot;</span><span class="p">,</span> <span class="n">objective_function</span><span class="p">)</span>
+        <span class="n">objective</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span>
+            <span class="s2">&quot;objective&quot;</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">),</span> <span class="n">to_lower</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="n">system</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span>
+            <span class="s2">&quot;system&quot;</span><span class="p">,</span>
+            <span class="n">system</span><span class="p">,</span>
+            <span class="n">vals</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;cfggp&quot;</span><span class="p">,</span> <span class="s2">&quot;cfggpst&quot;</span><span class="p">,</span> <span class="s2">&quot;dsge&quot;</span><span class="p">,</span> <span class="s2">&quot;ge&quot;</span><span class="p">,</span> <span class="s2">&quot;pige&quot;</span><span class="p">,</span> <span class="s2">&quot;whge&quot;</span><span class="p">),</span>
+            <span class="n">to_lower</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">system</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">_systems</span><span class="p">,</span> <span class="n">system</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">evaluator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">evaluator</span> <span class="o">=</span> <span class="n">_evaluation</span><span class="o">.</span><span class="n">default_evaluator</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_ap</span><span class="o">.</span><span class="n">callable_arg</span><span class="p">(</span><span class="s2">&quot;evaluator&quot;</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">)</span>
+
+        <span class="c1"># Parameter processing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_parameters</span><span class="p">(</span>
+            <span class="n">grammar</span><span class="p">,</span> <span class="n">objective_function</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">,</span> <span class="n">kwargs</span>
+        <span class="p">)</span>
+
+        <span class="c1"># State and database (re)initialization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+        <span class="c1"># Reporting</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_report</span> <span class="o">=</span> <span class="n">_reporting</span><span class="o">.</span><span class="n">MinimalReporter</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="n">_Number</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">verbose</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_report</span> <span class="o">=</span> <span class="n">_reporting</span><span class="o">.</span><span class="n">MinimalReporter</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_report</span> <span class="o">=</span> <span class="n">_reporting</span><span class="o">.</span><span class="n">VerboseReporter</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_process_parameters</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">grammar</span><span class="p">,</span> <span class="n">objective_function</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">,</span> <span class="n">kwargs</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Try to assign keyword arguments to predefined parameters.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ParameterError</span>
+<span class="sd">            If a keyword argument is passed whose key is not a known</span>
+<span class="sd">            parameter name.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Dictionary of algorithm parameters and system parameters with all default values</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">grammar</span><span class="o">=</span><span class="n">grammar</span><span class="p">,</span>
+            <span class="n">objective_function</span><span class="o">=</span><span class="n">objective_function</span><span class="p">,</span>
+            <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span>
+            <span class="n">system</span><span class="o">=</span><span class="n">system</span><span class="p">,</span>
+            <span class="n">evaluator</span><span class="o">=</span><span class="n">evaluator</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_parameters</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">system</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">)</span>
+
+        <span class="c1"># Overwrite default values with user-provided kwargs, raise error if a name is unknown</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">_ParameterCollection</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                <span class="n">params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_unknown_parameter_error</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+        <span class="c1"># Convert values</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;verbose&quot;</span><span class="p">],</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;verbose&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;verbose&quot;</span><span class="p">])</span>
+
+        <span class="c1"># Check types</span>
+        <span class="n">_ap</span><span class="o">.</span><span class="n">int_arg</span><span class="p">(</span><span class="s2">&quot;population_size&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;population_size&quot;</span><span class="p">],</span> <span class="n">min_incl</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">_ap</span><span class="o">.</span><span class="n">int_arg</span><span class="p">(</span><span class="s2">&quot;offspring_size&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;offspring_size&quot;</span><span class="p">],</span> <span class="n">min_incl</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">_ap</span><span class="o">.</span><span class="n">int_arg</span><span class="p">(</span><span class="s2">&quot;verbose&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;verbose&quot;</span><span class="p">],</span> <span class="n">min_incl</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">_ap</span><span class="o">.</span><span class="n">check_arg</span><span class="p">(</span><span class="s2">&quot;database_on&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;database_on&quot;</span><span class="p">],</span> <span class="n">types</span><span class="o">=</span><span class="p">(</span><span class="nb">bool</span><span class="p">,))</span>
+        <span class="n">_ap</span><span class="o">.</span><span class="n">check_arg</span><span class="p">(</span><span class="s2">&quot;database_location&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;database_location&quot;</span><span class="p">],</span> <span class="n">types</span><span class="o">=</span><span class="p">(</span><span class="nb">str</span><span class="p">,))</span>
+        <span class="k">return</span> <span class="n">params</span>
+
+    <span class="c1"># Representations</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the &quot;official&quot; string representation of the algorithm.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://docs.python.org/3/reference/datamodel.html#object.__repr__</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;EvolutionaryAlgorithm object at </span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the &quot;informal&quot; string representation of the algorithm.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://docs.python.org/3/reference/datamodel.html#object.__str__</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_repr_pretty_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Provide rich display representation for IPython and Jupyter.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://ipython.readthedocs.io/en/stable/config/integrating.html#rich-display</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">cycle</span><span class="p">:</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+    <span class="c1"># Optimization algorithm</span>
+<div class="viewcode-block" id="EvolutionaryAlgorithm.step"><a class="viewcode-back" href="../../../../autoapi/alogos/index.html#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform a single step of the evolutionary search.</span>
+
+<span class="sd">        Taking a single step means that one generation is added,</span>
+<span class="sd">        which can happen in one of two ways:</span>
+
+<span class="sd">        - If the run has just started, the first generation is created</span>
+<span class="sd">          by initializating a population.</span>
+<span class="sd">        - If the run is already ongoing, a new generation is derived</span>
+<span class="sd">          from the current generation by a process that involves</span>
+<span class="sd">          1) parent selection that prefers fitter individuals,</span>
+<span class="sd">          2) generating an offspring population by applying random</span>
+<span class="sd">          variation operators (mutation, crossover) to the parents and</span>
+<span class="sd">          3) survivor selection that again prefers fitter individuals.</span>
+
+<span class="sd">        Two important notes about the behavior of this method:</span>
+
+<span class="sd">        - It contrast to the `run` method, it does not check</span>
+<span class="sd">          if any stop criterion has been met!</span>
+<span class="sd">          For example, when the number of generations reaches</span>
+<span class="sd">          the value provided by the ``max_generations`` parameter,</span>
+<span class="sd">          calling this method will regardless add another generation.</span>
+<span class="sd">        - Since this method has to be called repeatedly to perform</span>
+<span class="sd">          the individual steps of a run, it enables to change the</span>
+<span class="sd">          parameters of the evolutionary algorithm on the fly by</span>
+<span class="sd">          modifying the `parameters` attribute between calls.</span>
+<span class="sd">          This means the search can be adjusted in much greater detail</span>
+<span class="sd">          than with the `run` method.</span>
+<span class="sd">          For example, the mutation and crossover rates can be gradually</span>
+<span class="sd">          modified during a run to reduce the amount of variation when</span>
+<span class="sd">          getting closer to the goal. It is also possible to change</span>
+<span class="sd">          the population size or even the objective function.</span>
+<span class="sd">          Fixed throughout a run, however, are the grammar</span>
+<span class="sd">          (=search space) and the G3P system (=internal representation).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        best_individual : `~alogos.systems._shared.representation.Individual` of the chosen G3P system</span>
+<span class="sd">            The individual with the best fitness found so far in the</span>
+<span class="sd">            entire search. This means the individual may have been</span>
+<span class="sd">            discovered not in the current step but in an earlier one.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Start time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_store_start_time</span><span class="p">()</span>
+
+        <span class="c1"># Check parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_parameter_consistency</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">population</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># CREATE first generation</span>
+            <span class="n">pop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_population</span><span class="p">()</span>
+
+            <span class="c1"># Evaluate</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_population</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>
+
+            <span class="c1"># Store and report</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_finish_generation</span><span class="p">(</span><span class="n">survivor_population</span><span class="o">=</span><span class="n">pop</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># SELECT parents</span>
+            <span class="n">parent_population</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_parents</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">population</span><span class="p">)</span>
+
+            <span class="c1"># CREATE offspring by random variation</span>
+            <span class="n">crossed_over_population</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cross_over</span><span class="p">(</span><span class="n">parent_population</span><span class="p">)</span>
+            <span class="n">mutated_population</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mutate</span><span class="p">(</span><span class="n">crossed_over_population</span><span class="p">)</span>
+
+            <span class="c1"># Evaluate</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_population</span><span class="p">(</span><span class="n">mutated_population</span><span class="p">)</span>
+
+            <span class="c1"># SELECT survivors</span>
+            <span class="n">survivor_population</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_survivors</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">population</span><span class="p">,</span> <span class="n">mutated_population</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Store and report</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_finish_generation</span><span class="p">(</span>
+                <span class="n">parent_population</span><span class="p">,</span>
+                <span class="n">crossed_over_population</span><span class="p">,</span>
+                <span class="n">mutated_population</span><span class="p">,</span>
+                <span class="n">survivor_population</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Stop time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_store_stop_time</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">best_individual</span></div>
+
+<div class="viewcode-block" id="EvolutionaryAlgorithm.run"><a class="viewcode-back" href="../../../../autoapi/alogos/index.html#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform one search step after another until a stop criterion is met.</span>
+
+<span class="sd">        A user can set a single or multiple stop criteria. The algorithm</span>
+<span class="sd">        will halt when one of them is fulfilled. Caution: If the</span>
+<span class="sd">        criteria are set in such a way that they can never be realized,</span>
+<span class="sd">        e.g. because an unreachable fitness threshold was chosen,</span>
+<span class="sd">        then the run will not halt until it is interrupted from the</span>
+<span class="sd">        outside.</span>
+
+<span class="sd">        Note that after a search has halted, it is possible to change</span>
+<span class="sd">        the stop criteria and call `run` again to continue the search.</span>
+<span class="sd">        This can also be done multiple times.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        best_individual : `~alogos.systems._shared.representation.Individual` of the chosen G3P system</span>
+<span class="sd">            The individual with the best fitness found so far in the</span>
+<span class="sd">            entire search.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ParameterError</span>
+<span class="sd">            If no stop criterion was set. This prevents starting a run</span>
+<span class="sd">            that clearly would not halt.</span>
+
+<span class="sd">        Warns</span>
+<span class="sd">        -----</span>
+<span class="sd">        OptimizationWarning</span>
+<span class="sd">            If not a single step was taken, because some stop criterion</span>
+<span class="sd">            was already fulfilled by the current search state.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+
+        <span class="c1"># Check if a stop criterion was set</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">pr</span><span class="o">.</span><span class="n">max_generations</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_fitness_evaluations</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_runtime_in_seconds</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_or_min_fitness</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="p">):</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_stop_parameter_error</span><span class="p">()</span>
+
+        <span class="c1"># Run step after step until a stop criterion is met</span>
+        <span class="n">gen_before</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">generation</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stop_criterion_met</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="n">gen_after</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">generation</span>
+
+        <span class="c1"># Warn if not a single step was performed in this call</span>
+        <span class="k">if</span> <span class="n">gen_after</span> <span class="o">==</span> <span class="n">gen_before</span><span class="p">:</span>
+            <span class="n">_warnings</span><span class="o">.</span><span class="n">_warn_no_step_in_ea_performed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">generation</span><span class="p">)</span>
+
+        <span class="c1"># Report</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">run_end</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">best_individual</span></div>
+
+<div class="viewcode-block" id="EvolutionaryAlgorithm.is_stop_criterion_met"><a class="viewcode-back" href="../../../../autoapi/alogos/index.html#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.is_stop_criterion_met">[docs]</a>    <span class="k">def</span> <span class="nf">is_stop_criterion_met</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the current search state meets any stop criterion.</span>
+
+<span class="sd">        This method is used internally by the `run` method.</span>
+<span class="sd">        It can also be useful when constructing a specialized search</span>
+<span class="sd">        that repeatedly calls the `step` method, where it is the</span>
+<span class="sd">        responsibility of the user to ensure a stop.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        stop : bool</span>
+<span class="sd">            ``True`` if a stop criterion is met, ``False`` otherwise.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+
+        <span class="c1"># Maximum number of generations</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_generations</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">num_generations</span> <span class="o">&gt;=</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_generations</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="c1"># Maximum number of fitness evaluations</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_fitness_evaluations</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">num_phe_to_fit_evaluations</span> <span class="o">&gt;=</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_fitness_evaluations</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="c1"># Maximum runtime</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_runtime_in_seconds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">runtime</span> <span class="o">&gt;=</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_runtime_in_seconds</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="c1"># Fitness threshold</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_or_min_fitness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">best_individual</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">objective</span> <span class="o">==</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">best_individual</span><span class="o">.</span><span class="n">fitness</span> <span class="o">&lt;=</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_or_min_fitness</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="kc">True</span>
+                <span class="k">elif</span> <span class="n">pr</span><span class="o">.</span><span class="n">objective</span> <span class="o">==</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">best_individual</span><span class="o">.</span><span class="n">fitness</span> <span class="o">&gt;=</span> <span class="n">pr</span><span class="o">.</span><span class="n">max_or_min_fitness</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="c1"># No stop criterion is met</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="EvolutionaryAlgorithm.reset"><a class="viewcode-back" href="../../../../autoapi/alogos/index.html#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reset the current search state to enable a fresh start.</span>
+
+<span class="sd">        Not all aspects of the algorithm object are simply set back to</span>
+<span class="sd">        their initial state:</span>
+
+<span class="sd">        - Parameters are not reset to their default values. If any</span>
+<span class="sd">          non-default parameters were passed during object-creation or</span>
+<span class="sd">          if they were set to user-provided values later via the</span>
+<span class="sd">          `parameters` attribute, then these values are kept and not</span>
+<span class="sd">          overwritten by default values. The purpose of this behavior</span>
+<span class="sd">          is to enable repeated runs that are directly comparable.</span>
+
+<span class="sd">        - If a database was used, it is reset, but what that means</span>
+<span class="sd">          depends on its location:</span>
+
+<span class="sd">            - If the database location is in memory, the content is</span>
+<span class="sd">              entirely lost during a reset.</span>
+
+<span class="sd">            - If the database location is a file, it is renamed during a</span>
+<span class="sd">              reset and a new file is created. This means the content of</span>
+<span class="sd">              a run is not lost but relocated.</span>
+
+<span class="sd">        - Cached values are fully deleted. This means previous</span>
+<span class="sd">          phenotype-to-fitness evaluations will not be reused in a</span>
+<span class="sd">          follow-up run.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># State: storage of main data generated during a search in a single object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">_state</span><span class="o">.</span><span class="n">State</span><span class="p">()</span>
+
+        <span class="c1"># Cache: optional storage of least recently used (lru) mapping results for lookup</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">gen_to_phe_cache_lookup_on</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">_gen_to_phe_cache</span> <span class="o">=</span> <span class="n">_pylru</span><span class="o">.</span><span class="n">lrucache</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">gen_to_phe_cache_size</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">_gen_to_phe_cache</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">phe_to_fit_cache_lookup_on</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">_phe_to_fit_cache</span> <span class="o">=</span> <span class="n">_pylru</span><span class="o">.</span><span class="n">lrucache</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">phe_to_fit_cache_size</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">_phe_to_fit_cache</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Database: optional storage of all data generated during a search in an SQL database</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">database_on</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">_database</span><span class="o">.</span><span class="n">Database</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">database_location</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">system</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="c1"># 1) Beginning</span>
+    <span class="k">def</span> <span class="nf">_initialize_population</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create the initial population.</span>
+
+<span class="sd">        There are different ways this can be done. Which one is used</span>
+<span class="sd">        is decided by the default or user-provided parameters.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+
+        <span class="c1"># Report start of initialization</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">init_start</span><span class="p">(</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">generation</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">_utilities</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">current_time_readable</span><span class="p">()</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Generate initial population</span>
+        <span class="n">operator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_operator</span><span class="p">(</span>
+            <span class="s2">&quot;Population initialization&quot;</span><span class="p">,</span>
+            <span class="n">pr</span><span class="o">.</span><span class="n">init_pop_operator</span><span class="p">,</span>
+            <span class="n">pr</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">init_population</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">pr</span><span class="p">[</span><span class="s2">&quot;init_pop_size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pr</span><span class="p">[</span><span class="s2">&quot;population_size&quot;</span><span class="p">]</span>
+        <span class="n">initial_population</span> <span class="o">=</span> <span class="n">operator</span><span class="p">(</span><span class="n">pr</span><span class="o">.</span><span class="n">grammar</span><span class="p">,</span> <span class="n">pr</span><span class="p">)</span>
+
+        <span class="c1"># Set individual ids</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_new_ids</span><span class="p">(</span><span class="n">initial_population</span><span class="p">)</span>
+
+        <span class="c1"># Set state</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">population</span> <span class="o">=</span> <span class="n">initial_population</span>
+
+        <span class="c1"># Report end of initialization</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">init_end</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">initial_population</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">initial_population</span>
+
+    <span class="c1"># 2) Evaluation</span>
+    <span class="k">def</span> <span class="nf">_evaluate_population</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate mappings for each individual.</span>
+
+<span class="sd">        1) Genotype-to-phenotype mapping: A system-specific genotype</span>
+<span class="sd">           is translated into a system-independent phenotype.</span>
+<span class="sd">        2) Phenotype-to-fitness mapping: A phenotype, which is a string</span>
+<span class="sd">           of the grammar&#39;s language, gets a fitness assigned to it</span>
+<span class="sd">           by evaluating the user-provided objective function on it.</span>
+<span class="sd">           In realistic problems this can be a costly operation,</span>
+<span class="sd">           therefore it makes sense to store the result in a limited</span>
+<span class="sd">           cache or unlimited database and reuse it instead of</span>
+<span class="sd">           performing the calculation again. The behavior is chosen</span>
+<span class="sd">           by the default or user-provided parameters.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+
+        <span class="c1"># Genotype-to-phenotype mapping</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">map_gen_phe</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_phenotypes</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+
+        <span class="c1"># Phenotype-to-fitness mapping</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">map_phe_fit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_fitnesses</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_calculate_phenotypes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform the genotype-to_phenotype mapping.</span>
+
+<span class="sd">        Possible crashes are prevented by wrapping the function such</span>
+<span class="sd">        that default values are returned in case of an error or invalid</span>
+<span class="sd">        return value.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+        <span class="n">cache</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">_gen_to_phe_cache</span>
+        <span class="n">cache_on</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">gen_to_phe_cache_lookup_on</span>
+
+        <span class="c1"># Lookup or calculate phenotype to fitness &amp; details mapping</span>
+        <span class="n">gen_phe_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="c1"># 1) Determine unique genotypes</span>
+        <span class="n">unique_genotypes</span> <span class="o">=</span> <span class="p">{</span><span class="n">ind</span><span class="o">.</span><span class="n">genotype</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">population</span><span class="p">}</span>
+        <span class="n">remaining_genotypes</span> <span class="o">=</span> <span class="n">unique_genotypes</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">n_unique</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_genotypes</span><span class="p">)</span>
+
+        <span class="c1"># 2) For each unique genotype, look up if it is available in cache</span>
+        <span class="k">if</span> <span class="n">cache_on</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="n">unique_genotypes</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">gen_phe_map</span><span class="p">[</span><span class="n">gen</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="n">gen</span><span class="p">]</span>
+                    <span class="n">remaining_genotypes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+        <span class="n">n_after_cache</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining_genotypes</span><span class="p">)</span>
+
+        <span class="c1"># 3) For each remaining genotype, calculate the mapping</span>
+        <span class="k">if</span> <span class="n">remaining_genotypes</span><span class="p">:</span>
+            <span class="c1"># Evaluate</span>
+            <span class="n">forward</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">forward</span>
+            <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="n">remaining_genotypes</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">phe</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">pr</span><span class="o">.</span><span class="n">grammar</span><span class="p">,</span> <span class="n">gen</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">_exceptions</span><span class="o">.</span><span class="n">MappingError</span><span class="p">:</span>
+                    <span class="n">phe</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">gen_phe_map</span><span class="p">[</span><span class="n">gen</span><span class="p">]</span> <span class="o">=</span> <span class="n">phe</span>
+
+            <span class="c1"># Update state</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">num_gen_to_phe_evaluations</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining_genotypes</span><span class="p">)</span>
+
+        <span class="c1"># Assign values from lookup or calculation</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">population</span><span class="p">:</span>
+            <span class="n">ind</span><span class="o">.</span><span class="n">phenotype</span> <span class="o">=</span> <span class="n">gen_phe_map</span><span class="p">[</span><span class="n">ind</span><span class="o">.</span><span class="n">genotype</span><span class="p">]</span>
+
+        <span class="c1"># Update cache</span>
+        <span class="k">if</span> <span class="n">cache_on</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="n">unique_genotypes</span><span class="p">:</span>
+                <span class="n">cache</span><span class="p">[</span><span class="n">gen</span><span class="p">]</span> <span class="o">=</span> <span class="n">gen_phe_map</span><span class="p">[</span><span class="n">gen</span><span class="p">]</span>
+
+        <span class="c1"># Report</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">calc_phe</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">),</span> <span class="n">n_unique</span><span class="p">,</span> <span class="n">n_unique</span> <span class="o">-</span> <span class="n">n_after_cache</span><span class="p">,</span> <span class="n">n_after_cache</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_calculate_fitnesses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform the phenotype-to-fitness mapping.</span>
+
+<span class="sd">        Possible crashes are prevented by wrapping the function such</span>
+<span class="sd">        that default values are returned in case of an error or invalid</span>
+<span class="sd">        return value.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+        <span class="n">cache</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">_phe_to_fit_cache</span>
+        <span class="n">cache_on</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">phe_to_fit_cache_lookup_on</span>
+        <span class="n">db_on</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">phe_to_fit_database_lookup_on</span> <span class="ow">and</span> <span class="n">pr</span><span class="o">.</span><span class="n">database_on</span>
+
+        <span class="c1"># Lookup or calculate phenotype to fitness &amp; details mapping</span>
+        <span class="n">phe_fit_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="c1"># 1) Determine unique phenotypes</span>
+        <span class="n">unique_phenotypes</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list instead set to preserve evaluation order</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">population</span><span class="p">:</span>
+            <span class="n">phe</span> <span class="o">=</span> <span class="n">ind</span><span class="o">.</span><span class="n">phenotype</span>
+            <span class="k">if</span> <span class="n">phe</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">unique_phenotypes</span><span class="p">:</span>
+                <span class="n">unique_phenotypes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">phe</span><span class="p">)</span>
+        <span class="n">remaining_phenotypes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">n_unique</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_phenotypes</span><span class="p">)</span>
+
+        <span class="c1"># 2) For each unique phenotype, look up if it is available in cache</span>
+        <span class="k">if</span> <span class="n">cache_on</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">phe</span> <span class="ow">in</span> <span class="n">unique_phenotypes</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">phe_fit_map</span><span class="p">[</span><span class="n">phe</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="n">phe</span><span class="p">]</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="n">remaining_phenotypes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">phe</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">remaining_phenotypes</span> <span class="o">=</span> <span class="n">unique_phenotypes</span>
+        <span class="n">n_after_cache</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining_phenotypes</span><span class="p">)</span>
+
+        <span class="c1"># 3) For each remaining phenotype, look up if it is available in database</span>
+        <span class="c1">#    because evaluation of the objective function could be very costly</span>
+        <span class="k">if</span> <span class="n">db_on</span> <span class="ow">and</span> <span class="n">remaining_phenotypes</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">phe</span><span class="p">,</span> <span class="n">fit_det</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">_lookup_phenotype_evaluations</span><span class="p">(</span>
+                <span class="n">remaining_phenotypes</span>
+            <span class="p">):</span>
+                <span class="n">phe_fit_map</span><span class="p">[</span><span class="n">phe</span><span class="p">]</span> <span class="o">=</span> <span class="n">fit_det</span>
+                <span class="n">remaining_phenotypes</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">phe</span><span class="p">)</span>
+        <span class="n">n_after_db</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining_phenotypes</span><span class="p">)</span>
+
+        <span class="c1"># 4) For each remaining phenotype, calculate the objective function</span>
+        <span class="k">if</span> <span class="n">remaining_phenotypes</span><span class="p">:</span>
+            <span class="c1"># Evaluate</span>
+            <span class="n">func</span> <span class="o">=</span> <span class="n">_evaluation</span><span class="o">.</span><span class="n">get_robust_fitness_function</span><span class="p">(</span>
+                <span class="n">pr</span><span class="o">.</span><span class="n">objective_function</span><span class="p">,</span> <span class="n">pr</span><span class="o">.</span><span class="n">objective</span>
+            <span class="p">)</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">evaluator</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">remaining_phenotypes</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">phe</span><span class="p">,</span> <span class="n">fit_det</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">remaining_phenotypes</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+                <span class="n">phe_fit_map</span><span class="p">[</span><span class="n">phe</span><span class="p">]</span> <span class="o">=</span> <span class="n">fit_det</span>
+
+            <span class="c1"># Update state</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">num_phe_to_fit_evaluations</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining_phenotypes</span><span class="p">)</span>
+
+        <span class="c1"># Assign values from lookup or calculation</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">population</span><span class="p">:</span>
+            <span class="n">ind</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span> <span class="n">ind</span><span class="o">.</span><span class="n">details</span><span class="p">[</span><span class="s2">&quot;evaluation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">phe_fit_map</span><span class="p">[</span><span class="n">ind</span><span class="o">.</span><span class="n">phenotype</span><span class="p">]</span>
+
+        <span class="c1"># Update cache</span>
+        <span class="k">if</span> <span class="n">cache_on</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">phe</span> <span class="ow">in</span> <span class="n">unique_phenotypes</span><span class="p">:</span>
+                <span class="n">cache</span><span class="p">[</span><span class="n">phe</span><span class="p">]</span> <span class="o">=</span> <span class="n">phe_fit_map</span><span class="p">[</span><span class="n">phe</span><span class="p">]</span>
+
+        <span class="c1"># Report</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">calc_fit</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">),</span>
+                <span class="n">n_unique</span><span class="p">,</span>
+                <span class="n">n_unique</span> <span class="o">-</span> <span class="n">n_after_cache</span><span class="p">,</span>
+                <span class="n">n_after_cache</span> <span class="o">-</span> <span class="n">n_after_db</span><span class="p">,</span>
+                <span class="n">n_after_db</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_assign_new_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Assign a unique id to each individual created in a search.&quot;&quot;&quot;</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">population</span><span class="p">:</span>
+            <span class="n">ind</span><span class="o">.</span><span class="n">details</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">num_individuals</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">num_individuals</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># 3) Selection</span>
+    <span class="k">def</span> <span class="nf">_select_parents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_population</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Select parent individuals from given population.</span>
+
+<span class="sd">        There are different ways this can be done. Which one is used</span>
+<span class="sd">        is decided by the default or user-provided parameters.</span>
+
+<span class="sd">        The population of selected parents contains copies of the</span>
+<span class="sd">        original individuals, so they have their own ids and can be</span>
+<span class="sd">        tracked for result analysis.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+
+        <span class="c1"># Select parent individuals</span>
+        <span class="n">operator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_operator</span><span class="p">(</span>
+            <span class="s2">&quot;Parent selection&quot;</span><span class="p">,</span> <span class="n">pr</span><span class="o">.</span><span class="n">parent_selection_operator</span><span class="p">,</span> <span class="n">_operators</span><span class="o">.</span><span class="n">selection</span>
+        <span class="p">)</span>
+        <span class="n">selected_individuals</span> <span class="o">=</span> <span class="n">operator</span><span class="p">(</span>
+            <span class="n">individuals</span><span class="o">=</span><span class="n">current_population</span><span class="o">.</span><span class="n">individuals</span><span class="p">,</span>
+            <span class="n">sample_size</span><span class="o">=</span><span class="n">pr</span><span class="o">.</span><span class="n">offspring_size</span><span class="p">,</span>
+            <span class="n">objective</span><span class="o">=</span><span class="n">pr</span><span class="o">.</span><span class="n">objective</span><span class="p">,</span>
+            <span class="n">parameters</span><span class="o">=</span><span class="n">pr</span><span class="p">,</span>
+            <span class="n">state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Create parent population</span>
+        <span class="n">new_individuals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">selected_individuals</span><span class="p">:</span>
+            <span class="n">new_ind</span> <span class="o">=</span> <span class="n">ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">new_ind</span><span class="o">.</span><span class="n">details</span><span class="p">[</span><span class="s2">&quot;parent_ids&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind</span><span class="o">.</span><span class="n">details</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]]</span>
+            <span class="n">new_individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_ind</span><span class="p">)</span>
+        <span class="n">parent_population</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span><span class="n">new_individuals</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_new_ids</span><span class="p">(</span><span class="n">parent_population</span><span class="p">)</span>
+
+        <span class="c1"># Report</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">select_par</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">generation</span><span class="p">,</span>
+                <span class="n">_utilities</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">current_time_readable</span><span class="p">(),</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">current_population</span><span class="p">),</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">parent_population</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">parent_population</span>
+
+    <span class="k">def</span> <span class="nf">_select_survivors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old_population</span><span class="p">,</span> <span class="n">offspring_population</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Select survivor individuals from two given populations.</span>
+
+<span class="sd">        There are different ways this can be done. Which one is used</span>
+<span class="sd">        is decided by the default or user-provided parameters.</span>
+
+<span class="sd">        The population of selected survivors contains copies of the</span>
+<span class="sd">        original individuals, so they have their own ids and can be</span>
+<span class="sd">        tracked for result analysis.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+
+        <span class="c1"># Create a pool from which survivor individuals will be selected</span>
+        <span class="n">operator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_operator</span><span class="p">(</span>
+            <span class="s2">&quot;Generation model&quot;</span><span class="p">,</span>
+            <span class="n">pr</span><span class="o">.</span><span class="n">generation_model</span><span class="p">,</span>
+            <span class="n">_operators</span><span class="o">.</span><span class="n">generation_model</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">pool</span> <span class="o">=</span> <span class="n">operator</span><span class="p">(</span><span class="n">old_population</span><span class="p">,</span> <span class="n">offspring_population</span><span class="p">,</span> <span class="n">pr</span><span class="p">)</span>
+
+        <span class="c1"># Select survivor individuals</span>
+        <span class="n">operator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_operator</span><span class="p">(</span>
+            <span class="s2">&quot;Survivor selection&quot;</span><span class="p">,</span> <span class="n">pr</span><span class="o">.</span><span class="n">survivor_selection_operator</span><span class="p">,</span> <span class="n">_operators</span><span class="o">.</span><span class="n">selection</span>
+        <span class="p">)</span>
+        <span class="n">selected_individuals</span> <span class="o">=</span> <span class="n">operator</span><span class="p">(</span>
+            <span class="n">individuals</span><span class="o">=</span><span class="n">pool</span><span class="p">,</span>
+            <span class="n">sample_size</span><span class="o">=</span><span class="n">pr</span><span class="o">.</span><span class="n">population_size</span><span class="p">,</span>
+            <span class="n">objective</span><span class="o">=</span><span class="n">pr</span><span class="o">.</span><span class="n">objective</span><span class="p">,</span>
+            <span class="n">parameters</span><span class="o">=</span><span class="n">pr</span><span class="p">,</span>
+            <span class="n">state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Create survivor population</span>
+        <span class="n">new_individuals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">selected_individuals</span><span class="p">:</span>
+            <span class="n">new_ind</span> <span class="o">=</span> <span class="n">ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">new_ind</span><span class="o">.</span><span class="n">details</span><span class="p">[</span><span class="s2">&quot;parent_ids&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">ind</span><span class="o">.</span><span class="n">details</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]]</span>
+            <span class="n">new_individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_ind</span><span class="p">)</span>
+        <span class="n">survivor_population</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span><span class="n">new_individuals</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_new_ids</span><span class="p">(</span><span class="n">survivor_population</span><span class="p">)</span>
+
+        <span class="c1"># Report</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">select_sur</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">old_population</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">offspring_population</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">survivor_population</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">survivor_population</span>
+
+    <span class="c1"># 4) Variation</span>
+    <span class="k">def</span> <span class="nf">_check_parameter_consistency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the current parameters are consistent.</span>
+
+<span class="sd">        This is necessary because the initial parametrization has to</span>
+<span class="sd">        be checked, but also because a user can change it between</span>
+<span class="sd">        calls to the step method. An example of an inconsistent</span>
+<span class="sd">        parametrization is when all variation operators are turned off,</span>
+<span class="sd">        because in that case no new individuals are generated and</span>
+<span class="sd">        therefore the search can not progress.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">crossover_operator</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">pr</span><span class="o">.</span><span class="n">mutation_operator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_missing_variation_error</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_cross_over</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_population</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform crossover events between with given individuals.</span>
+
+<span class="sd">        There are different ways this can be done. Which one is used</span>
+<span class="sd">        is decided by the default or user-provided parameters.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+
+        <span class="c1"># Optional skip</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">crossover_operator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">parent_population</span>
+
+        <span class="c1"># Cross-over</span>
+        <span class="n">operator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_operator</span><span class="p">(</span>
+            <span class="s2">&quot;Crossover&quot;</span><span class="p">,</span> <span class="n">pr</span><span class="o">.</span><span class="n">crossover_operator</span><span class="p">,</span> <span class="n">pr</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">crossover</span>
+        <span class="p">)</span>
+        <span class="n">crossed_over_individuals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">parent_population</span><span class="p">)</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">crossed_over_individuals</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">parent0</span><span class="p">,</span> <span class="n">parent1</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">parent_population</span><span class="o">.</span><span class="n">individuals</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">parent0</span><span class="p">,</span> <span class="n">parent1</span> <span class="o">=</span> <span class="n">parent_population</span><span class="o">.</span><span class="n">individuals</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">parent0</span> <span class="o">=</span> <span class="n">parent1</span> <span class="o">=</span> <span class="n">parent_population</span><span class="o">.</span><span class="n">individuals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="n">child0_gen</span><span class="p">,</span> <span class="n">child1_gen</span> <span class="o">=</span> <span class="n">operator</span><span class="p">(</span>
+                <span class="n">pr</span><span class="o">.</span><span class="n">grammar</span><span class="p">,</span> <span class="n">parent0</span><span class="o">.</span><span class="n">genotype</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">parent1</span><span class="o">.</span><span class="n">genotype</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">pr</span>
+            <span class="p">)</span>
+            <span class="n">child0</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">Individual</span><span class="p">(</span>
+                <span class="n">genotype</span><span class="o">=</span><span class="n">child0_gen</span><span class="p">,</span>
+                <span class="n">details</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">num_individuals</span><span class="p">,</span>
+                    <span class="n">parent_ids</span><span class="o">=</span><span class="p">[</span><span class="n">parent0</span><span class="o">.</span><span class="n">details</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">parent1</span><span class="o">.</span><span class="n">details</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]],</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">num_individuals</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">child1</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">Individual</span><span class="p">(</span>
+                <span class="n">genotype</span><span class="o">=</span><span class="n">child1_gen</span><span class="p">,</span>
+                <span class="n">details</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">num_individuals</span><span class="p">,</span>
+                    <span class="n">parent_ids</span><span class="o">=</span><span class="p">[</span><span class="n">parent0</span><span class="o">.</span><span class="n">details</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">parent1</span><span class="o">.</span><span class="n">details</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]],</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">num_individuals</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">crossed_over_individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child0</span><span class="p">)</span>
+            <span class="n">crossed_over_individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child1</span><span class="p">)</span>
+        <span class="n">crossed_over_population</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span>
+            <span class="n">crossed_over_individuals</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Report</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">cross_over</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">parent_population</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">crossed_over_population</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">crossed_over_population</span>
+
+    <span class="k">def</span> <span class="nf">_mutate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crossed_over_population</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform mutation events on given individuals.</span>
+
+<span class="sd">        There are different ways this can be done. Which one is used</span>
+<span class="sd">        is decided by the default or user-provided parameters.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+
+        <span class="c1"># Optional skip</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">mutation_operator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">crossed_over_population</span>
+
+        <span class="c1"># Mutation</span>
+        <span class="n">operator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_operator</span><span class="p">(</span>
+            <span class="s2">&quot;Mutation&quot;</span><span class="p">,</span> <span class="n">pr</span><span class="o">.</span><span class="n">mutation_operator</span><span class="p">,</span> <span class="n">pr</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">mutation</span>
+        <span class="p">)</span>
+
+        <span class="n">mutated_individuals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">crossed_over_population</span><span class="p">:</span>
+            <span class="n">new_gen</span> <span class="o">=</span> <span class="n">operator</span><span class="p">(</span><span class="n">pr</span><span class="o">.</span><span class="n">grammar</span><span class="p">,</span> <span class="n">ind</span><span class="o">.</span><span class="n">genotype</span><span class="p">,</span> <span class="n">pr</span><span class="p">)</span>
+            <span class="n">new_ind</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">Individual</span><span class="p">(</span>
+                <span class="n">genotype</span><span class="o">=</span><span class="n">new_gen</span><span class="p">,</span>
+                <span class="n">details</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">num_individuals</span><span class="p">,</span>
+                    <span class="n">parent_ids</span><span class="o">=</span><span class="p">[</span><span class="n">ind</span><span class="o">.</span><span class="n">details</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]],</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">num_individuals</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">mutated_individuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_ind</span><span class="p">)</span>
+        <span class="n">mutated_population</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span><span class="n">mutated_individuals</span><span class="p">)</span>
+
+        <span class="c1"># Report</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">crossed_over_population</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">mutated_population</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">mutated_population</span>
+
+    <span class="c1"># 5) End</span>
+    <span class="k">def</span> <span class="nf">_finish_generation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">parent_population</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">crossed_over_population</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">mutated_population</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">survivor_population</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process and optionally store the given individuals.&quot;&quot;&quot;</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+
+        <span class="c1"># Optional: Storage to database</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">database_on</span><span class="p">:</span>
+            <span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span>
+            <span class="k">if</span> <span class="n">parent_population</span><span class="p">:</span>
+                <span class="n">db</span><span class="o">.</span><span class="n">_store_population</span><span class="p">(</span>
+                    <span class="s2">&quot;parent_selection&quot;</span><span class="p">,</span> <span class="n">parent_population</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">generation</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">crossed_over_population</span> <span class="ow">and</span> <span class="n">pr</span><span class="o">.</span><span class="n">crossover_operator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">db</span><span class="o">.</span><span class="n">_store_population</span><span class="p">(</span>
+                    <span class="s2">&quot;crossover&quot;</span><span class="p">,</span> <span class="n">crossed_over_population</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">generation</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">mutated_population</span> <span class="ow">and</span> <span class="n">pr</span><span class="o">.</span><span class="n">mutation_operator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">db</span><span class="o">.</span><span class="n">_store_population</span><span class="p">(</span><span class="s2">&quot;mutation&quot;</span><span class="p">,</span> <span class="n">mutated_population</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">generation</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">survivor_population</span><span class="p">:</span>
+                <span class="n">db</span><span class="o">.</span><span class="n">_store_population</span><span class="p">(</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="n">survivor_population</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">generation</span><span class="p">)</span>
+
+        <span class="c1"># Update state</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">crossed_over_population</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">pr</span><span class="o">.</span><span class="n">crossover_operator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">pr</span><span class="o">.</span><span class="n">mutation_operator</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="p">):</span>
+            <span class="c1"># Crossover population has only been evaluated if it was not followed by mutation</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_store_best_and_worst_ind</span><span class="p">(</span><span class="n">crossed_over_population</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mutated_population</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">pr</span><span class="o">.</span><span class="n">mutation_operator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_store_best_and_worst_ind</span><span class="p">(</span><span class="n">mutated_population</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_store_best_and_worst_ind</span><span class="p">(</span><span class="n">survivor_population</span><span class="p">)</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">population</span> <span class="o">=</span> <span class="n">survivor_population</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">generation</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">num_generations</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># Report</span>
+        <span class="k">if</span> <span class="n">pr</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_report</span><span class="o">.</span><span class="n">gen_end</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+
+    <span class="c1"># State management</span>
+    <span class="k">def</span> <span class="nf">_store_start_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add the start time of the current step to the list of all start times.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">start_timestamps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_utilities</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">current_time_unix</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">_store_stop_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add the stop time of the current step to the list of all stop times.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">stop_timestamps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_utilities</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">current_time_unix</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">_store_best_and_worst_ind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pop</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remember individuals with min/max/best fitness in an entire run.</span>
+
+<span class="sd">        Note that depending on the search strategy, it is possible that</span>
+<span class="sd">        these individuals get lost throughout a run, i.e. they are no</span>
+<span class="sd">        longer part of the latest generation. It is important, however,</span>
+<span class="sd">        that these few special individuals are remembered, so the best</span>
+<span class="sd">        result can reliably be returned at the end of the run.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">objective</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+
+        <span class="c1"># Set min and max individual, not depending on obective</span>
+        <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">min_individual</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">pop</span><span class="p">:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">min_individual</span> <span class="o">=</span> <span class="n">pop</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">max_individual</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">pop</span><span class="p">:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">max_individual</span> <span class="o">=</span> <span class="n">pop</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">pop</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ind</span><span class="o">.</span><span class="n">less_than</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">min_individual</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">min_individual</span> <span class="o">=</span> <span class="n">ind</span>
+            <span class="k">if</span> <span class="n">ind</span><span class="o">.</span><span class="n">greater_than</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">max_individual</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">max_individual</span> <span class="o">=</span> <span class="n">ind</span>
+
+        <span class="c1"># Set best individual, depending on obective</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="o">==</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">best_individual</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">min_individual</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">best_individual</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">max_individual</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_operator</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fetch an operator function by its name.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_operator_lookup_error</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

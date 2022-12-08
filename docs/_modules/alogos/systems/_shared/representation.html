@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems._shared.representation &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems._shared.representation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems._shared.representation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Shared representations serving as base classes for all systems.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span> <span class="k">as</span> <span class="n">_dc</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">_exceptions</span>
+<span class="kn">from</span> <span class="nn">..._utilities</span> <span class="kn">import</span> <span class="n">argument_processing</span> <span class="k">as</span> <span class="n">_ap</span>
+<span class="kn">from</span> <span class="nn">..._utilities.operating_system</span> <span class="kn">import</span> <span class="n">NEWLINE</span> <span class="k">as</span> <span class="n">_NEWLINE</span>
+
+
+<div class="viewcode-block" id="BaseGenotype"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/representation/index.html#alogos.systems._shared.representation.BaseGenotype">[docs]</a><span class="k">class</span> <span class="nc">BaseGenotype</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Base genotype for all systems to define a shared structure.&quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;_hash&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Immutable data attribute: provided once at object creation and converted system-dependently</span>
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Implement attribute assignment to ensure data is immutable.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://docs.python.org/3/reference/datamodel.html#object.__setattr__</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_data_write_error</span><span class="p">()</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+
+    <span class="c1"># Copying</span>
+<div class="viewcode-block" id="BaseGenotype.copy"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/representation/index.html#alogos.systems._shared.representation.BaseGenotype.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a deep copy of the genotype.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a deep copy of the genotype.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a deep copy of the genotype.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Representation</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the &quot;official&quot; string representation of the genotype.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;</span><span class="si">{}</span><span class="s2"> genotype at </span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_label</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the &quot;informal&quot; string representation of the genotype.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Length</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate the length of the genotype.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Equality</span>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute whether two genotypes are equal.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute whether two genotypes are not equal.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="c1"># Hashing</span>
+    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate a hash value for this object.</span>
+
+<span class="sd">        It is used for operations on hashed collections such as `set`</span>
+<span class="sd">        and `dict`.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://docs.python.org/3/reference/datamodel.html#object.__hash__</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span></div>
+
+
+<div class="viewcode-block" id="BaseIndividual"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/representation/index.html#alogos.systems._shared.representation.BaseIndividual">[docs]</a><span class="k">class</span> <span class="nc">BaseIndividual</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Base individual for all systems to define a shared structure.&quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;genotype&quot;</span><span class="p">,</span> <span class="s2">&quot;phenotype&quot;</span><span class="p">,</span> <span class="s2">&quot;fitness&quot;</span><span class="p">,</span> <span class="s2">&quot;details&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseIndividual.__init__"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/representation/index.html#alogos.systems._shared.representation.BaseIndividual.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">genotype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">phenotype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fitness</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="n">details</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create an individual as simple container for genotype, phenotype and fitness.&quot;&quot;&quot;</span>
+        <span class="c1"># Argument processing</span>
+        <span class="k">if</span> <span class="n">details</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">details</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Assignments</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">genotype</span> <span class="o">=</span> <span class="n">genotype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phenotype</span> <span class="o">=</span> <span class="n">phenotype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span> <span class="o">=</span> <span class="n">fitness</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">details</span> <span class="o">=</span> <span class="n">details</span></div>
+
+    <span class="c1"># Copying: Phenotype &amp; fitness are immutable objects (None, str, int, float) requiring no copy</span>
+<div class="viewcode-block" id="BaseIndividual.copy"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/representation/index.html#alogos.systems._shared.representation.BaseIndividual.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a deep copy of the individual.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span>
+            <span class="n">_dc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">genotype</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">phenotype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span> <span class="n">_dc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">details</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a deep copy of the individual.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span>
+            <span class="n">_dc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">genotype</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">phenotype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span> <span class="n">_dc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">details</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a deep copy of the individual.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span>
+            <span class="n">_dc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">genotype</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">phenotype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span> <span class="n">_dc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">details</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Representation</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the &quot;official&quot; string representation of the individual.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;</span><span class="si">{}</span><span class="s2"> individual object at </span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_label</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the &quot;informal&quot; string representation of the individual.&quot;&quot;&quot;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">{lab}</span><span class="s2"> individual:</span><span class="si">{nl}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Genotype: </span><span class="si">{gt}{nl}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Phenotype: </span><span class="si">{phe}{nl}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Fitness: </span><span class="si">{fit}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">lab</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_label</span><span class="p">,</span>
+                <span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span><span class="p">,</span>
+                <span class="n">gt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">genotype</span><span class="p">,</span>
+                <span class="n">phe</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">phenotype</span><span class="p">,</span>
+                <span class="n">fit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">text</span>
+
+    <span class="c1"># Fitness comparison: objective-dependent NaN treatment, therefore not using __lt__ and __gt__</span>
+<div class="viewcode-block" id="BaseIndividual.less_than"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/representation/index.html#alogos.systems._shared.representation.BaseIndividual.less_than">[docs]</a>    <span class="k">def</span> <span class="nf">less_than</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">objective</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determine if the fitness of this individual is less than that of another.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other : `Individual`</span>
+<span class="sd">        objective : `str`</span>
+<span class="sd">            Possible values:</span>
+
+<span class="sd">            - ``&quot;min&quot;`` for a minimization problem</span>
+<span class="sd">            - ``&quot;max&quot;`` for a maximization problem</span>
+
+<span class="sd">            It determines how ``NaN`` values are treated in the</span>
+<span class="sd">            comparsion.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        There is a conceptual problem with ``NaN`` values, making the</span>
+<span class="sd">        comparison depending on the type of optimization problem being</span>
+<span class="sd">        tackled. In case of a minimization problem, any valid `float`</span>
+<span class="sd">        number should be considered to be smaller than ``NaN``, so that</span>
+<span class="sd">        the individuals with ``NaN`` fitnesses loose in comparisons.</span>
+<span class="sd">        In case of a maximization problem, it is the other way around.</span>
+<span class="sd">        Therefore this explicit method with the argument ``objective``</span>
+<span class="sd">        is provided instead of the special method ``__lt__`` that would</span>
+<span class="sd">        allow individuals to be compared with the ``&lt;`` operator but</span>
+<span class="sd">        without any arguments.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://docs.python.org/3/library/operator.html</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Argument processing: no checks for objective in (&#39;min&#39;, &#39;max&#39;) to improve speed</span>
+        <span class="n">f1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span>
+        <span class="n">f2</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">fitness</span>
+
+        <span class="c1"># Regular case: 0 NaN values</span>
+        <span class="k">if</span> <span class="n">f1</span> <span class="o">==</span> <span class="n">f1</span> <span class="ow">and</span> <span class="n">f2</span> <span class="o">==</span> <span class="n">f2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">f1</span> <span class="o">&lt;</span> <span class="n">f2</span>
+
+        <span class="c1"># Special cases: 1 or 2 NaN values</span>
+        <span class="k">if</span> <span class="n">f1</span> <span class="o">!=</span> <span class="n">f1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">f2</span> <span class="o">!=</span> <span class="n">f2</span><span class="p">:</span>
+                <span class="c1"># NaN &lt; NaN: False</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="c1"># NaN &lt; number: True if maximization, False if minimization</span>
+            <span class="k">return</span> <span class="n">objective</span> <span class="o">==</span> <span class="s2">&quot;max&quot;</span>
+        <span class="c1"># number &lt; NaN: True if minimization, False if maximization</span>
+        <span class="k">return</span> <span class="n">objective</span> <span class="o">==</span> <span class="s2">&quot;min&quot;</span></div>
+
+<div class="viewcode-block" id="BaseIndividual.greater_than"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/representation/index.html#alogos.systems._shared.representation.BaseIndividual.greater_than">[docs]</a>    <span class="k">def</span> <span class="nf">greater_than</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">objective</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determine if the fitness of this individual is greater than that of another.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other : `Individual`</span>
+<span class="sd">        objective : `str`</span>
+<span class="sd">            Possible values:</span>
+
+<span class="sd">            - ``&quot;min&quot;`` for a minimization problem</span>
+<span class="sd">            - ``&quot;max&quot;`` for a maximization problem</span>
+
+<span class="sd">            It determines how ``NaN`` values are treated in the</span>
+<span class="sd">            comparsion.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        There is a conceptual problem with ``NaN`` values, making the</span>
+<span class="sd">        comparison depending on the type of optimization problem being</span>
+<span class="sd">        tackled. In case of a minimization problem, any valid `float`</span>
+<span class="sd">        number should be considered to be smaller than ``NaN``, so that</span>
+<span class="sd">        the individuals with ``NaN`` fitnesses loose in comparisons.</span>
+<span class="sd">        In case of a maximization problem, it is the other way around.</span>
+<span class="sd">        Therefore this explicit method with the argument ``objective``</span>
+<span class="sd">        is provided instead of the special method ``__gt__`` that would</span>
+<span class="sd">        allow individuals to be compared with the ``&gt;`` operator but</span>
+<span class="sd">        without any arguments.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://docs.python.org/3/library/operator.html</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Argument processing: no checks for objective in (&#39;min&#39;, &#39;max&#39;) to improve speed</span>
+        <span class="n">f1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span>
+        <span class="n">f2</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">fitness</span>
+
+        <span class="c1"># Regular case: 0 NaN values</span>
+        <span class="k">if</span> <span class="n">f1</span> <span class="o">==</span> <span class="n">f1</span> <span class="ow">and</span> <span class="n">f2</span> <span class="o">==</span> <span class="n">f2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">f1</span> <span class="o">&gt;</span> <span class="n">f2</span>
+
+        <span class="c1"># Special cases: 1 or 2 NaN values</span>
+        <span class="k">if</span> <span class="n">f1</span> <span class="o">!=</span> <span class="n">f1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">f2</span> <span class="o">!=</span> <span class="n">f2</span><span class="p">:</span>
+                <span class="c1"># NaN &gt; NaN: False</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="c1"># NaN &gt; number: True if minimization, False if maximization</span>
+            <span class="k">return</span> <span class="n">objective</span> <span class="o">==</span> <span class="s2">&quot;min&quot;</span>
+        <span class="c1"># number &gt; NaN: True if maximization, False if minimization</span>
+        <span class="k">return</span> <span class="n">objective</span> <span class="o">==</span> <span class="s2">&quot;max&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="BasePopulation"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/representation/index.html#alogos.systems._shared.representation.BasePopulation">[docs]</a><span class="k">class</span> <span class="nc">BasePopulation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Base population for all systems to define a shared structure.&quot;&quot;&quot;</span>
+
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="s2">&quot;individuals&quot;</span>
+
+<div class="viewcode-block" id="BasePopulation.__init__"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/representation/index.html#alogos.systems._shared.representation.BasePopulation.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">individuals</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a population as container for multiple individuals.&quot;&quot;&quot;</span>
+        <span class="c1"># Argument processing</span>
+        <span class="n">_ap</span><span class="o">.</span><span class="n">check_arg</span><span class="p">(</span><span class="s2">&quot;individuals&quot;</span><span class="p">,</span> <span class="n">individuals</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span>
+
+        <span class="c1"># Assignments</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">individuals</span> <span class="o">=</span> <span class="n">individuals</span></div>
+
+    <span class="c1"># Copying</span>
+<div class="viewcode-block" id="BasePopulation.copy"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/_shared/representation/index.html#alogos.systems._shared.representation.BasePopulation.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a deep copy of the population.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">([</span><span class="n">ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">individuals</span><span class="p">])</span></div>
+
+    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a deep copy of the population.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">([</span><span class="n">ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">individuals</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a deep copy of the population.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">([</span><span class="n">ind</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">individuals</span><span class="p">])</span>
+
+    <span class="c1"># Representation</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the &quot;official&quot; string representation of the population.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;</span><span class="si">{}</span><span class="s2"> population at </span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_label</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the &quot;informal&quot; string representation of the population.&quot;&quot;&quot;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">{lab}</span><span class="s2"> population:</span><span class="si">{nl}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Individuals: </span><span class="si">{ind}{nl}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Unique genotypes: </span><span class="si">{gt}{nl}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Unique phenotypes: </span><span class="si">{phe}{nl}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Unique fitnesses: </span><span class="si">{fit}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">lab</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_label</span><span class="p">,</span>
+                <span class="n">nl</span><span class="o">=</span><span class="n">_NEWLINE</span><span class="p">,</span>
+                <span class="n">ind</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span>
+                <span class="n">gt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_unique_genotypes</span><span class="p">,</span>
+                <span class="n">phe</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_unique_phenotypes</span><span class="p">,</span>
+                <span class="n">fit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_unique_fitnesses</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">text</span>
+
+    <span class="c1"># Access</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Implement index-based access for the population&#39;s individuals.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://docs.python.org/3/reference/datamodel.html#object.__getitem__</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">individuals</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Implement index-based modification for the population&#39;s individuals.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://docs.python.org/3/reference/datamodel.html#object.__setitem__</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">BaseIndividual</span><span class="p">):</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_pop_assignment_error</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">individuals</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Implement index-based deletion for the population&#39;s individuals.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://docs.python.org/3/reference/datamodel.html#object.__delitem__</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">individuals</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="c1"># Length</span>
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate the number of individuals in a population.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">individuals</span><span class="p">)</span>
+
+    <span class="c1"># Iteration</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Implement the return of an iterator object.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://docs.python.org/3/reference/datamodel.html#object.__iter__</span>
+<span class="sd">        - https://docs.python.org/3/library/stdtypes.html#container.__iter__</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">individuals</span><span class="p">)</span>
+
+    <span class="c1"># Concatenation</span>
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Implement concatenation of populations by the plus symbol.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">individuals</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">individuals</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_unique_genotypes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the number of unique genotypes in this population.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">({</span><span class="nb">str</span><span class="p">(</span><span class="n">ind</span><span class="o">.</span><span class="n">genotype</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">individuals</span><span class="p">})</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_unique_phenotypes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the number of unique phenotypes in this population.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">({</span><span class="nb">str</span><span class="p">(</span><span class="n">ind</span><span class="o">.</span><span class="n">phenotype</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">individuals</span><span class="p">})</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_unique_fitnesses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the number of unique fitness values in this population.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">({</span><span class="nb">str</span><span class="p">(</span><span class="n">ind</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">individuals</span><span class="p">})</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

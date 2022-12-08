@@ -1,0 +1,971 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>OpenAI Gym: MountainCar-v0 &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="OpenAI Gym: CartPole-v1" href="cartpole-v1.html" />
+    <link rel="prev" title="OpenAI Gym: Acrobot-v1" href="acrobot-v1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../rst/examples.html">Code Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hello_world.html">Hello, world!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="palindromes.html">Palindromes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammars_from_books.html">Book examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xkcd_calendar_facts.html">Calendar facts by xkcd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="semantic_versioning.html">Semantic versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_addresses.html">IPv4 addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onemax.html">OneMax Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diophantine_equation.html">Diophantine equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continued_fraction.html">Find a continued fraction that approximates Euler’s number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_numeric_literals.html">Numeric literals in Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rust_integer_literals.html">Number literals in Rust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_approximation.html">Image approximation with geometrical shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trading_strategy.html">Trading strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acrobot-v1.html">OpenAI Gym: Acrobot-v1</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OpenAI Gym: MountainCar-v0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#References">References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Preparation">Preparation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#1)-Environment">1) Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2)-Functions-to-run-single-or-multiple-simulations">2) Functions to run single or multiple simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Example-solutions">Example solutions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#1)-By-Zhiqing-Xiao">1) By Zhiqing Xiao</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2)-By-previous-runs-of-evolutionary-optimization">2) By previous runs of evolutionary optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Definition-of-search-space-and-goal">Definition of search space and goal</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#1)-Grammar">1) Grammar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2)-Objective-function">2) Objective function</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Generation-of-a-random-solution">Generation of a random solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Search-for-an-optimal-solution">Search for an optimal solution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#1)-Parameterization">1) Parameterization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2)-Run">2) Run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#3)-Result">3) Result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cartpole-v1.html">OpenAI Gym: CartPole-v1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pendulum-v0.html">OpenAI Gym: Pendulum-v0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../rst/examples.html">Code Examples</a> &raquo;</li>
+        
+      <li>OpenAI Gym: MountainCar-v0</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 1200;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="OpenAI-Gym:-MountainCar-v0">
+<h1>OpenAI Gym: MountainCar-v0<a class="headerlink" href="#OpenAI-Gym:-MountainCar-v0" title="Permalink to this heading">¶</a></h1>
+<p>This notebook shows how grammar-guided genetic programming (G3P) can be used to solve the MountainCar-v0 problem from OpenAI Gym. This is achieved by searching for a small program that defines an agent, who uses an algebraic expression of the observed variables to decide which action to take in each moment.</p>
+<p>Caution: This notebook was run with gym v0.20.0 (pip install gym==0.20.0) and pyglet v1.5.27 (pip install pyglet==1.5.27). Gym deprecated “Pendulum-v0” from v0.20.0 to v.0.21.0. Gym changed its API from v0.25.2 to v0.26.0. Pyglet changed its API from 1.5.27 to 2.0.0.</p>
+<section id="References">
+<h2>References<a class="headerlink" href="#References" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>OpenAI Gym website</p>
+<ul>
+<li><p><a class="reference external" href="https://gym.openai.com/envs/#classic_control">Classic problems from control theory</a>: an overview of environments</p></li>
+<li><p><a class="reference external" href="https://gym.openai.com/envs/MountainCar-v0">MountainCar-v0</a>: the environment solved here</p></li>
+</ul>
+</li>
+<li><p>GitHub</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/openai/gym/wiki/MountainCar-v0">MountainCar-v0</a>: details on the environment solved here</p></li>
+<li><p><a class="reference external" href="https://github.com/openai/gym/wiki/Leaderboard#mountaincar-v0">Leaderboard</a>: community wiki to track user-provided solutions</p></li>
+<li><p><a class="reference external" href="https://github.com/ZhiqingXiao/OpenAIGymSolution/blob/master/MountainCar-v0_close_form/mountaincar_v0_close_form.ipynb">Example solution</a>: a fixed policy written by Zhiqing Xiao</p></li>
+</ul>
+</li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">alogos</span> <span class="k">as</span> <span class="nn">al</span>
+<span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">unified_map</span> <span class="k">as</span> <span class="nn">um</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Preparation">
+<h2>Preparation<a class="headerlink" href="#Preparation" title="Permalink to this heading">¶</a></h2>
+<section id="1)-Environment">
+<h3>1) Environment<a class="headerlink" href="#1)-Environment" title="Permalink to this heading">¶</a></h3>
+<p>MountainCar-v0: The aim is to drive a car up the right hill, but its engine is not strong enough, so it needs to build up momentum first. The agent observes the current position and velocity of the car. It can act by pushing the car to the left (value 0), applying no push (value 1), or pushing it to the right (value 2).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;MountainCar-v0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="2)-Functions-to-run-single-or-multiple-simulations">
+<h3>2) Functions to run single or multiple simulations<a class="headerlink" href="#2)-Functions-to-run-single-or-multiple-simulations" title="Permalink to this heading">¶</a></h3>
+<p>It allows an agent to act in an environment and collect rewards until the environment signals it is done.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_single_run</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">render</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">observation</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="n">episode_reward</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">decide</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+        <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">episode_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+        <span class="k">if</span> <span class="n">render</span><span class="p">:</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.025</span><span class="p">)</span>
+            <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">done</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">episode_reward</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_multiple_runs</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">total_reward</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">simulate_single_run</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">mean_reward</span> <span class="o">=</span> <span class="n">total_reward</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">mean_reward</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Example-solutions">
+<h2>Example solutions<a class="headerlink" href="#Example-solutions" title="Permalink to this heading">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sim</span> <span class="o">=</span> <span class="mi">200</span>
+</pre></div>
+</div>
+</div>
+<section id="1)-By-Zhiqing-Xiao">
+<h3>1) By Zhiqing Xiao<a class="headerlink" href="#1)-By-Zhiqing-Xiao" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">decide</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+        <span class="n">position</span><span class="p">,</span> <span class="n">velocity</span> <span class="o">=</span> <span class="n">observation</span>
+        <span class="n">lb</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mf">0.09</span> <span class="o">*</span> <span class="p">(</span><span class="n">position</span> <span class="o">+</span> <span class="mf">0.25</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.03</span><span class="p">,</span>
+                 <span class="mf">0.3</span> <span class="o">*</span> <span class="p">(</span><span class="n">position</span> <span class="o">+</span> <span class="mf">0.9</span><span class="p">)</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">-</span> <span class="mf">0.008</span><span class="p">)</span>
+        <span class="n">ub</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.07</span> <span class="o">*</span> <span class="p">(</span><span class="n">position</span> <span class="o">+</span> <span class="mf">0.38</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.07</span>
+        <span class="k">if</span> <span class="n">lb</span> <span class="o">&lt;</span> <span class="n">velocity</span> <span class="o">&lt;</span> <span class="n">ub</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># push right</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># push left</span>
+        <span class="k">return</span> <span class="n">action</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+<span class="n">simulate_multiple_runs</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">num_sim</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-107.605
+</pre></div></div>
+</div>
+</section>
+<section id="2)-By-previous-runs-of-evolutionary-optimization">
+<h3>2) By previous runs of evolutionary optimization<a class="headerlink" href="#2)-By-previous-runs-of-evolutionary-optimization" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">decide</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+        <span class="n">position</span><span class="p">,</span> <span class="n">velocity</span> <span class="o">=</span> <span class="n">observation</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="mf">7.83</span><span class="o">**</span><span class="n">velocity</span><span class="p">)</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">output</span> <span class="o">&lt;</span> <span class="mf">1.0</span> <span class="k">else</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">action</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+<span class="n">simulate_multiple_runs</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">num_sim</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-119.285
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">decide</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+        <span class="n">position</span><span class="p">,</span> <span class="n">velocity</span> <span class="o">=</span> <span class="n">observation</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="mf">4.59</span><span class="o">/</span><span class="p">(</span><span class="mf">3.35</span><span class="o">*</span><span class="n">velocity</span><span class="p">))</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">output</span> <span class="o">&lt;</span> <span class="mf">1.0</span> <span class="k">else</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">action</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+<span class="n">simulate_multiple_runs</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">num_sim</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-119.75
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">decide</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">):</span>
+        <span class="n">position</span><span class="p">,</span> <span class="n">velocity</span> <span class="o">=</span> <span class="n">observation</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">(((((</span><span class="mf">2.18</span><span class="o">/</span><span class="n">velocity</span><span class="p">)</span><span class="o">-</span><span class="n">velocity</span><span class="p">)</span><span class="o">-</span><span class="p">((((</span><span class="n">velocity</span><span class="o">/</span><span class="mf">7.27</span><span class="p">)</span><span class="o">/</span><span class="n">position</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">velocity</span><span class="o">*</span><span class="p">(</span><span class="n">position</span><span class="o">-</span><span class="n">position</span><span class="p">)))</span><span class="o">*</span><span class="p">(((</span><span class="mf">2.64</span><span class="o">+</span><span class="p">(</span><span class="mf">8.48</span><span class="o">*</span><span class="n">velocity</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="mf">5.86</span><span class="o">*</span><span class="n">position</span><span class="p">))</span><span class="o">*</span><span class="mf">9.40</span><span class="p">)))</span><span class="o">+</span><span class="p">((</span><span class="mf">5.59</span><span class="o">*</span><span class="n">position</span><span class="p">)</span><span class="o">+</span><span class="p">(((</span><span class="mf">0.19</span><span class="o">*</span><span class="p">(((</span><span class="n">velocity</span><span class="o">-</span><span class="p">(</span><span class="n">velocity</span><span class="o">*</span><span class="mf">4.62</span><span class="p">))</span><span class="o">+</span><span class="mf">1.42</span><span class="p">)</span><span class="o">+</span><span class="p">(((</span><span class="mf">0.09</span><span class="o">-</span><span class="n">position</span><span class="p">)</span><span class="o">**</span><span class="mf">6.40</span><span class="p">)</span><span class="o">*</span><span class="mf">5.21</span><span class="p">)))</span><span class="o">**</span><span class="p">((</span><span class="mf">4.09</span><span class="o">/</span><span class="p">(</span><span class="mf">7.32</span><span class="o">/</span><span class="mf">6.71</span><span class="p">))</span><span class="o">/</span><span class="mf">5.33</span><span class="p">))</span><span class="o">**</span><span class="p">((</span><span class="n">position</span><span class="o">*</span><span class="p">(</span><span class="n">position</span><span class="o">*</span><span class="p">(</span><span class="mf">1.69</span><span class="o">+</span><span class="p">(</span><span class="mf">3.20</span><span class="o">-</span><span class="mf">3.13</span><span class="p">))))</span><span class="o">**</span><span class="mf">8.44</span><span class="p">))))</span><span class="o">/</span><span class="p">(</span><span class="n">velocity</span><span class="o">/</span><span class="n">velocity</span><span class="p">))</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">output</span> <span class="o">&lt;</span> <span class="mf">1.0</span> <span class="k">else</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">action</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+<span class="n">simulate_multiple_runs</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">num_sim</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-115.635
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Definition-of-search-space-and-goal">
+<h2>Definition of search space and goal<a class="headerlink" href="#Definition-of-search-space-and-goal" title="Permalink to this heading">¶</a></h2>
+<section id="1)-Grammar">
+<h3>1) Grammar<a class="headerlink" href="#1)-Grammar" title="Permalink to this heading">¶</a></h3>
+<p>This grammar defines the search space: a Python program that creates an Agent who uses an algebraic expression of the observed variables to decide how to act in each situation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ebnf_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">PROGRAM = L0 NL L1 NL L2 NL L3 NL L4 NL L5</span>
+
+<span class="s2">L0 = &quot;class Agent:&quot;</span>
+<span class="s2">L1 = &quot;    def decide(self, observation):&quot;</span>
+<span class="s2">L2 = &quot;        position, velocity = observation&quot;</span>
+<span class="s2">L3 = &quot;        output = &quot; EXPR</span>
+<span class="s2">L4 = &quot;        action = 0 if output &lt; 1.0 else 2&quot;</span>
+<span class="s2">L5 = &quot;        return action&quot;</span>
+
+<span class="s2">NL = &quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="s2">EXPR = VAR | CONST | &quot;(&quot; EXPR OP EXPR &quot;)&quot;</span>
+<span class="s2">VAR = &quot;position&quot; | &quot;velocity&quot;</span>
+<span class="s2">CONST = DIGIT &quot;.&quot; DIGIT DIGIT</span>
+<span class="s2">OP = &quot;+&quot; | &quot;-&quot; | &quot;*&quot; | &quot;/&quot; | &quot;**&quot;</span>
+<span class="s2">DIGIT = &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="n">ebnf_text</span><span class="o">=</span><span class="n">ebnf_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="2)-Objective-function">
+<h3>2) Objective function<a class="headerlink" href="#2)-Objective-function" title="Permalink to this heading">¶</a></h3>
+<p>The objective function gets a candidate solution (=a string of the grammar’s language) and returns a fitness value for it. This is done by 1) executing the string as a Python program, so that it creates an agent object, and then 2) using the agent in multiple simulations to see how good it can handle different situations: the higher the total reward, the better is the candidate.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">string_to_agent</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">local_vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">exec</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">local_vars</span><span class="p">)</span>
+    <span class="n">Agent</span> <span class="o">=</span> <span class="n">local_vars</span><span class="p">[</span><span class="s1">&#39;Agent&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Agent</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">agent</span> <span class="o">=</span> <span class="n">string_to_agent</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="n">avg_reward</span> <span class="o">=</span> <span class="n">simulate_multiple_runs</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">avg_reward</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Generation-of-a-random-solution">
+<h2>Generation of a random solution<a class="headerlink" href="#Generation-of-a-random-solution" title="Permalink to this heading">¶</a></h2>
+<p>Check if grammar and objective function work as intended.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random_string</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">generate_string</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">random_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+class Agent:
+    def decide(self, observation):
+        position, velocity = observation
+        output = (9.65*(6.93/velocity))
+        action = 0 if output &lt; 1.0 else 2
+        return action
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">objective_function</span><span class="p">(</span><span class="n">random_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-116.8
+</pre></div></div>
+</div>
+</section>
+<section id="Search-for-an-optimal-solution">
+<h2>Search for an optimal solution<a class="headerlink" href="#Search-for-an-optimal-solution" title="Permalink to this heading">¶</a></h2>
+<p>Evolutionary optimization with random variation and non-random selection is used to find increasingly better candidate solutions.</p>
+<section id="1)-Parameterization">
+<h3>1) Parameterization<a class="headerlink" href="#1)-Parameterization" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ea</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">EvolutionaryAlgorithm</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span> <span class="n">objective_function</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span>
+    <span class="n">max_or_min_fitness</span><span class="o">=-</span><span class="mi">100</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">offspring_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">evaluator</span><span class="o">=</span><span class="n">um</span><span class="o">.</span><span class="n">univariate</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">futures</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="2)-Run">
+<h3>2) Run<a class="headerlink" href="#2)-Run" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_ind</span> <span class="o">=</span> <span class="n">ea</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Progress         Generations      Evaluations      Runtime (sec)    Best fitness
+..... .....      10               1941             70.5             -114.7
+..... .....      20               3831             125.6            -114.6
+..... .....      30               5707             173.9            -114.6
+..... .....      40               7524             216.8            -114.5
+..... .....      50               9333             257.8            -114.5
+..... .....      60               11179            303.2            -112.2
+..... .....      70               13071            355.0            -111.6
+..... .....      80               14957            400.4            -111.3
+..... .....      90               16838            453.7            -107.0
+..... .....      100              18732            508.5            -107.0
+..... ..
+
+Finished         107              20044            545.0            -98.8
+</pre></div></div>
+</div>
+</section>
+<section id="3)-Result">
+<h3>3) Result<a class="headerlink" href="#3)-Result" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">=</span> <span class="n">best_ind</span><span class="o">.</span><span class="n">phenotype</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+class Agent:
+    def decide(self, observation):
+        position, velocity = observation
+        output = (((velocity/(((position-2.19)*velocity)**(((((8.60-(velocity-2.19))**(position/(velocity-2.19)))**(6.80+velocity))+velocity)-(4.97*6.80))))/(8.98+(3.95*3.36)))-(((2.97+velocity)/2.88)**(velocity/((2.97+velocity)/position))))
+        action = 0 if output &lt; 1.0 else 2
+        return action
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agent</span> <span class="o">=</span> <span class="n">string_to_agent</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="n">simulate_multiple_runs</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-108.02
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_single_run</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">render</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-114.0
+</pre></div></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="cartpole-v1.html" class="btn btn-neutral float-right" title="OpenAI Gym: CartPole-v1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="acrobot-v1.html" class="btn btn-neutral float-left" title="OpenAI Gym: Acrobot-v1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

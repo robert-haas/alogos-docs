@@ -1,0 +1,1022 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Number literals in Rust &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Image approximation with geometrical shapes" href="image_approximation.html" />
+    <link rel="prev" title="Numeric literals in Python 3" href="python_numeric_literals.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../rst/examples.html">Code Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hello_world.html">Hello, world!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="palindromes.html">Palindromes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammars_from_books.html">Book examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xkcd_calendar_facts.html">Calendar facts by xkcd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="semantic_versioning.html">Semantic versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ip_addresses.html">IPv4 addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="onemax.html">OneMax Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diophantine_equation.html">Diophantine equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continued_fraction.html">Find a continued fraction that approximates Euler’s number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_numeric_literals.html">Numeric literals in Python 3</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Number literals in Rust</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#References">References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Preparation">Preparation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#1)-Run-shell-commands">1) Run shell commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2)-Compile-and-run-Rust-code-from-Python">2) Compile and run Rust code from Python</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Definition-of-search-space-and-goal">Definition of search space and goal</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#1)-Grammar">1) Grammar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2)-Objective-function">2) Objective function</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Generation-of-a-random-solution">Generation of a random solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Search-for-an-optimal-solution">Search for an optimal solution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Find-a-binary-literal-that-evaluates-to-decimal-42">Find a binary literal that evaluates to decimal 42</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Find-an-octal-literal-that-evaluates-to-decimal-42">Find an octal literal that evaluates to decimal 42</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Find-a-hexadecimal-literal-that-evaluates-to-decimal-42">Find a hexadecimal literal that evaluates to decimal 42</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="image_approximation.html">Image approximation with geometrical shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trading_strategy.html">Trading strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acrobot-v1.html">OpenAI Gym: Acrobot-v1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mountaincar-v0.html">OpenAI Gym: MountainCar-v0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartpole-v1.html">OpenAI Gym: CartPole-v1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pendulum-v0.html">OpenAI Gym: Pendulum-v0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../rst/examples.html">Code Examples</a> &raquo;</li>
+        
+      <li>Number literals in Rust</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 1200;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="Number-literals-in-Rust">
+<h1>Number literals in Rust<a class="headerlink" href="#Number-literals-in-Rust" title="Permalink to this heading">¶</a></h1>
+<p>This notebook demonstrates how to use a subset of the grammar that defines the programming language Rust in order to evolve different Rust number literals that all evaluate to the same decimal number.</p>
+<section id="References">
+<h2>References<a class="headerlink" href="#References" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doc.rust-lang.org/reference">The Rust Reference</a></p>
+<ul>
+<li><p><a class="reference external" href="https://doc.rust-lang.org/reference/tokens.html#number-literals">Number literals</a></p>
+<ul>
+<li><p><a class="reference external" href="https://doc.rust-lang.org/reference/tokens.html#integer-literals">Integer literals</a></p></li>
+<li><p><a class="reference external" href="https://doc.rust-lang.org/reference/tokens.html#floating-point-literals">Floating-point literals</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Wikipedia</p>
+<ul>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Numeral_system">Numeral system</a></p>
+<ul>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Binary_number">Binary</a>: base 2</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Octal">Octal</a>: base 8</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Decimal">Decimal</a>: base 10</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hexadecimal">Hexadecimal</a>: base 16</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="kn">import</span> <span class="nn">alogos</span> <span class="k">as</span> <span class="nn">al</span>
+<span class="kn">import</span> <span class="nn">unified_map</span> <span class="k">as</span> <span class="nn">um</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Preparation">
+<h2>Preparation<a class="headerlink" href="#Preparation" title="Permalink to this heading">¶</a></h2>
+<section id="1)-Run-shell-commands">
+<h3>1) Run shell commands<a class="headerlink" href="#1)-Run-shell-commands" title="Permalink to this heading">¶</a></h3>
+<p>This is needed to use the Rust compiler <code class="docutils literal notranslate"><span class="pre">rustc</span></code> and to execute the compiled binary file.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_shell_command</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">timeout_in_sec</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">out</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">communicate</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout_in_sec</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">decode</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="2)-Compile-and-run-Rust-code-from-Python">
+<h3>2) Compile and run Rust code from Python<a class="headerlink" href="#2)-Compile-and-run-Rust-code-from-Python" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rust_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">fn main() {{</span>
+<span class="s2">  let expr = </span><span class="si">{}</span><span class="s2">;</span>
+<span class="s2">  println!(&quot;{{}}&quot;, expr);</span>
+<span class="s2">}}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">compile_and_run_rust</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="n">src</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">trg</span> <span class="o">=</span> <span class="n">src</span> <span class="o">+</span> <span class="s1">&#39;.out&#39;</span>
+        <span class="n">run_shell_command</span><span class="p">(</span><span class="s1">&#39;rustc </span><span class="si">{}</span><span class="s1"> -o </span><span class="si">{}</span><span class="s1"> 2&gt; /dev/null&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">trg</span><span class="p">))</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">run_shell_command</span><span class="p">(</span><span class="n">trg</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">trg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">output</span>
+
+<span class="k">def</span> <span class="nf">exec_rust_expression</span><span class="p">(</span><span class="n">expr</span><span class="p">):</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">rust_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">compile_and_run_rust</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exec_rust_expression</span><span class="p">(</span><span class="s1">&#39;0b10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;2&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exec_rust_expression</span><span class="p">(</span><span class="s1">&#39;0o10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;8&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exec_rust_expression</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;10&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exec_rust_expression</span><span class="p">(</span><span class="s1">&#39;0x10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;16&#39;
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Definition-of-search-space-and-goal">
+<h2>Definition of search space and goal<a class="headerlink" href="#Definition-of-search-space-and-goal" title="Permalink to this heading">¶</a></h2>
+<section id="1)-Grammar">
+<h3>1) Grammar<a class="headerlink" href="#1)-Grammar" title="Permalink to this heading">¶</a></h3>
+<p>This grammar defines the search space: a Rust number literal as defined in the Rust Reference.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ebnf_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">EXPRESSION = </span><span class="si">{chosen_expression}</span><span class="s2"></span>
+
+<span class="s2">FLOAT_LITERAL = DEC_LITERAL &quot;.&quot;</span>
+<span class="s2">   | DEC_LITERAL FLOAT_EXPONENT</span>
+<span class="s2">   | DEC_LITERAL &quot;.&quot; DEC_LITERAL FLOAT_EXPONENT?</span>
+<span class="s2">   | DEC_LITERAL (&quot;.&quot; DEC_LITERAL)? FLOAT_EXPONENT? FLOAT_SUFFIX</span>
+<span class="s2">FLOAT_EXPONENT = (&quot;e&quot;|&quot;E&quot;) (&quot;+&quot;|&quot;-&quot;)? (DEC_DIGIT|&quot;_&quot;)* DEC_DIGIT (DEC_DIGIT|&quot;_&quot;)*</span>
+<span class="s2">FLOAT_SUFFIX = &quot;f32&quot; | &quot;f64&quot;</span>
+
+<span class="s2">INTEGER_LITERAL = ( DEC_LITERAL | BIN_LITERAL | OCT_LITERAL | HEX_LITERAL ) INTEGER_SUFFIX?</span>
+<span class="s2">DEC_LITERAL = DEC_DIGIT (DEC_DIGIT|_)*</span>
+<span class="s2">BIN_LITERAL = &quot;0b&quot; (BIN_DIGIT|_)* BIN_DIGIT (BIN_DIGIT|_)*</span>
+<span class="s2">OCT_LITERAL = &quot;0o&quot; (OCT_DIGIT|_)* OCT_DIGIT (OCT_DIGIT|_)*</span>
+<span class="s2">HEX_LITERAL = &quot;0x&quot; (HEX_DIGIT|_)* HEX_DIGIT (HEX_DIGIT|_)*</span>
+<span class="s2">BIN_DIGIT = &quot;0&quot; | &quot;1&quot;</span>
+<span class="s2">OCT_DIGIT = &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot;</span>
+<span class="s2">DEC_DIGIT = &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;</span>
+<span class="s2">HEX_DIGIT = &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot; |</span>
+<span class="s2">            &quot;a&quot; | &quot;b&quot; | &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;f&quot; |</span>
+<span class="s2">            &quot;A&quot; | &quot;B&quot; | &quot;C&quot; | &quot;D&quot; | &quot;E&quot; | &quot;F&quot;</span>
+<span class="s2">INTEGER_SUFFIX = &quot;u8&quot; | &quot;u16&quot; | &quot;u32&quot; | &quot;u64&quot; | &quot;u128&quot; | &quot;usize&quot; | &quot;i8&quot; | &quot;i16&quot; | &quot;i32&quot; | &quot;i64&quot; | &quot;i128&quot; | &quot;isize&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">generate_grammar</span><span class="p">(</span><span class="n">chosen_expression</span><span class="p">):</span>
+    <span class="n">ebnf_text</span> <span class="o">=</span> <span class="n">ebnf_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chosen_expression</span><span class="o">=</span><span class="n">chosen_expression</span><span class="p">)</span>
+    <span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="n">ebnf_text</span><span class="o">=</span><span class="n">ebnf_text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">grammar</span>
+
+
+<span class="n">grammar_num</span> <span class="o">=</span> <span class="n">generate_grammar</span><span class="p">(</span><span class="n">chosen_expression</span><span class="o">=</span><span class="s1">&#39;INTEGER_LITERAL | FLOAT_LITERAL&#39;</span><span class="p">)</span>
+
+<span class="n">grammar_float</span> <span class="o">=</span> <span class="n">generate_grammar</span><span class="p">(</span><span class="n">chosen_expression</span><span class="o">=</span><span class="s1">&#39;FLOAT_LITERAL&#39;</span><span class="p">)</span>
+<span class="n">grammar_int</span> <span class="o">=</span> <span class="n">generate_grammar</span><span class="p">(</span><span class="n">chosen_expression</span><span class="o">=</span><span class="s1">&#39;INTEGER_LITERAL&#39;</span><span class="p">)</span>
+
+<span class="n">grammar_dec</span> <span class="o">=</span> <span class="n">generate_grammar</span><span class="p">(</span><span class="n">chosen_expression</span><span class="o">=</span><span class="s1">&#39;DEC_LITERAL&#39;</span><span class="p">)</span>
+<span class="n">grammar_bin</span> <span class="o">=</span> <span class="n">generate_grammar</span><span class="p">(</span><span class="n">chosen_expression</span><span class="o">=</span><span class="s1">&#39;BIN_LITERAL&#39;</span><span class="p">)</span>
+<span class="n">grammar_oct</span> <span class="o">=</span> <span class="n">generate_grammar</span><span class="p">(</span><span class="n">chosen_expression</span><span class="o">=</span><span class="s1">&#39;OCT_LITERAL&#39;</span><span class="p">)</span>
+<span class="n">grammar_hex</span> <span class="o">=</span> <span class="n">generate_grammar</span><span class="p">(</span><span class="n">chosen_expression</span><span class="o">=</span><span class="s1">&#39;HEX_LITERAL&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="2)-Objective-function">
+<h3>2) Objective function<a class="headerlink" href="#2)-Objective-function" title="Permalink to this heading">¶</a></h3>
+<p>The objective function gets a candidate solution (=a string of the grammar’s language) and returns a fitness value for it. This is done by 1) inserting the Rust number literal into a Rust program that prints the number 2) compile and run that Rust program, and 3) compute how much it deviate from a target number.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="o">=</span> <span class="mi">42</span>
+
+<span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">exec_rust_expression</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">number</span><span class="o">-</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Generation-of-a-random-solution">
+<h2>Generation of a random solution<a class="headerlink" href="#Generation-of-a-random-solution" title="Permalink to this heading">¶</a></h2>
+<p>Check if grammar and objective function work as intended.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">random_string</span> <span class="o">=</span> <span class="n">grammar_num</span><span class="o">.</span><span class="n">generate_string</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">random_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+4e_454f64
+0o41u16
+271.41e+82
+0b10
+0x0E
+0b0010000i64
+90e6
+4u8
+0o3usize
+2
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">objective_function</span><span class="p">(</span><span class="n">random_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+40.0
+</pre></div></div>
+</div>
+</section>
+<section id="Search-for-an-optimal-solution">
+<h2>Search for an optimal solution<a class="headerlink" href="#Search-for-an-optimal-solution" title="Permalink to this heading">¶</a></h2>
+<p>Evolutionary optimization with random variation and non-random selection is used to find increasingly better candidate solutions.</p>
+<section id="Find-a-binary-literal-that-evaluates-to-decimal-42">
+<h3>Find a binary literal that evaluates to decimal 42<a class="headerlink" href="#Find-a-binary-literal-that-evaluates-to-decimal-42" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ea</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">EvolutionaryAlgorithm</span><span class="p">(</span>
+    <span class="n">grammar_bin</span><span class="p">,</span> <span class="n">objective_function</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">max_or_min_fitness</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">offspring_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">=</span><span class="n">um</span><span class="o">.</span><span class="n">univariate</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">futures</span><span class="p">)</span>
+<span class="n">best_ind</span> <span class="o">=</span> <span class="n">ea</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Progress         Generations      Evaluations      Runtime (sec)    Best fitness
+..... ....
+
+Finished         9                55               3.8              0.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">=</span> <span class="n">best_ind</span><span class="o">.</span><span class="n">phenotype</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rust expression:&#39;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Rust expression: 0b101010
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">program</span> <span class="o">=</span> <span class="n">rust_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rust program:&#39;</span><span class="p">,</span> <span class="n">program</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Rust program:
+fn main() {
+  let expr = 0b101010;
+  println!(&#34;{}&#34;, expr);
+}
+
+</pre></div></div>
+</div>
+</section>
+<section id="Find-an-octal-literal-that-evaluates-to-decimal-42">
+<h3>Find an octal literal that evaluates to decimal 42<a class="headerlink" href="#Find-an-octal-literal-that-evaluates-to-decimal-42" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ea</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">EvolutionaryAlgorithm</span><span class="p">(</span>
+    <span class="n">grammar_oct</span><span class="p">,</span> <span class="n">objective_function</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">max_or_min_fitness</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">offspring_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">=</span><span class="n">um</span><span class="o">.</span><span class="n">univariate</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">futures</span><span class="p">)</span>
+<span class="n">best_ind</span> <span class="o">=</span> <span class="n">ea</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Progress         Generations      Evaluations      Runtime (sec)    Best fitness
+..... .....      10               79               2.3              39.0
+..... .....      20               129              6.8              3.0
+..... .....      30               158              10.1             1.0
+..... .....      40               183              12.8             1.0
+.....
+
+Finished         45               194              14.2             0.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">=</span> <span class="n">best_ind</span><span class="o">.</span><span class="n">phenotype</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rust expression:&#39;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Rust expression: 0o52
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">program</span> <span class="o">=</span> <span class="n">rust_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rust program:&#39;</span><span class="p">,</span> <span class="n">program</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Rust program:
+fn main() {
+  let expr = 0o52;
+  println!(&#34;{}&#34;, expr);
+}
+
+</pre></div></div>
+</div>
+</section>
+<section id="Find-a-hexadecimal-literal-that-evaluates-to-decimal-42">
+<h3>Find a hexadecimal literal that evaluates to decimal 42<a class="headerlink" href="#Find-a-hexadecimal-literal-that-evaluates-to-decimal-42" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ea</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">EvolutionaryAlgorithm</span><span class="p">(</span>
+    <span class="n">grammar_hex</span><span class="p">,</span> <span class="n">objective_function</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">max_or_min_fitness</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">offspring_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">=</span><span class="n">um</span><span class="o">.</span><span class="n">univariate</span><span class="o">.</span><span class="n">parallel</span><span class="o">.</span><span class="n">futures</span><span class="p">)</span>
+<span class="n">best_ind</span> <span class="o">=</span> <span class="n">ea</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Progress         Generations      Evaluations      Runtime (sec)    Best fitness
+..... .....      10               76               1.9              3504.0
+..... .....      20               145              5.6              1.0
+....
+
+Finished         24               167              7.8              0.0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">=</span> <span class="n">best_ind</span><span class="o">.</span><span class="n">phenotype</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rust expression:&#39;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Rust expression: 0x2A
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">program</span> <span class="o">=</span> <span class="n">rust_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rust program:&#39;</span><span class="p">,</span> <span class="n">program</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Rust program:
+fn main() {
+  let expr = 0x2A;
+  println!(&#34;{}&#34;, expr);
+}
+
+</pre></div></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="image_approximation.html" class="btn btn-neutral float-right" title="Image approximation with geometrical shapes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="python_numeric_literals.html" class="btn btn-neutral float-left" title="Numeric literals in Python 3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

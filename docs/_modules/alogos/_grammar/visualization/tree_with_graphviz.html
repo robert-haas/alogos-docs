@@ -1,0 +1,681 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._grammar.visualization.tree_with_graphviz &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos._grammar.visualization.tree_with_graphviz</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos._grammar.visualization.tree_with_graphviz</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span> <span class="k">as</span> <span class="nn">_os</span>
+
+<span class="kn">from</span> <span class="nn">..._utilities</span> <span class="kn">import</span> <span class="n">argument_processing</span> <span class="k">as</span> <span class="n">_ap</span>
+<span class="kn">from</span> <span class="nn">..._utilities</span> <span class="kn">import</span> <span class="n">operating_system</span> <span class="k">as</span> <span class="n">_operating_system</span>
+
+
+<div class="viewcode-block" id="create_graphviz_tree"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.create_graphviz_tree">[docs]</a><span class="k">def</span> <span class="nf">create_graphviz_tree</span><span class="p">(</span>
+    <span class="n">tree</span><span class="p">,</span>
+    <span class="n">show_node_indices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">layout_engine</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fontname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">shape_nt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">shape_unexpanded_nt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">shape_t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fontcolor_nt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fontcolor_unexpanded_nt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fontcolor_t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fillcolor_nt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fillcolor_unexpanded_nt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fillcolor_t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represent the derivation tree as Digraph in GraphViz.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - `Graphviz &lt;https://www.graphviz.org&gt;`__</span>
+<span class="sd">    - `An inofficial Python wrapper for Graphviz &lt;https://pypi.org/project/graphviz&gt;`__ used here</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">graphviz</span> <span class="kn">import</span> <span class="n">Digraph</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="c1"># Node shapes from http://www.graphviz.org/doc/info/shapes.html</span>
+    <span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;Mcircle&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Mdiamond&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Msquare&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;assembly&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;box&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;box3d&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cds&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;circle&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;component&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cylinder&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;diamond&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;doublecircle&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;doubleoctagon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;egg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ellipse&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fivepoverhang&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;folder&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;hexagon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;house&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;insulator&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;invhouse&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;invtrapezium&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;invtriangle&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;larrow&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;lpromoter&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;note&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;noverhang&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;octagon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;oval&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;parallelogram&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pentagon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;plain&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;plaintext&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;point&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;primersite&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;promoter&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;proteasesite&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;proteinstab&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rarrow&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rect&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rectangle&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;restrictionsite&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ribosite&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rnastab&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rpromoter&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;septagon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;signature&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;square&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;star&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tab&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;terminator&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;threepoverhang&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;trapezium&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;triangle&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tripleoctagon&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;underline&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;utr&quot;</span><span class="p">,</span>
+        <span class="kc">None</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="n">show_node_indices</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">bool_arg</span><span class="p">(</span>
+        <span class="s2">&quot;show_node_indices&quot;</span><span class="p">,</span> <span class="n">show_node_indices</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="n">layout_engine</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span>
+        <span class="s2">&quot;layout_engine&quot;</span><span class="p">,</span>
+        <span class="n">layout_engine</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;dot&quot;</span><span class="p">,</span>
+        <span class="n">vals</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;circo&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;dot&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fdp&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;neato&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;osage&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;patchwork&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sfdp&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;twopi&quot;</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">fontname</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span><span class="s2">&quot;fontname&quot;</span><span class="p">,</span> <span class="n">fontname</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Mono&quot;</span><span class="p">)</span>
+    <span class="n">fontsize</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">int_arg</span><span class="p">(</span><span class="s2">&quot;fontsize&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">shape_nt</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span><span class="s2">&quot;shape_nt&quot;</span><span class="p">,</span> <span class="n">shape_nt</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="n">shapes</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
+    <span class="n">shape_unexpanded_nt</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span>
+        <span class="s2">&quot;shape_unexpanded_nt&quot;</span><span class="p">,</span> <span class="n">shape_unexpanded_nt</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="n">shapes</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;box&quot;</span>
+    <span class="p">)</span>
+    <span class="n">shape_t</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span><span class="s2">&quot;shape_t&quot;</span><span class="p">,</span> <span class="n">shape_t</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="n">shapes</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;ellipse&quot;</span><span class="p">)</span>
+    <span class="n">fontcolor_nt</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span><span class="s2">&quot;fontcolor_nt&quot;</span><span class="p">,</span> <span class="n">fontcolor_nt</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="n">fontcolor_unexpanded_nt</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span>
+        <span class="s2">&quot;fontcolor_unexpanded_nt&quot;</span><span class="p">,</span> <span class="n">fontcolor_unexpanded_nt</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;white&quot;</span>
+    <span class="p">)</span>
+    <span class="n">fontcolor_t</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span><span class="s2">&quot;fontcolor_t&quot;</span><span class="p">,</span> <span class="n">fontcolor_t</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+    <span class="n">fillcolor_nt</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span><span class="s2">&quot;fillcolor_nt&quot;</span><span class="p">,</span> <span class="n">fillcolor_nt</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+    <span class="n">fillcolor_unexpanded_nt</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span>
+        <span class="s2">&quot;fillcolor_unexpanded_nt&quot;</span><span class="p">,</span> <span class="n">fillcolor_unexpanded_nt</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;#b81118&quot;</span>
+    <span class="p">)</span>
+    <span class="n">fillcolor_t</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span><span class="s2">&quot;fillcolor_t&quot;</span><span class="p">,</span> <span class="n">fillcolor_t</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;#00864b&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Graph construction</span>
+    <span class="n">digraph</span> <span class="o">=</span> <span class="n">Digraph</span><span class="p">(</span>
+        <span class="n">engine</span><span class="o">=</span><span class="n">layout_engine</span><span class="p">,</span>
+        <span class="n">node_attr</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">fontname</span><span class="o">=</span><span class="n">fontname</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">fontsize</span><span class="p">)),</span>
+        <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">tree</span><span class="o">.</span><span class="n">root_node</span><span class="p">]</span>
+    <span class="n">cnt</span> <span class="o">=</span> <span class="n">_AutoCounter</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="c1"># Get node</span>
+        <span class="n">current_node</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="n">stack</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">children</span> <span class="o">+</span> <span class="n">stack</span>
+            <span class="n">child_nodes</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">children</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">child_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Determine node style</span>
+        <span class="n">node_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cnt</span><span class="p">[</span><span class="n">current_node</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">show_node_indices</span><span class="p">:</span>
+            <span class="n">node_label</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">current_node</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">node_label</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span>
+            <span class="k">if</span> <span class="n">node_label</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="n">node_label</span> <span class="o">=</span> <span class="s2">&quot;ɛ&quot;</span>
+        <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="n">contains_nonterminal</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">current_node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                <span class="n">node_shape</span> <span class="o">=</span> <span class="n">shape_unexpanded_nt</span>
+                <span class="n">node_fillcolor</span> <span class="o">=</span> <span class="n">fillcolor_unexpanded_nt</span>
+                <span class="n">node_fontcolor</span> <span class="o">=</span> <span class="n">fontcolor_unexpanded_nt</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">node_shape</span> <span class="o">=</span> <span class="n">shape_nt</span>
+                <span class="n">node_fillcolor</span> <span class="o">=</span> <span class="n">fillcolor_nt</span>
+                <span class="n">node_fontcolor</span> <span class="o">=</span> <span class="n">fontcolor_nt</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">node_shape</span> <span class="o">=</span> <span class="n">shape_t</span>
+            <span class="n">node_fillcolor</span> <span class="o">=</span> <span class="n">fillcolor_t</span>
+            <span class="n">node_fontcolor</span> <span class="o">=</span> <span class="n">fontcolor_t</span>
+
+        <span class="c1"># Create node in visualized graph</span>
+        <span class="n">digraph</span><span class="o">.</span><span class="n">node</span><span class="p">(</span>
+            <span class="n">node_id</span><span class="p">,</span>
+            <span class="n">node_label</span><span class="p">,</span>
+            <span class="n">shape</span><span class="o">=</span><span class="n">node_shape</span><span class="p">,</span>
+            <span class="n">fontcolor</span><span class="o">=</span><span class="n">node_fontcolor</span><span class="p">,</span>
+            <span class="n">style</span><span class="o">=</span><span class="s2">&quot;filled&quot;</span><span class="p">,</span>
+            <span class="n">fillcolor</span><span class="o">=</span><span class="n">node_fillcolor</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Create edges in visualized graph</span>
+        <span class="k">for</span> <span class="n">child_node</span> <span class="ow">in</span> <span class="n">child_nodes</span><span class="p">:</span>
+            <span class="n">child_node_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cnt</span><span class="p">[</span><span class="n">child_node</span><span class="p">])</span>
+            <span class="n">digraph</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">child_node_id</span><span class="p">)</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">DerivationTreeFigure</span><span class="p">(</span><span class="n">digraph</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+
+<div class="viewcode-block" id="DerivationTreeFigure"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.DerivationTreeFigure">[docs]</a><span class="k">class</span> <span class="nc">DerivationTreeFigure</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Data structure for wrapping, displaying and exporting a Graphviz graph of a tree.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Initialization</span>
+<div class="viewcode-block" id="DerivationTreeFigure.__init__"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.DerivationTreeFigure.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">given_graph</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a figure with a Graphviz graph object.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">=</span> <span class="n">given_graph</span></div>
+
+    <span class="c1"># Representations</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the &quot;official&quot; string representation of the figure.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;</span><span class="si">{}</span><span class="s2"> object at </span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Provide rich display representation in HTML format for Jupyter notebooks.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">html_text_partial</span>
+
+    <span class="c1"># Display in browser or notebook</span>
+<div class="viewcode-block" id="DerivationTreeFigure.display"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.DerivationTreeFigure.display">[docs]</a>    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Display the plot in a webbrowser or as IPython rich display representation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inline : bool</span>
+<span class="sd">            If True, the plot will be shown inline in a Jupyter notebook.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">inline</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
+
+            <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">html_text_standalone</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_operating_system</span><span class="o">.</span><span class="n">open_in_webbrowser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">html_text_standalone</span><span class="p">)</span></div>
+
+    <span class="c1"># Further representations</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">html_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a HTML text representation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">html_text_standalone</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">html_text_standalone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a standalone HTML text representation.&quot;&quot;&quot;</span>
+        <span class="n">html_text</span> <span class="o">=</span> <span class="n">_HTML</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">svg_text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">html_text</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">html_text_partial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a partial HTML text representation without html, head and body tags.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">svg_text</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">svg_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create an SVG text representation of the plot, usable in HTML context or SVG file.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">svg_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">_repr_svg_</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="c1"># API change: https://graphviz.readthedocs.io/en/latest/changelog.html#version-0-19</span>
+            <span class="n">mime_type</span> <span class="o">=</span> <span class="s2">&quot;image/svg+xml&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">_repr_mimebundle_</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">mime_type</span><span class="p">])</span>
+            <span class="n">svg_text</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">mime_type</span><span class="p">]</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">svg_text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">_i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&lt;svg&quot;</span><span class="p">):</span>
+                <span class="k">break</span>
+        <span class="n">svg_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">_i</span><span class="p">:])</span>
+        <span class="k">return</span> <span class="n">svg_text</span>
+
+    <span class="c1"># Export as HTML file</span>
+<div class="viewcode-block" id="DerivationTreeFigure.export_html"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.DerivationTreeFigure.export_html">[docs]</a>    <span class="k">def</span> <span class="nf">export_html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Export the plot as text file in HTML format.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filepath : str</span>
+<span class="sd">            Filepath of the created HTML file.</span>
+<span class="sd">            If the file exists it will be overwritten without warning.</span>
+<span class="sd">            If the path does not end with &quot;.html&quot; it will be changed to do so.</span>
+<span class="sd">            If the parent directory does not exist it will be created.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        filepath_used : str</span>
+<span class="sd">            Filepath of the generated HTML file, guaranteed to end with &quot;.html&quot;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Argument processing</span>
+        <span class="n">used_filepath</span> <span class="o">=</span> <span class="n">_operating_system</span><span class="o">.</span><span class="n">ensure_file_extension</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Create HTML file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">used_filepath</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_handle</span><span class="p">:</span>
+            <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">html_text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">used_filepath</span></div>
+
+    <span class="c1"># Export in various other file formats</span>
+    <span class="k">def</span> <span class="nf">_export</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">fileformat</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Export the digraph in various formats.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - https://graphviz.readthedocs.io/en/stable/api.html#digraph</span>
+<span class="sd">        - https://www.graphviz.org/doc/info/output.html</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Argument processing</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span><span class="s2">&quot;filepath&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">ensure_no_file_extension</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">fileformat</span><span class="p">)</span>
+
+        <span class="c1"># Check if file already exists, only to prevent deletion</span>
+        <span class="n">did_not_exist</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">_os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+        <span class="c1"># Create image file</span>
+        <span class="n">used_filepath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filepath</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">fileformat</span><span class="p">)</span>
+
+        <span class="c1"># Remove side product generated by GraphViz</span>
+        <span class="k">if</span> <span class="n">_os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span> <span class="ow">and</span> <span class="n">did_not_exist</span><span class="p">:</span>
+            <span class="n">_operating_system</span><span class="o">.</span><span class="n">delete_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">used_filepath</span>
+
+<div class="viewcode-block" id="DerivationTreeFigure.export_dot"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.DerivationTreeFigure.export_dot">[docs]</a>    <span class="k">def</span> <span class="nf">export_dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Export the plot as text file in DOT format.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filepath : str</span>
+<span class="sd">            Filepath of the created DOT file.</span>
+<span class="sd">            If the file exists it will be overwritten without warning.</span>
+<span class="sd">            If the path does not end with &quot;.dot&quot; it will be changed to do so.</span>
+<span class="sd">            If the parent directory does not exist it will be created.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        filepath_used : str</span>
+<span class="sd">            Filepath of the generated DOT file, guaranteed to end with &quot;.dot&quot;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;dot&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DerivationTreeFigure.export_eps"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.DerivationTreeFigure.export_eps">[docs]</a>    <span class="k">def</span> <span class="nf">export_eps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Export the plot as vector graphic in EPS format.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filepath : str</span>
+<span class="sd">            Filepath of the created EPS file.</span>
+<span class="sd">            If the file exists it will be overwritten without warning.</span>
+<span class="sd">            If the path does not end with &quot;.eps&quot; it will be changed to do so.</span>
+<span class="sd">            If the parent directory does not exist it will be created.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        filepath_used : str</span>
+<span class="sd">            Filepath of the generated EPS file, guaranteed to end with &quot;.eps&quot;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;eps&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DerivationTreeFigure.export_gv"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.DerivationTreeFigure.export_gv">[docs]</a>    <span class="k">def</span> <span class="nf">export_gv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Export the plot as text file in GV format.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filepath : str</span>
+<span class="sd">            Filepath of the created GV file.</span>
+<span class="sd">            If the file exists it will be overwritten without warning.</span>
+<span class="sd">            If the path does not end with &quot;.gv&quot; it will be changed to do so.</span>
+<span class="sd">            If the parent directory does not exist it will be created.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        filepath_used : str</span>
+<span class="sd">            Filepath of the generated GV file, guaranteed to end with &quot;.gv&quot;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;gv&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DerivationTreeFigure.export_pdf"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.DerivationTreeFigure.export_pdf">[docs]</a>    <span class="k">def</span> <span class="nf">export_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Export the plot as vector graphic in PDF format.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filepath : str</span>
+<span class="sd">            Filepath of the created PDF file.</span>
+<span class="sd">            If the file exists it will be overwritten without warning.</span>
+<span class="sd">            If the path does not end with &quot;.pdf&quot; it will be changed to do so.</span>
+<span class="sd">            If the parent directory does not exist it will be created.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        filepath_used : str</span>
+<span class="sd">            Filepath of the generated PDF file, guaranteed to end with &quot;.pdf&quot;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;pdf&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DerivationTreeFigure.export_png"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.DerivationTreeFigure.export_png">[docs]</a>    <span class="k">def</span> <span class="nf">export_png</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Export the plot as raster graphic in PNG format.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filepath : str</span>
+<span class="sd">            Filepath of the created PNG file.</span>
+<span class="sd">            If the file exists it will be overwritten without warning.</span>
+<span class="sd">            If the path does not end with &quot;.png&quot; it will be changed to do so.</span>
+<span class="sd">            If the parent directory does not exist it will be created.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        filepath_used : str</span>
+<span class="sd">            Filepath of the generated PNG file, guaranteed to end with &quot;.png&quot;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;png&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DerivationTreeFigure.export_ps"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.DerivationTreeFigure.export_ps">[docs]</a>    <span class="k">def</span> <span class="nf">export_ps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Export the plot as vector graphic in PS format.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filepath : str</span>
+<span class="sd">            Filepath of the created PS file.</span>
+<span class="sd">            If the file exists it will be overwritten without warning.</span>
+<span class="sd">            If the path does not end with &quot;.ps&quot; it will be changed to do so.</span>
+<span class="sd">            If the parent directory does not exist it will be created.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        filepath_used : str</span>
+<span class="sd">            Filepath of the generated PS file, guaranteed to end with &quot;.ps&quot;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;ps&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DerivationTreeFigure.export_svg"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/tree_with_graphviz/index.html#alogos._grammar.visualization.DerivationTreeFigure.export_svg">[docs]</a>    <span class="k">def</span> <span class="nf">export_svg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Export the plot as vector graphic in SVG format.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filepath : str</span>
+<span class="sd">            Filepath of the created SVG file.</span>
+<span class="sd">            If the file exists it will be overwritten without warning.</span>
+<span class="sd">            If the path does not end with &quot;.svg&quot; it will be changed to do so.</span>
+<span class="sd">            If the parent directory does not exist it will be created.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        filepath_used : str</span>
+<span class="sd">            Filepath of the generated SVG file, guaranteed to end with &quot;.svg&quot;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_export</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;svg&quot;</span><span class="p">)</span></div></div>
+
+
+<span class="n">_HTML</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;!DOCTYPE html&gt;</span>
+<span class="s2">&lt;html&gt;</span>
+<span class="s2">&lt;head&gt;</span>
+<span class="s2">  &lt;meta charset=&quot;utf-8&quot;&gt;</span>
+<span class="s2">&lt;/head&gt;</span>
+<span class="s2">&lt;body&gt;</span>
+
+<span class="si">{}</span><span class="s2"></span>
+
+<span class="s2">&lt;/body&gt;</span>
+<span class="s2">&lt;/html&gt;&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">_AutoCounter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cnt</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

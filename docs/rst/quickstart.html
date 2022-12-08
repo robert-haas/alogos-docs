@@ -1,0 +1,480 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Quickstart Example &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Getting Started Tutorial" href="getting_started.html" />
+    <link rel="prev" title="Installation Guide" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Quickstart Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="quickstart-example">
+<h1>Quickstart Example<a class="headerlink" href="#quickstart-example" title="Permalink to this heading">¶</a></h1>
+<p>This page provides a short example of how
+<a class="reference internal" href="package_references.html"><span class="doc">alogos</span></a>
+can be used to tackle a simple optimization problem, the search for
+an arithmetic expression that approximates the number
+<a class="reference external" href="https://en.wikipedia.org/wiki/Pi">π</a>.
+It assumes that you are using a Python 3.6+ interpreter and
+that you have installed alogos as explained in the
+<a class="reference internal" href="installation.html"><span class="doc">Installation Guide</span></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">alogos</span> <span class="k">as</span> <span class="nn">al</span>
+
+<span class="n">bnf_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;S&gt; ::= &lt;NUM&gt; &lt;OP&gt; &lt;S&gt; | &lt;NUM&gt; &lt;OP&gt; &lt;NUM&gt;</span>
+<span class="s2">&lt;NUM&gt; ::= &lt;DIGIT&gt; | &lt;DIGIT&gt; &lt;DIGIT&gt;</span>
+<span class="s2">&lt;OP&gt; ::= + | * | - | /</span>
+<span class="s2">&lt;DIGIT&gt; ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="n">bnf_text</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.141592653589793</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">number</span><span class="o">-</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="n">ea</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">EvolutionaryAlgorithm</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">objective_function</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_generations</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">best_ind</span> <span class="o">=</span> <span class="n">ea</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solution:&#39;</span><span class="p">,</span> <span class="n">best_ind</span><span class="o">.</span><span class="n">phenotype</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This code uses three main steps to define and solve an optimization
+problem:</p>
+<ol class="arabic">
+<li><p>A <strong>search space</strong> is defined by providing a grammar. A grammar is
+a device to define a formal language, which is simply a set of
+strings.</p>
+<p>In this case, the grammar’s language is an infinite set of
+strings, each representing an arithmetic expression. While this
+might sound complicated, it just means that the search space
+consists of strings such as <code class="docutils literal notranslate"><span class="pre">&quot;22*2/18+39&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;11*5-0&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;36/85-7&quot;</span></code> and an unbounded amount of other possible combinations
+of numbers and operators. There is an implicit bias towards shorter
+strings, so expressions with thousands of numbers and operators are
+part of the search space but unlikely to be actually visited by the
+search algorithm in a practical amount of time.</p>
+</li>
+<li><p>A <strong>search goal</strong> is defined by implementing an objective function
+that rates the quality of each candidate solution in the search
+space. It gets a string as input and returns a numerical value for it
+as output, which represents a quality score for the given string.</p>
+<p>In this case, each string that the function gets is an arithmetic
+expression. Therefore the string can be evaluated to a number
+(e.g. <code class="docutils literal notranslate"><span class="pre">eval(&quot;2+17/91*15&quot;)</span></code> gives <code class="docutils literal notranslate"><span class="pre">4.802197802197802</span></code>)
+and then it can be determined how close this number is to pi.
+The smaller the difference between the number and pi is (e.g.
+<code class="docutils literal notranslate"><span class="pre">abs(4.802197802197802-3.141592653589793)</span></code> gives
+<code class="docutils literal notranslate"><span class="pre">1.660605148608009</span></code>), the better the arithmetic expression
+approximates pi.</p>
+</li>
+<li><p>A <strong>search method</strong> is defined by creating an instance of a chosen
+algorithm and passing search space and search goal to it in form of
+a) the grammar, b) the objective function and c) an objective which
+can be minimization (<code class="docutils literal notranslate"><span class="pre">&quot;min&quot;</span></code>) or maximization (<code class="docutils literal notranslate"><span class="pre">&quot;max&quot;</span></code>) of the
+value provided by the objective function.
+The task of the algorithm is then to look for an optimal solution
+among all the candidate solutions in the search space.
+Ideally it will find a good solution after evaluating only a small
+number of candidates.</p>
+<p>In this case, an evolutionary algorithm is used that searches
+for an arithmetic expression, which gets a minimal value assigned
+by the objective function and therefore is a good approximation
+of pi.</p>
+</li>
+</ol>
+<p>Executing the code will generate an output that looks similar but not
+identical to this one, because the evolutionary algorithm is stochastic
+and therefore creates a different output each time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Progress</span>         <span class="n">Generations</span>      <span class="n">Evaluations</span>      <span class="n">Runtime</span> <span class="p">(</span><span class="n">sec</span><span class="p">)</span>    <span class="n">Best</span> <span class="n">fitness</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">10</span>               <span class="mi">992</span>              <span class="mf">0.6</span>              <span class="mf">0.01969766899085279</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">20</span>               <span class="mi">1957</span>             <span class="mf">0.8</span>              <span class="mf">0.0012644892673496777</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">30</span>               <span class="mi">2764</span>             <span class="mf">0.9</span>              <span class="mf">0.0012644892673496777</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">40</span>               <span class="mi">3653</span>             <span class="mf">1.1</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">50</span>               <span class="mi">4490</span>             <span class="mf">1.2</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">60</span>               <span class="mi">5416</span>             <span class="mf">1.4</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">70</span>               <span class="mi">6359</span>             <span class="mf">1.5</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">80</span>               <span class="mi">7318</span>             <span class="mf">1.6</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">90</span>               <span class="mi">8264</span>             <span class="mf">1.7</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">100</span>              <span class="mi">9204</span>             <span class="mf">1.9</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">110</span>              <span class="mi">10136</span>            <span class="mf">2.0</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">120</span>              <span class="mi">11077</span>            <span class="mf">2.1</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">130</span>              <span class="mi">12032</span>            <span class="mf">2.2</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">140</span>              <span class="mi">12982</span>            <span class="mf">2.3</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">150</span>              <span class="mi">13926</span>            <span class="mf">2.4</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">160</span>              <span class="mi">14886</span>            <span class="mf">2.5</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">170</span>              <span class="mi">15875</span>            <span class="mf">2.6</span>              <span class="mf">0.0002883057637053099</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">180</span>              <span class="mi">16862</span>            <span class="mf">2.7</span>              <span class="mf">7.37726408894801e-06</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">190</span>              <span class="mi">17839</span>            <span class="mf">2.9</span>              <span class="mf">2.0435200820401178e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">200</span>              <span class="mi">18802</span>            <span class="mf">3.0</span>              <span class="mf">2.0435200820401178e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">210</span>              <span class="mi">19771</span>            <span class="mf">3.2</span>              <span class="mf">2.0435200820401178e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">220</span>              <span class="mi">20720</span>            <span class="mf">3.4</span>              <span class="mf">2.0435200820401178e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">230</span>              <span class="mi">21693</span>            <span class="mf">3.6</span>              <span class="mf">2.0435200820401178e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">240</span>              <span class="mi">22652</span>            <span class="mf">3.7</span>              <span class="mf">2.0435200820401178e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">250</span>              <span class="mi">23611</span>            <span class="mf">3.9</span>              <span class="mf">2.0435200820401178e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">260</span>              <span class="mi">24561</span>            <span class="mf">4.0</span>              <span class="mf">2.0435200820401178e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">270</span>              <span class="mi">25531</span>            <span class="mf">4.1</span>              <span class="mf">2.0435200820401178e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">280</span>              <span class="mi">26496</span>            <span class="mf">4.2</span>              <span class="mf">2.0435200820401178e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">290</span>              <span class="mi">27460</span>            <span class="mf">4.3</span>              <span class="mf">2.0435200820401178e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">300</span>              <span class="mi">28410</span>            <span class="mf">4.5</span>              <span class="mf">2.0435200820401178e-07</span>
+
+<span class="n">Finished</span>         <span class="mi">300</span>              <span class="mi">28410</span>            <span class="mf">4.5</span>              <span class="mf">2.0435200820401178e-07</span>
+
+<span class="n">Solution</span><span class="p">:</span> <span class="mi">13</span><span class="o">/</span><span class="mi">92</span><span class="o">-</span><span class="mi">9</span><span class="o">+</span><span class="mi">6</span><span class="o">+</span><span class="mi">6</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">89</span><span class="o">*</span><span class="mi">5</span><span class="o">/</span><span class="mi">39</span>
+</pre></div>
+</div>
+<p>The five columns have following meaning:</p>
+<ol class="arabic simple">
+<li><p>Each dot represents one generation in the evolutionary search and is
+printed when evaluating the individuals in it is finished. If the
+objective function is demanding this can take quite a while, but here
+each generation is generated and evaluated in a fraction of seconds.</p></li>
+<li><p>Whenever 10 generations are completed, the total number of
+generations so far is shown.</p></li>
+<li><p>The objective function is evaluated for an increasing number of
+candidate solutions throughout the run. By default, duplicate
+individuals are evaluated only once throughout the run to prevent
+potentially costly recalculations.</p></li>
+<li><p>Depending on the objective function, the evaluation can be time
+consuming, so it is good to keep a track of total time passed.</p></li>
+<li><p>The goal is to find a candidate solution with a good value assigned
+by the objective function, which is also known as its fitness, and
+ideally it should improve throughout the run. In this particular
+case, the fitness value means how far the best expression found so
+far deviates from pi.</p></li>
+</ol>
+<p>The last row shows the best solution found in this run:</p>
+<ul class="simple">
+<li><p>The best arithmetic expression that was discovered by creating 300
+consecutive generations within 4.5 seconds is
+<code class="docutils literal notranslate"><span class="pre">&quot;13/92-9+6+6+1/5*1/89*5/39&quot;</span></code>.</p></li>
+<li><p>Evaluating this expression results in the number
+<code class="docutils literal notranslate"><span class="pre">3.141592449237785</span></code>, which correctly approximates
+<code class="docutils literal notranslate"><span class="pre">pi=3.141592653589793</span></code> in the first six digits after the comma.</p></li>
+<li><p>If the algorithm were allowed to search for a longer time, the result
+would most likely have continued to improve, but there is never a
+guarantee because the search is stochastic and might get trapped in
+a bad region of the search space for a while. For this reason,
+it can sometimes be better to start a fresh run rather than continuing
+a stuck one. Increasing the population size and tweaking other
+parameters can also reduce the chance of getting stuck, which is less
+important for toy problems such as the one shown here, but becomes
+relevant when dealing with hard real-world problems.</p></li>
+</ul>
+<p>Here is the output of a longer run that used <code class="docutils literal notranslate"><span class="pre">max_generations=500</span></code>.
+It actually resulted in an arithmetic expression that approximates pi
+to the full precision it was provided:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Progress</span>         <span class="n">Generations</span>      <span class="n">Evaluations</span>      <span class="n">Runtime</span> <span class="p">(</span><span class="n">sec</span><span class="p">)</span>    <span class="n">Best</span> <span class="n">fitness</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">10</span>               <span class="mi">987</span>              <span class="mf">0.8</span>              <span class="mf">0.006977268974408535</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">20</span>               <span class="mi">1953</span>             <span class="mf">0.9</span>              <span class="mf">0.006977268974408535</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">30</span>               <span class="mi">2912</span>             <span class="mf">1.0</span>              <span class="mf">0.0004636213317286142</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">40</span>               <span class="mi">3871</span>             <span class="mf">1.1</span>              <span class="mf">0.0004636213317286142</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">50</span>               <span class="mi">4841</span>             <span class="mf">1.2</span>              <span class="mf">0.0004636213317286142</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">60</span>               <span class="mi">5825</span>             <span class="mf">1.4</span>              <span class="mf">0.0004636213317286142</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">70</span>               <span class="mi">6815</span>             <span class="mf">1.4</span>              <span class="mf">0.0004636213317286142</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">80</span>               <span class="mi">7798</span>             <span class="mf">1.5</span>              <span class="mf">0.00040724325544694295</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">90</span>               <span class="mi">8778</span>             <span class="mf">1.6</span>              <span class="mf">0.00040724325544694295</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">100</span>              <span class="mi">9744</span>             <span class="mf">1.7</span>              <span class="mf">0.0003328122487156193</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">110</span>              <span class="mi">10708</span>            <span class="mf">1.8</span>              <span class="mf">0.0003328122487156193</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">120</span>              <span class="mi">11678</span>            <span class="mf">1.9</span>              <span class="mf">0.0003328122487156193</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">130</span>              <span class="mi">12636</span>            <span class="mf">2.0</span>              <span class="mf">0.0003034549835216893</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">140</span>              <span class="mi">13604</span>            <span class="mf">2.1</span>              <span class="mf">0.0002883057637061981</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">150</span>              <span class="mi">14555</span>            <span class="mf">2.2</span>              <span class="mf">0.0002883057637061981</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">160</span>              <span class="mi">15525</span>            <span class="mf">2.4</span>              <span class="mf">0.0002883057637061981</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">170</span>              <span class="mi">16496</span>            <span class="mf">2.5</span>              <span class="mf">0.0002883057637061981</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">180</span>              <span class="mi">17462</span>            <span class="mf">2.6</span>              <span class="mf">0.0002883057637061981</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">190</span>              <span class="mi">18424</span>            <span class="mf">2.7</span>              <span class="mf">1.3094937064472845e-05</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">200</span>              <span class="mi">19400</span>            <span class="mf">2.8</span>              <span class="mf">8.682170400398093e-06</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">210</span>              <span class="mi">20373</span>            <span class="mf">2.9</span>              <span class="mf">1.7688359603695858e-06</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">220</span>              <span class="mi">21350</span>            <span class="mf">3.1</span>              <span class="mf">5.590024336754595e-07</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">230</span>              <span class="mi">22328</span>            <span class="mf">3.3</span>              <span class="mf">2.351036076930768e-08</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">240</span>              <span class="mi">23313</span>            <span class="mf">3.5</span>              <span class="mf">2.351000460976138e-08</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">250</span>              <span class="mi">24306</span>            <span class="mf">3.7</span>              <span class="mf">2.01513463693459e-08</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">260</span>              <span class="mi">25291</span>            <span class="mf">3.9</span>              <span class="mf">4.78525308267308e-09</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">270</span>              <span class="mi">26285</span>            <span class="mf">4.2</span>              <span class="mf">2.2676083233363897e-11</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">280</span>              <span class="mi">27263</span>            <span class="mf">4.6</span>              <span class="mf">2.2672530519685097e-11</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">290</span>              <span class="mi">28247</span>            <span class="mf">5.0</span>              <span class="mf">2.2216894990378933e-11</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">300</span>              <span class="mi">29238</span>            <span class="mf">5.4</span>              <span class="mf">1.0601297617540695e-11</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">310</span>              <span class="mi">30217</span>            <span class="mf">5.8</span>              <span class="mf">1.9761969838327786e-12</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">320</span>              <span class="mi">31204</span>            <span class="mf">6.2</span>              <span class="mf">7.416289804496046e-13</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">330</span>              <span class="mi">32183</span>            <span class="mf">6.5</span>              <span class="mf">7.416289804496046e-13</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">340</span>              <span class="mi">33170</span>            <span class="mf">7.0</span>              <span class="mf">7.416289804496046e-13</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">350</span>              <span class="mi">34153</span>            <span class="mf">7.3</span>              <span class="mf">1.8740564655672642e-13</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">360</span>              <span class="mi">35128</span>            <span class="mf">7.7</span>              <span class="mf">1.8740564655672642e-13</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">370</span>              <span class="mi">36109</span>            <span class="mf">8.3</span>              <span class="mf">3.2862601528904634e-14</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">380</span>              <span class="mi">37098</span>            <span class="mf">8.8</span>              <span class="mf">1.1546319456101628e-14</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">390</span>              <span class="mi">38075</span>            <span class="mf">9.3</span>              <span class="mf">1.1546319456101628e-14</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">400</span>              <span class="mi">39049</span>            <span class="mf">9.8</span>              <span class="mf">7.993605777301127e-15</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">410</span>              <span class="mi">40043</span>            <span class="mf">10.2</span>             <span class="mf">7.993605777301127e-15</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">420</span>              <span class="mi">41028</span>            <span class="mf">10.6</span>             <span class="mf">7.993605777301127e-15</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">430</span>              <span class="mi">42011</span>            <span class="mf">11.0</span>             <span class="mf">7.993605777301127e-15</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">440</span>              <span class="mi">42987</span>            <span class="mf">11.4</span>             <span class="mf">0.0</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">450</span>              <span class="mi">43973</span>            <span class="mf">11.8</span>             <span class="mf">0.0</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">460</span>              <span class="mi">44959</span>            <span class="mf">12.2</span>             <span class="mf">0.0</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">470</span>              <span class="mi">45940</span>            <span class="mf">12.7</span>             <span class="mf">0.0</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">480</span>              <span class="mi">46920</span>            <span class="mf">13.1</span>             <span class="mf">0.0</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">490</span>              <span class="mi">47903</span>            <span class="mf">13.5</span>             <span class="mf">0.0</span>
+<span class="o">.....</span> <span class="o">.....</span>      <span class="mi">500</span>              <span class="mi">48889</span>            <span class="mf">14.0</span>             <span class="mf">0.0</span>
+
+<span class="n">Finished</span>         <span class="mi">500</span>              <span class="mi">48889</span>            <span class="mf">14.0</span>             <span class="mf">0.0</span>
+
+<span class="n">Solution</span><span class="p">:</span> <span class="mi">00</span><span class="o">-</span><span class="mi">5</span><span class="o">+</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="o">/</span><span class="mi">7</span><span class="o">+</span><span class="mi">7</span><span class="o">/</span><span class="mi">47</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">28</span><span class="o">/</span><span class="mi">7</span><span class="o">-</span><span class="mi">7</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">40</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">43</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">24</span><span class="o">/</span><span class="mi">42</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">17</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">28</span><span class="o">/</span><span class="mi">7</span><span class="o">-</span><span class="mi">7</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">40</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">41</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">24</span><span class="o">/</span><span class="mi">47</span><span class="o">/</span><span class="mi">3</span><span class="o">-</span><span class="mi">46</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">47</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">41</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">86</span><span class="o">/</span><span class="mi">47</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">46</span><span class="o">/</span><span class="mi">41</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">20</span><span class="o">-</span><span class="mi">47</span><span class="o">/</span><span class="mi">9</span><span class="o">/</span><span class="mi">16</span><span class="o">/</span><span class="mi">9</span><span class="o">/</span><span class="mi">76</span><span class="o">/</span><span class="mi">71</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">42</span><span class="o">/</span><span class="mi">23</span><span class="o">/</span><span class="mi">71</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">16</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">47</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="mi">28</span><span class="o">/</span><span class="mi">4</span><span class="o">-</span><span class="mi">7</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">40</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">41</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">24</span><span class="o">/</span><span class="mi">47</span><span class="o">/</span><span class="mi">3</span><span class="o">-</span><span class="mi">16</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">10</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">21</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">28</span><span class="o">/</span><span class="mi">47</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="mi">46</span><span class="o">/</span><span class="mi">41</span><span class="o">/</span><span class="mi">7</span><span class="o">+</span><span class="mi">20</span><span class="o">/</span><span class="mi">5</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">16</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">20</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">41</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="mi">71</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">27</span><span class="o">*</span><span class="mi">43</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">16</span><span class="o">/</span><span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="o">-</span><span class="mi">40</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">41</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">28</span><span class="o">/</span><span class="mi">47</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">46</span><span class="o">/</span><span class="mi">76</span><span class="o">+</span><span class="mi">7</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">41</span><span class="o">/</span><span class="mi">3</span><span class="o">/</span><span class="mi">27</span><span class="o">/</span><span class="mi">6</span><span class="o">+</span><span class="mi">7</span><span class="o">/</span><span class="mi">41</span><span class="o">/</span><span class="mi">5</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="mi">0</span><span class="o">+</span><span class="mi">8</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The best arithmetic expression that was discovered by creating 500
+consecutive generations within 14.0 seconds is
+<code class="docutils literal notranslate"><span class="pre">&quot;00-5+3/4/7+7/47/3/28/7-7/7/40/7/43/3/24/42/7/17/3/28/7-7/7/40/7/41/3/24/47/3-46/7/7/47/7/41/3/86/47/3/46/41/7/20-47/9/16/9/76/71/7/42/23/71/13/16/7/47/3*28/4-7/7/40/7/41/3/24/47/3-16/7/7/10/7/21/3/28/47/3*46/41/7+20/5/3/16/7/7/20/7/41/2/71/3/27*43/3/16/7*7-40/7/41/3/28/47/3/46/76+7/7/41/3/27/6+7/41/5+5*0+8&quot;</span></code>.</p></li>
+<li><p>Evaluating this expression results in the number
+<code class="docutils literal notranslate"><span class="pre">3.141592653589793</span></code>, which correctly approximates
+<code class="docutils literal notranslate"><span class="pre">pi=3.141592653589793</span></code> in all 15 digits after the comma that
+were provided.</p></li>
+</ul>
+<p>Exercise for the reader:</p>
+<ul class="simple">
+<li><p>To achieve even higher precision, Python’s built-in module
+<a class="reference external" href="https://docs.python.org/3/library/decimal.html">decimal</a>
+could be used to overcome the limitations of
+<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#typesnumeric">floating point numbers</a>
+and
+<a class="reference external" href="https://docs.python.org/3/tutorial/floatingpoint.html">floating point arithmetic</a>.</p></li>
+<li><p>To bias the search towards shorter arithmetic expressions,
+the objective function could be modified so that the length of a
+candidate string is taken into consideration by the fitness
+calculation in such a way that shorter expressions get a slightly
+better value.</p></li>
+</ul>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

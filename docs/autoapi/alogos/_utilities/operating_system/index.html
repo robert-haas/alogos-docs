@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._utilities.operating_system &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._utilities.operating_system</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos._utilities.operating_system">
+<span id="alogos-utilities-operating-system"></span><h1><a class="reference internal" href="#module-alogos._utilities.operating_system" title="alogos._utilities.operating_system"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._utilities.operating_system</span></code></a><a class="headerlink" href="#module-alogos._utilities.operating_system" title="Permalink to this heading">¶</a></h1>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos._utilities.operating_system.ensure_file_extension" title="alogos._utilities.operating_system.ensure_file_extension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ensure_file_extension</span></code></a>(filepath, extension)</p></td>
+<td><p>Ensure that a filepath ends with a given extension.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos._utilities.operating_system.delete_file" title="alogos._utilities.operating_system.delete_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_file</span></code></a>(filepath)</p></td>
+<td><p>Delete a file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos._utilities.operating_system.ensure_new_path" title="alogos._utilities.operating_system.ensure_new_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ensure_new_path</span></code></a>(path)</p></td>
+<td><p>Check whether a given path exists. If yes, try to find a novel, incremented variant of it.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos._utilities.operating_system.create_directory" title="alogos._utilities.operating_system.create_directory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_directory</span></code></a>(dirpath)</p></td>
+<td><p>Given a directory path, create it and all necessary parent directories.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos._utilities.operating_system.open_in_webbrowser" title="alogos._utilities.operating_system.open_in_webbrowser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_in_webbrowser</span></code></a>(html_text, start_delay=0.1, stop_delay_fast=0.25, stop_delay_slow=10.0)</p></td>
+<td><p>Open the given HTML text in the default webbrowser.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos._utilities.operating_system.NEWLINE" title="alogos._utilities.operating_system.NEWLINE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NEWLINE</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="alogos._utilities.operating_system.NEWLINE">
+<span class="sig-prename descclassname"><span class="pre">alogos._utilities.operating_system.</span></span><span class="sig-name descname"><span class="pre">NEWLINE</span></span><a class="headerlink" href="#alogos._utilities.operating_system.NEWLINE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos._utilities.operating_system.ensure_file_extension">
+<span class="sig-prename descclassname"><span class="pre">alogos._utilities.operating_system.</span></span><span class="sig-name descname"><span class="pre">ensure_file_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/operating_system.html#ensure_file_extension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.operating_system.ensure_file_extension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensure that a filepath ends with a given extension.</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.8/library/os.path.html#os.path.splitext">https://docs.python.org/3.8/library/os.path.html#os.path.splitext</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos._utilities.operating_system.delete_file">
+<span class="sig-prename descclassname"><span class="pre">alogos._utilities.operating_system.</span></span><span class="sig-name descname"><span class="pre">delete_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/operating_system.html#delete_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.operating_system.delete_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a file.</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.remove">https://docs.python.org/3/library/os.html#os.remove</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos._utilities.operating_system.ensure_new_path">
+<span class="sig-prename descclassname"><span class="pre">alogos._utilities.operating_system.</span></span><span class="sig-name descname"><span class="pre">ensure_new_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/operating_system.html#ensure_new_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.operating_system.ensure_new_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether a given path exists. If yes, try to find a novel, incremented variant of it.</p>
+<p>Caution: Not threadsafe.</p>
+<p class="rubric">Examples</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">some_dir</span></code> exists, it becomes <code class="docutils literal notranslate"><span class="pre">some_dir_1.mp3</span></code>, then <code class="docutils literal notranslate"><span class="pre">some_dir_2.mp3</span></code>, …</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">some_file</span></code> exists, it becomes <code class="docutils literal notranslate"><span class="pre">some_file_1</span></code>, then <code class="docutils literal notranslate"><span class="pre">some_file_2</span></code>, …</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">some_file.mp3</span></code> exists, it becomes <code class="docutils literal notranslate"><span class="pre">some_file_1.mp3</span></code>, then <code class="docutils literal notranslate"><span class="pre">some_file_2.mp3</span></code>, …</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">x_1.y_2.z.txt</span></code> exists, it becomes <code class="docutils literal notranslate"><span class="pre">x_1.y_2.z_1.txt</span></code>, then <code class="docutils literal notranslate"><span class="pre">x_1.y_2.z_2.txt</span></code>, …</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos._utilities.operating_system.create_directory">
+<span class="sig-prename descclassname"><span class="pre">alogos._utilities.operating_system.</span></span><span class="sig-name descname"><span class="pre">create_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dirpath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/operating_system.html#create_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.operating_system.create_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a directory path, create it and all necessary parent directories.</p>
+<p>Do nothing if the directory already exists.</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/2/library/os.html#os.makedirs">https://docs.python.org/2/library/os.html#os.makedirs</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos._utilities.operating_system.open_in_webbrowser">
+<span class="sig-prename descclassname"><span class="pre">alogos._utilities.operating_system.</span></span><span class="sig-name descname"><span class="pre">open_in_webbrowser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_delay_fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_delay_slow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/operating_system.html#open_in_webbrowser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.operating_system.open_in_webbrowser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open the given HTML text in the default webbrowser.</p>
+<p>A short-lived local HTTP server is created that serves HTML text, so that
+it can be opened in the default webbrowser. An alternative would be to write
+the HTML text to a temporary file and open this file in the webbrowser.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>html_text</strong> (<em>str</em>)</p></li>
+<li><p><strong>start_delay</strong> (<em>float</em>) – Delay between starting the server and opening the webbrowser in another thread.
+If too short, the webbrowser might send the request before the server is running.</p></li>
+<li><p><strong>stop_delay_fast</strong> (<em>float</em>) – Delay between opening the webbrowser (or a new tab) and shutting down the server
+after it received the first GET request from the browser.</p></li>
+<li><p><strong>stop_delay_slow</strong> (<em>float</em>) – Delay between opening the webbrowser (or a new tab) and shutting down the server
+even if it never receives a GET request, e.g. because the browser does not open.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/19040055/how-do-i-shutdown-an-httpserver-from-inside-a-request-handler-in-python">https://stackoverflow.com/questions/19040055/how-do-i-shutdown-an-httpserver-from-inside-a-request-handler-in-python</a></p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/3389305/how-to-silent-quiet-httpserver-and-basichttprequesthandlers-stderr-output">https://stackoverflow.com/questions/3389305/how-to-silent-quiet-httpserver-and-basichttprequesthandlers-stderr-output</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Note">https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Note</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

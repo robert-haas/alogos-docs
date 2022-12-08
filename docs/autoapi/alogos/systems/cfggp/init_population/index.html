@@ -1,0 +1,472 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.cfggp.init_population &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.cfggp.init_population</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos.systems.cfggp.init_population">
+<span id="alogos-systems-cfggp-init-population"></span><h1><a class="reference internal" href="#module-alogos.systems.cfggp.init_population" title="alogos.systems.cfggp.init_population"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems.cfggp.init_population</span></code></a><a class="headerlink" href="#module-alogos.systems.cfggp.init_population" title="Permalink to this heading">¶</a></h1>
+<p>Initialization functions to generate a population for CFG-GP.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.cfggp.init_population.given_genotypes" title="alogos.systems.cfggp.init_population.given_genotypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">given_genotypes</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create a population from given genotypes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.cfggp.init_population.given_derivation_trees" title="alogos.systems.cfggp.init_population.given_derivation_trees"><code class="xref py py-obj docutils literal notranslate"><span class="pre">given_derivation_trees</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create a population from given derivation trees.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.cfggp.init_population.given_phenotypes" title="alogos.systems.cfggp.init_population.given_phenotypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">given_phenotypes</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create a population from given phenotypes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.cfggp.init_population.random_genotypes" title="alogos.systems.cfggp.init_population.random_genotypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_genotypes</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create a population from random genotypes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.cfggp.init_population.gp_rhh" title="alogos.systems.cfggp.init_population.gp_rhh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gp_rhh</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create a population with GP RHH.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems.cfggp.init_population.pi_rhh" title="alogos.systems.cfggp.init_population.pi_rhh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pi_rhh</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create a population with PI RHH.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems.cfggp.init_population.ptc2" title="alogos.systems.cfggp.init_population.ptc2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ptc2</span></code></a>(grammar, parameters=None)</p></td>
+<td><p>Create a population with PTC2.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.cfggp.init_population.given_genotypes">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.cfggp.init_population.</span></span><span class="sig-name descname"><span class="pre">given_genotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/cfggp/init_population.html#given_genotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.cfggp.init_population.given_genotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population from given genotypes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_given_genotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../representation/index.html#alogos.systems.cfggp.representation.Genotype" title="alogos.systems.cfggp.representation.Genotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Genotype</span></code></a> objects or data that can be converted to a genotype) : A
+list of genotypes, which are used to initialize the
+individuals of the population. Note that the length
+of this list determines the size of the generated population.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>population</strong> (<a class="reference internal" href="../representation/index.html#alogos.systems.cfggp.representation.Population" title="alogos.systems.cfggp.representation.Population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Population</span></code></a>)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If creating the population fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.cfggp.init_population.given_derivation_trees">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.cfggp.init_population.</span></span><span class="sig-name descname"><span class="pre">given_derivation_trees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/cfggp/init_population.html#given_derivation_trees"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.cfggp.init_population.given_derivation_trees" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population from given derivation trees.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_given_derivation_trees</span></code> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../../../_grammar/data_structures/index.html#alogos._grammar.data_structures.DerivationTree" title="alogos._grammar.data_structures.DerivationTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DerivationTree</span></code></a>) : A
+list of derivation trees, which are used to initialize the
+individuals of the population. Note that the length
+of this list determines the size of the generated population.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>population</strong> (<a class="reference internal" href="../representation/index.html#alogos.systems.cfggp.representation.Population" title="alogos.systems.cfggp.representation.Population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Population</span></code></a>)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If creating the population fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.cfggp.init_population.given_phenotypes">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.cfggp.init_population.</span></span><span class="sig-name descname"><span class="pre">given_phenotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/cfggp/init_population.html#given_phenotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.cfggp.init_population.given_phenotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population from given phenotypes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_given_phenotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) : A
+list of phenotypes, which are used to initialize the
+individuals of the population. Note that the length
+of this list determines the size of the generated population.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>population</strong> (<a class="reference internal" href="../representation/index.html#alogos.systems.cfggp.representation.Population" title="alogos.systems.cfggp.representation.Population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Population</span></code></a>)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If creating the population fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.cfggp.init_population.random_genotypes">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.cfggp.init_population.</span></span><span class="sig-name descname"><span class="pre">random_genotypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/cfggp/init_population.html#random_genotypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.cfggp.init_population.random_genotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population from random genotypes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">population_size</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_genotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_phenotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_max_tries</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>population</strong> (<a class="reference internal" href="../representation/index.html#alogos.systems.cfggp.representation.Population" title="alogos.systems.cfggp.representation.Population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Population</span></code></a>)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If creating the population fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.cfggp.init_population.gp_rhh">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.cfggp.init_population.</span></span><span class="sig-name descname"><span class="pre">gp_rhh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/cfggp/init_population.html#gp_rhh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.cfggp.init_population.gp_rhh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population with GP RHH.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">population_size</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_genotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_phenotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_max_tries</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_gp_rhh_start_depth</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_gp_rhh_end_depth</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>population</strong> (<a class="reference internal" href="../representation/index.html#alogos.systems.cfggp.representation.Population" title="alogos.systems.cfggp.representation.Population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Population</span></code></a>)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If creating the population fails.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>See <a class="reference internal" href="../../_shared/init_population/index.html#alogos.systems._shared.init_population.gp_rhh" title="alogos.systems._shared.init_population.gp_rhh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gp_rhh</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.cfggp.init_population.pi_rhh">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.cfggp.init_population.</span></span><span class="sig-name descname"><span class="pre">pi_rhh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/cfggp/init_population.html#pi_rhh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.cfggp.init_population.pi_rhh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population with PI RHH.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">population_size</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_genotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_phenotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_max_tries</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_pi_rhh_start_depth</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_pi_rhh_end_depth</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>population</strong> (<a class="reference internal" href="../representation/index.html#alogos.systems.cfggp.representation.Population" title="alogos.systems.cfggp.representation.Population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Population</span></code></a>)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If creating the population fails.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>See <a class="reference internal" href="../../_shared/init_population/index.html#alogos.systems._shared.init_population.pi_rhh" title="alogos.systems._shared.init_population.pi_rhh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pi_rhh</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems.cfggp.init_population.ptc2">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems.cfggp.init_population.</span></span><span class="sig-name descname"><span class="pre">ptc2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/cfggp/init_population.html#ptc2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems.cfggp.init_population.ptc2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a population with PTC2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>)</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference internal" href="../../../_utilities/parametrization/index.html#alogos._utilities.parametrization.ParameterCollection" title="alogos._utilities.parametrization.ParameterCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParameterCollection</span></code></a>) – Following keyword-value pairs are considered by this function:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">population_size</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_genotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_phenotypes</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init_pop_unique_max_tries</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>population</strong> (<a class="reference internal" href="../representation/index.html#alogos.systems.cfggp.representation.Population" title="alogos.systems.cfggp.representation.Population"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Population</span></code></a>)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.InitializationError" title="alogos.exceptions.InitializationError"><strong>InitializationError</strong></a> – If creating the population fails.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>See <a class="reference internal" href="../../_shared/init_population/index.html#alogos.systems._shared.init_population.ptc2" title="alogos.systems._shared.init_population.ptc2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ptc2</span></code></a>.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

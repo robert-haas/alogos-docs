@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._grammar.generation.language &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos._grammar.generation.language</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos._grammar.generation.language</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span> <span class="k">as</span> <span class="n">_deepcopy</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span> <span class="k">as</span> <span class="n">_chain</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span> <span class="k">as</span> <span class="n">_cartesian_product</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">warnings</span> <span class="k">as</span> <span class="n">_warnings</span>
+<span class="kn">from</span> <span class="nn">..._utilities</span> <span class="kn">import</span> <span class="n">argument_processing</span> <span class="k">as</span> <span class="n">_ap</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">data_structures</span> <span class="k">as</span> <span class="n">_data_structures</span>
+
+
+<div class="viewcode-block" id="generate_language"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/generation/language/index.html#alogos._grammar.generation.generate_language">[docs]</a><span class="k">def</span> <span class="nf">generate_language</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sort_order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_details</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate the formal language defined by the grammar.&quot;&quot;&quot;</span>
+    <span class="c1"># Argument processing</span>
+    <span class="n">warn_if_stopped</span> <span class="o">=</span> <span class="n">max_steps</span> <span class="ow">is</span> <span class="kc">None</span>
+    <span class="n">max_steps</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">num_arg</span><span class="p">(</span><span class="s2">&quot;max_steps&quot;</span><span class="p">,</span> <span class="n">max_steps</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">20_000</span><span class="p">)</span>
+    <span class="n">sort_order</span> <span class="o">=</span> <span class="n">_ap</span><span class="o">.</span><span class="n">str_arg</span><span class="p">(</span>
+        <span class="s2">&quot;sort_order&quot;</span><span class="p">,</span> <span class="n">sort_order</span><span class="p">,</span> <span class="n">vals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;discovered&quot;</span><span class="p">,</span> <span class="s2">&quot;lex&quot;</span><span class="p">,</span> <span class="s2">&quot;shortlex&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Preparation of data structures</span>
+    <span class="c1"># 1) Rules with a) only terminal symbols or b) at least one nonterminal on their rhs</span>
+    <span class="n">terminal_rules</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nonterminal_rules</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">multiple_rhs</span> <span class="ow">in</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">rhs</span> <span class="ow">in</span> <span class="n">multiple_rhs</span><span class="p">:</span>
+            <span class="n">nonterminals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">nonterminal_positions</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rhs</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span><span class="p">):</span>
+                    <span class="n">nonterminals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                    <span class="n">nonterminal_positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">nonterminals</span><span class="p">:</span>
+                <span class="n">rule</span> <span class="o">=</span> <span class="p">(</span><span class="n">lhs</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">_concat</span><span class="p">(</span><span class="n">rhs</span><span class="p">),</span> <span class="n">nonterminals</span><span class="p">,</span> <span class="n">nonterminal_positions</span><span class="p">)</span>
+                <span class="n">nonterminal_rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rule</span> <span class="o">=</span> <span class="p">(</span><span class="n">lhs</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">_concat</span><span class="p">(</span><span class="n">rhs</span><span class="p">))</span>
+                <span class="n">terminal_rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+
+    <span class="n">strings_dict_template</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">nonterminal</span><span class="o">.</span><span class="n">text</span><span class="p">:</span> <span class="nb">dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">nonterminal</span> <span class="ow">in</span> <span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span>
+    <span class="p">}</span>
+    <span class="n">strings_all</span> <span class="o">=</span> <span class="n">_deepcopy</span><span class="p">(</span><span class="n">strings_dict_template</span><span class="p">)</span>
+    <span class="n">strings_recent</span> <span class="o">=</span> <span class="n">_deepcopy</span><span class="p">(</span><span class="n">strings_dict_template</span><span class="p">)</span>
+
+    <span class="c1"># Basis part: Use terminal rules to generate the first strings of some corresponding lhs</span>
+    <span class="k">for</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span> <span class="ow">in</span> <span class="n">terminal_rules</span><span class="p">:</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">_terminal_symbol_seq_to_str</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+        <span class="n">strings_recent</span><span class="p">[</span><span class="n">lhs</span><span class="p">][</span><span class="n">string</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># add the key, value is irrelevant</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">symbol_seq_repr</span><span class="p">(</span><span class="n">symbol_seq</span><span class="p">):</span>
+            <span class="n">seq_repr</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">sym</span> <span class="ow">in</span> <span class="n">symbol_seq</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span><span class="p">):</span>
+                    <span class="n">seq_repr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&lt;</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sym</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">seq_repr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">sym</span><span class="p">))</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seq_repr</span><span class="p">)</span>
+
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;I. Basis&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Production rules with only terminals in the right-hand side:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span> <span class="ow">in</span> <span class="n">terminal_rules</span><span class="p">:</span>
+            <span class="n">rhs_repr</span> <span class="o">=</span> <span class="n">symbol_seq_repr</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">rhs_repr</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="n">rhs_repr</span> <span class="o">=</span> <span class="s2">&quot;EPSILON&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &lt;</span><span class="si">{}</span><span class="s2">&gt; -&gt; </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">rhs_repr</span><span class="p">))</span>
+        <span class="n">_report_step</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">strings_recent</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_steps</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;II. Recursion&quot;</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;Production rules with at least one nonterminal in the right-hand side:&quot;</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">nonterminal_pos</span> <span class="ow">in</span> <span class="n">nonterminal_rules</span><span class="p">:</span>
+                <span class="n">rhs_repr</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="s2">&quot;&lt;</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sym</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nonterminal_pos</span> <span class="k">else</span> <span class="n">sym</span>
+                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sym</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &lt;</span><span class="si">{}</span><span class="s2">&gt; -&gt; </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">rhs_repr</span><span class="p">))</span>
+
+    <span class="c1"># Recursive part: Use nonterminal rules to generate further strings of all lhs</span>
+    <span class="k">for</span> <span class="n">num_expansion</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">found_new_strings</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">new_strings</span> <span class="o">=</span> <span class="n">_deepcopy</span><span class="p">(</span><span class="n">strings_dict_template</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">nonterminals</span><span class="p">,</span> <span class="n">nonterminal_positions</span> <span class="ow">in</span> <span class="n">nonterminal_rules</span><span class="p">:</span>
+            <span class="c1"># Prepare all combinations of fresh and old strings, except purely old ones</span>
+            <span class="n">one_or_another</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">nonterminals</span><span class="p">]</span>
+            <span class="n">all_possible_selections</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_cartesian_product</span><span class="p">(</span><span class="o">*</span><span class="n">one_or_another</span><span class="p">))</span>
+            <span class="n">wanted_selections</span> <span class="o">=</span> <span class="n">all_possible_selections</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">nonterminal_choices_list</span> <span class="ow">in</span> <span class="n">wanted_selections</span><span class="p">:</span>
+                <span class="n">string_lists_per_nt</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">choice</span><span class="p">,</span> <span class="n">nonterminal</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nonterminal_choices_list</span><span class="p">,</span> <span class="n">nonterminals</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">string_lists_per_nt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">strings_recent</span><span class="p">[</span><span class="n">nonterminal</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">string_lists_per_nt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">strings_all</span><span class="p">[</span><span class="n">nonterminal</span><span class="p">])</span>
+                <span class="c1"># Generate all wanted combinations of strings and put them at the places of the</span>
+                <span class="c1"># corresponding nonterminals to form a new string</span>
+                <span class="k">for</span> <span class="n">comb_of_known_strings</span> <span class="ow">in</span> <span class="n">_cartesian_product</span><span class="p">(</span><span class="o">*</span><span class="n">string_lists_per_nt</span><span class="p">):</span>
+                    <span class="n">new_string</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">[:]</span>
+                    <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">known_string</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                        <span class="n">nonterminal_positions</span><span class="p">,</span> <span class="n">comb_of_known_strings</span>
+                    <span class="p">):</span>
+                        <span class="n">new_string</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">known_string</span>
+                    <span class="n">new_string</span> <span class="o">=</span> <span class="n">_terminal_symbol_seq_to_str</span><span class="p">(</span><span class="n">new_string</span><span class="p">)</span>
+                    <span class="n">new_strings</span><span class="p">[</span><span class="n">lhs</span><span class="p">][</span>
+                        <span class="n">new_string</span>
+                    <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># add the key, value is irrelevant</span>
+
+        <span class="c1"># Add fresh strings to old list, and new strings to fresh list</span>
+        <span class="k">for</span> <span class="n">nonterminal</span> <span class="ow">in</span> <span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span><span class="p">:</span>
+            <span class="n">nt_str</span> <span class="o">=</span> <span class="n">nonterminal</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">strings_all</span><span class="p">[</span><span class="n">nt_str</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">strings_recent</span><span class="p">[</span><span class="n">nt_str</span><span class="p">])</span>
+            <span class="n">strings_recent</span><span class="p">[</span><span class="n">nt_str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">string</span><span class="p">:</span> <span class="kc">None</span>
+                <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">new_strings</span><span class="p">[</span><span class="n">nt_str</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">string</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">strings_all</span><span class="p">[</span><span class="n">nt_str</span><span class="p">]</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="n">strings_recent</span><span class="p">[</span><span class="n">nt_str</span><span class="p">]:</span>
+                <span class="n">found_new_strings</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found_new_strings</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="n">_report_step</span><span class="p">(</span><span class="n">num_expansion</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finished.&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">_report_step</span><span class="p">(</span><span class="n">num_expansion</span><span class="p">,</span> <span class="n">strings_recent</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">warn_if_stopped</span><span class="p">:</span>
+            <span class="n">_warnings</span><span class="o">.</span><span class="n">_warn_language_gen_stopped</span><span class="p">(</span><span class="n">max_steps</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">nonterminal</span> <span class="ow">in</span> <span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span><span class="p">:</span>
+            <span class="n">nt_str</span> <span class="o">=</span> <span class="n">nonterminal</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">strings_all</span><span class="p">[</span><span class="n">nt_str</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">strings_recent</span><span class="p">[</span><span class="n">nt_str</span><span class="p">])</span>
+
+    <span class="c1"># Optional sorting</span>
+    <span class="k">if</span> <span class="n">sort_order</span> <span class="o">==</span> <span class="s2">&quot;discovered&quot;</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">sort_func</span><span class="p">(</span><span class="n">given_set</span><span class="p">):</span>
+            <span class="n">unsorted_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">given_set</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">unsorted_list</span>
+
+    <span class="k">elif</span> <span class="n">sort_order</span> <span class="o">==</span> <span class="s2">&quot;lex&quot;</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">sort_func</span><span class="p">(</span><span class="n">given_set</span><span class="p">):</span>
+            <span class="n">sorted_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">given_set</span><span class="p">)</span>
+            <span class="n">sorted_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">sorted_list</span>
+
+    <span class="k">elif</span> <span class="n">sort_order</span> <span class="o">==</span> <span class="s2">&quot;shortlex&quot;</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">sort_func</span><span class="p">(</span><span class="n">given_set</span><span class="p">):</span>
+            <span class="n">sorted_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">given_set</span><span class="p">)</span>
+            <span class="n">sorted_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">string</span><span class="p">:</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">),</span> <span class="n">string</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">sorted_list</span>
+
+    <span class="c1"># Conditional return</span>
+    <span class="k">if</span> <span class="n">return_details</span><span class="p">:</span>
+        <span class="c1"># Detailed: A dict with nonterminals as keys and their languages as values</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">nonterminal</span><span class="p">:</span> <span class="n">sort_func</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">nonterminal</span><span class="p">,</span> <span class="n">strings</span> <span class="ow">in</span> <span class="n">strings_all</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Only the language for the start symbol</span>
+        <span class="k">return</span> <span class="n">sort_func</span><span class="p">(</span><span class="n">strings_all</span><span class="p">[</span><span class="n">grammar</span><span class="o">.</span><span class="n">start_symbol</span><span class="o">.</span><span class="n">text</span><span class="p">])</span></div>
+
+
+<span class="c1"># Helper functions</span>
+
+
+<span class="k">def</span> <span class="nf">_concat</span><span class="p">(</span><span class="n">symbol_sequence</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Concatenate the text of multiple symbols.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">sym</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">sym</span> <span class="ow">in</span> <span class="n">symbol_sequence</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_terminal_symbol_seq_to_str</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert a sequence of terminal symbols to a string.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">sequence</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_report_step</span><span class="p">(</span><span class="n">num_step</span><span class="p">,</span> <span class="n">strings_recent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print an intermediate result after a language generation step.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Step </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_step</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">strings_recent</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Newly found strings per nonterminal:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">nonterminal</span><span class="p">,</span> <span class="n">strings</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">strings_recent</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">strings</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  &lt;</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nonterminal</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">strings</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;    &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No newly found strings.&quot;</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

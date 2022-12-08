@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems._shared._cached_calculations &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems._shared._cached_calculations</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos.systems._shared._cached_calculations">
+<span id="alogos-systems-shared-cached-calculations"></span><h1><a class="reference internal" href="#module-alogos.systems._shared._cached_calculations" title="alogos.systems._shared._cached_calculations"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems._shared._cached_calculations</span></code></a><a class="headerlink" href="#module-alogos.systems._shared._cached_calculations" title="Permalink to this heading">¶</a></h1>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems._shared._cached_calculations.is_recursive" title="alogos.systems._shared._cached_calculations.is_recursive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_recursive</span></code></a>(grammar)</p></td>
+<td><p>Calculate for each production whether it contains a recursive nonterminal.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems._shared._cached_calculations.min_depths_to_terminals" title="alogos.systems._shared._cached_calculations.min_depths_to_terminals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_depths_to_terminals</span></code></a>(grammar)</p></td>
+<td><p>Calculate for each production the depth required to reach only terminals.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems._shared._cached_calculations.min_expansions_to_terminals" title="alogos.systems._shared._cached_calculations.min_expansions_to_terminals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_expansions_to_terminals</span></code></a>(grammar)</p></td>
+<td><p>Calculate for each production the number of expansions required to reach only terminals.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.systems._shared._cached_calculations.min_nodes_to_terminals" title="alogos.systems._shared._cached_calculations.min_nodes_to_terminals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_nodes_to_terminals</span></code></a>(grammar)</p></td>
+<td><p>Calculate for each production the number of nodes required to reach only terminals.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.systems._shared._cached_calculations.idx_min_nodes_to_terminals" title="alogos.systems._shared._cached_calculations.idx_min_nodes_to_terminals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">idx_min_nodes_to_terminals</span></code></a>(grammar)</p></td>
+<td><p>Create a dictionary of index to number of min nodes associations.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared._cached_calculations.is_recursive">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared._cached_calculations.</span></span><span class="sig-name descname"><span class="pre">is_recursive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/_cached_calculations.html#is_recursive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared._cached_calculations.is_recursive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate for each production whether it contains a recursive nonterminal.</p>
+<p>A nonterminal is considered to be recursive if it can produce
+itself, i.e. if starting from it some derivation can be constructed
+where the nonterminal appears again.</p>
+<p class="rubric">References</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/PonyGE/PonyGE2/blob/master/src/representation/grammar.py">PonyGE2: src/representation/grammar.py</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">check_recursion(self,</span> <span class="pre">cur_symbol,</span> <span class="pre">seen)</span></code> solves the same task
+in a different way with recursive function calls</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Examples</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">=&gt;</span> <span class="pre">SS</span> <span class="pre">=&gt;</span> <span class="pre">1S</span> <span class="pre">=&gt;</span> <span class="pre">12</span></code> means that <code class="docutils literal notranslate"><span class="pre">S</span></code> is trivially recursive,
+because there is a rule that replaces <code class="docutils literal notranslate"><span class="pre">S</span></code> directly with a
+sequence of symbols that contains <code class="docutils literal notranslate"><span class="pre">S</span></code> again.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">=&gt;</span> <span class="pre">A</span> <span class="pre">=&gt;</span> <span class="pre">BB</span> <span class="pre">=&gt;</span> <span class="pre">5B</span> <span class="pre">=&gt;</span> <span class="pre">5S</span> <span class="pre">=&gt;</span> <span class="pre">51</span></code> means <code class="docutils literal notranslate"><span class="pre">S</span></code> is non-trivially
+recursive, because <code class="docutils literal notranslate"><span class="pre">S</span></code> can be replaced indirectly (via other
+nonterminals and their rules) with a sequence of symbols that
+contains <code class="docutils literal notranslate"><span class="pre">S</span></code> again.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared._cached_calculations.min_depths_to_terminals">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared._cached_calculations.</span></span><span class="sig-name descname"><span class="pre">min_depths_to_terminals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/_cached_calculations.html#min_depths_to_terminals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared._cached_calculations.min_depths_to_terminals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate for each production the depth required to reach only terminals.</p>
+<p>This information is used during a derivation in order to remain
+within a maximum depth limit.</p>
+<p>Algorithms that utilize it:</p>
+<ul class="simple">
+<li><p>Initialization of an inidividual with “grow”, “pi grow” and “full”
+methods that are part of ramped half-and-half (rhh) population initialization.</p></li>
+</ul>
+<p class="rubric">References</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/PonyGE/PonyGE2/blob/master/src/representation/grammar.py">PonyGE2: src/representation/grammar.py</a>:
+Sensible initialization from GE (and other systems) uses this information to select rules</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">check_depths(self)</span></code> solves the same task with other data structures</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared._cached_calculations.min_expansions_to_terminals">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared._cached_calculations.</span></span><span class="sig-name descname"><span class="pre">min_expansions_to_terminals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/_cached_calculations.html#min_expansions_to_terminals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared._cached_calculations.min_expansions_to_terminals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate for each production the number of expansions required to reach only terminals.</p>
+<p>This information is used during a derivation in order to remain
+within a maximum expansions limit.</p>
+<p>Algorithms that utilize it:</p>
+<ul class="simple">
+<li><p>Initialization of an inidividual with “PTC2” method.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared._cached_calculations.min_nodes_to_terminals">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared._cached_calculations.</span></span><span class="sig-name descname"><span class="pre">min_nodes_to_terminals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/_cached_calculations.html#min_nodes_to_terminals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared._cached_calculations.min_nodes_to_terminals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate for each production the number of nodes required to reach only terminals.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="alogos.systems._shared._cached_calculations.idx_min_nodes_to_terminals">
+<span class="sig-prename descclassname"><span class="pre">alogos.systems._shared._cached_calculations.</span></span><span class="sig-name descname"><span class="pre">idx_min_nodes_to_terminals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/systems/_shared/_cached_calculations.html#idx_min_nodes_to_terminals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.systems._shared._cached_calculations.idx_min_nodes_to_terminals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a dictionary of index to number of min nodes associations.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

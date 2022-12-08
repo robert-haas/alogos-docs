@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._grammar.visualization.grammar_with_railroad &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos._grammar.visualization.grammar_with_railroad</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos._grammar.visualization.grammar_with_railroad</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">_random</span>
+<span class="kn">import</span> <span class="nn">string</span> <span class="k">as</span> <span class="nn">_string</span>
+
+<span class="kn">import</span> <span class="nn">railroad</span> <span class="k">as</span> <span class="nn">_railroad</span>
+
+<span class="kn">from</span> <span class="nn">..._utilities</span> <span class="kn">import</span> <span class="n">operating_system</span> <span class="k">as</span> <span class="n">_operating_system</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">data_structures</span> <span class="k">as</span> <span class="n">_data_structures</span>
+
+
+<div class="viewcode-block" id="create_syntax_diagram"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/index.html#alogos._grammar.visualization.grammar_with_railroad.create_syntax_diagram">[docs]</a><span class="k">def</span> <span class="nf">create_syntax_diagram</span><span class="p">(</span><span class="n">grammar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a figure of a syntax diagram that represents the grammar.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - https://github.com/tabatkins/railroad-diagrams</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Railroad diagram styling options</span>
+    <span class="n">_railroad</span><span class="o">.</span><span class="n">DIAGRAM_CLASS</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;rd&quot;</span>  <span class="c1"># class set on the root &lt;svg&gt; element of each diagram</span>
+    <span class="p">)</span>
+    <span class="n">_railroad</span><span class="o">.</span><span class="n">VS</span> <span class="o">=</span> <span class="mi">14</span>  <span class="c1"># vertical separation between two items</span>
+    <span class="n">_railroad</span><span class="o">.</span><span class="n">AR</span> <span class="o">=</span> <span class="mi">14</span>  <span class="c1"># radius of the arcs used in branching containers</span>
+
+    <span class="c1"># Generate a title and diagram for each non-terminal</span>
+    <span class="n">html_parts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">title_template</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;rd-title&quot; id=&quot;</span><span class="si">{text}</span><span class="s1">_§TOKEN§&quot;&gt;</span><span class="si">{text}</span><span class="s1">:&lt;/div&gt;&#39;</span>
+    <span class="k">for</span> <span class="n">lhs</span> <span class="ow">in</span> <span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span><span class="p">:</span>
+        <span class="c1"># Create div element holding the title</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">title_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">lhs</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="c1"># Create SVG element holding the diagram</span>
+        <span class="n">rhs_multiple</span> <span class="o">=</span> <span class="n">grammar</span><span class="o">.</span><span class="n">production_rules</span><span class="p">[</span><span class="n">lhs</span><span class="p">]</span>
+        <span class="n">rr_choices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">rhs</span> <span class="ow">in</span> <span class="n">rhs_multiple</span><span class="p">:</span>
+            <span class="n">sequence</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">rhs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span><span class="p">):</span>
+                    <span class="n">href_to_div</span> <span class="o">=</span> <span class="s2">&quot;#</span><span class="si">{text}</span><span class="s2">_§TOKEN§&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                    <span class="n">rr_symbol</span> <span class="o">=</span> <span class="n">_railroad</span><span class="o">.</span><span class="n">NonTerminal</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">href_to_div</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">symbol</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                        <span class="n">rr_symbol</span> <span class="o">=</span> <span class="n">_railroad</span><span class="o">.</span><span class="n">Skip</span><span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">rr_symbol</span> <span class="o">=</span> <span class="n">_railroad</span><span class="o">.</span><span class="n">Terminal</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                <span class="n">sequence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rr_symbol</span><span class="p">)</span>
+            <span class="n">rr_sequence</span> <span class="o">=</span> <span class="n">_railroad</span><span class="o">.</span><span class="n">Sequence</span><span class="p">(</span><span class="o">*</span><span class="n">sequence</span><span class="p">)</span>
+            <span class="n">rr_choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rr_sequence</span><span class="p">)</span>
+        <span class="n">rr_content</span> <span class="o">=</span> <span class="n">_railroad</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">rr_choices</span><span class="p">)</span>
+        <span class="n">rr_diagram</span> <span class="o">=</span> <span class="n">_railroad</span><span class="o">.</span><span class="n">Diagram</span><span class="p">(</span><span class="n">rr_content</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;complex&quot;</span><span class="p">,</span> <span class="n">css</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">rr_diagram</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+        <span class="n">svg</span> <span class="o">=</span> <span class="n">_railroad_diagram_to_svg</span><span class="p">(</span><span class="n">rr_diagram</span><span class="p">)</span>
+        <span class="c1"># Collect results</span>
+        <span class="n">html_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        <span class="n">html_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">svg</span><span class="p">)</span>
+
+    <span class="c1"># Convert parts to a HTML string</span>
+    <span class="n">html_text</span> <span class="o">=</span> <span class="n">_CSS</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">html_parts</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">GrammarFigure</span><span class="p">(</span><span class="n">html_text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+
+<span class="k">def</span> <span class="nf">_railroad_diagram_to_svg</span><span class="p">(</span><span class="n">diagram</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert a railroad diagram object into SVG text.&quot;&quot;&quot;</span>
+    <span class="n">roc</span> <span class="o">=</span> <span class="n">_RailroadOutputCollector</span><span class="p">()</span>
+    <span class="n">diagram</span><span class="o">.</span><span class="n">writeSvg</span><span class="p">(</span><span class="n">roc</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">roc</span><span class="o">.</span><span class="n">text</span>
+
+
+<span class="k">class</span> <span class="nc">_RailroadOutputCollector</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Collect the outputs generated by writeSvg of a railroad diagram object.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prepare the collection of multiple outputs.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parts</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Collect a single output.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Combine all outputs to a single string.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parts</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="GrammarFigure"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/grammar_with_railroad/index.html#alogos._grammar.visualization.grammar_with_railroad.GrammarFigure">[docs]</a><span class="k">class</span> <span class="nc">GrammarFigure</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Data structure for wrapping, displaying and exporting a Grammar figure.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Initialization</span>
+<div class="viewcode-block" id="GrammarFigure.__init__"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/grammar_with_railroad/index.html#alogos._grammar.visualization.grammar_with_railroad.GrammarFigure.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html_template</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a figure with a partly filled HTML template containing a visualization.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_html_template</span> <span class="o">=</span> <span class="n">html_template</span></div>
+
+    <span class="c1"># Representations</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the &quot;official&quot; string representation of the figure.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;</span><span class="si">{}</span><span class="s2"> object at </span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">_repr_html_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Provide rich display representation in HTML format for Jupyter notebooks.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">html_text_partial</span>
+
+    <span class="c1"># Display in browser or notebook</span>
+<div class="viewcode-block" id="GrammarFigure.display"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/grammar_with_railroad/index.html#alogos._grammar.visualization.grammar_with_railroad.GrammarFigure.display">[docs]</a>    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Display the plot in a webbrowser or as IPython rich display representation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inline : bool</span>
+<span class="sd">            If True, the plot will be shown inline in a Jupyter notebook.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">inline</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
+
+            <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">html_text_partial</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_operating_system</span><span class="o">.</span><span class="n">open_in_webbrowser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">html_text_standalone</span><span class="p">)</span></div>
+
+    <span class="c1"># Further representations</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">html_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a HTML text representation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">html_text_standalone</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">html_text_standalone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a standalone HTML text representation.&quot;&quot;&quot;</span>
+        <span class="n">html_text</span> <span class="o">=</span> <span class="n">_HTML</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">html_text_partial</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">html_text</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">html_text_partial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a partial HTML text representation without html, head and body tags.&quot;&quot;&quot;</span>
+        <span class="n">html_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_html_template</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;§TOKEN§&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_random_id</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">html_text</span>
+
+    <span class="c1"># Export as HTML file (interactive)</span>
+<div class="viewcode-block" id="GrammarFigure.export_html"><a class="viewcode-back" href="../../../../autoapi/alogos/_grammar/visualization/grammar_with_railroad/index.html#alogos._grammar.visualization.grammar_with_railroad.GrammarFigure.export_html">[docs]</a>    <span class="k">def</span> <span class="nf">export_html</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Export the plot as HTML file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filepath : str</span>
+<span class="sd">            Filepath of the created HTML file.</span>
+<span class="sd">            If the file exists it will be overwritten without warning.</span>
+<span class="sd">            If the path does not end with &quot;.html&quot; it will be changed to do so.</span>
+<span class="sd">            If the parent directory does not exist it will be created.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        filepath : str</span>
+<span class="sd">            Filepath of the generated HTML file, guaranteed to end with &quot;.html&quot;.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Precondition</span>
+        <span class="n">used_filepath</span> <span class="o">=</span> <span class="n">_operating_system</span><span class="o">.</span><span class="n">ensure_file_extension</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Transformation</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">used_filepath</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_handle</span><span class="p">:</span>
+            <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">html_text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">used_filepath</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_generate_random_id</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+        <span class="n">symbols</span> <span class="o">=</span> <span class="n">_string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">_string</span><span class="o">.</span><span class="n">digits</span>
+        <span class="k">return</span> <span class="s2">&quot;r&quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span></div>
+
+
+<span class="n">_HTML</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;!DOCTYPE html&gt;</span>
+<span class="s2">&lt;html&gt;</span>
+<span class="s2">&lt;head&gt;</span>
+<span class="s2">  &lt;meta charset=&quot;utf-8&quot;&gt;</span>
+<span class="s2">&lt;/head&gt;</span>
+<span class="s2">&lt;body&gt;</span>
+
+<span class="si">{}</span><span class="s2"></span>
+
+<span class="s2">&lt;/body&gt;</span>
+<span class="s2">&lt;/html&gt;&quot;&quot;&quot;</span>
+
+<span class="n">_CSS</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;style&gt;</span>
+<span class="s2">  .rd-title {</span>
+<span class="s2">    font: 14px monospace;</span>
+<span class="s2">    white-space: pre;</span>
+<span class="s2">    margin-top: 1ex;</span>
+<span class="s2">    font-weight: bold;</span>
+<span class="s2">  }</span>
+<span class="s2">  svg.rd text {</span>
+<span class="s2">    font: 14px monospace;</span>
+<span class="s2">    white-space: pre;</span>
+<span class="s2">    text-anchor: middle;</span>
+<span class="s2">  }</span>
+<span class="s2">  svg.rd path {</span>
+<span class="s2">    stroke-width: 1;</span>
+<span class="s2">    stroke: black;</span>
+<span class="s2">    fill: rgba(0,0,0,0);</span>
+<span class="s2">  }</span>
+<span class="s2">  svg.rd rect {</span>
+<span class="s2">    stroke-width: 1;</span>
+<span class="s2">    stroke: black;</span>
+<span class="s2">  }</span>
+<span class="s2">  svg.rd g.non-terminal rect {</span>
+<span class="s2">    fill: white;</span>
+<span class="s2">  }</span>
+<span class="s2">  svg.rd g.non-terminal a {</span>
+<span class="s2">    text-decoration: none;</span>
+<span class="s2">  }</span>
+<span class="s2">  svg.rd g.non-terminal a text:hover {</span>
+<span class="s2">    font-weight:bold;</span>
+<span class="s2">  }</span>
+<span class="s2">  svg.rd g.terminal rect {</span>
+<span class="s2">    fill: #00864b;</span>
+<span class="s2">  }</span>
+<span class="s2">  svg.rd g.terminal text {</span>
+<span class="s2">    fill: white;</span>
+<span class="s2">  }</span>
+<span class="s2">&lt;/style&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

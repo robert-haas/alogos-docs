@@ -1,0 +1,522 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._utilities.database_management &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._utilities.database_management</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos._utilities.database_management">
+<span id="alogos-utilities-database-management"></span><h1><a class="reference internal" href="#module-alogos._utilities.database_management" title="alogos._utilities.database_management"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._utilities.database_management</span></code></a><a class="headerlink" href="#module-alogos._utilities.database_management" title="Permalink to this heading">¶</a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos._utilities.database_management.Sqlite3Wrapper" title="alogos._utilities.database_management.Sqlite3Wrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sqlite3Wrapper</span></code></a></p></td>
+<td><p>Simple wrapper for easier usage of an SQLite3 database in Python3.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos._utilities.database_management.</span></span><span class="sig-name descname"><span class="pre">Sqlite3Wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">try_to_use_wal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple wrapper for easier usage of an SQLite3 database in Python3.</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">https://docs.python.org/3/library/sqlite3.html</a></p></li>
+<li><p><a class="reference external" href="https://www.sqlite.org">https://www.sqlite.org</a></p></li>
+<li><p><a class="reference external" href="https://www.sqlite.org/limits.html">https://www.sqlite.org/limits.html</a></p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">try_to_use_wal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open a connection to an existing or new SQLite3 database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>database_location</strong> (<em>string</em>) – If the given string is <code class="docutils literal notranslate"><span class="pre">&quot;:memory:&quot;</span></code>, an in-memory database is created.
+Otherwise, a file-based database is created and the given string is
+used as filepath.</p></li>
+<li><p><strong>try_to_use_wal</strong> (<em>bool</em>) – If True, it is attempted to use a Write-Ahead Log (WAL) instead of
+the default rollback journal, which can bring a significant speedup.
+This is supported since SQLite version 3.7.0 (2010-07-21) if the
+operating system supports it.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.connect">https://docs.python.org/3/library/sqlite3.html#sqlite3.connect</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You can use “:memory:” to open a database connection to a
+database that resides in RAM instead of on disk.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference external" href="https://www.sqlite.org/wal.html">https://www.sqlite.org/wal.html</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>On success, the pragma will return the string “wal”</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference external" href="https://www.sqlite.org/pragma.html#pragma_synchronous">https://www.sqlite.org/pragma.html#pragma_synchronous</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The synchronous=NORMAL setting is a good choice for most
+applications running in WAL mode.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.execute_query">
+<span class="sig-name descname"><span class="pre">execute_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.execute_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.execute_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute an SQL statement, optionally with parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – String with SQL query</p></li>
+<li><p><strong>record</strong> (<em>list or tuple</em>) – The record needs to have one entry for each <code class="docutils literal notranslate"><span class="pre">?</span></code> placeholder in the query.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>result</strong> (<em>list of list of str</em>) – The list of rows and columns returned by the cursor with <code class="docutils literal notranslate"><span class="pre">fetchall</span></code>.</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.execute">https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.execute</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#using-the-connection-as-a-context-manager">https://docs.python.org/3/library/sqlite3.html#using-the-connection-as-a-context-manager</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.execute_query_for_many_records">
+<span class="sig-name descname"><span class="pre">execute_query_for_many_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">records</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.execute_query_for_many_records"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.execute_query_for_many_records" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute an SQL statement for many records.</p>
+<p>This method can only be used for data insertion (INSERT)
+and not for data retrieval (SELECT) because nothing is returned
+by the called <code class="docutils literal notranslate"><span class="pre">executemany</span></code> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – String with SQL query</p></li>
+<li><p><strong>records</strong> (<em>list of tuples</em>) – The list can have an arbitrary number of tuples, each representing a record.
+The tuple needs to have one entry for each <code class="docutils literal notranslate"><span class="pre">?</span></code> placeholder in the query.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.executemany">https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.executemany</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#using-the-connection-as-a-context-manager">https://docs.python.org/3/library/sqlite3.html#using-the-connection-as-a-context-manager</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.execute_script">
+<span class="sig-name descname"><span class="pre">execute_script</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query_script</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.execute_script"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.execute_script" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute a script that can contain multiple SQL statements with a single transaction.</p>
+<p>This method can only be used for data insertion (INSERT)
+and not for data retrieval (SELECT) because nothing is returned
+by the called <code class="docutils literal notranslate"><span class="pre">executescript</span></code> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>query_script</strong> (<em>str</em>) – String with multiple SQL queries separated by newlines.</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.executescript">https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.executescript</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.executescript">https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.executescript</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#using-the-connection-as-a-context-manager">https://docs.python.org/3/library/sqlite3.html#using-the-connection-as-a-context-manager</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.get_version">
+<span class="sig-name descname"><span class="pre">get_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.get_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.get_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the version of the running SQLite library.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>version_descriptor</strong> (<em>str</em>)</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://sqlite.org/lang_corefunc.html#sqlite_version">https://sqlite.org/lang_corefunc.html#sqlite_version</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.get_table_names">
+<span class="sig-name descname"><span class="pre">get_table_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.get_table_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.get_table_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of tables contained in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table_names</strong> (<em>list of str</em>)</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://sqlite.org/fileformat.html#storage_of_the_sql_database_schema">https://sqlite.org/fileformat.html#storage_of_the_sql_database_schema</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.get_view_names">
+<span class="sig-name descname"><span class="pre">get_view_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.get_view_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.get_view_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of views contained in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>view_names</strong> (<em>list of str</em>)</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://sqlite.org/fileformat.html#storage_of_the_sql_database_schema">https://sqlite.org/fileformat.html#storage_of_the_sql_database_schema</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.get_header_names">
+<span class="sig-name descname"><span class="pre">get_header_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.get_header_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.get_header_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the headers of a view or table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>string</em>) – Name of a table or view.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>header_names</strong> (<em>list of str</em>) – Header row of the chosen table or view.</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/947215/how-to-get-a-list-of-column-names-on-sqlite3-database">https://stackoverflow.com/questions/947215/how-to-get-a-list-of-column-names-on-sqlite3-database</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.get_data_per_table">
+<span class="sig-name descname"><span class="pre">get_data_per_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.get_data_per_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.get_data_per_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get data of each table in the database in form of a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – Each table name is a key in the dict.
+A table’s entries form the corresponding value (list of list of str).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.get_num_changes">
+<span class="sig-name descname"><span class="pre">get_num_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.get_num_changes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.get_num_changes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get number of rows which have been modified, inserted, deleted since connection opened.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_changes</strong> (<em>int</em>)</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.total_changes">https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.total_changes</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.export_sql">
+<span class="sig-name descname"><span class="pre">export_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.export_sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.export_sql" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export the entire database to a SQL file at a given filepath.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>)</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileExistsError" title="(in Python v3.11)"><strong>FileExistsError</strong></a> – If there is already a file or directory at the given filepath.</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.backup">https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.backup</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.export_sql_text">
+<span class="sig-name descname"><span class="pre">export_sql_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.export_sql_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.export_sql_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export the entire database as text file with SQL statements at a given filepath.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>)</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileExistsError" title="(in Python v3.11)"><strong>FileExistsError</strong></a> – If there is already a file or directory at the given filepath.</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.iterdump">https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.iterdump</a></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._utilities.database_management.Sqlite3Wrapper.export_csv">
+<span class="sig-name descname"><span class="pre">export_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/alogos/_utilities/database_management.html#Sqlite3Wrapper.export_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._utilities.database_management.Sqlite3Wrapper.export_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export a chosen table or view of the database to a CSV file at a given filepath.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>)</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Name of a table or view that shall be exported.
+If <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>, each table of the database will be exported to a
+separate file. The filepath is constructed from the original
+filepath followed by the table name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileExistsError" title="(in Python v3.11)"><strong>FileExistsError</strong></a> – If there is already a file or directory at the given filepath.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

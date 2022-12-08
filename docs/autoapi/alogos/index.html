@@ -1,0 +1,1535 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos">
+<span id="alogos"></span><h1><a class="reference internal" href="#module-alogos" title="alogos"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos</span></code></a><a class="headerlink" href="#module-alogos" title="Permalink to this heading">¶</a></h1>
+<p>A library of grammatical optimization systems.</p>
+<p>This package implements several methods from the field
+of Grammar-Guided Genetic Programming (G3P).</p>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="systems/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.systems</span></code></a></li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="exceptions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.exceptions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="warnings/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos.warnings</span></code></a></li>
+</ul>
+</div>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a></p></td>
+<td><p>Context-free grammar (CFG) for defining a formal language.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#alogos.EvolutionaryAlgorithm" title="alogos.EvolutionaryAlgorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EvolutionaryAlgorithm</span></code></a></p></td>
+<td><p>Evolutionary algorithm for searching an optimal string in a grammar's language.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="alogos.Grammar">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos.</span></span><span class="sig-name descname"><span class="pre">Grammar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bnf_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bnf_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ebnf_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ebnf_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context-free grammar (CFG) for defining a formal language.</p>
+<p>The role of this class is explained by first introducing
+basic concepts from formal language theory and then
+describing the main tasks a grammar can be used for.</p>
+<ol class="arabic">
+<li><p>Technical terms from formal language theory</p>
+<blockquote>
+<div><ul>
+<li><p>A <strong>grammar</strong> is a mathematical device to define a formal
+language.</p></li>
+<li><p>A <strong>language</strong> is a finite or infinite set of strings.</p></li>
+<li><p>A <strong>string</strong> is a finite sequence of symbols that all belong
+to a single alphabet.</p></li>
+<li><p>An <strong>alphabet</strong> is a finite set of symbols.</p></li>
+<li><p>In mathematical terms, a grammar is usually defined as a
+tuple <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">T,</span> <span class="pre">P,</span> <span class="pre">S)</span></code> where</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> is a set of <strong>nonterminal symbols</strong>, also known
+as <strong>variables</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code> is a set of <strong>terminal symbols</strong>, which has no
+overlap with <code class="docutils literal notranslate"><span class="pre">N</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span></code> is the <strong>start symbol</strong>, which is a nontermminal
+symbol and therefore an element of <code class="docutils literal notranslate"><span class="pre">N</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">P</span></code> is a set of <strong>production rules</strong>, also known as
+<strong>rewrite rules</strong>. Beginning from the start symbol,
+these rules can be applied until only terminal symbols
+are left, which then form a string of the grammar’s
+language.
+Different kinds of grammars can be distinguished by
+putting different restrictions on the form of these rules.
+This influences how expressive the grammars are and
+hence what kind of languages can be defined by them.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>A <strong>context-free grammar (CFG)</strong> is a type of formal grammar
+that is frequently used in computer science and programming
+language design. The production rules need to fulfill
+following criteria:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The left-hand side of each rule is a single nonterminal
+symbol. This means a nonterminal symbol can be rewritten
+into the right-hand side of the rule, no matter which
+context the nonterminal is surrounded with.</p></li>
+<li><p>The right-hand side is a sequence of symbols that can
+consist of a combination of terminal symbols, nonterminal
+symbols and the empty string <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> (often denoted by
+the greek letter <code class="docutils literal notranslate"><span class="pre">ɛ</span></code> or less often <code class="docutils literal notranslate"><span class="pre">λ</span></code>).</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Tasks a grammar can be used for</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Define a grammar with a text in a suitable format such as
+Backus-Naur form (BNF) or Extended Backus-Naur form
+(EBNF). Both of these formats can be recognized by
+this class’s initialization method <a class="reference internal" href="#alogos.Grammar.__init__" title="alogos.Grammar.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>.</p></li>
+<li><p>Visualize a grammar in form of a syntax diagram with
+the method <a class="reference internal" href="#alogos.Grammar.plot" title="alogos.Grammar.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>.</p></li>
+<li><p>Recognize whether a given string belongs to the grammar’s
+language or not with the method <a class="reference internal" href="#alogos.Grammar.recognize_string" title="alogos.Grammar.recognize_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recognize_string</span></code></a>.</p></li>
+<li><p>Parse a given string to see how it can be derived from the
+start symbol by a specific sequence of rule applications
+with the method <a class="reference internal" href="#alogos.Grammar.parse_string" title="alogos.Grammar.parse_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_string</span></code></a>. The result is a parse tree
+or derivation tree, an instance of the class
+<a class="reference internal" href="_grammar/data_structures/index.html#alogos._grammar.data_structures.DerivationTree" title="alogos._grammar.data_structures.DerivationTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DerivationTree</span></code></a>.
+A derivation tree represents a single string by reading
+its leaf nodes from left to right, but many possible
+derivations that lead to it, since the sequence of rule
+applications is not fixed in the tree.</p></li>
+<li><p>Generate a random derivation, derivation tree or string with
+the methods <a class="reference internal" href="#alogos.Grammar.generate_derivation" title="alogos.Grammar.generate_derivation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_derivation</span></code></a>,
+<a class="reference internal" href="#alogos.Grammar.generate_derivation_tree" title="alogos.Grammar.generate_derivation_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_derivation_tree</span></code></a>, <a class="reference internal" href="#alogos.Grammar.generate_string" title="alogos.Grammar.generate_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_string</span></code></a>.</p></li>
+<li><p>Generate the grammar’s language or a finite subset of it
+with the method <a class="reference internal" href="#alogos.Grammar.generate_language" title="alogos.Grammar.generate_language"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_language</span></code></a>.</p></li>
+<li><p>Convert a grammar into a specific normal form or check if it
+is in one with the methods <code class="xref py py-obj docutils literal notranslate"><span class="pre">to_cnf</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">is_cnf</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">to_gnf</span></code>,
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">is_gnf</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">to_bnf</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">is_bnf</span></code>. Normal forms put further
+restrictions on the form of the production rules, but
+importantly, converting a grammar into it does not change
+its language.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p class="rubric">Notes</p>
+<p>The concepts and notation mentioned here are based on
+classical textbooks in formal language theory such as <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+Similar discussions can be found on the web <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<p class="rubric">References</p>
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>J. E. Hopcroft and J. D. Ullman, Introduction to
+Automata Theory, Languages and Computation.
+Addison-Wesley, 1979.</p>
+</aside>
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Wikipedia articles</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Formal_grammar">Formal grammar</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_grammar">Context-free grammar</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Context-free_language">Context-free language</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Terminal_and_nonterminal_symbols">Terminal and nonterminal symbols</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Production_(computer_science)">Production rule</a></p></li>
+</ul>
+</aside>
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bnf_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bnf_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ebnf_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ebnf_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a grammar from a string or file in BNF or EBNF notation.</p>
+<p>Backus-Naur form (BNF) and Extended Backus-Naur form (EBNF)
+<a class="footnote-reference brackets" href="#id6" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> are two well-known and often used formats for defining
+context-free grammars.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bnf_text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – String that contains a grammar in BNF.</p></li>
+<li><p><strong>bnf_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Filepath of a text file that contains a grammar in BNF.</p></li>
+<li><p><strong>ebnf_text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – String that contains a grammar in EBNF.</p></li>
+<li><p><strong>ebnf_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Filepath of a text file that contains a grammar in EBNF.</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Further keyword arguments are forwarded to the function
+that reads and creates a grammar from text in BNF or EBNF
+notation. The available arguments and further details can
+be found in following methods:</p>
+<ul>
+<li><p>BNF: <a class="reference internal" href="#alogos.Grammar.from_bnf_text" title="alogos.Grammar.from_bnf_text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_bnf_text</span></code></a>, <a class="reference internal" href="#alogos.Grammar.from_bnf_file" title="alogos.Grammar.from_bnf_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_bnf_file</span></code></a></p></li>
+<li><p>EBNF: <a class="reference internal" href="#alogos.Grammar.from_ebnf_text" title="alogos.Grammar.from_ebnf_text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_ebnf_text</span></code></a>, <a class="reference internal" href="#alogos.Grammar.from_ebnf_file" title="alogos.Grammar.from_ebnf_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_ebnf_file</span></code></a></p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.11)"><strong>TypeError</strong></a> – If an argument gets a value of unexpected type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.11)"><strong>FileNotFoundError</strong></a> – If a filepath does not point to an existing file.</p></li>
+<li><p><a class="reference internal" href="exceptions/index.html#alogos.exceptions.GrammarError" title="alogos.exceptions.GrammarError"><strong>GrammarError</strong></a> – If a newly generated grammar does not pass all validity
+checks. For example, each nonterminal that appears on the
+right-hand side must also appear on the left-hand side.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Warns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>GrammarWarning</strong> – If a newly generated grammar contains a production rule
+more than once.</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<aside class="footnote brackets" id="id6" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">3</a><span class="fn-bracket">]</span></span>
+<p>Wikipedia</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form">Backus-Naur form (BNF)</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">Extended Backus-Naur form (EBNF)</a></p></li>
+</ul>
+</aside>
+<p class="rubric">Examples</p>
+<p>Use text in Backus-Naur form (BNF) to define a grammar:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">alogos</span> <span class="k">as</span> <span class="nn">al</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bnf_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="go">&lt;S&gt; ::= &lt;Greeting&gt; _ &lt;Object&gt; !</span>
+<span class="go">&lt;Greeting&gt; ::= Hello | Hi | Hola</span>
+<span class="go">&lt;Object&gt; ::= World | Universe | Cosmos</span>
+<span class="go">&quot;&quot;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="n">bnf_text</span><span class="o">=</span><span class="n">bnf_text</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grammar</span><span class="o">.</span><span class="n">generate_string</span><span class="p">()</span>
+<span class="go">Hello_World!</span>
+</pre></div>
+</div>
+<p>Use text in or Extended Backus-Naur form (EBNF) to define a
+grammar:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">alogos</span> <span class="k">as</span> <span class="nn">al</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ebnf_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="go">S = Greeting &quot; &quot; Object &quot;!&quot;</span>
+<span class="go">Greeting = &quot;Hello&quot; | &quot;Hi&quot; | &quot;Hola&quot;</span>
+<span class="go">Object = &quot;World&quot; | &quot;Universe&quot; | &quot;Cosmos&quot;</span>
+<span class="go">&quot;&quot;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="n">ebnf_text</span><span class="o">=</span><span class="n">ebnf_text</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grammar</span><span class="o">.</span><span class="n">generate_string</span><span class="p">()</span>
+<span class="go">Hola Universe!</span>
+</pre></div>
+</div>
+<p>Use text in an unusual form to define a grammar by passing
+custom symbol definitions as keyword arguments:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">alogos</span> <span class="k">as</span> <span class="nn">al</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bnf_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="go">[English Sentence] = [Simple Sentence]</span>
+<span class="go">[Simple Sentence] = [Declarative Sentence]</span>
+<span class="go">[Declarative Sentence] = [subject] [predicate]</span>
+<span class="go">[subject] = [simple subject]</span>
+<span class="go">[simple subject] = [nominative personal pronoun]</span>
+<span class="go">[nominative personal pronoun] = &quot;I&quot; | &quot;you&quot; | &quot;he&quot; | &quot;she&quot; | &quot;it&quot; | &quot;we&quot; | &quot;they&quot;</span>
+<span class="go">[predicate] = [verb]</span>
+<span class="go">[verb] = [linking verb]</span>
+<span class="go">[linking verb] = &quot;am&quot; |&quot;are&quot; |&quot;is&quot; | &quot;was&quot;| &quot;were&quot;</span>
+<span class="go">&quot;&quot;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span>
+<span class="go">    bnf_text=bnf_text,</span>
+<span class="go">    defining_symbol=&quot;=&quot;,</span>
+<span class="go">    start_nonterminal_symbol=&quot;[&quot;,</span>
+<span class="go">    end_nonterminal_symbol=&quot;]&quot;,</span>
+<span class="go">    start_terminal_symbol=&#39;&quot;&#39;,</span>
+<span class="go">    end_terminal_symbol=&#39;&quot;&#39;,</span>
+<span class="go">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grammar</span><span class="o">.</span><span class="n">generate_string</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="go">I am</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a deep copy of the grammar.</p>
+<p>The new object is entirely independent of the original object.
+No parts, such as symbols or rules, are shared between the
+objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.from_bnf_text">
+<span class="sig-name descname"><span class="pre">from_bnf_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bnf_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defining_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'::='</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule_separator_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'|'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&lt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.from_bnf_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.from_bnf_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a grammar specification in BNF notation from a string.</p>
+<p>This method resets the grammar object and then uses the
+provided information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bnf_text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – String with grammar specification in BNF notation.</p>
+</dd>
+<dt class="field-even">Other Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>defining_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between left-hand side and right-hand side of a rule.</p></li>
+<li><p><strong>rule_separator_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between alternative productions of a rule.</p></li>
+<li><p><strong>start_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a nonterminal.</p></li>
+<li><p><strong>end_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a nonterminal.</p></li>
+<li><p><strong>start_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a terminal.</p></li>
+<li><p><strong>start_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the end of a terminal.</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, messages will be printed during processing the
+input text that show which rules and symbols are found one
+after another. This can be useful to see what went wrong
+when the generated grammar does not look or behave as
+expected.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.from_bnf_file">
+<span class="sig-name descname"><span class="pre">from_bnf_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defining_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'::='</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule_separator_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'|'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&lt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.from_bnf_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.from_bnf_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a grammar specification in BNF notation from a file.</p>
+<p>This method resets the grammar object and then uses the
+provided information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Text file with grammar specification in BNF notation.</p>
+</dd>
+<dt class="field-even">Other Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>defining_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between left-hand side and right-hand side of a rule.</p></li>
+<li><p><strong>rule_separator_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between alternative productions of a rule.</p></li>
+<li><p><strong>start_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a nonterminal.</p></li>
+<li><p><strong>end_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a nonterminal.</p></li>
+<li><p><strong>start_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a terminal.</p></li>
+<li><p><strong>start_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the end of a terminal.</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, messages will be printed during processing the
+input text that show which rules and symbols are found one
+after another. This can be useful to see what went wrong
+when the generated grammar does not look or behave as
+expected.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.from_ebnf_text">
+<span class="sig-name descname"><span class="pre">from_ebnf_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ebnf_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defining_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'='</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule_separator_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'|'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&quot;'&quot;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&quot;'&quot;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.from_ebnf_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.from_ebnf_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a grammar specification in EBNF notation from a string.</p>
+<p>This method resets the grammar object and then uses the
+provided information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ebnf_text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – String with grammar specification in EBNF notation.</p>
+</dd>
+<dt class="field-even">Other Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>defining_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between left-hand side and right-hand side of a rule.</p></li>
+<li><p><strong>rule_separator_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between alternative productions of a rule.</p></li>
+<li><p><strong>start_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a nonterminal.</p></li>
+<li><p><strong>end_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a nonterminal.</p></li>
+<li><p><strong>start_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a terminal.</p></li>
+<li><p><strong>start_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the end of a terminal.</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, messages will be printed during processing the
+input text that show which rules and symbols are found one
+after another. This can be useful to see what went wrong
+when the generated grammar does not look or behave as
+expected.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.from_ebnf_file">
+<span class="sig-name descname"><span class="pre">from_ebnf_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defining_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'='</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule_separator_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'|'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&quot;'&quot;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&quot;'&quot;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.from_ebnf_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.from_ebnf_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a grammar specification in EBNF notation from a file.</p>
+<p>This method resets the grammar object and then uses the
+provided information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Text file with grammar specification in EBNF notation.</p>
+</dd>
+<dt class="field-even">Other Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>defining_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between left-hand side and right-hand side of a rule.</p></li>
+<li><p><strong>rule_separator_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between alternative productions of a rule.</p></li>
+<li><p><strong>start_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a nonterminal.</p></li>
+<li><p><strong>end_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a nonterminal.</p></li>
+<li><p><strong>start_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a terminal.</p></li>
+<li><p><strong>start_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the end of a terminal.</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, messages will be printed during processing the
+input text that show which rules and symbols are found one
+after another. This can be useful to see what went wrong
+when the generated grammar does not look or behave as
+expected.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.to_bnf_text">
+<span class="sig-name descname"><span class="pre">to_bnf_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules_on_separate_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defining_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'::='</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule_separator_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'|'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&lt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.to_bnf_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.to_bnf_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the grammar in BNF notation to a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rule_on_separate_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, each rule for a nonterminal is put onto a
+separate line. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, all rules for a nonterminal
+are grouped onto one line.</p></li>
+<li><p><strong>defining_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between left-hand side and right-hand side of a rule.</p></li>
+<li><p><strong>rule_separator_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between alternative productions of a rule.</p></li>
+<li><p><strong>start_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a nonterminal.</p></li>
+<li><p><strong>end_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a nonterminal.</p></li>
+<li><p><strong>start_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a terminal.</p></li>
+<li><p><strong>start_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the end of a terminal.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.to_bnf_file">
+<span class="sig-name descname"><span class="pre">to_bnf_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules_on_separate_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defining_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'::='</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule_separator_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'|'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&lt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.to_bnf_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.to_bnf_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the grammar in BNF notation to a text file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Filepath of the text file that shall be generated.</p>
+</dd>
+<dt class="field-even">Other Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>rule_on_separate_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, each rule for a nonterminal is put onto a
+separate line. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, all rules for a nonterminal
+are grouped onto one line.</p></li>
+<li><p><strong>defining_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between left-hand side and right-hand side of a rule.</p></li>
+<li><p><strong>rule_separator_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Symbol between alternative productions of a rule.</p></li>
+<li><p><strong>start_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Symbol indicating the start of a nonterminal.</p></li>
+<li><p><strong>end_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Symbol indicating the end of a nonterminal.</p></li>
+<li><p><strong>start_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Symbol indicating the end of a terminal.</p></li>
+<li><p><strong>start_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Alternative symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Alternative symbol indicating the end of a terminal.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.to_ebnf_text">
+<span class="sig-name descname"><span class="pre">to_ebnf_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules_on_separate_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defining_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'='</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule_separator_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'|'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.to_ebnf_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.to_ebnf_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the grammar in EBNF notation to a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rule_on_separate_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, each rule for a nonterminal is put onto a
+separate line. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, all rules for a nonterminal
+are grouped onto one line.</p></li>
+<li><p><strong>defining_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Symbol between left-hand side and right-hand side of a rule.</p></li>
+<li><p><strong>rule_separator_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Symbol between alternative productions of a rule.</p></li>
+<li><p><strong>start_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Symbol indicating the start of a nonterminal.</p></li>
+<li><p><strong>end_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Symbol indicating the end of a nonterminal.</p></li>
+<li><p><strong>start_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Symbol indicating the end of a terminal.</p></li>
+<li><p><strong>start_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Alternative symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Alternative symbol indicating the end of a terminal.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.to_ebnf_file">
+<span class="sig-name descname"><span class="pre">to_ebnf_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules_on_separate_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defining_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'='</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule_separator_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'|'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_nonterminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_terminal_symbol2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&quot;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.to_ebnf_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.to_ebnf_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the grammar in EBNF notation to a text file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Filepath of the text file that shall be generated.</p>
+</dd>
+<dt class="field-even">Other Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>rule_on_separate_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, each rule for a nonterminal is put onto a
+separate line. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, all rules for a nonterminal
+are grouped onto one line.</p></li>
+<li><p><strong>defining_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between left-hand side and right-hand side of a rule.</p></li>
+<li><p><strong>rule_separator_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol between alternative productions of a rule.</p></li>
+<li><p><strong>start_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a nonterminal.</p></li>
+<li><p><strong>end_nonterminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a nonterminal.</p></li>
+<li><p><strong>start_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Symbol indicating the end of a terminal.</p></li>
+<li><p><strong>start_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the start of a terminal.</p></li>
+<li><p><strong>end_terminal_symbol2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Alternative symbol indicating the end of a terminal.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.generate_derivation_tree">
+<span class="sig-name descname"><span class="pre">generate_derivation_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weighted'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.generate_derivation_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.generate_derivation_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a derivation tree with a chosen method.</p>
+<p>One <em>derivation tree</em> represents one <em>string</em> but many
+<em>derivations</em> <a class="footnote-reference brackets" href="#id8" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.</p>
+<ul class="simple">
+<li><p>The leaf nodes of the tree read from left to right form a
+string of the language defined by the grammar.</p></li>
+<li><p>A depth-first walk over the tree that always chooses the
+leftmost item gives the leftmost derivation, while one that
+always chooses the rightmost item gives the rightmost
+derivation. In most cases, there can be many more ways to
+expand one nonterminal after another, leading to a plethora
+of possible derivations, all represented by the same
+derivation tree.</p></li>
+</ul>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Name of the method that is used for creating a
+derivation tree.</p>
+<p>Possible values:</p>
+<ul>
+<li><p>Deterministic methods that require the keyword argument
+<code class="docutils literal notranslate"><span class="pre">genotype</span></code> as input data:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;cfggp&quot;</span></code>: Uses
+<a class="reference internal" href="systems/cfggp/mapping/index.html#alogos.systems.cfggp.mapping.forward" title="alogos.systems.cfggp.mapping.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>
+mapping from CFG-GP.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;cfggpst&quot;</span></code>: Uses
+<a class="reference internal" href="systems/cfggpst/mapping/index.html#alogos.systems.cfggpst.mapping.forward" title="alogos.systems.cfggpst.mapping.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>
+mapping from CFG-GP-ST.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;dsge&quot;</span></code>: Uses <a class="reference internal" href="systems/dsge/mapping/index.html#alogos.systems.dsge.mapping.forward" title="alogos.systems.dsge.mapping.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>
+mapping from DSGE.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;ge&quot;</span></code>: Uses <a class="reference internal" href="systems/ge/mapping/index.html#alogos.systems.ge.mapping.forward" title="alogos.systems.ge.mapping.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>
+mapping from GE.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;pige&quot;</span></code>: Uses <a class="reference internal" href="systems/pige/mapping/index.html#alogos.systems.pige.mapping.forward" title="alogos.systems.pige.mapping.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>
+mapping from piGE.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;whge&quot;</span></code>: Uses <a class="reference internal" href="systems/whge/mapping/index.html#alogos.systems.whge.mapping.forward" title="alogos.systems.whge.mapping.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>
+mapping from WHGE.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Probabilistic methods that generate a random tree and
+require no input data:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;uniform&quot;</span></code>: Uses
+<a class="reference internal" href="systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.uniform" title="alogos.systems._shared.init_tree.uniform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">uniform</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;weighted&quot;</span></code>: Uses
+<a class="reference internal" href="systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.weighted" title="alogos.systems._shared.init_tree.weighted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weighted</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;ptc2&quot;</span></code>: Uses
+<a class="reference internal" href="systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.ptc2" title="alogos.systems._shared.init_tree.ptc2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ptc2</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;grow_one_branch_to_max_depth&quot;</span></code>: Uses
+<a class="reference internal" href="systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.grow_one_branch_to_max_depth" title="alogos.systems._shared.init_tree.grow_one_branch_to_max_depth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grow_one_branch_to_max_depth</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;grow_all_branches_within_max_depth&quot;</span></code>: Uses
+<a class="reference internal" href="systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.grow_all_branches_within_max_depth" title="alogos.systems._shared.init_tree.grow_all_branches_within_max_depth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grow_all_branches_within_max_depth</span></code></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;grow_all_branches_to_max_depth&quot;</span></code>: Uses
+<a class="reference internal" href="systems/_shared/init_tree/index.html#alogos.systems._shared.init_tree.grow_all_branches_to_max_depth" title="alogos.systems._shared.init_tree.grow_all_branches_to_max_depth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grow_all_branches_to_max_depth</span></code></a>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Further keyword arguments are forwarded to the chosen
+method. This is especially relevant for controlling the
+behavior of the probabilistic methods.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>derivation_tree</strong> (<a class="reference internal" href="_grammar/data_structures/index.html#alogos._grammar.data_structures.DerivationTree" title="alogos._grammar.data_structures.DerivationTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DerivationTree</span></code></a>)</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="exceptions/index.html#alogos.exceptions.MappingError" title="alogos.exceptions.MappingError"><strong>MappingError</strong></a> – If the method fails to generate a derivation tree,
+e.g. because a limit like maximum number of expansions
+was reached before all leaves contained terminal symbols</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<aside class="footnote brackets" id="id8" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">4</a><span class="fn-bracket">]</span></span>
+<p>Wikipedia</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Parse_tree">Parse tree</a></p></li>
+</ul>
+</aside>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.generate_derivation">
+<span class="sig-name descname"><span class="pre">generate_derivation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weighted'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">derivation_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'leftmost'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.generate_derivation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.generate_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a derivation with a chosen method.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Name of the method that is used for creating a derivation.</p>
+<p>Possible values: See <a class="reference internal" href="#alogos.Grammar.generate_derivation_tree" title="alogos.Grammar.generate_derivation_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_derivation_tree</span></code></a>.</p>
+</li>
+<li><p><strong>derivation_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Order in which nonterminals are expanded during the step-by-step derivation.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;leftmost&quot;</span></code>: Expand the leftmost nonterminal in each step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;rightmost&quot;</span></code>: Expand the rightmost nonterminal in each step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;random&quot;</span></code>: Expand a random nonterminal in each step.</p></li>
+</ul>
+</li>
+<li><p><strong>newline</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, the derivation steps are placed on separate
+lines by adding newline characters between them.</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Further keyword arguments are forwarded to the chosen
+method.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>derivation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The derivation generated with the chosen method.
+It is a text that shows each step of the derivation
+as it is commonly represented in textbooks.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This method uses <a class="reference internal" href="#alogos.Grammar.generate_derivation_tree" title="alogos.Grammar.generate_derivation_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_derivation_tree</span></code></a> to create a
+derivation tree and then reads the leftmost derivation
+contained in it with
+<a class="reference internal" href="_grammar/data_structures/index.html#alogos._grammar.data_structures.DerivationTree.derivation" title="alogos._grammar.data_structures.DerivationTree.derivation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derivation</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.generate_string">
+<span class="sig-name descname"><span class="pre">generate_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weighted'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.generate_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.generate_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a string with a chosen method.</p>
+<p>Each string <a class="footnote-reference brackets" href="#id10" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a> is part of the language L(G) defined by grammar G.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Name of the method that is used for creating a string.</p>
+<p>Possible values: See <a class="reference internal" href="#alogos.Grammar.generate_derivation_tree" title="alogos.Grammar.generate_derivation_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_derivation_tree</span></code></a>.</p>
+</li>
+<li><p><strong>separator</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – A short string that is inserted between each of the
+terminal symbols that make up the string of the grammar’s
+language.</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Further keyword arguments are forwarded to the chosen
+method.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The string generated with the chosen method.
+It is a text that consists only of terminal symbols
+and optionally a separator symbol between them.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This method uses <a class="reference internal" href="#alogos.Grammar.generate_derivation_tree" title="alogos.Grammar.generate_derivation_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_derivation_tree</span></code></a> to create a
+derivation tree and then reads the string contained in it
+from the leaf nodes with
+<a class="reference internal" href="_grammar/data_structures/index.html#alogos._grammar.data_structures.DerivationTree.string" title="alogos._grammar.data_structures.DerivationTree.string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">string</span></code></a>.</p>
+<p class="rubric">References</p>
+<aside class="footnote brackets" id="id10" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">5</a><span class="fn-bracket">]</span></span>
+<p>Wikipedia</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/String_(computer_science)">String</a></p></li>
+</ul>
+</aside>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.generate_language">
+<span class="sig-name descname"><span class="pre">generate_language</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'discovered'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_details</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.generate_language"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.generate_language" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the formal language defined by the grammar.</p>
+<p>This algorithm recursively constructs the formal language <a class="footnote-reference brackets" href="#id12" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a>
+defined by the grammar, i.e. the set of strings it can generate
+or recognize.</p>
+<p>The algorithm can be stopped prematurely to get only a subset
+of the entire language. By default, only the language of the
+start symbol is returned, which is the language of the grammar,
+but it is also possible to return the languages of each other
+nonterminal symbol, which can be thought of as sublanguages.
+For example, many programming languages are defined by a CFG
+and have a nonterminal symbol that represents all valid integer
+literals in that language.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>max_steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – The maximum number of recursive steps during language
+generation. It can be used to stop the algorithm before it
+can construct all strings of the language. Instead a list of
+valid strings found so far will be returned, which is a
+subset of the entire language. This is necessary to get a
+result if the grammar defines a very large or infinite
+language.</p>
+<p>Note that each recursive step uses the strings known so far
+and inserts them into the right-hand sides of production
+rules to see if any new strings can be discovered. Therefore
+simpler strings are found before more complex ones that
+require more expansions. If the number of steps is too
+little to form a single string belonging to the language of
+the start symbol, the result will be an empty list.</p>
+</li>
+<li><p><strong>sort_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – The language is returned as a list of strings, which can be
+sorted in different ways.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;discovered&quot;</span></code>: Strings are returned in the order they
+were discovered.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;lex&quot;</span></code>: Lexicographic, i.e. the order used in lexicons,
+which means the alphabetic order extended to non-alphabet
+characters like numbers. Python’s built-in <code class="docutils literal notranslate"><span class="pre">sort()</span></code>
+function delivers it by default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;shortlex&quot;</span></code>: Strings are sorted primarily by their
+length. Those with the same length are further sorted in
+lexicographic order.</p></li>
+</ul>
+</li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, detailed messages are printed during language
+generation. If <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>, no output is generated.</p></li>
+<li><p><strong>return_details</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, the return value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> with nonterminals
+as keys and their languages as values. The language of the
+start symbol is the language of the grammar, but each
+nonterminal has its own sub-language that can be of interest
+too.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>language</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> with <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> as values) – The formal language L(G) defined by the grammar G.
+If the argument <code class="xref py py-obj docutils literal notranslate"><span class="pre">return_details</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>,
+the return value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> where each key is a nonterminal
+of the grammar and each value the language (set of strings)
+of the nonterminal.</p>
+</dd>
+<dt class="field-odd">Warns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>GrammarWarning</strong> – If no value is provided for the argument <code class="xref py py-obj docutils literal notranslate"><span class="pre">max_steps</span></code>,
+internally an unrealistically large value of is assigned to
+it. In the unlikely case this is ever reached, a warning
+will be raised if the language generation did not generate
+all strings of the language.</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<aside class="footnote brackets" id="id12" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">6</a><span class="fn-bracket">]</span></span>
+<p>Wikipedia</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Formal_language">Formal language</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Shortlex_order">Shortlex order</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Lexicographical_order">Lexicographic order</a></p></li>
+</ul>
+</aside>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.recognize_string">
+<span class="sig-name descname"><span class="pre">recognize_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'earley'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.recognize_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.recognize_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if a string belongs to the language of the grammar.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Candidate string which can be recognized to be a member of
+the grammar’s language.</p></li>
+<li><p><strong>parser</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Parsing algorithm used to analyze the string.</p>
+<p>Possible values: See <a class="reference internal" href="#alogos.Grammar.parse_string" title="alogos.Grammar.parse_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_string</span></code></a></p>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>recognized</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) – <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if the string belongs to the grammar’s language,
+<a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> if it does not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.parse_string">
+<span class="sig-name descname"><span class="pre">parse_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'earley'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_multiple_trees</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_num_trees</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.parse_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.parse_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to parse a given string with a chosen parsing algorithm.</p>
+<p>Parsing means the analysis of a string into its parts or
+constituents <a class="footnote-reference brackets" href="#id15" id="id13" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Candidate string which can only be parsed successfully
+if it is a member of the grammar’s language.</p></li>
+<li><p><strong>parser</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Parsing algorithm used to analyze the string. This package
+uses parsers from the package Lark <a class="footnote-reference brackets" href="#id16" id="id14" role="doc-noteref"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></a>.</p>
+<p>Possible values:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;earley&quot;</span></code>: Can parse any context-free grammar.</p>
+<p>Performance: The algorithm has a time complexity of
+<code class="docutils literal notranslate"><span class="pre">O(n^3)</span></code>, but if the grammar is unambiguous it is
+reduced to <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> and for most LR grammars it
+is <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;lalr&quot;</span></code>: Can parse only a subset of context-free
+grammars, which have a form that allows very efficient
+parsing with a LALR(1) parser.</p>
+<p>Performance: The algorithm has a time complexity
+of <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>get_multiple_trees</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>, a list of parse trees, also known as
+parse forest, is returned instead of a single
+parse tree object.</p></li>
+<li><p><strong>max_num_trees</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – An upper limit on how many parse trees will be returned at
+maximum.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>parse_tree</strong> (<a class="reference internal" href="_grammar/data_structures/index.html#alogos._grammar.data_structures.DerivationTree" title="alogos._grammar.data_structures.DerivationTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DerivationTree</span></code></a>, or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="_grammar/data_structures/index.html#alogos._grammar.data_structures.DerivationTree" title="alogos._grammar.data_structures.DerivationTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DerivationTree</span></code></a>) – If the argument <code class="xref py py-obj docutils literal notranslate"><span class="pre">get_multiple_trees</span></code> is set to <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>,
+a list of derivation trees is returned instead of a single
+derivation tree object. The list can contain one or more
+trees, dependening on how many ways there are to parse the
+given string. If a grammar is unambiguous, there is only
+one way. If it is ambuguous, there can be multiple ways
+to derive the same string in a leftmost derivation, which
+is captured by different derivation trees.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="exceptions/index.html#alogos.exceptions.ParserError" title="alogos.exceptions.ParserError"><strong>ParserError</strong></a> – If the string does not belong to the language and therefore
+no parse tree exists for it.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If the grammar is ambiguous, there can be more than one way
+to parse a given string, which means that there are multiple
+parse trees for it. By default, only one of these trees is
+returned, but the argument <code class="docutils literal notranslate"><span class="pre">get_multiple_trees</span></code> allows to
+get all of them. Caution: This feature is currently only
+supported with Lark’s Earley parser.</p>
+<p class="rubric">References</p>
+<aside class="footnote brackets" id="id15" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">7</a><span class="fn-bracket">]</span></span>
+<p>Wikipedia</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Parsing">Parsing</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Earley_parser">Earley parser</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/LALR_parser">LALR parser</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Ambiguous_grammar">Ambiguous grammar</a></p></li>
+</ul>
+</aside>
+<aside class="footnote brackets" id="id16" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id14">8</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://lark-parser.readthedocs.io">Lark</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://lark-parser.readthedocs.io/en/latest/parsers.html#earley">Earley</a></p></li>
+<li><p><a class="reference external" href="https://lark-parser.readthedocs.io/en/latest/parsers.html#lalr-1">LALR(1)</a></p></li>
+</ul>
+</aside>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.Grammar.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_grammar/data_structures.html#Grammar.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.Grammar.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a figure containing a syntax diagram of the grammar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fig</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Figure</span></code>) – Figure object containing the plot, allowing to display or
+export it.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Syntax diagrams (a.k.a. railroad diagrams) <a class="footnote-reference brackets" href="#id22" id="id17" role="doc-noteref"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></a> are especially
+useful for representing EBNF specifications of a grammar,
+because they capture nicely the extended notations that are
+introduced by EBNF, e.g. optional or repeated items.</p>
+<p>This package supports reading a grammar specification from
+EBNF text. Internally, however, EBNF is automatically converted
+to a simpler form during the reading process, which is done by
+removing any occurrence of extended notation and expressing it
+with newly introduced symbols and rules instead. Only the final
+version of the grammar can be visualized, which is essentially
+BNF with new helper rules and nonterminals. Therefore the
+expressive power of syntax diagrams is unfortunately not fully
+used here.</p>
+<p>There are many websites with explanations <a class="footnote-reference brackets" href="#id23" id="id18" role="doc-noteref"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></a> or
+examples <a class="footnote-reference brackets" href="#id24" id="id19" role="doc-noteref"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></a> of syntax diagrams.
+Likewise, there are many libraries <a class="footnote-reference brackets" href="#id25" id="id20" role="doc-noteref"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></a> for generating
+syntax diagrams. This package uses the library
+Railroad-Diagram Generator <a class="footnote-reference brackets" href="#id26" id="id21" role="doc-noteref"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></a>.</p>
+<p class="rubric">References</p>
+<aside class="footnote brackets" id="id22" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id17">9</a><span class="fn-bracket">]</span></span>
+<p>Wikipedia</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Syntax_diagram">Syntax diagram</a></p></li>
+</ul>
+</aside>
+<aside class="footnote brackets" id="id23" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id18">10</a><span class="fn-bracket">]</span></span>
+<p>Explanatory websites</p>
+<ul class="simple">
+<li><p>Oxford Reference / A Dictionary of Computing 6th edition:
+<a class="reference external" href="https://www.oxfordreference.com/view/10.1093/oi/authority.20110803100547820">Syntax diagram</a></p></li>
+<li><p>Course website by Roger Hartley:
+<a class="reference external" href="https://www.cs.nmsu.edu/~rth/cs/cs471/Syntax%20Module/diagrams.html">Programming language structure 1: Syntax diagrams</a></p></li>
+<li><p>Book chapter by Richard E. Pattis with Syntax Charts
+on p. 11:
+<a class="reference external" href="http://www.cs.cmu.edu/~pattis/misc/ebnf.pdf">v1: Languages and Syntax</a>,
+<a class="reference external" href="https://www.ics.uci.edu/~pattis/misc/ebnf2.pdf">v2: EBNF - A Notation to Describe Syntax</a></p></li>
+</ul>
+</aside>
+<aside class="footnote brackets" id="id24" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id19">11</a><span class="fn-bracket">]</span></span>
+<p>Example websites</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://xkcd.com/1930/">xkcd webcomic</a></p></li>
+<li><p><a class="reference external" href="https://www.json.org/json-en.html">JSON</a></p></li>
+<li><p><a class="reference external" href="https://www.sqlite.org/lang.html">SQLite</a></p></li>
+<li><p><a class="reference external" href="https://docs.oracle.com/cd/B19188_01/doc/B15917/sqsyntax.htm">Oracle Database Lite SQL</a></p></li>
+<li><p><a class="reference external" href="https://www.boost.org/doc/libs/1_66_0/libs/spirit/doc/html/spirit/abstracts/syntax_diagram.html">Boost</a></p></li>
+</ul>
+</aside>
+<aside class="footnote brackets" id="id25" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id20">12</a><span class="fn-bracket">]</span></span>
+<p>Some other tools for drawing syntax diagrams</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://bottlecaps.de/rr/ui">Railroad Diagram Generator</a>
+by Gunther Rademacher</p></li>
+<li><p><a class="reference external" href="https://www.antlr.org/tools.html">ANTLR Development Tools</a>
+by Terence Parr</p></li>
+<li><p><a class="reference external" href="https://www.dokuwiki.org/plugin:ebnf">DokuWiki EBNF Plugin</a>
+by Vincent Tscherter</p></li>
+<li><p><a class="reference external" href="https://www.sqlite.org/docsrc/finfo?name=art/syntax/bubble-generator.tcl">bubble-generator</a>
+by the SQLite team</p></li>
+<li><p><a class="reference external" href="https://github.com/FranklinChen/Ebnf2ps">Ebnf2ps</a>
+by Peter Thiemann</p></li>
+<li><p><a class="reference external" href="http://dotnet.jku.at/applications/Visualizer/">EBNF Visualizer</a>
+by Markus Dopler and Stefan Schörgenhumer</p></li>
+<li><p><a class="reference external" href="http://clapham.hydromatic.net">Clapham Railroad Diagram Generator</a>
+by Julian Hyde</p></li>
+<li><p><a class="reference external" href="https://github.com/iangodin/draw-grammar">draw-grammar</a>
+by Ian Godin</p></li>
+</ul>
+</aside>
+<aside class="footnote brackets" id="id26" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id21">13</a><span class="fn-bracket">]</span></span>
+<p>Library used here for generating syntax diagram SVGs</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/tabatkins/railroad-diagrams">Railroad-Diagram Generator</a>
+by Tab Atkins Jr.</p></li>
+</ul>
+</aside>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="alogos.EvolutionaryAlgorithm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos.</span></span><span class="sig-name descname"><span class="pre">EvolutionaryAlgorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cfggpst'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.EvolutionaryAlgorithm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evolutionary algorithm for searching an optimal string in a grammar’s language.</p>
+<p>The role of this class is explained by first introducing
+basic concepts from optimization theory and the field of
+grammar-guided genetic programming.
+Then the usage of this evolutionary algorithm is explained.</p>
+<ol class="arabic">
+<li><p>Concepts from optimization theory</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Optimization: In general terms, optimization means to search
+for the best item out of many alternatives, or in other words,
+an optimal solution out of many candidate solutions.</p></li>
+<li><p>Search space: The set of all candidate solutions is called
+the search space. It can have a finite or infinite number of
+elements and there can be mathematical relationships between
+them, which can be used to efficiently sample the space.</p></li>
+<li><p>Search goal: Having a best or optimal item in the space
+requires that there is an order on the items. Such an order
+can be established in different ways, but the most common one
+is to define an objective function, which takes an item as
+input and returns a number as output. This number represents
+a quality score or fitness of the item and puts a weak order
+on all items, which means that some of them can be equally
+good and therefore multiple optimal items may exist that
+share the best quality score.</p></li>
+<li><p>Search method: There are many optimization algorithms that
+work very efficiently on specific search spaces with certain
+mathematical structure. Methods that are more general and can
+act on a large variety of search spaces are sometimes called
+metaheuristics. They are usually stochastic optimization
+algorithms, which means they have a random element to them
+and that implies that running them several times can produce
+different results, i.e. find candidate solutions of different
+quality. They don’t come with any guarantee to find a good
+or optimal solution, but often can successfully do so in
+hard optimization problems and are therefore often used in
+practice when the search space can not be tackled with exact
+methods. An evolutionary algorithm is a prominent
+example of a population-based metaheuristic, which was
+originally inspired by the process of natural evolution.
+Genetic programming is one subdiscipline in the field of
+evolutionary computation that deals with optimization in
+spaces of programs. Grammar-guided genetic programming (G3P)
+is one flavor of it that allows to define the search space
+with a context-free grammar, which is very often used in
+computer science to define various kinds of formal languages,
+including modern programming languages like Python or Rust.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Concepts from grammar-guided genetic programming</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A grammar can be used to define a formal language.</p></li>
+<li><p>A formal language is a finite or infinite set of string.</p></li>
+<li><p>A search algorithm can try to find the best item in
+a set according to a given search goal.</p></li>
+<li><p>An objective function can define a search goal by assigning
+a score to each item in a set, so that the item with
+minimum or maximum score are considered the best ones and
+need to be found.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p>This class provides a metaheuristic search method known as
+evolutionary algorithm, which was tailored for use with different
+grammar-guided genetic programming systems such as Grammatical
+Evolution (GE) and Context-Free Grammar Genetic
+Programming (CFG-GP). It uses following concepts that are directly
+relevant for the usage of this class:</p>
+<ul>
+<li><p>Individual: An individual represents a single candidate solution
+and comes with a genotype, phenotype and fitness.
+The genotype can be modified with variation operators to give
+rise to new closely related genotypes and thereby move through
+the search space. It also allows to derive a phenotype, which is
+an element of the search space that in the case of grammar-guided
+genetic programming is simply a string of the grammar’s language.
+The fitness is a number that indicates the quality of a candidate
+solution and is
+calculated by a user-provided objective function.</p></li>
+<li><p>Population: A population is a collection of individuals.</p></li>
+<li><p>Generation: A generation is one of several consecutive populations
+used throughout a search with an evolutionary algorithm.
+The search begins with the creation of a random initial population
+and proceeds by generating one population after the other, each
+based on the previous one. The idea is that the average fitness
+of the individuals in the generations can be increased by
+using variation operators to generate new, closely related
+individuals together with selection operators that introduce a
+preference for individuals with higher fitness. This is done by</p>
+<ol class="arabic simple">
+<li><p>Parent selection to choose individuals that are allowed to
+create offspring.</p></li>
+<li><p>Crossover to create new individuals by mixing the genotypes of
+parent individuals.</p></li>
+<li><p>Mutation to introduce slight random variations into the
+offspring individuals.</p></li>
+<li><p>Survivor selection to choose individuals that are allowed to
+continue into the next generation.</p></li>
+</ol>
+<p>All of these steps can be performed by different operators and
+this class provides several well-known ones to modify how the
+search is performed.</p>
+</li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.EvolutionaryAlgorithm.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cfggpst'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.EvolutionaryAlgorithm.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and parameterize an evolutionary algorithm.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>grammar</strong> (<a class="reference internal" href="#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>) – Context-free grammar that defines the search space.
+A grammar specifies a formal language, which is a finite or
+infinite set of strings. Each item of the search space
+is simply a string of the grammar’s language. The aim is
+to find an optimal string according to a user-provided
+objective.</p></li>
+<li><p><strong>objective_function</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Callable</span></code></a>) – A function that gets an item of the search space as input
+and needs to return a numerical value for it as output.
+In other words, it gets a phenotype and returns a fitness
+value for it that represents how good it is.</p>
+<p>Given that the search space is a grammar’s language,
+each candidate solution or phenotype is a string. Therefore
+a very simple objective function could just measure the
+length of each string and return that as fitness value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">obj_fun</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">fitness</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fitness</span>
+</pre></div>
+</div>
+<p>More realistic objective functions will usually evaluate
+the string in some way and measure how well it performs on
+a task.</p>
+</li>
+<li><p><strong>objective</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Goal of the optimization, which is to find a candidate
+solution that has either the minimum or maximum value
+assigned to it by the objective function.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;min&quot;</span></code>: Minimization, i.e. looking for a candidate
+solution with the smallest possible fitness value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;max&quot;</span></code>: Maximization, i.e. looking for a candidate
+solution with the highest possible fitness value.</p></li>
+</ul>
+</li>
+<li><p><strong>system</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Grammar-guided gentic programming system used by the
+evolutionary algorithm.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;cfggp&quot;</span></code>: CFG-GP, see <a class="reference internal" href="systems/cfggp/index.html#module-alogos.systems.cfggp" title="alogos.systems.cfggp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cfggp</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;cfggpst&quot;</span></code>: CFG-GP-ST, see <a class="reference internal" href="systems/cfggpst/index.html#module-alogos.systems.cfggpst" title="alogos.systems.cfggpst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cfggpst</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;dsge&quot;</span></code>: DSGE, see <a class="reference internal" href="systems/dsge/index.html#module-alogos.systems.dsge" title="alogos.systems.dsge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dsge</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;ge&quot;</span></code>: GE, see <a class="reference internal" href="systems/ge/index.html#module-alogos.systems.ge" title="alogos.systems.ge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ge</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;pige&quot;</span></code>: piGE, see <a class="reference internal" href="systems/pige/index.html#module-alogos.systems.pige" title="alogos.systems.pige"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pige</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;whge&quot;</span></code>: WHGE, see <a class="reference internal" href="systems/whge/index.html#module-alogos.systems.whge" title="alogos.systems.whge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">whge</span></code></a>.</p></li>
+</ul>
+<p>The system provides following components to the search
+algorithm:</p>
+<ul class="simple">
+<li><p>Genotype representation: This is a system-specific,
+indirect representation of a candidate solution,
+e.g. a list of int, a bitarray, or a tree.</p></li>
+<li><p>Genotype-phenotype mapping: This is used to translate a
+genotype to a phenotype. Note that a genotype is
+system-specific, while a phenotype is a string of
+the grammar’s language.</p></li>
+<li><p>Random variation operators: These are used to move through
+the search space by generating new genotypes that are
+close or related to the original ones. This is achieved
+by randomly introducing slight changes into a genotype
+(mutation) or recombining multiple genotypes
+into new ones (crossover).</p></li>
+</ul>
+</li>
+<li><p><strong>evaluator</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Callable</span></code></a>, optional) – A function that gets a function together with a list of
+items as input and needs to return a list of new items as
+output. The task of this function is to evaluate the given
+function for each item in the list, and collect the return
+values in a new list. All function calls are assumed to be
+independent and may be computed serially, in parallel or in
+a distributed fashion.</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Further keyword arguments are forwarded either to the
+evolutionary algorithm or to the chosen <code class="xref py py-obj docutils literal notranslate"><span class="pre">system</span></code>. This
+allows to control the search process in great detail.
+Every parameter can also be changed later on via the
+attribute <code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code> of the generated instance.
+This can be done before starting a run with the <a class="reference internal" href="#alogos.EvolutionaryAlgorithm.run" title="alogos.EvolutionaryAlgorithm.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>
+method, but also throughout a run when it is performed
+one step at a time by repeatedly calling the <a class="reference internal" href="#alogos.EvolutionaryAlgorithm.step" title="alogos.EvolutionaryAlgorithm.step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step</span></code></a> method.</p>
+<p>For a description of available keyword arguments, see</p>
+<ul class="simple">
+<li><p>Parameters for the evolutionary algorithm itself:
+<a class="reference internal" href="_optimization/ea/parameters/index.html#alogos._optimization.ea.parameters.default_parameters" title="alogos._optimization.ea.parameters.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>Parameters of the chosen G3P system:</p>
+<ul>
+<li><p>CFG-GP: <a class="reference internal" href="systems/cfggp/index.html#alogos.systems.cfggp.default_parameters" title="alogos.systems.cfggp.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>CFG-GP-ST: <a class="reference internal" href="systems/cfggpst/index.html#alogos.systems.cfggpst.default_parameters" title="alogos.systems.cfggpst.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>DSGE: <a class="reference internal" href="systems/dsge/index.html#alogos.systems.dsge.default_parameters" title="alogos.systems.dsge.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>GE: <a class="reference internal" href="systems/ge/index.html#alogos.systems.ge.default_parameters" title="alogos.systems.ge.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>piGE: <a class="reference internal" href="systems/pige/index.html#alogos.systems.pige.default_parameters" title="alogos.systems.pige.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>WHGE: <a class="reference internal" href="systems/whge/index.html#alogos.systems.whge.default_parameters" title="alogos.systems.whge.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+</ul>
+</li>
+</ul>
+<p>For example, when the chosen system is GE, the creation
+and parametrization of the evolutionary algorithm could
+look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">alogos</span> <span class="k">as</span> <span class="nn">al</span>
+
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="s2">&quot;&lt;S&gt; ::= 1 | 22 | 333&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">obj_fun</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+
+<span class="n">ea</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">EvolutionaryAlgorithm</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span> <span class="n">obj_fun</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="s2">&quot;ge&quot;</span><span class="p">,</span>
+    <span class="n">max_generations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_wraps</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ea</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Note that in this example <code class="docutils literal notranslate"><span class="pre">max_generations</span></code> is a parameter
+of the evolutionary algorithm itself and therefore it can be
+used no matter which system is chosen.
+In contrast, <code class="docutils literal notranslate"><span class="pre">max_wraps</span></code> is a parameter specific to
+the system GE and would not be accepted if for example the
+system CFG-GP were chosen by passing <code class="docutils literal notranslate"><span class="pre">system=&quot;cfggp&quot;</span></code>
+instead of <code class="docutils literal notranslate"><span class="pre">system=&quot;ge&quot;</span></code>.</p>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions/index.html#alogos.exceptions.ParameterError" title="alogos.exceptions.ParameterError"><strong>ParameterError</strong></a> – If a parameter is provided that is not known to the
+evolutionary algorithm or to the chosen system.
+A list of available parameters and their default values
+will be printed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.EvolutionaryAlgorithm.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.EvolutionaryAlgorithm.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a single step of the evolutionary search.</p>
+<p>Taking a single step means that one generation is added,
+which can happen in one of two ways:</p>
+<ul class="simple">
+<li><p>If the run has just started, the first generation is created
+by initializating a population.</p></li>
+<li><p>If the run is already ongoing, a new generation is derived
+from the current generation by a process that involves
+1) parent selection that prefers fitter individuals,
+2) generating an offspring population by applying random
+variation operators (mutation, crossover) to the parents and
+3) survivor selection that again prefers fitter individuals.</p></li>
+</ul>
+<p>Two important notes about the behavior of this method:</p>
+<ul class="simple">
+<li><p>It contrast to the <a class="reference internal" href="#alogos.EvolutionaryAlgorithm.run" title="alogos.EvolutionaryAlgorithm.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a> method, it does not check
+if any stop criterion has been met!
+For example, when the number of generations reaches
+the value provided by the <code class="docutils literal notranslate"><span class="pre">max_generations</span></code> parameter,
+calling this method will regardless add another generation.</p></li>
+<li><p>Since this method has to be called repeatedly to perform
+the individual steps of a run, it enables to change the
+parameters of the evolutionary algorithm on the fly by
+modifying the <code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code> attribute between calls.
+This means the search can be adjusted in much greater detail
+than with the <a class="reference internal" href="#alogos.EvolutionaryAlgorithm.run" title="alogos.EvolutionaryAlgorithm.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a> method.
+For example, the mutation and crossover rates can be gradually
+modified during a run to reduce the amount of variation when
+getting closer to the goal. It is also possible to change
+the population size or even the objective function.
+Fixed throughout a run, however, are the grammar
+(=search space) and the G3P system (=internal representation).</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>best_individual</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Individual</span></code> of the chosen G3P system) – The individual with the best fitness found so far in the
+entire search. This means the individual may have been
+discovered not in the current step but in an earlier one.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.EvolutionaryAlgorithm.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.EvolutionaryAlgorithm.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform one search step after another until a stop criterion is met.</p>
+<p>A user can set a single or multiple stop criteria. The algorithm
+will halt when one of them is fulfilled. Caution: If the
+criteria are set in such a way that they can never be realized,
+e.g. because an unreachable fitness threshold was chosen,
+then the run will not halt until it is interrupted from the
+outside.</p>
+<p>Note that after a search has halted, it is possible to change
+the stop criteria and call <a class="reference internal" href="#alogos.EvolutionaryAlgorithm.run" title="alogos.EvolutionaryAlgorithm.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a> again to continue the search.
+This can also be done multiple times.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>best_individual</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Individual</span></code> of the chosen G3P system) – The individual with the best fitness found so far in the
+entire search.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions/index.html#alogos.exceptions.ParameterError" title="alogos.exceptions.ParameterError"><strong>ParameterError</strong></a> – If no stop criterion was set. This prevents starting a run
+that clearly would not halt.</p>
+</dd>
+<dt class="field-odd">Warns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>OptimizationWarning</strong> – If not a single step was taken, because some stop criterion
+was already fulfilled by the current search state.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.EvolutionaryAlgorithm.is_stop_criterion_met">
+<span class="sig-name descname"><span class="pre">is_stop_criterion_met</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm.is_stop_criterion_met"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.EvolutionaryAlgorithm.is_stop_criterion_met" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the current search state meets any stop criterion.</p>
+<p>This method is used internally by the <a class="reference internal" href="#alogos.EvolutionaryAlgorithm.run" title="alogos.EvolutionaryAlgorithm.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a> method.
+It can also be useful when constructing a specialized search
+that repeatedly calls the <a class="reference internal" href="#alogos.EvolutionaryAlgorithm.step" title="alogos.EvolutionaryAlgorithm.step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step</span></code></a> method, where it is the
+responsibility of the user to ensure a stop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stop</strong> (<em>bool</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> if a stop criterion is met, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos.EvolutionaryAlgorithm.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos.EvolutionaryAlgorithm.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the current search state to enable a fresh start.</p>
+<p>Not all aspects of the algorithm object are simply set back to
+their initial state:</p>
+<ul>
+<li><p>Parameters are not reset to their default values. If any
+non-default parameters were passed during object-creation or
+if they were set to user-provided values later via the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code> attribute, then these values are kept and not
+overwritten by default values. The purpose of this behavior
+is to enable repeated runs that are directly comparable.</p></li>
+<li><p>If a database was used, it is reset, but what that means
+depends on its location:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If the database location is in memory, the content is
+entirely lost during a reset.</p></li>
+<li><p>If the database location is a file, it is renamed during a
+reset and a new file is created. This means the content of
+a run is not lost but relocated.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Cached values are fully deleted. This means previous
+phenotype-to-fitness evaluations will not be reused in a
+follow-up run.</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

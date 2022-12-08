@@ -1,0 +1,622 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos._optimization.ea.algorithm &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._optimization.ea.algorithm</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-alogos._optimization.ea.algorithm">
+<span id="alogos-optimization-ea-algorithm"></span><h1><a class="reference internal" href="#module-alogos._optimization.ea.algorithm" title="alogos._optimization.ea.algorithm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">alogos._optimization.ea.algorithm</span></code></a><a class="headerlink" href="#module-alogos._optimization.ea.algorithm" title="Permalink to this heading">¶</a></h1>
+<p>Data structure for a evolutionary algorithm that uses G3P systems.</p>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm" title="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EvolutionaryAlgorithm</span></code></a></p></td>
+<td><p>Evolutionary algorithm for searching an optimal string in a grammar's language.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="detailed-object-descriptions">
+<h2>Detailed object descriptions<a class="headerlink" href="#detailed-object-descriptions" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">alogos._optimization.ea.algorithm.</span></span><span class="sig-name descname"><span class="pre">EvolutionaryAlgorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cfggpst'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evolutionary algorithm for searching an optimal string in a grammar’s language.</p>
+<p>The role of this class is explained by first introducing
+basic concepts from optimization theory and the field of
+grammar-guided genetic programming.
+Then the usage of this evolutionary algorithm is explained.</p>
+<ol class="arabic">
+<li><p>Concepts from optimization theory</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Optimization: In general terms, optimization means to search
+for the best item out of many alternatives, or in other words,
+an optimal solution out of many candidate solutions.</p></li>
+<li><p>Search space: The set of all candidate solutions is called
+the search space. It can have a finite or infinite number of
+elements and there can be mathematical relationships between
+them, which can be used to efficiently sample the space.</p></li>
+<li><p>Search goal: Having a best or optimal item in the space
+requires that there is an order on the items. Such an order
+can be established in different ways, but the most common one
+is to define an objective function, which takes an item as
+input and returns a number as output. This number represents
+a quality score or fitness of the item and puts a weak order
+on all items, which means that some of them can be equally
+good and therefore multiple optimal items may exist that
+share the best quality score.</p></li>
+<li><p>Search method: There are many optimization algorithms that
+work very efficiently on specific search spaces with certain
+mathematical structure. Methods that are more general and can
+act on a large variety of search spaces are sometimes called
+metaheuristics. They are usually stochastic optimization
+algorithms, which means they have a random element to them
+and that implies that running them several times can produce
+different results, i.e. find candidate solutions of different
+quality. They don’t come with any guarantee to find a good
+or optimal solution, but often can successfully do so in
+hard optimization problems and are therefore often used in
+practice when the search space can not be tackled with exact
+methods. An evolutionary algorithm is a prominent
+example of a population-based metaheuristic, which was
+originally inspired by the process of natural evolution.
+Genetic programming is one subdiscipline in the field of
+evolutionary computation that deals with optimization in
+spaces of programs. Grammar-guided genetic programming (G3P)
+is one flavor of it that allows to define the search space
+with a context-free grammar, which is very often used in
+computer science to define various kinds of formal languages,
+including modern programming languages like Python or Rust.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Concepts from grammar-guided genetic programming</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A grammar can be used to define a formal language.</p></li>
+<li><p>A formal language is a finite or infinite set of string.</p></li>
+<li><p>A search algorithm can try to find the best item in
+a set according to a given search goal.</p></li>
+<li><p>An objective function can define a search goal by assigning
+a score to each item in a set, so that the item with
+minimum or maximum score are considered the best ones and
+need to be found.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p>This class provides a metaheuristic search method known as
+evolutionary algorithm, which was tailored for use with different
+grammar-guided genetic programming systems such as Grammatical
+Evolution (GE) and Context-Free Grammar Genetic
+Programming (CFG-GP). It uses following concepts that are directly
+relevant for the usage of this class:</p>
+<ul>
+<li><p>Individual: An individual represents a single candidate solution
+and comes with a genotype, phenotype and fitness.
+The genotype can be modified with variation operators to give
+rise to new closely related genotypes and thereby move through
+the search space. It also allows to derive a phenotype, which is
+an element of the search space that in the case of grammar-guided
+genetic programming is simply a string of the grammar’s language.
+The fitness is a number that indicates the quality of a candidate
+solution and is
+calculated by a user-provided objective function.</p></li>
+<li><p>Population: A population is a collection of individuals.</p></li>
+<li><p>Generation: A generation is one of several consecutive populations
+used throughout a search with an evolutionary algorithm.
+The search begins with the creation of a random initial population
+and proceeds by generating one population after the other, each
+based on the previous one. The idea is that the average fitness
+of the individuals in the generations can be increased by
+using variation operators to generate new, closely related
+individuals together with selection operators that introduce a
+preference for individuals with higher fitness. This is done by</p>
+<ol class="arabic simple">
+<li><p>Parent selection to choose individuals that are allowed to
+create offspring.</p></li>
+<li><p>Crossover to create new individuals by mixing the genotypes of
+parent individuals.</p></li>
+<li><p>Mutation to introduce slight random variations into the
+offspring individuals.</p></li>
+<li><p>Survivor selection to choose individuals that are allowed to
+continue into the next generation.</p></li>
+</ol>
+<p>All of these steps can be performed by different operators and
+this class provides several well-known ones to modify how the
+search is performed.</p>
+</li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grammar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cfggpst'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and parameterize an evolutionary algorithm.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>grammar</strong> (<a class="reference internal" href="../../../index.html#alogos.Grammar" title="alogos.Grammar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Grammar</span></code></a>) – Context-free grammar that defines the search space.
+A grammar specifies a formal language, which is a finite or
+infinite set of strings. Each item of the search space
+is simply a string of the grammar’s language. The aim is
+to find an optimal string according to a user-provided
+objective.</p></li>
+<li><p><strong>objective_function</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Callable</span></code></a>) – A function that gets an item of the search space as input
+and needs to return a numerical value for it as output.
+In other words, it gets a phenotype and returns a fitness
+value for it that represents how good it is.</p>
+<p>Given that the search space is a grammar’s language,
+each candidate solution or phenotype is a string. Therefore
+a very simple objective function could just measure the
+length of each string and return that as fitness value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">obj_fun</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">fitness</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fitness</span>
+</pre></div>
+</div>
+<p>More realistic objective functions will usually evaluate
+the string in some way and measure how well it performs on
+a task.</p>
+</li>
+<li><p><strong>objective</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Goal of the optimization, which is to find a candidate
+solution that has either the minimum or maximum value
+assigned to it by the objective function.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;min&quot;</span></code>: Minimization, i.e. looking for a candidate
+solution with the smallest possible fitness value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;max&quot;</span></code>: Maximization, i.e. looking for a candidate
+solution with the highest possible fitness value.</p></li>
+</ul>
+</li>
+<li><p><strong>system</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Grammar-guided gentic programming system used by the
+evolutionary algorithm.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;cfggp&quot;</span></code>: CFG-GP, see <a class="reference internal" href="../../../systems/cfggp/index.html#module-alogos.systems.cfggp" title="alogos.systems.cfggp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cfggp</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;cfggpst&quot;</span></code>: CFG-GP-ST, see <a class="reference internal" href="../../../systems/cfggpst/index.html#module-alogos.systems.cfggpst" title="alogos.systems.cfggpst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cfggpst</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;dsge&quot;</span></code>: DSGE, see <a class="reference internal" href="../../../systems/dsge/index.html#module-alogos.systems.dsge" title="alogos.systems.dsge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dsge</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;ge&quot;</span></code>: GE, see <a class="reference internal" href="../../../systems/ge/index.html#module-alogos.systems.ge" title="alogos.systems.ge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ge</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;pige&quot;</span></code>: piGE, see <a class="reference internal" href="../../../systems/pige/index.html#module-alogos.systems.pige" title="alogos.systems.pige"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pige</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;whge&quot;</span></code>: WHGE, see <a class="reference internal" href="../../../systems/whge/index.html#module-alogos.systems.whge" title="alogos.systems.whge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">whge</span></code></a>.</p></li>
+</ul>
+<p>The system provides following components to the search
+algorithm:</p>
+<ul class="simple">
+<li><p>Genotype representation: This is a system-specific,
+indirect representation of a candidate solution,
+e.g. a list of int, a bitarray, or a tree.</p></li>
+<li><p>Genotype-phenotype mapping: This is used to translate a
+genotype to a phenotype. Note that a genotype is
+system-specific, while a phenotype is a string of
+the grammar’s language.</p></li>
+<li><p>Random variation operators: These are used to move through
+the search space by generating new genotypes that are
+close or related to the original ones. This is achieved
+by randomly introducing slight changes into a genotype
+(mutation) or recombining multiple genotypes
+into new ones (crossover).</p></li>
+</ul>
+</li>
+<li><p><strong>evaluator</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Callable</span></code></a>, optional) – A function that gets a function together with a list of
+items as input and needs to return a list of new items as
+output. The task of this function is to evaluate the given
+function for each item in the list, and collect the return
+values in a new list. All function calls are assumed to be
+independent and may be computed serially, in parallel or in
+a distributed fashion.</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Further keyword arguments are forwarded either to the
+evolutionary algorithm or to the chosen <code class="xref py py-obj docutils literal notranslate"><span class="pre">system</span></code>. This
+allows to control the search process in great detail.
+Every parameter can also be changed later on via the
+attribute <code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code> of the generated instance.
+This can be done before starting a run with the <a class="reference internal" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run" title="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>
+method, but also throughout a run when it is performed
+one step at a time by repeatedly calling the <a class="reference internal" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.step" title="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step</span></code></a> method.</p>
+<p>For a description of available keyword arguments, see</p>
+<ul class="simple">
+<li><p>Parameters for the evolutionary algorithm itself:
+<a class="reference internal" href="../parameters/index.html#alogos._optimization.ea.parameters.default_parameters" title="alogos._optimization.ea.parameters.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>Parameters of the chosen G3P system:</p>
+<ul>
+<li><p>CFG-GP: <a class="reference internal" href="../../../systems/cfggp/index.html#alogos.systems.cfggp.default_parameters" title="alogos.systems.cfggp.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>CFG-GP-ST: <a class="reference internal" href="../../../systems/cfggpst/index.html#alogos.systems.cfggpst.default_parameters" title="alogos.systems.cfggpst.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>DSGE: <a class="reference internal" href="../../../systems/dsge/index.html#alogos.systems.dsge.default_parameters" title="alogos.systems.dsge.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>GE: <a class="reference internal" href="../../../systems/ge/index.html#alogos.systems.ge.default_parameters" title="alogos.systems.ge.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>piGE: <a class="reference internal" href="../../../systems/pige/index.html#alogos.systems.pige.default_parameters" title="alogos.systems.pige.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+<li><p>WHGE: <a class="reference internal" href="../../../systems/whge/index.html#alogos.systems.whge.default_parameters" title="alogos.systems.whge.default_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_parameters</span></code></a></p></li>
+</ul>
+</li>
+</ul>
+<p>For example, when the chosen system is GE, the creation
+and parametrization of the evolutionary algorithm could
+look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">alogos</span> <span class="k">as</span> <span class="nn">al</span>
+
+<span class="n">grammar</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">Grammar</span><span class="p">(</span><span class="s2">&quot;&lt;S&gt; ::= 1 | 22 | 333&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">obj_fun</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+
+<span class="n">ea</span> <span class="o">=</span> <span class="n">al</span><span class="o">.</span><span class="n">EvolutionaryAlgorithm</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span> <span class="n">obj_fun</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="s2">&quot;ge&quot;</span><span class="p">,</span>
+    <span class="n">max_generations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_wraps</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ea</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Note that in this example <code class="docutils literal notranslate"><span class="pre">max_generations</span></code> is a parameter
+of the evolutionary algorithm itself and therefore it can be
+used no matter which system is chosen.
+In contrast, <code class="docutils literal notranslate"><span class="pre">max_wraps</span></code> is a parameter specific to
+the system GE and would not be accepted if for example the
+system CFG-GP were chosen by passing <code class="docutils literal notranslate"><span class="pre">system=&quot;cfggp&quot;</span></code>
+instead of <code class="docutils literal notranslate"><span class="pre">system=&quot;ge&quot;</span></code>.</p>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.ParameterError" title="alogos.exceptions.ParameterError"><strong>ParameterError</strong></a> – If a parameter is provided that is not known to the
+evolutionary algorithm or to the chosen system.
+A list of available parameters and their default values
+will be printed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm.step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a single step of the evolutionary search.</p>
+<p>Taking a single step means that one generation is added,
+which can happen in one of two ways:</p>
+<ul class="simple">
+<li><p>If the run has just started, the first generation is created
+by initializating a population.</p></li>
+<li><p>If the run is already ongoing, a new generation is derived
+from the current generation by a process that involves
+1) parent selection that prefers fitter individuals,
+2) generating an offspring population by applying random
+variation operators (mutation, crossover) to the parents and
+3) survivor selection that again prefers fitter individuals.</p></li>
+</ul>
+<p>Two important notes about the behavior of this method:</p>
+<ul class="simple">
+<li><p>It contrast to the <a class="reference internal" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run" title="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a> method, it does not check
+if any stop criterion has been met!
+For example, when the number of generations reaches
+the value provided by the <code class="docutils literal notranslate"><span class="pre">max_generations</span></code> parameter,
+calling this method will regardless add another generation.</p></li>
+<li><p>Since this method has to be called repeatedly to perform
+the individual steps of a run, it enables to change the
+parameters of the evolutionary algorithm on the fly by
+modifying the <code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code> attribute between calls.
+This means the search can be adjusted in much greater detail
+than with the <a class="reference internal" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run" title="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a> method.
+For example, the mutation and crossover rates can be gradually
+modified during a run to reduce the amount of variation when
+getting closer to the goal. It is also possible to change
+the population size or even the objective function.
+Fixed throughout a run, however, are the grammar
+(=search space) and the G3P system (=internal representation).</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>best_individual</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Individual</span></code> of the chosen G3P system) – The individual with the best fitness found so far in the
+entire search. This means the individual may have been
+discovered not in the current step but in an earlier one.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform one search step after another until a stop criterion is met.</p>
+<p>A user can set a single or multiple stop criteria. The algorithm
+will halt when one of them is fulfilled. Caution: If the
+criteria are set in such a way that they can never be realized,
+e.g. because an unreachable fitness threshold was chosen,
+then the run will not halt until it is interrupted from the
+outside.</p>
+<p>Note that after a search has halted, it is possible to change
+the stop criteria and call <a class="reference internal" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run" title="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a> again to continue the search.
+This can also be done multiple times.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>best_individual</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Individual</span></code> of the chosen G3P system) – The individual with the best fitness found so far in the
+entire search.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../../exceptions/index.html#alogos.exceptions.ParameterError" title="alogos.exceptions.ParameterError"><strong>ParameterError</strong></a> – If no stop criterion was set. This prevents starting a run
+that clearly would not halt.</p>
+</dd>
+<dt class="field-odd">Warns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>OptimizationWarning</strong> – If not a single step was taken, because some stop criterion
+was already fulfilled by the current search state.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.is_stop_criterion_met">
+<span class="sig-name descname"><span class="pre">is_stop_criterion_met</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm.is_stop_criterion_met"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.is_stop_criterion_met" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the current search state meets any stop criterion.</p>
+<p>This method is used internally by the <a class="reference internal" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run" title="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a> method.
+It can also be useful when constructing a specialized search
+that repeatedly calls the <a class="reference internal" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.step" title="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step</span></code></a> method, where it is the
+responsibility of the user to ensure a stop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stop</strong> (<em>bool</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> if a stop criterion is met, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/alogos/_optimization/ea/algorithm.html#EvolutionaryAlgorithm.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#alogos._optimization.ea.algorithm.EvolutionaryAlgorithm.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the current search state to enable a fresh start.</p>
+<p>Not all aspects of the algorithm object are simply set back to
+their initial state:</p>
+<ul>
+<li><p>Parameters are not reset to their default values. If any
+non-default parameters were passed during object-creation or
+if they were set to user-provided values later via the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code> attribute, then these values are kept and not
+overwritten by default values. The purpose of this behavior
+is to enable repeated runs that are directly comparable.</p></li>
+<li><p>If a database was used, it is reset, but what that means
+depends on its location:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If the database location is in memory, the content is
+entirely lost during a reset.</p></li>
+<li><p>If the database location is a file, it is renamed during a
+reset and a new file is created. This means the content of
+a run is not lost but relocated.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Cached values are fully deleted. This means previous
+phenotype-to-fitness evaluations will not be reused in a
+follow-up run.</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.whge.mutation &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems.whge.mutation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems.whge.mutation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Mutation functions for WHGE.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">_random</span>
+
+<span class="kn">from</span> <span class="nn">..._utilities.parametrization</span> <span class="kn">import</span> <span class="n">get_given_or_default</span> <span class="k">as</span> <span class="n">_get_given_or_default</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">default_parameters</span> <span class="k">as</span> <span class="n">_dp</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">representation</span> <span class="k">as</span> <span class="n">_representation</span>
+
+
+<div class="viewcode-block" id="bit_flip_by_probability"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/whge/mutation/index.html#alogos.systems.whge.mutation.bit_flip_by_probability">[docs]</a><span class="k">def</span> <span class="nf">bit_flip_by_probability</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Mutate a genotype by random bit flips with a certain probability.</span>
+
+<span class="sd">    The probability for a bit flip is considered independently for</span>
+<span class="sd">    each position in the genotype, regardless of the genotype length.</span>
+
+<span class="sd">    Caution: Mutation is performed in-place for performance reasons,</span>
+<span class="sd">    which means that the provided genotype is modified. If this is</span>
+<span class="sd">    not desired, a copy needs to be made beforehand.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    genotype : `~.representation.Genotype`</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`, optional</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``mutation_bit_flip_probability`` (`int`) : Probability</span>
+<span class="sd">          of changing a bit.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    - Medvet in 2017:</span>
+<span class="sd">      `Hierarchical Grammatical Evolution</span>
+<span class="sd">      &lt;https://doi.org/10.1145/3067695.3075972&gt;`__</span>
+
+<span class="sd">        - p. 250: &quot;we performed 30 independent executions of the evolutionary search</span>
+<span class="sd">          [...] with the following evolution parameters: [...]</span>
+<span class="sd">          bit flip mutation with p_mut = 0.01 and 0.2 rate&quot;</span>
+
+<span class="sd">    - Bartoli, Castelli, Medvet in 2018:</span>
+<span class="sd">      `Weighted Hierarchical Grammatical Evolution</span>
+<span class="sd">      &lt;https://doi.org/10.1109/TCYB.2018.2876563&gt;`__</span>
+
+<span class="sd">        - p. 7, Table 1: &quot;Mutation op. bit flip w. p_mut = 0.01&quot;</span>
+
+<span class="sd">    - Reference implementation in Java: `evolved-ge</span>
+<span class="sd">      &lt;https://github.com/ericmedvet/evolved-ge&gt;`__</span>
+
+<span class="sd">        - `ProbabilisticMutation.java</span>
+<span class="sd">          &lt;https://github.com/ericmedvet/evolved-ge/blob/master/src/main/java/it/units/malelab/ege/ge/operator/ProbabilisticMutation.java&gt;`__</span>
+
+<span class="sd">            - The algorithm loops over each bit of the genotype, in each</span>
+<span class="sd">              run generating a random number between 0.0 and 1.0 and if</span>
+<span class="sd">              it is smaller than p_mut the current bit is flipped.</span>
+
+<span class="sd">        - `Folder with example scripts</span>
+<span class="sd">          &lt;https://github.com/ericmedvet/evolved-ge/blob/master/src/main/java/it/units/malelab/ege&gt;`__</span>
+
+<span class="sd">            - Using ``ProbabilisticMutation`` with p_mut 0.01 and rate 0.2:</span>
+<span class="sd">              ``DeepExperimenter.java``,</span>
+<span class="sd">              ``DeepDistributedExperimenter.java``,</span>
+<span class="sd">              ``GOM.java``,</span>
+<span class="sd">              ``MapperGenerationExperimenter.java``,</span>
+<span class="sd">              ``MapperGenerationDistributedExperimenter.java``</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Note about the implementation:</span>
+    <span class="c1"># An attempted speedup with</span>
+    <span class="c1"># numpy.random.choice([True, False], size=len(genotype), p=(probability, 1.0-probability))`</span>
+    <span class="c1"># to generate a mask of positions to flip turned out to be slower</span>
+    <span class="c1"># than simply using Python&#39;s `random.random() &lt; probability` in a</span>
+    <span class="c1"># for loop.</span>
+
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">probability</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span>
+        <span class="s2">&quot;mutation_bit_flip_probability&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">):</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
+
+    <span class="c1"># Mutation: For each bit decide randomly whether it is flipped</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">_random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">probability</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="bit_flip_by_count"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/whge/mutation/index.html#alogos.systems.whge.mutation.bit_flip_by_count">[docs]</a><span class="k">def</span> <span class="nf">bit_flip_by_count</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Mutate a genotype by n random bit flips.&quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">flip_count</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;mutation_bit_flip_count&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">):</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
+
+    <span class="c1"># Mutation: Choose n different positions to flip</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">num_pos</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">flip_count</span> <span class="o">&gt;</span> <span class="n">num_pos</span><span class="p">:</span>
+        <span class="n">positions</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_pos</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">positions</span> <span class="o">=</span> <span class="n">_random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_pos</span><span class="p">),</span> <span class="n">flip_count</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

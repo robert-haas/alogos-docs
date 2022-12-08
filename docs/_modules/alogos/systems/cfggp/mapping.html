@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>alogos.systems.cfggp.mapping &mdash; alogos 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html">
+          
+
+          
+            
+            <img src="../../../../_static/alogos.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/package_references.html">Package References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/quickstart.html">Quickstart Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/getting_started.html">Getting Started Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rst/examples.html">Code Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">alogos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>alogos.systems.cfggp.mapping</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for alogos.systems.cfggp.mapping</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Forward and reverse mapping functions for CFG-GP.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">copy</span> <span class="k">as</span> <span class="nn">_copy</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">_grammar</span>
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">_exceptions</span>
+<span class="kn">from</span> <span class="nn">..._utilities.parametrization</span> <span class="kn">import</span> <span class="n">get_given_or_default</span> <span class="k">as</span> <span class="n">_get_given_or_default</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">_shared</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">default_parameters</span> <span class="k">as</span> <span class="n">_dp</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">representation</span> <span class="k">as</span> <span class="n">_representation</span>
+
+
+<span class="c1"># Shortcuts for brevity and minor speedup</span>
+<span class="n">_GT</span> <span class="o">=</span> <span class="n">_representation</span><span class="o">.</span><span class="n">Genotype</span>
+<span class="n">_DT</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">DerivationTree</span>
+<span class="n">_ND</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">Node</span>
+<span class="n">_NT</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">NonterminalSymbol</span>
+<span class="n">_T</span> <span class="o">=</span> <span class="n">_grammar</span><span class="o">.</span><span class="n">data_structures</span><span class="o">.</span><span class="n">TerminalSymbol</span>
+
+
+<span class="c1"># Forward mapping</span>
+<div class="viewcode-block" id="forward"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/cfggp/mapping/index.html#alogos.systems.cfggp.mapping.forward">[docs]</a><span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span>
+    <span class="n">genotype</span><span class="p">,</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">raise_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">return_derivation_tree</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Map a CFG-GP genotype to a string phenotype.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    genotype : `~.representation.Genotype` or data that can be converted to it</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`, optional</span>
+<span class="sd">        Following keyword-value pairs are considered by this function:</span>
+
+<span class="sd">        - ``max_expansions``  (`int`): Maximum number of nonterminal</span>
+<span class="sd">          expansions allowed in the derivation created by the mapping</span>
+<span class="sd">          process.</span>
+<span class="sd">    raise_errors : `bool`, optional</span>
+<span class="sd">        Possible values:</span>
+
+<span class="sd">        - `True`: A mapping error will be raised if a derivation is</span>
+<span class="sd">          not finished within a limit provided in the parameters.</span>
+<span class="sd">        - `False`: A partial derivation is allowed. In this case, the</span>
+<span class="sd">          returned string will contain unexpanded nonterminal symbols.</span>
+<span class="sd">          Therefore it is not a valid phenotype, i.e. not a string of</span>
+<span class="sd">          the grammar&#39;s language but a so-called sentential form.</span>
+<span class="sd">    return_derivation_tree : `bool`, optional</span>
+<span class="sd">        If `True`, not only the phenotype is returned but additionally</span>
+<span class="sd">        also the derivation tree.</span>
+<span class="sd">    verbose : `bool`, optional</span>
+<span class="sd">        If `True`, output about steps of the mapping process is printed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    phenotype : `str`</span>
+<span class="sd">        If ``return_derivation_tree`` is `False`, which is the default.</span>
+<span class="sd">    (phenotype, derivation_tree) : `tuple` with two elements of type `str` and `~alogos._grammar.data_structures.DerivationTree`</span>
+<span class="sd">        If ``return_derivation_tree`` is `True`.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    MappingError</span>
+<span class="sd">        If ``raise_errors`` is `True` and the mapping process can not</span>
+<span class="sd">        generate a full derivation before reaching a limit provided in</span>
+<span class="sd">        the parameters.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Parameter extraction</span>
+    <span class="n">me</span> <span class="o">=</span> <span class="n">_get_given_or_default</span><span class="p">(</span><span class="s2">&quot;max_expansions&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">_dp</span><span class="p">)</span>
+
+    <span class="c1"># Argument processing</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">genotype</span><span class="p">,</span> <span class="n">_GT</span><span class="p">):</span>
+        <span class="n">genotype</span> <span class="o">=</span> <span class="n">_GT</span><span class="p">(</span><span class="n">genotype</span><span class="p">)</span>
+
+    <span class="c1"># Mapping</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_forward_slow</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">me</span><span class="p">,</span> <span class="n">raise_errors</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_forward_fast</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">me</span><span class="p">,</span> <span class="n">raise_errors</span><span class="p">)</span>
+    <span class="n">phe</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">string</span><span class="p">()</span>
+
+    <span class="c1"># Conditional return</span>
+    <span class="k">if</span> <span class="n">return_derivation_tree</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">phe</span><span class="p">,</span> <span class="n">dt</span>
+    <span class="k">return</span> <span class="n">phe</span></div>
+
+
+<span class="k">def</span> <span class="nf">_forward_fast</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="n">me</span><span class="p">,</span> <span class="n">re</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the genotype-to-phenotype map of CFG-GP in a fast way.&quot;&quot;&quot;</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="c1"># Limit check</span>
+    <span class="k">if</span> <span class="n">me</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">me</span> <span class="o">&lt;</span> <span class="n">dt</span><span class="o">.</span><span class="n">num_expansions</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">re</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_max_expansion_error</span><span class="p">(</span><span class="n">me</span><span class="p">)</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_copy_tree_truncated</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">me</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dt</span>
+
+
+<span class="k">def</span> <span class="nf">_forward_slow</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">genotype</span><span class="p">,</span> <span class="n">max_expansions</span><span class="p">,</span> <span class="n">raise_errors</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate the genotype-to-phenotype map of CFG-GP in a slow way.</span>
+
+<span class="sd">    This is a readable implementation of the mapping process, which</span>
+<span class="sd">    also allows to print output about the steps it involves.</span>
+<span class="sd">    It served as basis for the faster, minified implementation in this</span>
+<span class="sd">    module and may be helpful in understanding, replicating or modifying</span>
+<span class="sd">    the algorithm.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;Start reading the phenotype directly from the genotype&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+    <span class="n">terminals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">nd</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">nodes</span><span class="p">()):</span>
+        <span class="n">sym_text</span> <span class="o">=</span> <span class="n">nd</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">sym_type</span> <span class="o">=</span> <span class="s2">&quot;nonterminal&quot;</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nd</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_NT</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;terminal&quot;</span>
+            <span class="n">num_children</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nd</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;- Entry </span><span class="si">{}</span><span class="s1">: Symbol &quot;</span><span class="si">{}</span><span class="s1">&quot; is a </span><span class="si">{}</span><span class="s1"> with </span><span class="si">{}</span><span class="s1"> children&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">i</span><span class="p">,</span> <span class="n">sym_text</span><span class="p">,</span> <span class="n">sym_type</span><span class="p">,</span> <span class="n">num_children</span>
+            <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nd</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="n">_T</span><span class="p">):</span>
+            <span class="n">terminals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sym_text</span><span class="p">)</span>
+    <span class="n">phe</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">terminals</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;End of reading&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Collected terminals in order of discovery: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">terminals</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;String: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">phe</span><span class="p">))</span>
+
+    <span class="c1"># Limit check</span>
+    <span class="k">if</span> <span class="n">max_expansions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">max_expansions</span> <span class="o">&lt;</span> <span class="n">dt</span><span class="o">.</span><span class="n">num_expansions</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">raise_errors</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_max_expansion_error</span><span class="p">(</span><span class="n">max_expansions</span><span class="p">)</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">_copy_tree_truncated</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">max_expansions</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dt</span>
+
+
+<span class="k">def</span> <span class="nf">_copy_tree_truncated</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">dt_ori</span><span class="p">,</span> <span class="n">max_expansions</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a copy of a derivation tree that contains only a part of the nodes.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">copy_node_shallow</span><span class="p">(</span><span class="n">nd</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_ND</span><span class="p">(</span><span class="n">_copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">nd</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
+
+    <span class="n">dt_new</span> <span class="o">=</span> <span class="n">_DT</span><span class="p">(</span><span class="n">grammar</span><span class="p">)</span>
+    <span class="n">dt_new</span><span class="o">.</span><span class="n">root_node</span> <span class="o">=</span> <span class="n">copy_node_shallow</span><span class="p">(</span><span class="n">dt_ori</span><span class="o">.</span><span class="n">root_node</span><span class="p">)</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dt_ori</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="n">dt_new</span><span class="o">.</span><span class="n">root_node</span><span class="p">)]</span>
+    <span class="n">num_expansions</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">num_expansions</span> <span class="o">&gt;=</span> <span class="n">max_expansions</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">node_given</span><span class="p">,</span> <span class="n">node_new</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node_given</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="n">num_expansions</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">node_new</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="n">copy_node_shallow</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span> <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">node_given</span><span class="o">.</span><span class="n">children</span><span class="p">]</span>
+            <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">)</span> <span class="k">for</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">node_given</span><span class="o">.</span><span class="n">children</span><span class="p">,</span> <span class="n">node_new</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+            <span class="p">]</span> <span class="o">+</span> <span class="n">stack</span>
+    <span class="k">return</span> <span class="n">dt_new</span>
+
+
+<span class="c1"># Reverse mapping</span>
+<div class="viewcode-block" id="reverse"><a class="viewcode-back" href="../../../../autoapi/alogos/systems/cfggp/mapping/index.html#alogos.systems.cfggp.mapping.reverse">[docs]</a><span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span>
+    <span class="n">grammar</span><span class="p">,</span> <span class="n">phenotype_or_derivation_tree</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_derivation_tree</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Map a string phenotype (or derivation tree) to a CFG-GP genotype.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grammar : `~alogos.Grammar`</span>
+<span class="sd">    phenotype_or_derivation_tree : `str` or `~alogos._grammar.data_structures.DerivationTree`</span>
+<span class="sd">    parameters : `dict` or `~alogos._utilities.parametrization.ParameterCollection`, optional</span>
+<span class="sd">        No keyword-value pairs are considered by this function.</span>
+<span class="sd">        This argument is only available to have a consistent interface.</span>
+<span class="sd">    return_derivation_tree : `bool`, optional</span>
+<span class="sd">        If `True`, not only the genotype is returned but additionally</span>
+<span class="sd">        also the derivation tree.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    genotype : `~.representation.Genotype`</span>
+<span class="sd">        If ``return_derivation_tree`` is `False`, which is the default.</span>
+<span class="sd">    (genotype, derivation_tree) : `tuple` with two elements of type `~.representation.Genotype` and `~alogos._grammar.data_structures.DerivationTree`</span>
+<span class="sd">        If ``return_derivation_tree`` is `True`.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    MappingError</span>
+<span class="sd">        If the reverse mapping fails because the string does not belong</span>
+<span class="sd">        to the grammar&#39;s language or the derivation tree does not</span>
+<span class="sd">        represent a valid derivation.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Prepare data structures</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">_shared</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">get_derivation_tree</span><span class="p">(</span><span class="n">grammar</span><span class="p">,</span> <span class="n">phenotype_or_derivation_tree</span><span class="p">)</span>
+
+    <span class="c1"># Check integrity</span>
+    <span class="n">known_sym</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">nonterminal_symbols</span><span class="p">)</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">grammar</span><span class="o">.</span><span class="n">terminal_symbols</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">dt</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">symbol</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">known_sym</span><span class="p">:</span>
+            <span class="n">_exceptions</span><span class="o">.</span><span class="n">raise_missing_nt_error</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+    <span class="c1"># Finalize data structures</span>
+    <span class="n">gt</span> <span class="o">=</span> <span class="n">_GT</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+
+    <span class="c1"># Conditional return</span>
+    <span class="k">if</span> <span class="n">return_derivation_tree</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">gt</span><span class="p">,</span> <span class="n">dt</span>
+    <span class="k">return</span> <span class="n">gt</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Robert Haas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
